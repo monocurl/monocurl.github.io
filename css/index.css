@@ -1,0 +1,76 @@
+/* figure */
+#landing-figure {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: center;
+
+	padding-bottom: 75px;
+}
+
+#landing-figure figcaption {
+	color: #333;
+	font-size: 50px;
+	max-width: 650px;
+	margin-top: 100px;
+}
+
+#landing-figure strong {
+	color: black;
+	font-weight: 500;
+}
+
+#monocurl-logo {
+	width: 450px;
+}
+
+/* download */
+
+#os-selection {
+	display: flex;
+	gap: 10px;
+	margin-left: 150px;
+}
+
+.hidden {
+	display: none
+}
+
+.button-os {
+	background: none;
+	border: solid black 1px;
+	border-radius: 10px;
+	padding: 10px;
+	width: 125px;
+
+	font-family: var(--serif);
+	font-size: 20px;
+}
+.button-os:hover {
+	background: #EEE;
+}
+
+.active-os {
+	color: white;
+	background: black;
+}
+
+.active-os:hover {
+	background: #111 !important;
+}
+
+.download-button {
+	background: #F77;
+	border-radius: 12px;
+	padding: 7px 13px;
+	text-decoration: none;
+	color: black;
+	text-align: center;
+	display: inline-block;
+	margin: auto 0px;
+}
+
+.os-details {
+	margin-left: 150px;
+	height: 100px;
+}

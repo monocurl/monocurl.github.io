@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Lessons</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		<!-- JS -->
+		
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink" href="/learn">           Learn    </a>
+			<a class="navlink" href="/docs/camera">     Docs     </a>
+			<a class="navlink" href="/examples">        Examples </a>
+			<a class="navlink" href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><h2>0</h2><h2>1</h2><h2>2</h2><h2>3</h2><h2>4</h2><h2>5</h2><h2>6</h2><h2>7</h2><h2>8</h2></aside><div id="content"><h1>1. Monocurl Scripting Language</h1>
+<p>Prior programming experience is beneficial and i probably wouldnt recommend this as your first language, but i also think its really simple so maybe you'll be fine. The rest of this article assumes basic knowledge about </p>
+<h2>1.1 The Basiscs</h2>
+<p>The basics:
+    Monocurl comes as a pretty simple language. It is run line by line, so on each line we can give a command. In particular, we can declare a variable (which you can think of as a name for some data) by saying var x = 0 or let x = 0 to denote it is either mutable or immutable.
+    There are a couple of datatypes.
+    Numbers. AT this time no integers for simplicity.
+    Vector, otherwise referred to as a list
+    Strings, used very rarely but occasionally (for things like displaying text)
+    Map, sometimes referred to as a dictionary. 
+    Meshes
+    Animations
+    Functions</p>
+<pre><code>Copy by value and that it is dynamically typed for the most part
+
+We can do if statements, else if, and else statemenst, as well as for loops and while loops.
+
+I'll gloss over some operators, but one that is extremely important is the vector plus operator
+</code></pre>
+<h2>1.2 Functions</h2>
+<pre><code>The rest of the article is devoted to functions and functors. Special importance is placed on these two since this is where Monocurl differs from many different languages.
+Functions. Monocurl heavily emphasizes functions, and thus the syntax is very simple.
+</code></pre>
+<h2>1.3 Functors</h2>
+<pre><code>We'll discuss the full use case of functors later, but for motivation we can see that in many cases we just want to have the result of a function pretty much identical but change one value. Really, we need something that acts like the value returned, yet remembers how it was created so we can slightly alter that. We need to remember the function and its arguments.
+
+Functors. This is really great because we do not have to memorize the argument order. It does make it a verbose, but verbose is good when you're learning!
+
+Now, after creating the functor, we can reference its inputs and change them. Perhaps if you can see ahead, you can see how changing it slightly leads to an easy way to an animation. Maybe we can even interpolate functor arguments?
+
+As of this writing, all functions can become functors. I later realized this is somewhat of a mistake, and this possibly may change in the future
+</code></pre>
+<h2>1.4 Conlusions</h2>
+<pre><code>There are of course more subtleties that we'll talk about, but if you honestly understand this then you have a good udnerstanding of the scripting language.
+</code></pre></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

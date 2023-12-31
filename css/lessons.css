@@ -1,0 +1,55 @@
+main {
+	display: flex;
+	align-items: stretch;
+}
+
+aside {
+	min-width: 220px;
+	max-width: 220px;
+	padding: 20px 40px 20px 40px;
+	overflow: scroll;
+
+	background-color: #efefef;
+
+	border-right: #ddd solid 0.25px;
+}
+
+aside h2 {
+	text-align: center;
+	margin: 10px 0px 30px;
+	color: #333;
+}
+
+aside p.toc-header {
+	margin-top: 10px;
+	margin-left: 10px;
+	font-weight: 500;
+}
+
+aside a {
+	display: block;
+	text-decoration: none;
+	color: #555;
+	margin-left: 30px;
+}
+
+aside a.current {
+	color: var(--blue);
+}
+
+aside a.important {
+	color: #c55;
+}
+
+#content {
+	margin: 10px;
+}
+
+h1 {
+	font-weight: 600;
+}
+
+h2 {
+	font-weight: 500;
+}
+

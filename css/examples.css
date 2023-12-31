@@ -1,0 +1,19 @@
+main {
+	margin: 30px;
+}
+
+#examples {
+	display: flex;
+	justify-content: center;
+	gap: 100px;
+}
+
+.example {
+	border: solid 0.5px #ccc;
+	border-radius: 5px;
+	padding: 15px 15px 0px 15px;
+}
+
+iframe {
+	border-radius: 5px;
+}

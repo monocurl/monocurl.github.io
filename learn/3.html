@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Lessons</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		<!-- JS -->
+		
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink" href="/learn">           Learn    </a>
+			<a class="navlink" href="/docs/camera">     Docs     </a>
+			<a class="navlink" href="/examples">        Examples </a>
+			<a class="navlink" href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><h2>0</h2><h2>1</h2><h2>2</h2><h2>3</h2><h2>4</h2><h2>5</h2><h2>6</h2><h2>7</h2><h2>8</h2></aside><div id="content"><h1>3. The Basics of Animation</h1>
+<p>The way animations are done is one of the more unique parts of monocurl. This section gives a motivation of why I chose the things I did. Strictly speaking, it's not fully necessary for coding in monocurl, but if you understand the decisions, they come across as natural rather than memorized.</p>
+<h2>3.1 Traditional Programatic Animation Methods</h2>
+<p>Traditional animation methods. 
+The play method. But the thing is, this is pretty bad for composition. I'll not go into to much detail, but it actually becomes hard to express that function a should be in parallel with function b </p>
+<p>This leads us more into the method monocurl time. What happens if we delay the time between animation creation and animation playing? Then, we can create the animations for a and b (not playing it yet), and then sometime later play it. This seems to solve all of our problems! 
+The idea is that each slide, we create a list of animations to play, and then we play it all together. By separating the creation an execution, we are able to compose arbitrarily complex animations</p>
+<p>I should mention this isn't the only solution, we can do something like coroutines. Of course, this was rather complex for me to write, and I think the perspective I have serves some other benefits as well.</p>
+<h2>3.2 The Play List</h2>
+<p>This gives us the final Monocurl methodology.
+Keep appending to a play list.
+If we want to compose? Then, we can do something similar to what we did with meshes. An animation-tree 
+Thus, if you </p>
+<h2>3.3 Parallel Animations</h2>
+<p>Now what about parallel? Did we forget about that. No! If we mark it as sticky. This is kind of like in Powerpoint where you do "run animation with previous animation". Finally, what happens if we have a a vector of animatnios</p>
+<p>Thus if we want to have A-B-C run in series but in parallel with that netire chunk, we want D and E to run, we can do something like this. While there are technically more complex operations we might want to do than parallel and seris, 99% of the time you can do compose whatever you want with just these two techniques.</p>
+<h2>3.4 Conclusion</h2>
+<p>I finally mention that composition of animations is not nearly as important as meshes in Monocurl. You typically do not need to define that many custom animations, but may need to define many many custom meshes.</p>
+<p>Now that we have some underlying idea of animations structure, lets move on to more details.</p></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    
