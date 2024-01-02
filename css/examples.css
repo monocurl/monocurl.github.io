@@ -5,15 +5,17 @@ main {
 #examples {
 	display: flex;
 	justify-content: center;
-	gap: 100px;
+	gap: 50px;
 }
 
 .example {
-	border: solid 0.5px #ccc;
-	border-radius: 5px;
-	padding: 15px 15px 0px 15px;
+	padding: 0px 10px 10px 10px;
 }
 
 iframe {
 	border-radius: 5px;
+}
+
+p {
+	margin-bottom: 5px;
 }

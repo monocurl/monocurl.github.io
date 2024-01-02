@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Lessons</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		<!-- JS -->
+		
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink" href="/docs/%20camera">     Docs     </a>
+			<a class="navlink" href="/examples">        Examples </a>
+			<a class="navlink" href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Tips_and_General_Advice" class="">8 Tips and General Advice</a><a href="9_Future_Works" class="current">9 Future Works</a></aside><div id="content"><h1>9. Future Works (Optional)</h1>
+<p>This is an optional section that discusses what might be coming in future Monocurl updates in the short and long term. It's written pretty roughly.</p>
+<h2>9.1 Backwards Compatability</h2>
+<p>As Monocurl is in a beta right now, I should say do not expect it to be stable at all and I am not targetting backwards compatability in the slightest.</p>
+<h2>9.2 Regrets</h2>
+<p>Parts of the animation system have changed a lot from development, and if I redid it right now, seeking can be much faster. There are also a lot more optimizations that can be done.</p>
+<p>Also, at some point I definitely have to change the UI so that you can copy paste (basically make it a normal text editor). This is actually quite hard and would involve a lot of work, so no idea on any time line of this. The reason the way it is right now is basically due to decisions at the very start of development that in hindsight make no sense.</p>
+<h2>9.3 Short Term</h2>
+<p>In the short term, my priority is mainly security and bug fixes as well as making errors less confusing.
+The major short term thing I want to do is slightly change the animation system, and basically enforce the iterator follower paradigm (or rather, make not doing it throw errors), as well as some minor syntax changes to make it a bit easier. In particular, I am thinking of making follower variables declared with something like <code>tree</code> instead of <code>var</code>, and then have them shown by default, and you can only change them through animations. So they're shown by default, but initially have nothing, and then to actually show content, you do something more similar to Become. This isn't that big of a change and should be easy to implmeent, but should help shift the perspective of the user a bit more.</p>
+<p>At some point, I need to fix the 3d lighting shaders since they dont look great right now.</p>
+<p>Functions and functors should be separated.</p>
+<h2>9.4 Long Term</h2>
+<p>Anything past the near future is uncertain, but there's lots of directions that could possibly be explored. I want to try out so more functional programming stuff, in particular monads. Monocurl is extremely verbose right, but I think through some language changes that can all be fixed. Also, the timeline could display more information. I also want to make the language support modes in user code, which is disabled right now for security reasons. Perhaps there can also be a package manager or something of the likes to facilitate distribution of user created functors. Also, I want to actually make gpu compilable code, in particular that you can make your own shaders in monocurl. Also, there can be a better animation composition API or something of the likes (since lagged map is terrible right now). Positioning is also bad right now and that should be fixed. Also, Monocurl can be headless and you can compile stuff without a video editer. Maybe you can export files that can be played in webGL or something so that you dont need to export an an entire mp4 (this might also lead to some interactivity). I also need to add default arguments, since styling is really hard right now. There are other changes too, but these are just some ideas.</p></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

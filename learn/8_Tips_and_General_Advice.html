@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Lessons</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		<!-- JS -->
+		
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink" href="/docs/%20camera">     Docs     </a>
+			<a class="navlink" href="/examples">        Examples </a>
+			<a class="navlink" href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Tips_and_General_Advice" class="current">8 Tips and General Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>8. Tips and General Advice</h1>
+<p>I'll now give a few tips to making a good Monocurl slideshow or video.</p>
+<h1>8.1 Tips</h1>
+<ol>
+<li>Remember everything is short lived. Don't over engineer stuff and be ok with using hardcoded constants. Most of the time, you'll never touch it again. Still maintain some level of professionalism, but only so much that is necessary</li>
+<li>Use resources effectively! Look at examples. I also tried to make the documentation highlight which meshes are very important, and which ones you probably only have to lookup if necessary. </li>
+<li>Follow the iterator-follower paradigm. I know it's verbose, but that's the best way to do Monocurl</li>
+<li>Maintain sane tags, and partition variables appropriately</li>
+<li>Create lots of functions for meshes, and few for animations. There are times where you might need to create functions for animations (we'll talk about a case, specifically when we have to apply a transformation with a discrete transformation together), but these are the exception. More often than not, using a cleverly calculated functor with an interpolation will seal the deal</li>
+<li>Break down complex animations as a parallel and sequential subcompnenents, and think about interpolation</li>
+<li>Break down complex animations as subcompoenntets, and operations on primtiives</li>
+</ol>
+<h1>8.2 Favorite Meshes and Techniques</h1>
+<p>Let me now talk about some of my favorite meshes, and other things that are good to know. </p>
+<p>Color Grid and Maps
+- Some of My favorite stuff</p>
+<p>Text and Writing
+- Very good usage of Tags
+- Write can be used on anything. </p>
+<p>Bend for length preserving animations</p>
+<h1>8.3 Monocurl Scripting Language Idioms</h1>
+<p>right_key for helping with tags
+No boolean or integer types
+Vectors and plus equals
+Dictionaries are insertion order guaranteed, allowing us to create gradients</p>
+<h1>8.4 Conclusion</h1>
+<p>I'll add more as time goes on, but I genuinely recommend checking out examples, looking at what is closest to what you're trying to do, and adapt the code from there.</p>
+<p>This is the end of the article</p></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

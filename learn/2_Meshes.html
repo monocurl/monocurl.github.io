@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Lessons</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		<!-- JS -->
+		
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink" href="/docs/%20camera">     Docs     </a>
+			<a class="navlink" href="/examples">        Examples </a>
+			<a class="navlink" href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="current">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Tips_and_General_Advice" class="">8 Tips and General Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>2. Meshes in Monocurl</h1>
+<p>We'll now talk about meshes. Meshes and animations are the two biggest types. This article is a bit long, but is important, so we recommend thorough reading.</p>
+<h2>2.1 Why meshes?</h2>
+<p>Monocurl operates on a point-set model. Also, everything is a mesh. This is a difference. By having everything be one type, you lose some benefits, but the uniformity makes things pretty understandable. </p>
+<h2>2.2 Mesh-Trees</h2>
+<p>Mesh-trees. We define a mesh-tree recursively. A mesh is considerd a mesh-tree. A vector of mesh-trees is considered a mesh-tree. In general, I recommend you make no assumptions about the structure of your mesh-tree. Most library functions are structure invariant. However, the advantage of a mesh-tree is that it's very easy to add to a mesh-tree</p>
+<h2>2.3 Operator-Leaf Model</h2>
+<p>The idea with meshes is that we have leaf meshes and operators. </p>
+<h2>2.4 Examples of Meshes</h2>
+<p>I'll highlight a few ones I like right now, but this is by no means an exhaustive list. We'll talk about more later on as well.</p>
+<h2>2.5 Following Along</h2>
+<p>For now, you can follow along by using play += Show:
+We'll explain that bottom part, but getting practice creating meshes might fun to try out. One thing I like about monocurl is there is very little boilerplate. </p>
+<p>Practice:
+Using the standard library, try creating the following.</p>
+<h2>2.6 Tips</h2>
+<p>General Tips:
+Do not be scared of creating your own functions! Monocurl makes it super easy to do so, and for good reason. Its honestly understandable to create many functions for every single mesh on screen</p>
+<h2>2.7 Conclusion</h2>
+<p>Meshes. Get very comfortable with them!</p>
+<h2>2.8 Optional Remarks</h2>
+<p>Optional notices:
+I dont like positioning, and there are some stuff to be improved. But overall, I think </p></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

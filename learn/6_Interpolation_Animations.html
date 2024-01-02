@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Lessons</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		<!-- JS -->
+		
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink" href="/docs/%20camera">     Docs     </a>
+			<a class="navlink" href="/examples">        Examples </a>
+			<a class="navlink" href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="current">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Tips_and_General_Advice" class="">8 Tips and General Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>6. Interpolation Animations</h1>
+<p>Transforms are cool and in the majority of the cases they are great! But! They do not provide a lot of control. We'll talk about how Lerp, and Keyframe give us a ton of control and let us make really cool animations.</p>
+<h2>6.1 Abstract Interpolation</h2>
+<p>Remember the idea behind functors? It turns out that much of animation is about how we can interpolate some value, but the actual value being interpolated may be somewhat abstract. Lets take a simple example for now. What if we want to interpolate a circle's radius. Of cousres, a transform would do just fine, we'll see more complicated examples later.</p>
+<p>Well, then we can do an animation like the following. How it works is it looks at every single functor attribute, and then lerps it individually. Actually, there are a bit more semantics, and we reocmmend you read this for the full details, but that description suffices for now. The reason we have to specify the starting value (which seems like we can just derive it from the current state) is a bit complex, but essentially whenever we show meshes, we acutally do lose information about the function it came from. Anyways,  the real power of this comes from user defined functors.</p>
+<h2>6.2 User Defined Functors and More Examples</h2>
+<p>Lets look at how we can interpolate between user defined types, lets look at this for example.</p>
+<p>Another example is rotation, a transform naively generates a really bad interpolation, but rotation does much better. This is another reason we have to specify the start, as otherwise we would not be able to know the initial rotation.</p>
+<h2>6.3 Simulations</h2>
+<p>Now, we have the full power of extremely general interpolations. Another cool usage is to create simulations. Hopefully this shows you why it's important to be able to create custom types. </p>
+<h2>6.4 Keyframe</h2>
+<p>This brings us to keyframe. In the case that we have many succesive lerps of the same functor, we can use that.</p>
+<h2>6.5 Transform vs Lerp</h2>
+<p>Lastly, I want to talk about when to use Transform vs Lerp. Transfomr's syntax is nicer (since we dont need to specify start), but it gives less control. We use transform whenever it looks nice, or when we have (when we're transforming from unrelated types, so that there's not really anything that can be lerped individually). If we need more control about intermediate states, Lerp is the way to go.</p>
+<p>Finally, notice that there is some inconvenience in the syntax once again. It definitely is really repetieive, but again this is something I'm very confident can be fixed with a language feature (maybe macros, or maybe something like cpp's std::exchange). Nevertheless, this is the majority of what you need to know for animations. </p>
+<h2>6.6 Monocurl Logo Animation</h2>
+<p>Also, we can now create the Monocurl logo animation! Lets break it down.</p>
+<h2>6.7 Conclusion</h2>
+<p>We'll now take a look at tag mechanics, the last major piece of Monocurl. After that, we'll give some general tips and tricks to help you </p></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    
