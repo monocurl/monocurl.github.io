@@ -46,13 +46,13 @@
     <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="current">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>2. Meshes in Monocurl</h1>
 <p>We'll now talk about meshes. Meshes are the objects that we see on screen. The optional sections discuss some of the decisions behind Monocurl, but are not that practical so feel free to skim them.</p>
 <h2>2.1 (Optional) Why meshes?</h2>
-<p>By meshes, we mean a collection of triangles, lines, and dots. Meshes are best thought of as a set of points, with each point having an associated color. In many computer graphics contexts, Bezier curves are used instead of the meshes we just talked about. The decision to use meshes primarily comes as a way to make all screen objects the same type, which is harder to do with Bezier curves. On the other hand, there are instances where meshes are much less smooth than Bezier curves, which is undesirable.</p>
+<p>By meshes, we mean a collection of triangles, lines, and dots. Meshes are sometimes thought of as a set of points, with each point having an associated color. In many computer graphics contexts, Bezier curves are used instead of the meshes we just talked about. The decision to use meshes primarily comes as a way to make all screen objects the same type, which is harder to do with Bezier curves. On the other hand, there are instances where meshes are much less smooth than Bezier curves, which is undesirable.</p>
 <p>For instance, the following would require many Bezier curve objects, but can be done in a single mesh.</p>
 <p><img alt="Color Grid" src="/img/lessons/color_grid.png" /></p>
 <h2>2.2 Mesh-Trees</h2>
 <p>Typically, we want to consider not just a single mesh, but a collection of them. This is where mesh-trees come in.</p>
 <p>Formally, a mesh-tree is defined recursively. A mesh is considered a mesh-tree. A vector of mesh-trees is also considered a mesh-tree. Informally, we can think of a mesh-tree as just a list of meshes, that might have similar such lists inside of them. Example (assuming all the variables are meshes): <code class="language-swift">{mesh_a, mesh_b, {{{{mesh_c}}}}, {mesh_d, {mesh_e}}}</code>.</p>
-<p>To those who ask why we can't just use a flat vector, mesh-trees allow us to be sloppy with the structure of our variables, which makes programming much easier. It also provides some sort of abstraction where we can ignore the exact details of how functions structure their returned mesh-trees. For instance, notice the following simple example where the <code class="language-swift">baloons</code> vector is not a flat list:</p>
+<p>To those who ask why we can't just use a flat vector, note that mesh-trees allow us to be sloppy with the structure of our variables, which makes programming much easier. It also provides some sort of abstraction where we can ignore the exact details of how functions structure their returned mesh-trees. For instance, notice the following simple example where the <code class="language-swift">baloons</code> vector is not a flat list:</p>
 <pre><code class="language-swift">func Balloon(position) = identity:
     let head = Circle:
         center: position
@@ -153,14 +153,11 @@ var cards = Centered:
 <li><a href="/docs/Scaled">Scaled</a></li>
 </ul>
 <p>First get the placements right, then aim for the colors.</p>
-<h2>2.6 Tips</h2>
-<p>General Tips:
-Do not be scared of creating your own functions! Monocurl makes it super easy to do so, and for good reason. Its honestly understandable to create many functions for every single mesh on screen</p>
 <h2>2.7 Conclusion</h2>
-<p>Meshes. Get very comfortable with them!</p>
+<p>This sections covered the basics of meshes. The point isn't that you know all meshes by now, but rather you have a good enough idea that it's easy to learn. We definitely recommend going to the docs page and exploring existing options. In particular, look out for the ones with a star, as those are pretty useful.</p>
+<p>Also, hopefully you can see the importance of creating your own functions from the very few examples we gave. As scenes get more complex, functions are of even more importance.</p>
 <h2>2.8 (Optional) Remarks</h2>
-<p>Optional notices:
-I dont like positioning, and there are some stuff to be improved. But overall, I think </p></div>
+<p>I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p></div>
 		</main>
 
 		<footer>
