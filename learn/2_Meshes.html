@@ -43,27 +43,122 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="current">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Tips_and_General_Advice" class="">8 Tips and General Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>2. Meshes in Monocurl</h1>
-<p>We'll now talk about meshes. Meshes and animations are the two biggest types. This article is a bit long, but is important, so we recommend thorough reading.</p>
-<h2>2.1 Why meshes?</h2>
-<p>Monocurl operates on a point-set model. Also, everything is a mesh. This is a difference. By having everything be one type, you lose some benefits, but the uniformity makes things pretty understandable. </p>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="current">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>2. Meshes in Monocurl</h1>
+<p>We'll now talk about meshes. Meshes are the objects that we see on screen. The optional sections discuss some of the decisions behind Monocurl, but are not that practical so feel free to skim them.</p>
+<h2>2.1 (Optional) Why meshes?</h2>
+<p>By meshes, we mean a collection of triangles, lines, and dots. Meshes are best thought of as a set of points, with each point having an associated color. In many computer graphics contexts, Bezier curves are used instead of the meshes we just talked about. The decision to use meshes primarily comes as a way to make all screen objects the same type, which is harder to do with Bezier curves. On the other hand, there are instances where meshes are much less smooth than Bezier curves, which is undesirable.</p>
+<p>For instance, the following would require many Bezier curve objects, but can be done in a single mesh.</p>
+<p><img alt="Color Grid" src="/img/lessons/color_grid.png" /></p>
 <h2>2.2 Mesh-Trees</h2>
-<p>Mesh-trees. We define a mesh-tree recursively. A mesh is considerd a mesh-tree. A vector of mesh-trees is considered a mesh-tree. In general, I recommend you make no assumptions about the structure of your mesh-tree. Most library functions are structure invariant. However, the advantage of a mesh-tree is that it's very easy to add to a mesh-tree</p>
-<h2>2.3 Operator-Leaf Model</h2>
-<p>The idea with meshes is that we have leaf meshes and operators. </p>
-<h2>2.4 Examples of Meshes</h2>
-<p>I'll highlight a few ones I like right now, but this is by no means an exhaustive list. We'll talk about more later on as well.</p>
-<h2>2.5 Following Along</h2>
-<p>For now, you can follow along by using play += Show:
-We'll explain that bottom part, but getting practice creating meshes might fun to try out. One thing I like about monocurl is there is very little boilerplate. </p>
-<p>Practice:
-Using the standard library, try creating the following.</p>
+<p>Typically, we want to consider not just a single mesh, but a collection of them. This is where mesh-trees come in.</p>
+<p>Formally, a mesh-tree is defined recursively. A mesh is considered a mesh-tree. A vector of mesh-trees is also considered a mesh-tree. Informally, we can think of a mesh-tree as just a list of meshes, that might have similar such lists inside of them. Example (assuming all the variables are meshes): <code class="language-swift">{mesh_a, mesh_b, {{{{mesh_c}}}}, {mesh_d, {mesh_e}}}</code>.</p>
+<p>To those who ask why we can't just use a flat vector, mesh-trees allow us to be sloppy with the structure of our variables, which makes programming much easier. It also provides some sort of abstraction where we can ignore the exact details of how functions structure their returned mesh-trees. For instance, notice the following simple example where the <code class="language-swift">baloons</code> vector is not a flat list:</p>
+<pre><code class="language-swift">func Balloon(position) = identity:
+    let head = Circle:
+        center: position
+        radius: 0.5
+        tag: {}
+        stroke: BLACK
+
+    let string = Line:
+        start: head
+        end: vec_sub(position, {0, 2, 0})
+        tag: {}
+        stroke: BLACK
+
+    element: {head, string}
+
+var balloons = {}
+balloons += Balloon:    
+    position: {-1, 0, 0}
+balloons += Balloon:    
+    position: {1, 0, 0}
+
+/* at this point balloons has the following structure: */
+/* {{head_1, string_1}, {head_2, string_2}} */
+</code></pre>
+<p><img alt="Balloons" src="/img/lessons/balloons.png" /></p>
+<p>Most library functions dealing with meshes allow you to input an entire mesh-tree. Operations on a mesh-tree simply operate on all the meshes contained within the tree.</p>
+<h2>2.3 Primitive-Operator Model</h2>
+<p>The philosophy behind Monocurl is that we have primitive meshes and operators. Both categories of meshes are generally created using functors. Also, note that Monocurl uses a right-handed 3D coordinate system, which means you'll generally have to specify a z-coordinate even if you're doing 2D scenes.</p>
+<p>Primitive meshes are meshes that you can create directly (i.e. no prerequisite meshes needed). Here are some common examples:</p>
+<ul>
+<li><a href="/docs/Circle">Circle</a> is a simple geometric circle</li>
+<li><a href="/docs/Tex">Tex</a> can be used to render latex equations</li>
+<li><a href="/docs/ColorGrid">ColorGrid</a> displays a bunch of rectangles according to a user-provided color functoin</li>
+<li><a href="/docs/Axis2d">Axis2d</a> is helpful in graphing scenes</li>
+</ul>
+<p>Operator meshes (or more accurately, operators on meshes) take in one or more mesh-trees, and spit out a new a mesh-tree. Here are a few examples (you can find more in the documentation section):</p>
+<ul>
+<li><a href="/docs/Shifted">Shifted</a> translates a mesh-tree by a certain delta</li>
+<li><a href="/docs/Rotated">Rotated</a> rotates a mesh-tree along a given axis</li>
+<li><a href="/docs/Centered">Centered</a> translates the mesh-tree so that its center is placed at the given location</li>
+<li><a href="/docs/PointMapped">PointMapped</a> moves every single vertex in the mesh-tree to a new point using the given transformation function</li>
+<li><a href="/docs/XStack">XStack</a> arranges a series of meshes in the x direction</li>
+</ul>
+<p>To create complex scenes, you have to think about the constiuent parts, and how each own can be written as a pipeline of primitives and operators. Here's a simple example and the result:</p>
+<pre><code class="language-swift">/* helper function, takes in number of lines and radius */
+func Cardiod(n, r) = identity:
+    var ret = {}
+    ret += Circle:
+        center: ORIGIN
+        radius: r
+        tag: {}
+        stroke: LIGHT_GRAY
+
+    func theta_to_point(theta) = {r * cos(theta), r * sin(theta), 0}
+    for i in 0 :&lt; n
+        let next = mod(i * 2, n)
+        let org_theta = TAU * i / n
+        let new_theta = TAU * next / n
+        ret += Line:
+            start: theta_to_point(org_theta)
+            end: theta_to_point(new_theta)
+            tag: {}
+            stroke: BLACK
+
+    element: ret
+
+/* create 9 raw cardiods */
+let raw_cards = map:
+    v: 1 :&lt; 10
+    f(x): Cardiod:
+        n: 2 * x + 1
+        r: 0.25
+
+/* use operators to position them */
+var cards = Centered:
+    /* for simple operators it can be okay to use functions */
+    mesh: XStack(raw_cards)
+    at: ORIGIN
+</code></pre>
+<p>Result:</p>
+<p><img alt="Cardiods" src="/img/lessons/cardiods.png" /></p>
+<h2>2.4 Following Along</h2>
+<p>To follow along and finally play around with meshes, simply create a new scene in the Monocurl editor, and in the <code class="language-swift">slide_1</code> section, add the code for creating the meshes (such as the example above). Unfortunately, you can't just copy paste code into the editor directly (yet), but the silver lining is that typing it out helps you learn better (this is discussed more in lesson 8).</p>
+<p>For now, you can add the following at the bottom of the code. We'll explain what this does in the future when we talk about animations. </p>
+<pre><code class="language-swift">play += Show:
+    mesh&amp;: cards
+    sticky: 0
+</code></pre>
+<p>For instance, the full cardiod example should look something like this in the editor. </p>
+<p><img alt="Cardiods" src="/img/lessons/cardiod_code.png" /></p>
+<h2>2.5 Practice</h2>
+<p>Finally, you can try playing around with Monocurl! We still can't do animations yet, but as a challenge, try creating the following:</p>
+<p><img alt="Practice example" src="/img/lessons/practice_mesh.png" /></p>
+<p>Hint, you can make the previous using just the following three meshes and operators (and a bit of math):</p>
+<ul>
+<li><a href="/docs/Square">Square</a></li>
+<li><a href="/docs/Rotated">Rotated</a></li>
+<li><a href="/docs/Scaled">Scaled</a></li>
+</ul>
+<p>First get the placements right, then aim for the colors.</p>
 <h2>2.6 Tips</h2>
 <p>General Tips:
 Do not be scared of creating your own functions! Monocurl makes it super easy to do so, and for good reason. Its honestly understandable to create many functions for every single mesh on screen</p>
 <h2>2.7 Conclusion</h2>
 <p>Meshes. Get very comfortable with them!</p>
-<h2>2.8 Optional Remarks</h2>
+<h2>2.8 (Optional) Remarks</h2>
 <p>Optional notices:
 I dont like positioning, and there are some stuff to be improved. But overall, I think </p></div>
 		</main>

@@ -21,11 +21,11 @@ aside p.toc-header {
 aside a {
 	display: block;
 	text-decoration: none;
-	color: #555;
+	color: #333;
 }
 
 aside a.current {
-	color: black;
+	color: var(--blue);
 	font-weight: 600;
 }
 
