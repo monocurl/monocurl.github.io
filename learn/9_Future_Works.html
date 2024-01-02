@@ -16,8 +16,17 @@
 		<link rel="stylesheet" href="/css/main.css">
 		<link rel="stylesheet" href="/css/lessons.css">
 
+		
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        
+
 		<!-- JS -->
 		
+            <script defer>
+                hljs.highlightAll();
+            </script>
+        
 	</head>
     
 	<!-- Main -->
@@ -43,7 +52,7 @@
 <p>Also, at some point I definitely have to change the UI so that you can copy paste (basically make it a normal text editor). This is actually quite hard and would involve a lot of work, so no idea on any time line of this. The reason the way it is right now is basically due to decisions at the very start of development that in hindsight make no sense.</p>
 <h2>9.3 Short Term</h2>
 <p>In the short term, my priority is mainly security and bug fixes as well as making errors less confusing.
-The major short term thing I want to do is slightly change the animation system, and basically enforce the iterator follower paradigm (or rather, make not doing it throw errors), as well as some minor syntax changes to make it a bit easier. In particular, I am thinking of making follower variables declared with something like <code>tree</code> instead of <code>var</code>, and then have them shown by default, and you can only change them through animations. So they're shown by default, but initially have nothing, and then to actually show content, you do something more similar to Become. This isn't that big of a change and should be easy to implmeent, but should help shift the perspective of the user a bit more.</p>
+The major short term thing I want to do is slightly change the animation system, and basically enforce the iterator follower paradigm (or rather, make not doing it throw errors), as well as some minor syntax changes to make it a bit easier. In particular, I am thinking of making follower variables declared with something like <code class="language-swift">tree</code> instead of <code class="language-swift">var</code>, and then have them shown by default, and you can only change them through animations. So they're shown by default, but initially have nothing, and then to actually show content, you do something more similar to Become. This isn't that big of a change and should be easy to implmeent, but should help shift the perspective of the user a bit more.</p>
 <p>At some point, I need to fix the 3d lighting shaders since they dont look great right now.</p>
 <p>Functions and functors should be separated.</p>
 <h2>9.4 Long Term</h2>
