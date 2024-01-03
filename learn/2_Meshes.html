@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Monocurl | Lessons</title>
+		<title>Monocurl | Learn</title>
 
 		<!-- Meta  -->
 		<meta charset="UTF-8">
@@ -36,10 +36,10 @@
 			
 			<div class="spacer"> </div>
 
-			<a class="navlink" href="/learn/0_What_is_Monocurl">           Learn    </a>
-			<a class="navlink" href="/docs/%20camera">     Docs     </a>
-			<a class="navlink" href="/examples">        Examples </a>
-			<a class="navlink" href="/credits">         Credits  </a>
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
 		</nav>
 
 		<main>
@@ -138,12 +138,12 @@ var cards = Centered:
 <p>Some final, important points. Most library primitive meshes will take in parameters for a color of some sort and the tag. We'll talk about tags later, but for color, this should be a vector of 4 numbers each in the interval 0 to 1, representings the red, green, blue, and alpha channels respectfully.</p>
 <h2>2.4 Following Along</h2>
 <p>To follow along and finally play around with meshes, simply create a new scene in the Monocurl editor, and in the <code class="language-swift">slide_1</code> section, add the code for creating the meshes (such as the example above). Unfortunately, you can't just copy paste code into the editor directly (yet), but the silver lining is that typing it out helps you learn better (this is discussed more in lesson 8).</p>
-<p>For now, you can add the following at the bottom of the code. We'll explain what this does in the future when we talk about animations. </p>
+<p>For now, you can add the following at the bottom of the code to see the results on screen. We'll explain what this does in the future when we talk about animations. </p>
 <pre><code class="language-swift">play += Show:
     mesh&amp;: cards
     sticky: 0
 </code></pre>
-<p>For instance, the full cardiod example should look something like this in the editor. </p>
+<p>For instance, the full cardiod example should look something like this in the editor (you might also have to set the background to <code class="language-swift">WHITE</code>).</p>
 <p><img alt="Cardiods" src="/img/lessons/cardiod_code.png" /></p>
 <h2>2.5 Practice</h2>
 <p>Finally, you can try playing around with Monocurl! We still can't do animations yet, but as a challenge, try creating the following:</p>

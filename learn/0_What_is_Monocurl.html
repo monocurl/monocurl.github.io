@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Monocurl | Lessons</title>
+		<title>Monocurl | Learn</title>
 
 		<!-- Meta  -->
 		<meta charset="UTF-8">
@@ -36,10 +36,10 @@
 			
 			<div class="spacer"> </div>
 
-			<a class="navlink" href="/learn/0_What_is_Monocurl">           Learn    </a>
-			<a class="navlink" href="/docs/%20camera">     Docs     </a>
-			<a class="navlink" href="/examples">        Examples </a>
-			<a class="navlink" href="/credits">         Credits  </a>
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
 		</nav>
 
 		<main>
@@ -49,8 +49,10 @@
     <source src="/video/monocurl_intro.mp4" type="video/mp4"/>
 </video>
 
+<p>Could you imagine such animations being the entirety of your slideshow? That was my motivation for Monocurl.</p>
 <p>Monocurl is a desktop application that allows you to create videos and slideshow presentations using math. In particular, it is targetted towards STEM explanatory content and related fields. </p>
 <p>The core idea of Monocurl is to combine the benefits of programmatic animations with the traditional feel of a video editor. We'll explain what we mean by this in the rest of this section.</p>
+<p>The entire article series should take roughly an hour to go through, but definitely feel free to skim certain parts and come back to them when you need to. Also, there are video versions as well on our <a href="https://www.youtube.com/channel/monocurl">YouTube Channel</a>. Finally, please give feedback or ask for help in our <a href="https://discord.com/invite/7g94JR3SAD">Discord Server</a>.</p>
 <h2>0.1 Mathematical Perspective of Animations</h2>
 <p>From a math perspective, an animation is nothing more than a mapping from the positive real numbers (time) to mesh-space (basically images). Creating an animation, then, is nothing more than finding such a function. </p>
 <p><img alt="Animations as Mappings" src="/img/lessons/animations_as_mappings.png" /></p>
@@ -63,7 +65,10 @@
 <p>Also, the language itself is designed so that property values are easy to read (notice the resemblance to something like After Effects?).</p>
 <p><img alt="Property List" src="/img/lessons/property_list.png" /></p>
 <p>Finally, the structure of Monocurl is that any video is composed into a series of "slides," where you specify the animations for that particular section. This lends to an easy process of converting videos to slideshow presentations (in fact, the conversion is trivial!).</p>
-<h2>0.3 Conclusions</h2>
+<h2>0.3 Super High Level Overview</h2>
+<p>At a super high level, Monocurl has a custom designed scripting language that makes it very easy to interpolate between different objects by recursively interpolating their attributes. To actually create objects that we can have on screen, we have primitive meshes and mesh operators. Animations are what actually drive the motion of meshes and control the flow of items on screen. We specify all the animations at once during the initialization phase of a slide. In particular, we say what animations should be run, and which ones should be run in parallel and which ones in series. Then, all such animations are executed, and the process repeats for the next slide.</p>
+<p>If this doesn't make a lot of sense, that's definitely okay! We'll explore the details soon.</p>
+<h2>0.4 Conclusion</h2>
 <p>That was a very rough introduction to Monocurl, and we'll now explore the intricacies. We'll start off with the basics of the language, then talk about meshes, and finally spend a considerable time on the animation system. The ideas of Monocurl aren't actually that complex, however there are important details and perspectives so you are encouraged to read the lessons with care. </p></div>
 		</main>
 

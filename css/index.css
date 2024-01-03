@@ -1,4 +1,8 @@
 /* figure */
+main {
+	margin: 40px 150px;
+}
+
 #landing-figure {
 	display: flex;
 	flex-direction: row;
@@ -20,12 +24,16 @@
 	width: 450px;
 }
 
+.section-header {
+	font-size: 30px;	
+	font-weight: 600;
+}
+
 /* download */
 
 #os-selection {
 	display: flex;
 	gap: 10px;
-	margin-left: 150px;
 }
 
 .hidden {
@@ -51,7 +59,6 @@
 	text-decoration: underline;
 }
 
-
 .button-os img {
 	height: 40px;
 	display: inline;
@@ -69,6 +76,10 @@
 }
 
 .os-details {
-	margin-left: 150px;
-	height: 100px;
+	margin-left: 30px;
+}
+
+.read-more {
+	color: var(--blue);
+	text-decoration: none;
 }
