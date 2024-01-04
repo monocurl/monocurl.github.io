@@ -44,24 +44,168 @@
 
 		<main>
     <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="current">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>4. Examples of Animations</h1>
+<p>Now that we have an idea of how animations are composed, we'll talk about some common examples.</p>
 <h2>4.1 Animation Syntax</h2>
-<p>Animations are typically called as functors as well. However, there is one thing that's a little new about them. You'll notice they generally take a reference. The reason is because variables are animated, not values. This might seem a little weird at first, but it actually helps keep a better sense of identity. Also, the variables we animate must be "vars" not constants. This makes sense</p>
+<p>Animations are typically called as functors as well. However, there is one thing that's a little new about them. You'll notice they generally take a reference (e.g. <code class="language-swift">mesh&amp;</code>). I'll gloss over the details of references, but in short reference parameters are special in that you can only input variables (but not raw values). You can also input variable-trees for some animations.</p>
+<pre><code class="language-swift">/* even though it doesn't seem like we modify the variable */
+/* the show animation technically does modify it, */
+/* so we need to use var instead of let */
+var circle = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    color: default
+
+var square = Square:
+    center: ORIGIN
+    width: 1
+    tag: {}
+    color: default
+
+play += Show:
+    /* passing the circle variable by reference */
+    mesh&amp;: circle
+    sticky: 0
+
+/* we can even pass multiple variables to an animation (in some cases) */
+play += Show:
+    mesh&amp;: {square, circle}
+    sticky: 0
+
+/* however, note that I can't just put the raw value in as parameter */
+/* because then there is no variable to animate */
+/* the following would give an error */
+play += Show:
+    mesh&amp;: Square:
+        center: ORIGIN
+        width: 1
+        tag: {}
+        color: default
+    sticky: 0
+</code></pre>
+<p>For those who know C/C++, references are similar to lvalues (but not the exact same).</p>
 <h2>4.2 Visibility of Meshes</h2>
-<p>Lets first take a small step back and talk about the process of understanding how meshes are shown. The idea is that variables are shown. You can think of each variable as having a flag of whether it is shown or not. This brings us to our first animation. We can use the Show animation to mark a variable as being shown. Again, it's really important to notice that in the line all we're doing is adding the instruction, the actual work happens after the side. Similarly, we can also hide. Another good one to know is Wait. Also, you can show multiple variables at the same time!</p>
+<p>Lets first take a small step back and talk about the process of understanding how meshes are shown. </p>
+<p>The idea is that variables are shown. You can think of each variable as having a flag of whether it is shown or not. This brings us to our first few animations. We can use the <code class="language-swift">Show</code> animation to mark a variable as being shown. Again, it's really important to notice that when we say <code class="language-swift">play += Show:</code> all we're doing is adding the instruction, the actual work happens after the slide. Similarly, we can also <code class="language-swift">Hide</code>. Finally, the <code class="language-swift">Wait</code> animation does nothing for some time, which is good for getting timings right and adding emphasis. </p>
+<p>Here, we show a line, wait for one second, then hide it. Feel free to try it in the editor, and explore with more complicated meshes.</p>
+<pre><code class="language-swift">var line = Line:
+    start: ORIGIN
+    end: {1,1,0}
+    tag: {}
+    stroke: RED
+
+/* here we use wait so much that we might as well save it */
+let wait = Wait:
+    time: 1
+    sticky: 0
+
+play += wait
+
+play += Show:
+    mesh&amp;: line
+    sticky: 0
+play += wait
+play += Hide:
+    mesh&amp;: line
+    sticky: 0
+
+play += wait
+</code></pre>
+<p>This is the result. Our first animation!</p>
+<video controls>
+    Line that shows, waits, hides 
+    <source src="/video/line_swh.mp4" type="video/mp4"/>
+</video>
+
 <h2>4.3 More complex Show and Hide</h2>
 <p>Now, we can finally understand a bit more about what was happening when we showed the meshes!
-There are some more intricate ways we can do the showing and hiding as well. For example, fades, writes, and stuff. We can do some pretty basic animations now. Remember, we can use sticky as well to affect how things are done in paralell.</p>
+Show and Hide perform their operation instantly, but there are more elaborate ways to do the same. For example, we have <a href="/docs/FadeIn">FadeIn</a>, <a href="/docs/Write">Write</a>, and <a href="/docs/Grow">Grow</a>. For hiding, we similarly have <a href="/docs/FadeOut">FadeOut</a>, <a href="/docs/Unwrite">Unwrite</a>, and <a href="/docs/Shrink">Shrink</a>. Here's an example of how Write looks (the mesh is <a href="/docs/Tex">Tex</a>).</p>
+<video controls>
+    The gaussian integral
+    <source src="/video/gaussian_integral.mp4" type="video/mp4"/>
+</video>
+
 <h2>4.4 Indication Animatoins</h2>
-<p>Also, some indication stuff.</p>
+<p>Other animations that you might want to know of are indication methods. These basically add emphasis to a section, but after the animations is finished the object is unchanged. The standard library actually does not provide that many indication animations, but feel free to create your own! Heres an example of <a href="/docs/Highlight">Highlight</a>.</p>
+<video controls>
+    Highlight Example
+    <source src="/video/highlight_example.mp4" type="video/mp4"/>
+</video>
+
 <h2>4.5 Modification of Meshes</h2>
-<p>Important point. All modifications on screen should be done through animations. Updating the variable during hte initialization is not recommended and generally wont even work. Having a uniform source of updates leads to better code, albeit at the expense of more verbosity at times. </p>
-<h2>4.6 Become Transformations</h2>
-<p>That's all cool and all, but not the deal of monocurl. Monocurl is about transforming through different states, lets first talk about Become. Become can be used to change something on screen (i.e. it becomes the target)</p>
-<p>That's really rough, thought. We can also use transform to do a more continous transformation. And with that, we can honestly start to make some pretty cool animatinos. </p>
+<p>Important point: we collectively call variables that are sent into animations as <em>screen variables</em>. Screen variables should only be updated through animations. In particular, if you show a variable and later try to reassign to it using regular <code class="language-swift">=</code> syntax, theres no guarantee your changes will be reflected on screen. We'll talk about more points like this in the next lesson. Here's a negative example of what not to do.</p>
+<pre><code class="language-swift">var circle = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    color: default
+
+play += Show:
+    mesh&amp;: circle
+    sticky: 0
+
+/* ... */
+/* a few slides later */
+/* ... */
+
+/* manually assigning/changing a screen variable may not be reflected on screen */
+/* Don't do this! */
+circle.radius = 2
+</code></pre>
+<p>Having a uniform source of updates leads to better code, albeit at the expense of more verbosity at times. </p>
+<h2>4.6 Become and Transformations</h2>
+<p>The next point is how to visibly alter meshes on screen. This is where <a href="/docs/Become">Become</a> comes in. You can think of it as the animated variable <em>becomes</em> the target. Here's a simple example. Note that the transition happens instantly.</p>
+<pre><code class="language-swift">var circle = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    color: default
+
+play += Show:
+    mesh&amp;: circle
+    sticky: 0
+
+/* wait can be called as a function */
+play += Wait(1, 0)
+
+var next = circle
+next.radius = 2
+
+play += Become:
+    dst&amp;: circle
+    target: next
+    sticky: 0
+</code></pre>
+<p>That's really rough, though. We can also use transform to do a more continous transformation. </p>
+<pre><code class="language-swift">var circle = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    color: default
+
+play += Show:
+    mesh&amp;: circle
+    sticky: 0
+
+play += Wait(1, 0)
+
+var next = circle
+next.radius = 2
+
+play += Transform:
+    mesh&amp;: circle
+    target: next
+    null_action: fade
+    time: 1
+    sticky: 0
+</code></pre>
+<p>We encourage you to try the above two out and compare the differences!</p>
+<p>Remark: this is still pretty verbose and one of the things I want to change about Monocurl, but hopefully it's easy to follow.</p>
 <h2>4.7 Scene Variable Animations</h2>
-<p>Something else that's cool is that we can do some animations on scene variables, in particular, the camera and background. We'll explore more of these in the future.</p>
+<p>Something else that's cool is that we can do some animations on scene variables, in particular, the <a href="/docs/%20camera">camera</a> and <a href="/docs/%20background">background</a>. In short, the camera dictates from what viewpoint the scene is rendered, and the background dictates the background color. Therefore, we can use Become to possible switch the background color or change the view point in the middle of the scene.</p>
+<p>We'll see how to smoothly move the camera in lesson 6.</p>
 <h2>4.8 Conclusion</h2>
-<p>Honestly, we're pretty close to being able to do cool things. However, theres really only two more things to understand to become proficient at Monocurl, the iterator-follower model, and more work on interpolation. </p></div>
+<p>Honestly, we're pretty close to being able to do cool things. Theres really only two more things to understand to become proficient at Monocurl, the iterator-follower model, and more work on interpolation. </p></div>
 		</main>
 
 		<footer>
