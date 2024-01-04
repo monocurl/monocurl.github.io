@@ -67,8 +67,33 @@
 <h2>0.3 Super High Level Overview</h2>
 <p>At a super high level, Monocurl has a custom designed scripting language that makes it very easy to interpolate between different objects by recursively interpolating their attributes. To actually create objects that we can have on screen, we have primitive meshes and mesh operators. Animations are what actually drive the motion of meshes and control the flow of items on screen. We specify all the animations at once during the initialization phase of a slide. In particular, we say what animations should be run, and which ones should be run in parallel and which ones in series. Then, all such animations are executed, and the process repeats for the next slide.</p>
 <p>If this doesn't make a lot of sense, that's definitely okay! We'll explore the details soon.</p>
-<h2>0.4 Conclusion</h2>
-<p>That was a very rough introduction to Monocurl, and we'll now explore the intricacies. We'll start off with the basics of the language, then talk about meshes, and finally spend a considerable time on the animation system. The ideas of Monocurl aren't actually that complex, however there are important details and perspectives so you are encouraged to read the lessons with care. </p></div>
+<h2>0.4 Minimal Working Example</h2>
+<p>The following code is a working example of showing a circle to the screen and having it fade out.</p>
+<pre><code class="language-swift">var circ = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    color: default
+
+play += Show:
+    mesh&amp;: circ
+    sticky: 0
+
+play += FadeOut:
+    mesh&amp;: circ
+    time: 1
+    sticky: 0
+</code></pre>
+<p>Heres how it should look like in the editor:</p>
+<p><img alt="Minimal Working Example" src="/img/lessons/minimal_working_example.png" /></p>
+<p>And the result:</p>
+<video controls>
+    Minimal working example video
+    <source src="/video/minimal_example.mp4" type="video/mp4"/>
+</video>
+
+<h2>0.5 Conclusion</h2>
+<p>That was a very rough introduction to Monocurl, and we'll now explore the intricacies. We'll start off with the basics of the language, then talk about meshes, and finally spend a considerable time on the animation system. The ideas of Monocurl aren't actually that complex, however there are important details and perspectives so you are encouraged to read the lessons with care. </p><div id="next-lessons"><a href="/learn/1_Monocurl_Language"> Next Lesson </a></div></div>
 		</main>
 
 		<footer>

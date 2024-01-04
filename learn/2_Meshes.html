@@ -44,13 +44,36 @@
 
 		<main>
     <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="current">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>2. Meshes in Monocurl</h1>
-<p>We'll now talk about meshes. Meshes are the objects that we see on screen.</p>
-<p>The optional sections discuss some of the decisions behind Monocurl, but are not that practical so feel free to skim them.</p>
-<h2>2.1 (Optional) Why meshes?</h2>
+<p>We'll now talk about meshes. Meshes are the objects that we see on screen. We'll first discuss ways to create meshes. </p>
+<p>This section is a bit long, but a lot of it is just examples. The optional sections discuss some of the decisions behind Monocurl, but are not that practical so feel free to skim them.</p>
+<h2>2.1 Following Along</h2>
+<p>In this section, you finally have many opportunities to follow along! </p>
+<p>Simply create a new scene in the Monocurl editor, and in the <code class="language-swift">slide_1</code> section, add the required code for creating the meshes. Unfortunately, you can't just copy paste code into the editor directly, but the silver lining is that typing it out helps you learn better (this is discussed more in lesson 8).</p>
+<p>We haven't officially discussed animations yet, but for now you'll have to use the following lines to show the meshes we create. You might also want to change the background to <a href="/docs/WHITE">WHITE</a> for some scenes with black meshes.</p>
+<pre><code class="language-swift">play += Show:
+    mesh&amp;: mesh_variable_name
+    sticky: 0
+</code></pre>
+<p>A full working example looks something like this (try it out!). Remember that these lines should be present in the slide_1 section.</p>
+<pre><code class="language-swift">var circ = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    color: default
+
+play += Show:
+    /* replace circ with whatever variable contains the meshes */
+    mesh&amp;: circ
+    sticky: 0
+</code></pre>
+<h2>2.2 Coordinate Systems</h2>
+<p>The final prerequisite before we actually get to meshes is understanding the coordinate system. Monocurl operates in a right handed coordinate system (so positive z faces away from the screen). Other than that, the following image gives a good glimpse at the default system. Thus, if you want to have a circle span left to right, its radius should be 4.</p>
+<p><img alt="Coordinate System" src="/img/lessons/coordinate_system.png" /></p>
+<h2>2.3 (Optional) Why meshes?</h2>
 <p>By meshes, we mean a collection of triangles, lines, and dots. Meshes are sometimes thought of as a set of points, with each point having an associated color. In many computer graphics contexts, Bezier curves are used instead of the meshes we just talked about. The decision to use meshes primarily comes as a way to make all screen objects the same type, which is harder to do with Bezier curves. On the other hand, there are instances where meshes are much less smooth than Bezier curves, which is undesirable.</p>
 <p>For instance, the following would require many Bezier curve objects, but can be done in a single mesh.</p>
 <p><img alt="Color Grid" src="/img/lessons/color_grid.png" /></p>
-<h2>2.2 Mesh-Trees</h2>
+<h2>2.4 Mesh-Trees</h2>
 <p>Typically, we want to consider not just a single mesh, but a collection of them. This is where mesh-trees come in.</p>
 <p>Formally, a mesh-tree is defined recursively. A mesh is considered a mesh-tree. A vector of mesh-trees is also considered a mesh-tree. Informally, we can think of a mesh-tree as just a list of meshes, that might have similar such lists inside of them. Example (assuming all the variables are meshes): <code class="language-swift">{mesh_a, mesh_b, {{{{mesh_c}}}}, {mesh_d, {mesh_e}}}</code>.</p>
 <p>To those who ask why we can't just use a flat vector, note that mesh-trees allow us to be sloppy with the structure of our variables, which makes programming much easier. It also provides some sort of abstraction where we can ignore the exact details of how functions structure their returned mesh-trees. For instance, notice the following simple example where the <code class="language-swift">baloons</code> vector is not a flat list:</p>
@@ -77,10 +100,15 @@ balloons += Balloon:
 
 /* at this point balloons has the following structure: */
 /* {{head_1, string_1}, {head_2, string_2}} */
+
+/* make balloons visible, explained later */
+play += Show:
+    mesh&amp;: balloons
+    sticky: 0
 </code></pre>
 <p><img alt="Balloons" src="/img/lessons/balloons.png" /></p>
 <p>Most library functions dealing with meshes allow you to input an entire mesh-tree. Operations on a mesh-tree simply operate on all the meshes contained within the tree.</p>
-<h2>2.3 Primitive-Operator Model</h2>
+<h2>2.5 Primitive-Operator Model</h2>
 <p>The philosophy behind Monocurl is that we have primitive meshes and operators. Both categories of meshes are generally created using functors. Also, note that Monocurl uses a right-handed 3D coordinate system, which means you'll generally have to specify a z-coordinate even if you're doing 2D scenes.</p>
 <p>Primitive meshes are meshes that you can create directly (i.e. no prerequisite meshes needed). Here are some common examples:</p>
 <ul>
@@ -132,20 +160,428 @@ var cards = Centered:
     /* for simple operators it can be okay to use functions */
     mesh: XStack(raw_cards)
     at: ORIGIN
+
+/* show cards, explained later */
+play += Show:
+    mesh&amp;: cards
+    sticky: 0
 </code></pre>
 <p>Result:</p>
 <p><img alt="Cardiods" src="/img/lessons/cardiods.png" /></p>
 <p>Some final, important points. Most library primitive meshes will take in parameters for a color of some sort and the tag. We'll talk about tags later, but for color, this should be a vector of 4 numbers each in the interval 0 to 1, representings the red, green, blue, and alpha channels respectfully.</p>
-<h2>2.4 Following Along</h2>
-<p>To follow along and finally play around with meshes, simply create a new scene in the Monocurl editor, and in the <code class="language-swift">slide_1</code> section, add the code for creating the meshes (such as the example above). Unfortunately, you can't just copy paste code into the editor directly (yet), but the silver lining is that typing it out helps you learn better (this is discussed more in lesson 8).</p>
-<p>For now, you can add the following at the bottom of the code to see the results on screen. We'll explain what this does in the future when we talk about animations. </p>
-<pre><code class="language-swift">play += Show:
-    mesh&amp;: cards
-    sticky: 0
-</code></pre>
 <p>For instance, the full cardiod example should look something like this in the editor (you might also have to set the background to <code class="language-swift">WHITE</code>).</p>
 <p><img alt="Cardiods" src="/img/lessons/cardiod_code.png" /></p>
-<h2>2.5 Practice</h2>
+<h2>2.7 More Examples!</h2>
+<p>Here's the code for a Koch Curve and the result:</p>
+<pre><code class="language-swift">func move(start, mag, rotation) = identity:
+    let delta = {mag * cos(rotation), mag * sin(rotation), 0}
+    element: vec_add(start, delta)
+
+func KochCurve(level, start, length, rotation) = identity:
+    var ret = {}
+    if level &gt; 0
+        var pos = start
+        var rot = rotation
+        ret += KochCurve:
+            level: level - 1
+            start: pos
+            length: length / 3
+            rotation: rot
+
+        pos = move(pos, length / 3, rot)
+        rot += PI / 3
+        ret += KochCurve:
+            level: level - 1
+            start: pos
+            length: length / 3
+            rotation: rot
+
+        pos = move(pos, length / 3, rot)
+        rot += 4 * PI / 3
+        ret += KochCurve:
+            level: level - 1
+            start: pos
+            length: length / 3
+            rotation: rot
+
+        pos = move(pos, length / 3, rot)
+        rot += PI / 3
+        ret += KochCurve:
+            level: level - 1
+            start: pos
+            length: length / 3
+            rotation: rot
+    else
+        ret += Line:
+            start: start
+            end: move(start, length, rotation)
+            tag: {}
+            stroke: BLACK
+
+    element: ret
+
+let l = 4
+var k = KochCurve:
+    level: 5
+    start: {-l / 2, 0, 0}
+    length: l
+    rotation: 0
+
+play += Show:
+    mesh&amp;: k
+    sticky: 0
+</code></pre>
+<p><img alt="Koch Curve example" src="/img/lessons/koch_curve.png" /></p>
+<p>Here's one for the difference between two functions</p>
+<pre><code class="language-swift">func f(x) = sin(x) ** 2
+func g(x) = sin(x) * 4 / 5
+
+var tree = {}
+tree += Axis2d:
+    center: ORIGIN
+    x_unit: 2
+    x_rad: 4
+    x_label: "x"
+    y_unit: 1
+    y_rad: 1.5
+    y_label: "y"
+    grid: off
+    tag: {}
+    color: BLACK
+
+var graphs = {}
+graphs += ExplicitFunc:
+    start: -4
+    stop: 4
+    f(x): f(x)
+    tag: {}
+    stroke: RED
+
+graphs += ExplicitFunc:
+    start: -4
+    stop: 4
+    f(x): g(x)
+    tag: {}
+    stroke: BLUE
+
+graphs += ExplicitFuncDiff:
+    start: -4
+    stop: 4
+    f(x): f(x)
+    g(x): g(x)
+    tag: {}
+    pos_fill: {1,0,0,0.2}
+    neg_fill: {0,0,1,0.2}
+
+/* helps morph functions into the axis space */
+tree += EmbedInSpace:
+    mesh: graphs
+    axis_center: ORIGIN
+    x_unit: 2
+    y_unit: 1
+    z_unit: 1
+
+play += Show:
+    mesh&amp;: tree
+    sticky: 0
+</code></pre>
+<p><img alt="Function difference example" src="/img/lessons/function_difference_example.png" /></p>
+<p>Riemann rectangles</p>
+<pre><code class="language-swift">func LRAM(start, stop, n, q(x)) = identity:
+    var ret = {}
+    let delta = (stop - start) / n
+    for i in 0 :&lt; n
+        let x_start = start + delta * i
+        let x_end = x_start + delta
+        let val = q(x_start)
+        ret += Rect:
+            center: {(x_start + x_end) / 2, val / 2, 0}
+            width: delta
+            height: val
+            tag: {}
+            stroke: BLACK
+            fill: {1,1,0,0.2}
+
+    element: ret
+
+func q(x) = x * x
+
+var tree = {}
+tree += Axis2d:
+    center: {-1.5,-1.5,0}
+    x_unit: 1
+    x_min: 0
+    x_max: 3
+    x_label: "x"
+    y_unit: 3
+    y_min: 0
+    y_max: 9
+    y_label: "y"
+    grid: off
+    tag: {}
+    color: BLACK
+
+graphs = {}
+graphs += ExplicitFunc:
+    start: 0
+    stop: 3
+    f(x): q(x)
+    tag: {}
+    stroke: RED
+graphs += LRAM:
+    start: 0
+    stop: 3
+    n: 6
+    q(x): q(x)
+tree += EmbedInSpace:
+    mesh: graphs
+    axis_center: tree[0].center
+    x_unit: 1
+    y_unit: 3
+    z_unit: 1
+
+play += Show:
+    mesh&amp;: tree
+    sticky: 0
+</code></pre>
+<p><img alt="LRAM example" src="/img/lessons/lram.png" /></p>
+<p>The color grid from before</p>
+<pre><code class="language-swift">var grid = ColorGrid:
+    x_min: 0
+    x_max: 1
+    y_min: 0
+    y_max: 1
+    x_step: 0.2
+    y_step: 0.2
+    tag: {}
+    color_at(pos): {pos[0], pos[1], 1, 1}
+    stroke: BLACK
+
+play += Show:
+    mesh&amp;: grid
+    sticky: 0
+</code></pre>
+<p><img alt="Color Grid" src="/img/lessons/color_grid.png" /></p>
+<p>Some famous LaTeX equations</p>
+<pre><code class="language-swift">var equations = Text:
+    var str = "\begin{align*}"
+    str += "\int_{-\infty}^{\infty}e^{-x^2}dx &amp;= \sqrt{\pi} \\"
+    str += "e^{\pi i} + 1 &amp;= 0 \\"
+    str += "x &amp;= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\"
+    str += "\end{align*}"
+    text: str
+
+    scale: 0.75
+
+    stroke: CLEAR
+    fill: BLACK
+
+equations = Centered:
+    mesh: equations
+
+    at: ORIGIN
+
+play += Show:
+    mesh&amp;: equations
+
+    sticky: 0
+</code></pre>
+<p><img alt="Famous math equations" src="/img/lessons/famous_equations.png" /></p>
+<p>A die matrix</p>
+<p>Torus</p>
+<pre><code class="language-swift">/* checkerboard */
+let uv_base = ColorGrid:
+    x_min: 0
+    x_max: 1
+    y_min: 0
+    y_max: 1
+    x_step: 0.05
+    y_step: 0.05
+    tag: {}
+    color_at(pos): identity:
+        let r = round(pos[0] / 0.05)
+        let c = round(pos[1] / 0.05)
+        var col = BLACK
+        if mod(r + c, 2)
+            col = RED
+        element: col
+
+let r1 = 1
+let r2 = 0.5
+var torus = PointMapped:
+    mesh: uv_base
+    point_map(point): identity:
+        let u = point[0] * TAU
+        let v = point[1] * TAU
+        let x = (r1 + r2 * cos(v)) * cos(u)
+        let y = (r1 + r2 * cos(v)) * sin(u)
+        let z = r2 * sin(v)
+        element: {x,y,z}
+
+
+play += Show:
+    mesh&amp;: torus
+    sticky: 0
+</code></pre>
+<p><img alt="Torus" src="/img/lessons/torus.png" /></p>
+<p>Vector Field</p>
+<pre><code class="language-swift">/* somewhat hard coded for sake of example */
+
+let min_norm = 1
+let max_norm = 5
+let max_scaled_norm = 0.4
+
+var gradient = {:}
+gradient[min_norm] = PURPLE
+gradient[1.5] = GREEN
+gradient[max_norm] = BLUE
+let gradient_c = gradient
+
+func VectorField(f(x,y)) = Field:
+    x_min: -4
+    x_max: 4
+    y_min: -2
+    y_max: 2
+
+    mesh_at(pos): Vector:
+        var raw_delta = f(pos[0], pos[1]) + 0
+
+        let mag = norm(raw_delta)
+        let color = keyframe_lerp(gradient_c, mag)
+
+        var scale = 1
+        if mag &gt; max_scaled_norm
+            scale = max_scaled_norm / mag
+            raw_delta = vec_mul(scale, raw_delta)
+
+        tail: pos
+        delta: raw_delta
+        tag: {}
+        stroke: CLEAR
+        fill: color
+
+var field = VectorField:
+    f(x, y):  {-y+x+1,x*y}
+
+play += Show:
+    mesh&amp;: field
+    sticky: 0
+</code></pre>
+<p><img alt="Vector Field" src="/img/lessons/vector_field.png" /></p>
+<p>Tree (Graph Theory)</p>
+<pre><code class="language-swift">func tint(color) = {color[0], color[1], color[2], 0.1}
+func Node(position, color, label) = identity:
+    var ret = {}
+    ret += Circle:
+        center: position
+        radius: 0.2
+        tag: {}
+        stroke: BLACK
+        fill: tint(color)
+
+    ret += Number:
+        value: label
+        precision: 0
+        scale: 0.5
+        tag: {}
+        stroke: CLEAR
+        fill: BLACK
+
+    ret[1] = Centered:
+        mesh: ret[1]
+        at: position
+
+    element: ret
+
+/* we can add edges as well using a technique in lesson 7 */
+/* without that, they are hard to add unfortunately */
+func Tree(adj, colors, curr, position) = identity:
+    var ret = {}
+    ret += Node:
+        position: position
+        color: colors[curr]
+        label: curr
+
+    var children = {}
+    for child in adj[curr]
+        children += Tree(adj, colors, child, position)
+
+    /* position */
+    children = XStack:
+        mesh_vector: children
+        align_dir: UP
+
+    ret += children
+    ret = Stack:
+        mesh_vector: ret
+        dir: DOWN
+        align: center
+
+    element: ret
+
+/* adjacency list */
+let adj = {{1,2}, {3, 4}, {5, 8}, {6}, {7}, {}, {}, {}, {}}
+let colors = {RED, ORANGE, YELLOW, RED, GREEN, BLUE, RED, BLUE, ORANGE}
+var graph = Tree:
+    adj: adj
+    colors: colors
+
+    /* 0 is root */
+    curr: 0
+    position: {0,1,0}
+
+play += Show:
+    mesh&amp;: graph
+    sticky: 0
+</code></pre>
+<p><img alt="Tree" src="/img/lessons/tree.png" /></p>
+<p>Neural Network</p>
+<pre><code class="language-swift">func NeuralNetwork(layer_counts) = identity:
+    var layers = {}
+    var edges = {}
+
+    var last_layer = {}
+    for i in 0 :&lt; len(layer_counts)
+
+        var new_layer = {}
+        for j in 0 :&lt; layer_counts[i]
+            new_layer += Circle:
+                center: {0, 0, 0}
+                radius: 0.2
+                tag: {}
+                stroke: RED
+                fill: WHITE
+        new_layer = YStack(new_layer)
+        new_layer = Centered:
+            mesh: new_layer
+            at: {i, 0, 0}
+
+        layers += new_layer
+
+        for prev in last_layer
+            for curr in new_layer
+                edges += Line:
+                    start: prev
+                    end: curr
+                    tag: {}
+                    stroke: BLACK
+
+        last_layer = new_layer
+
+    element: Centered:
+        mesh: {edges, layers}
+        at: ORIGIN
+
+var nn = NeuralNetwork:
+    layer_counts: {4, 6, 6, 2, 1}
+
+play += Show:
+    mesh&amp;: nn
+    sticky: 0
+</code></pre>
+<p><img alt="Neural Network" src="/img/lessons/neural_network.png" /></p>
+<p>Look at more examples over <a href="/examples">here</a></p>
+<h2>2.8 Practice</h2>
 <p>Finally, you can try playing around with Monocurl! We still can't do animations yet, but as a challenge, try creating the following:</p>
 <p><img alt="Practice example" src="/img/lessons/practice_mesh.png" /></p>
 <p>Hint, you can make the previous using just the following three meshes and operators (and a bit of math):</p>
@@ -155,11 +591,11 @@ var cards = Centered:
 <li><a href="/docs/Scaled">Scaled</a></li>
 </ul>
 <p>First get the placements right, then aim for the colors.</p>
-<h2>2.7 Conclusion</h2>
+<h2>2.9 Conclusion</h2>
 <p>This sections covered the basics of meshes. The point isn't that you know all meshes by now, but rather you have a good enough idea that it's easy to learn. We definitely recommend going to the docs page and exploring existing options. In particular, look out for the ones with a star, as those are pretty useful.</p>
 <p>Also, hopefully you can see the importance of creating your own functions from the very few examples we gave. As scenes get more complex, functions are of even more importance.</p>
-<h2>2.8 (Optional) Remarks</h2>
-<p>I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p></div>
+<h2>2.10 (Optional) Remarks</h2>
+<p>I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p><div id="next-lessons"><a href="/learn/1_Monocurl_Language"> Previous Lesson </a><a href="/learn/3_Animation_Basics"> Next Lesson </a></div></div>
 		</main>
 
 		<footer>
