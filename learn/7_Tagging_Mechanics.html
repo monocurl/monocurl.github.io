@@ -23,8 +23,31 @@
 
 		<!-- JS -->
 		
-            <script defer>
+            <script>
                 hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
             </script>
         
 	</head>
@@ -43,7 +66,7 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="current">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>7. Tagging Mechanics</h1>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_Examples_of_Animations" class="">4 Examples of Animations</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="current">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>7. Tagging Mechanics</h1>
 <p>We discussed basics of monocurl animations, but theres still a few things that are awkward. Let me introduce a few problems to illustrate what tags will bring.</p>
 <h2>7.1 Problems</h2>
 <p>What if we're transforming something and it's not matching the way we want?</p>
@@ -60,7 +83,7 @@
 <h2>7.6 Conclusion</h2>
 <p>Tags are pretty powerful. In general, tags are useful for differentiating different types of meshes, and different instances within classes. For example, this could be used to tag edges and to tag nodes. This is what we mean when we say tagging is identity
 Thus tags are very useful in the case that we have complicated mesh-trees with many different meshes.</p>
-<p>Congrats, you learned the key principles of monocurl! We'll now cover some tips and tricks.</p><div id="next-lessons"><a href="/learn/6_Interpolation_Animations"> Previous Lesson </a><a href="/learn/8_Editor_Tips_and_Advice"> Next Lesson </a></div></div>
+<p>Congrats, you learned the key principles of monocurl! We'll now cover some tips and tricks.</p><div id="next-lessons"><a href="/learn/6_Interpolation_Animations"> Previous Lesson </a><a href="/learn/8_Editor_Tips_and_Advice"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">7.1 Problems</a><a id="label-1" href="#section-1" class="">7.2 Tagging Mechanics</a><a id="label-2" href="#section-2" class="">7.3 Tag Transform Example</a><a id="label-3" href="#section-3" class="">7.4 Operation on Tags Example</a><a id="label-4" href="#section-4" class="">7.5 Animation on Subset Example</a><a id="label-5" href="#section-5" class="">7.6 Conclusion</a></div>
 		</main>
 
 		<footer>

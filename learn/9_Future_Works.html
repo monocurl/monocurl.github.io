@@ -23,8 +23,31 @@
 
 		<!-- JS -->
 		
-            <script defer>
+            <script>
                 hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
             </script>
         
 	</head>
@@ -43,7 +66,7 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="current">9 Future Works</a></aside><div id="content"><h1>9. Future Works (Optional)</h1>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_Examples_of_Animations" class="">4 Examples of Animations</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="current">9 Future Works</a></aside><div id="content"><h1>9. Future Works (Optional)</h1>
 <p>This is an optional section that discusses what might be coming in future Monocurl updates in the short and long term. It's written pretty roughly.</p>
 <h2>9.1 Backwards Compatability</h2>
 <p>As Monocurl is in a beta right now, I should say do not expect it to be stable at all and I am not targetting backwards compatability in the slightest.</p>
@@ -56,7 +79,7 @@ The major short term thing I want to do is slightly change the animation system,
 <p>At some point, I need to fix the 3d lighting shaders since they dont look great right now.</p>
 <p>Functions and functors should be separated.</p>
 <h2>9.4 Long Term</h2>
-<p>Anything past the near future is uncertain, but there's lots of directions that could possibly be explored. I want to try out so more functional programming stuff, in particular monads. Monocurl is extremely verbose right, but I think through some language changes that can all be fixed. Also, the timeline could display more information. I also want to make the language support modes in user code, which is disabled right now for security reasons. Perhaps there can also be a package manager or something of the likes to facilitate distribution of user created functors. Also, I want to actually make gpu compilable code, in particular that you can make your own shaders in monocurl. Also, there can be a better animation composition API or something of the likes (since lagged map is terrible right now). Positioning is also bad right now and that should be fixed. Also, Monocurl can be headless and you can compile stuff without a video editer. Maybe you can export files that can be played in webGL or something so that you dont need to export an an entire mp4 (this might also lead to some interactivity). I also need to add default arguments, since styling is really hard right now. There are other changes too, but these are just some ideas.</p><div id="next-lessons"><a href="/learn/8_Editor_Tips_and_Advice"> Previous Lesson </a></div></div>
+<p>Anything past the near future is uncertain, but there's lots of directions that could possibly be explored. I want to try out so more functional programming stuff, in particular monads. Monocurl is extremely verbose right, but I think through some language changes that can all be fixed. Also, the timeline could display more information. I also want to make the language support modes in user code, which is disabled right now for security reasons. Perhaps there can also be a package manager or something of the likes to facilitate distribution of user created functors. Also, I want to actually make gpu compilable code, in particular that you can make your own shaders in monocurl. Also, there can be a better animation composition API or something of the likes (since lagged map is terrible right now). Positioning is also bad right now and that should be fixed. Also, Monocurl can be headless and you can compile stuff without a video editer. Maybe you can export files that can be played in webGL or something so that you dont need to export an an entire mp4 (this might also lead to some interactivity). I also need to add default arguments, since styling is really hard right now. There are other changes too, but these are just some ideas.</p><div id="next-lessons"><a href="/learn/8_Editor_Tips_and_Advice"> Previous Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">9.1 Backwards Compatability</a><a id="label-1" href="#section-1" class="">9.2 Regrets</a><a id="label-2" href="#section-2" class="">9.3 Short Term</a><a id="label-3" href="#section-3" class="">9.4 Long Term</a></div>
 		</main>
 
 		<footer>

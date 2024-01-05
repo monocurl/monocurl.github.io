@@ -29,6 +29,31 @@ aside a.current {
 	font-weight: 600;
 }
 
+.sub-sections {
+	margin-left: 16px;
+	position: sticky;
+	position: -webkit-sticky;
+	padding: 20px 0px 20px 40px;
+	top: 0px;
+}
+
+.sub-sections h1 {
+	font-weight: 400;
+	font-size: 20px;
+
+}
+.sub-sections a {
+	display: block;
+	font-weight: 400;
+	font-size: 15px;
+	color: #333;
+	margin: 0px;
+}
+
+.sub-sections a.active {
+	font-weight: 600;
+}
+
 #content {
 	margin: 20px 40px;
 	max-width: 700px;
@@ -65,5 +90,6 @@ a {
 
 #next-lessons {
 	display: flex;
-	justify-content: space-between
+	justify-content: space-between;
+	margin-bottom: 400px;
 }

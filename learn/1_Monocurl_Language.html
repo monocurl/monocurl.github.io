@@ -23,8 +23,31 @@
 
 		<!-- JS -->
 		
-            <script defer>
+            <script>
                 hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
             </script>
         
 	</head>
@@ -43,7 +66,7 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="current">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>1. Monocurl Scripting Language</h1>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="current">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_Examples_of_Animations" class="">4 Examples of Animations</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>1. Monocurl Scripting Language</h1>
 <p>We'll now talk about the Monocurl Scripting Language, which is the language used to create the instructions for all Monocurl programs. Prior programming experience is beneficial and this article is written with the assumption of background knowledge. However the language itself is quite simple and hopefully is easy to follow regardless.</p>
 <p>Feel free to skim the basics section and come back to it whenever you have questions, but I definitely recommend you read the portions about functions and functors thoroughly.</p>
 <h2>1.1 The Basics</h2>
@@ -198,14 +221,18 @@ let created_circle = circle:
 <p>Now the function technically returns a functor instead of a number, but the <code class="language-swift">identity</code> function literally does nothing with the input by defintion, so it acts "invisible." Thus we are returning a number for most practical purposes. </p>
 <p>It definitely takes some time to get used to this sort of syntax, and in the future I might add a better way to achieve the same. Currently however, this is the only real way to create functions that need multiple sub expressions.</p>
 <p>We mention some final points about functors in the intricacies section if you are curious.</p>
-<h2>1.4 Conclusions</h2>
+<h2>1.4 Functor Modes</h2>
+<p>For some functors, there may be default arguments that are normally hidden to prevent clutter. Simply click the gear to switch modes so that you can view and edit these. Here's how it should look like in the editor.</p>
+<p><img alt="Functor Modes" src="/img/lessons/functor_modes.png" /></p>
+<p>The most prominent example is for setting the color of meshes, but it occurs in other places too.</p>
+<h2>1.5 Conclusions</h2>
 <p>If you honestly understand this article (especially the part about functors), then you have a good understanding of the Monocurl scripting language. </p>
-<h2>1.5 (Optional) Intricacies</h2>
+<h2>1.6 (Optional) Intricacies</h2>
 <p>I realize that functors is probably not the best name given that functors in the traditional Category-theory sense are different (and even different than functors in CS), but I chose this early on and have just stuck with it.</p>
 <p>You can have functions return (useful, non-identity) functors, but this actually does get a bit confusing and we advise against it. </p>
 <p>I actually think allowing all functions to be functors was a mistake and will probably separate them out some time in the future. The reason why I'm unsure about separating them fully is that it's still nice to call things that should just be functions using functor syntax, but at the same they shouldn't need to remember their arguments. Essentially, functors are too many things at once, which makes separating them difficult.</p>
 <p>In cases where a function takes a function as a parameter, you MUST call it using functor syntax (again mentioning the same design flaw from above).</p>
-<p>Because all functions are basically lambdas, there are certain types of recursion that Monocurl cannot adequeately simulate. You do single function recursion just fine, and in fact you can do two functions calling each other (by declaring the second function in the initialization period of the other), but it can be shown its impossible to have three functions that can pairwise call each other. In practice, this doesn't turn out be that big of an issue, but is something to be aware of if the situation arises.</p><div id="next-lessons"><a href="/learn/0_What_is_Monocurl"> Previous Lesson </a><a href="/learn/2_Meshes"> Next Lesson </a></div></div>
+<p>Because all functions are basically lambdas, there are certain types of recursion that Monocurl cannot adequeately simulate. You do single function recursion just fine, and in fact you can do two functions calling each other (by declaring the second function in the initialization period of the other), but it can be shown its impossible to have three functions that can pairwise call each other. In practice, this doesn't turn out be that big of an issue, but is something to be aware of if the situation arises.</p><div id="next-lessons"><a href="/learn/0_What_is_Monocurl"> Previous Lesson </a><a href="/learn/2_Meshes"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">1.1 The Basics</a><a id="label-1" href="#section-1" class="">1.2 Functions</a><a id="label-2" href="#section-2" class="">1.3 Functors</a><a id="label-3" href="#section-3" class="">1.4 Functor Modes</a><a id="label-4" href="#section-4" class="">1.5 Conclusions</a><a id="label-5" href="#section-5" class="">1.6 (Optional) Intricacies</a></div>
 		</main>
 
 		<footer>

@@ -23,8 +23,31 @@
 
 		<!-- JS -->
 		
-            <script defer>
+            <script>
                 hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
             </script>
         
 	</head>
@@ -43,7 +66,7 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="current">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>5. The Iterator-Follower Paradigm</h1>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_Examples_of_Animations" class="">4 Examples of Animations</a><a href="5_Iterator_Follower_Paradigm" class="current">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>5. The Iterator-Follower Paradigm</h1>
 <p>While delayed execution has its benefits, you can make mistakes very easily. In this section, we'll introduce a way of thinking to eliminate these issues.</p>
 <h2>5.1 The problem</h2>
 <p>In particular, let's look at why delayed execution can become confusing. Suppose that Monocurl had a Shift animation that shifts the given variable tree upon execution (the standard library does not provide such an animation, we are speaking hypothetically). Then, consider the follow snippet</p>
@@ -90,7 +113,7 @@ play +=</p>
 play += </p>
 <p>play += ...</p>
 <p>This is better, and more likely how you write monocurl code. Admiteddly, Monocurl is still definitely too verbose. I have some ideas on how to fix it. However, the good news is that I think these are all problems that can easily be fixed by a language feature if done right. </p>
-<p>We'll now look at more advanced versions of interpolation.</p><div id="next-lessons"><a href="/learn/4_More_Animation_Basics"> Previous Lesson </a><a href="/learn/6_Interpolation_Animations"> Next Lesson </a></div></div>
+<p>We'll now look at more advanced versions of interpolation.</p><div id="next-lessons"><a href="/learn/4_Examples_of_Animations"> Previous Lesson </a><a href="/learn/6_Interpolation_Animations"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">5.1 The problem</a><a id="label-1" href="#section-1" class="">5.2 The solution</a><a id="label-2" href="#section-2" class="">5.3 Toy Example</a><a id="label-3" href="#section-3" class="">5.4 A Better Way to do Things</a></div>
 		</main>
 
 		<footer>

@@ -23,8 +23,31 @@
 
 		<!-- JS -->
 		
-            <script defer>
+            <script>
                 hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
             </script>
         
 	</head>
@@ -43,7 +66,7 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="current">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>3. The Basics of Animation</h1>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="current">3 Animation Basics</a><a href="4_Examples_of_Animations" class="">4 Examples of Animations</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>3. The Basics of Animation</h1>
 <p>The way animations are done is one of the more unique parts of monocurl. This section gives an overview as well as motivations behind some choices we made. Understanding decisions helps in letting the design feel natural rather than memorized.</p>
 <h2>3.1 (Optional) Traditional Programatic Animation Methods</h2>
 <p>Consider an animation system where animations are run as soon as you create them. We will refer to this as <em>eager execution</em>. For instance, we might have the following pseudocode to do two animations in series:</p>
@@ -57,18 +80,19 @@ run(Hide(b))
 <p><img alt="Three Animations" src="/img/lessons/three_animations.png" /></p>
 <p>It's not that this is impossible with eager execution, but it does become a bit awkward. We are emitting some details for simplicity in this section, but the idea is that it's hard to perform proper encapsulation and this does not line up well with functional programming. We recommend reading the intricacies section as properly understanding the problem is important.</p>
 <p>Before we introduce our method, we should say that our's is not the only solution. In particular, using generators a la <a href="https://docs.unity3d.com/Manual/Coroutines.html">Unity Coroutines</a> or <a href="https://motioncanvas.io/"> Motion Canvas</a> is more standard. However, our method is simpler to implement, and we believe it encourages a more natural method of thinking.</p>
-<h2>3.2 The Play List</h2>
+<h2>3.2 Delayed Execution</h2>
 <p>Finally this leads us into the play list. We saw that the problem with eager execution is that with so many things happening in series and parallel, we might not want to execute an animation just as it's created. This motivates <em>delayed execution</em>, where there are two periods: initialization and execution time.</p>
 <p>In initialization, we write down all the animations that will be needed (specifying which should be in parallel/series with what). In execution, all the specified animations are run together. Now the question becomes how do represent all the animations.</p>
+<h2>3.3 The Play List</h2>
 <p>The idea is just to keep a list of all animations we care about. Rather, we have an animation-tree in a similar manner to a mesh-tree and for similar reasons (so that we can ignore details about the structure).</p>
 <p>In particular, a Monocurl video or slideshow is divided into a series of slides. In each slide, you write code that corresponds to the initialization phase by writing animations to the special <code class="language-swift">play</code> variable. Then, after the user code has finished, Monocurl runs the entirety of the animations provided in the play variable (execution phase). After they are finished, we move onto the next slide and the process repeats.</p>
 <p><img alt="Delayed exeuction model" src="/img/lessons/delayed_execution.png" /></p>
-<h2>3.3 Parallel Animations</h2>
+<h2>3.4 Parallel Animations</h2>
 <p>How do we allow animations in parallel? For this, each animation has a <code class="language-swift">sticky</code> flag. If the flag is set to <code class="language-swift">1</code>, then the current animation is run in parallel with the previous one. This can be chained an arbitrary amount of times. For instance, suppose we want three animations to run in parallel. Then, we can have the play list be <code class="language-swift">{A, B, C}</code>, where <code class="language-swift">B</code> and <code class="language-swift">C</code> both have their sticky flags on. Note that there's multiple ways to do this; we can write <code class="language-swift">{A, C, B}</code> and the result is the same.</p>
 <p>But what about nested animations-trees? For instance in <code class="language-swift">{A, {B, C}, D}</code>, how are we able to specify that the entire <code class="language-swift">{B, C}</code> block should be run in parallel with A? To achieve this, we say that an animation tree's stickyness is the stickyness value of its first element. In this case, the stickyness of <code class="language-swift">{B, C}</code> is the stickyness of <code class="language-swift">B</code>. Thus, if we turn on the sticky flag only for <code class="language-swift">B</code>, the animation is composed as the following. With this addition, you can compose animations in practically any manner.</p>
 <pre><code class="language-swift">/* We'll just use Wait since we haven't introduced any animations yet */
 let A = Wait:
-    time: 1
+    time: 2
     sticky: 0
 let B = Wait:
     time: 1
@@ -87,7 +111,7 @@ play =  {A, {B, C}, D}
 <p>Finally, more often than not we dont even name animations but instead add them to the play list directly if we can. The above would better be written as the following. However, do note that nothing "happens"  until the very end. In the beginning, all we are doing is initialization, and execution is done only after the entire slide frame has exited.</p>
 <pre><code class="language-swift">/* A */
 play += Wait:
-    time: 1
+    time: 2
     sticky: 0
 /* B-C block */
 var sub = {}
@@ -106,9 +130,9 @@ play += Wait:
     sticky: 0
 </code></pre>
 <p>Remark: we could have used animation operators to achieve parallel animations (and if you really want, <a href="/docs/Parallel">you can</a>), but we think the sticky system is slightly less verbose. We are open to change this in the future.</p>
-<h2>3.4 Conclusion</h2>
+<h2>3.5 Conclusion</h2>
 <p>The play list is a simple idea, but there are many details that can trick you up. Make sure you understand the sticky system, and the fact that doing <code class="language-swift">play += ...</code> does not play anything immediately, but merely adds it to a queue that only performs the animation once the slide fully exits.</p>
-<h2>3.5 (Optional) Intricacies</h2>
+<h2>3.6 (Optional) Intricacies</h2>
 <p>For the sake of brevity, the above doesn't give a full explanation on the possible pitfalls of eager execution. In particulr we mention that eager execution is awkward in the A-B-C case, but that's not necessarily true. Indeed, if we have references to all three animations, then using an animation operator is not that bad.</p>
 <pre><code class="language-swift">A = ...
 B = ...
@@ -139,7 +163,7 @@ run(do_a_and_b(), C)
 </code></pre>
 <p>But this is just delayed execution! This hopefully gives an explanation of why delayed execution solves a lot of problems, and is a good choice. </p>
 <p>Do note that in this particular case, coroutines serve a similar role. However, we still maintain that delayed execution, once understood, leads to a more natural thinking process (we'll see this more clearly in lesson 5).</p>
-<p>Finally, we note that <em>currently</em> there are some downsides to the play list model. In particular, creating something like a LaggedMap from manim is not truly supported (the one that exists in the standard is kind of fake). However, this is something that can be solved very easily in the future, just has not been done yet. There is nothing about the play list model that stops this.</p><div id="next-lessons"><a href="/learn/2_Meshes"> Previous Lesson </a><a href="/learn/4_More_Animation_Basics"> Next Lesson </a></div></div>
+<p>Finally, we note that <em>currently</em> there are some downsides to the play list model. In particular, creating something like a LaggedMap from manim is not truly supported (the one that exists in the standard is kind of fake). However, this is something that can be solved very easily in the future, just has not been done yet. There is nothing about the play list model that stops this.</p><div id="next-lessons"><a href="/learn/2_Meshes"> Previous Lesson </a><a href="/learn/4_Examples_of_Animations"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">3.1 (Optional) Traditional Programatic Animation Methods</a><a id="label-1" href="#section-1" class="">3.2 Delayed Execution</a><a id="label-2" href="#section-2" class="">3.3 The Play List</a><a id="label-3" href="#section-3" class="">3.4 Parallel Animations</a><a id="label-4" href="#section-4" class="">3.5 Conclusion</a><a id="label-5" href="#section-5" class="">3.6 (Optional) Intricacies</a></div>
 		</main>
 
 		<footer>

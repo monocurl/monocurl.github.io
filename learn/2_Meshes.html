@@ -23,8 +23,31 @@
 
 		<!-- JS -->
 		
-            <script defer>
+            <script>
                 hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
             </script>
         
 	</head>
@@ -43,8 +66,8 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="current">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_More_Animation_Basics" class="">4 More Animation Basics</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>2. Meshes in Monocurl</h1>
-<p>We'll now talk about meshes. Meshes are the objects that we see on screen. We'll first discuss ways to create meshes. </p>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="current">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_Examples_of_Animations" class="">4 Examples of Animations</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>2. Meshes in Monocurl</h1>
+<p>We'll now talk about meshes. Meshes are the objects that we see on screen. </p>
 <p>This section is a bit long, but a lot of it is just examples. The optional sections discuss some of the decisions behind Monocurl, but are not that practical so feel free to skim them.</p>
 <h2>2.1 Following Along</h2>
 <p>In this section, you finally have many opportunities to follow along! </p>
@@ -66,9 +89,10 @@ play += Show:
     mesh&amp;: circ
     sticky: 0
 </code></pre>
-<h2>2.2 Coordinate Systems</h2>
+<h2>2.2 Background Knowledge</h2>
 <p>The final prerequisite before we actually get to meshes is understanding the coordinate system. Monocurl operates in a right handed coordinate system (so positive z faces away from the screen). Other than that, the following image gives a good glimpse at the default system. Thus, if you want to have a circle span left to right, its radius should be 4.</p>
 <p><img alt="Coordinate System" src="/img/lessons/coordinate_system.png" /></p>
+<p>Also, whenever a function asks for a color, it means a vector of four numbers (red, green, blue, alpha), each in the range of 0 to 1. To actually change the color of most meshes, you'll likely have to click on the gear icon next color (see functor modes from previous lesson).</p>
 <h2>2.3 (Optional) Why meshes?</h2>
 <p>By meshes, we mean a collection of triangles, lines, and dots. Meshes are sometimes thought of as a set of points, with each point having an associated color. In many computer graphics contexts, Bezier curves are used instead of the meshes we just talked about. The decision to use meshes primarily comes as a way to make all screen objects the same type, which is harder to do with Bezier curves. On the other hand, there are instances where meshes are much less smooth than Bezier curves, which is undesirable.</p>
 <p>For instance, the following would require many Bezier curve objects, but can be done in a single mesh.</p>
@@ -168,7 +192,6 @@ play += Show:
 </code></pre>
 <p>Result:</p>
 <p><img alt="Cardiods" src="/img/lessons/cardiods.png" /></p>
-<p>Some final, important points. Most library primitive meshes will take in parameters for a color of some sort and the tag. We'll talk about tags later, but for color, this should be a vector of 4 numbers each in the interval 0 to 1, representings the red, green, blue, and alpha channels respectfully.</p>
 <p>For instance, the full cardiod example should look something like this in the editor (you might also have to set the background to <code class="language-swift">WHITE</code>).</p>
 <p><img alt="Cardiods" src="/img/lessons/cardiod_code.png" /></p>
 <h2>2.7 More Examples!</h2>
@@ -387,7 +410,6 @@ play += Show:
     sticky: 0
 </code></pre>
 <p><img alt="Famous math equations" src="/img/lessons/famous_equations.png" /></p>
-<p>A die matrix</p>
 <p>Torus</p>
 <pre><code class="language-swift">/* checkerboard */
 let uv_base = ColorGrid:
@@ -595,7 +617,7 @@ play += Show:
 <p>This sections covered the basics of meshes. The point isn't that you know all meshes by now, but rather you have a good enough idea that it's easy to learn. We definitely recommend going to the docs page and exploring existing options. In particular, look out for the ones with a star, as those are pretty useful.</p>
 <p>Also, hopefully you can see the importance of creating your own functions from the very few examples we gave. As scenes get more complex, functions are of even more importance.</p>
 <h2>2.10 (Optional) Remarks</h2>
-<p>I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p><div id="next-lessons"><a href="/learn/1_Monocurl_Language"> Previous Lesson </a><a href="/learn/3_Animation_Basics"> Next Lesson </a></div></div>
+<p>I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p><div id="next-lessons"><a href="/learn/1_Monocurl_Language"> Previous Lesson </a><a href="/learn/3_Animation_Basics"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">2.1 Following Along</a><a id="label-1" href="#section-1" class="">2.2 Background Knowledge</a><a id="label-2" href="#section-2" class="">2.3 (Optional) Why meshes?</a><a id="label-3" href="#section-3" class="">2.4 Mesh-Trees</a><a id="label-4" href="#section-4" class="">2.5 Primitive-Operator Model</a><a id="label-5" href="#section-5" class="">2.7 More Examples!</a><a id="label-6" href="#section-6" class="">2.8 Practice</a><a id="label-7" href="#section-7" class="">2.9 Conclusion</a><a id="label-8" href="#section-8" class="">2.10 (Optional) Remarks</a></div>
 		</main>
 
 		<footer>
