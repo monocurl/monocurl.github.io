@@ -194,7 +194,7 @@ play += Show:
 <p><img alt="Cardiods" src="/img/lessons/cardiods.png" /></p>
 <p>For instance, the full cardiod example should look something like this in the editor (you might also have to set the background to <code class="language-swift">WHITE</code>).</p>
 <p><img alt="Cardiods" src="/img/lessons/cardiod_code.png" /></p>
-<h2>2.7 More Examples!</h2>
+<h2>2.6 More Examples!</h2>
 <p>Here's the code for a Koch Curve and the result:</p>
 <pre><code class="language-swift">func move(start, mag, rotation) = identity:
     let delta = {mag * cos(rotation), mag * sin(rotation), 0}
@@ -344,7 +344,7 @@ tree += Axis2d:
     tag: {}
     color: BLACK
 
-graphs = {}
+var graphs = {}
 graphs += ExplicitFunc:
     start: 0
     stop: 3
@@ -592,9 +592,10 @@ play += Show:
 
     element: Centered:
         mesh: {edges, layers}
-        at: ORIGIN
-
-var nn = NeuralNetwork:
+</code></pre>
+<p>Here's an example where we we use loops. We also have another IF-pair in the scene that operates in parallel. Also note that Become still has non-trivial use cases.
+            at: ORIGIN</p>
+<pre><code class="language-swift">var nn = NeuralNetwork:
     layer_counts: {4, 6, 6, 2, 1}
 
 play += Show:
@@ -603,7 +604,7 @@ play += Show:
 </code></pre>
 <p><img alt="Neural Network" src="/img/lessons/neural_network.png" /></p>
 <p>Look at more examples over <a href="/examples">here</a></p>
-<h2>2.8 Practice</h2>
+<h2>2.7 Practice</h2>
 <p>Finally, you can try playing around with Monocurl! We still can't do animations yet, but as a challenge, try creating the following:</p>
 <p><img alt="Practice example" src="/img/lessons/practice_mesh.png" /></p>
 <p>Hint, you can make the previous using just the following three meshes and operators (and a bit of math):</p>
@@ -613,11 +614,11 @@ play += Show:
 <li><a href="/docs/Scaled">Scaled</a></li>
 </ul>
 <p>First get the placements right, then aim for the colors.</p>
-<h2>2.9 Conclusion</h2>
+<h2>2.8 Conclusion</h2>
 <p>This sections covered the basics of meshes. The point isn't that you know all meshes by now, but rather you have a good enough idea that it's easy to learn. We definitely recommend going to the docs page and exploring existing options. In particular, look out for the ones with a star, as those are pretty useful.</p>
 <p>Also, hopefully you can see the importance of creating your own functions from the very few examples we gave. As scenes get more complex, functions are of even more importance.</p>
-<h2>2.10 (Optional) Remarks</h2>
-<p>I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p><div id="next-lessons"><a href="/learn/1_Monocurl_Language"> Previous Lesson </a><a href="/learn/3_Animation_Basics"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">2.1 Following Along</a><a id="label-1" href="#section-1" class="">2.2 Background Knowledge</a><a id="label-2" href="#section-2" class="">2.3 (Optional) Why meshes?</a><a id="label-3" href="#section-3" class="">2.4 Mesh-Trees</a><a id="label-4" href="#section-4" class="">2.5 Primitive-Operator Model</a><a id="label-5" href="#section-5" class="">2.7 More Examples!</a><a id="label-6" href="#section-6" class="">2.8 Practice</a><a id="label-7" href="#section-7" class="">2.9 Conclusion</a><a id="label-8" href="#section-8" class="">2.10 (Optional) Remarks</a></div>
+<h2>2.9 (Optional) Remarks</h2>
+<p>I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p><div id="next-lessons"><a href="/learn/1_Monocurl_Language"> Previous Lesson </a><a href="/learn/3_Animation_Basics"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">2.1 Following Along</a><a id="label-1" href="#section-1" class="">2.2 Background Knowledge</a><a id="label-2" href="#section-2" class="">2.3 (Optional) Why meshes?</a><a id="label-3" href="#section-3" class="">2.4 Mesh-Trees</a><a id="label-4" href="#section-4" class="">2.5 Primitive-Operator Model</a><a id="label-5" href="#section-5" class="">2.6 More Examples!</a><a id="label-6" href="#section-6" class="">2.7 Practice</a><a id="label-7" href="#section-7" class="">2.8 Conclusion</a><a id="label-8" href="#section-8" class="">2.9 (Optional) Remarks</a></div>
 		</main>
 
 		<footer>
