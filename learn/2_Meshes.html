@@ -92,7 +92,7 @@ play += Show:
 <h2>2.2 Background Knowledge</h2>
 <p>The final prerequisite before we actually get to meshes is understanding the coordinate system. Monocurl operates in a right handed coordinate system (so positive z faces away from the screen). Other than that, the following image gives a good glimpse at the default system. Thus, if you want to have a circle span left to right, its radius should be 4.</p>
 <p><img alt="Coordinate System" src="/img/lessons/coordinate_system.png" /></p>
-<p>Also, whenever a function asks for a color, it means a vector of four numbers (red, green, blue, alpha), each in the range of 0 to 1. To actually change the color of most meshes, you'll likely have to click on the gear icon next color (see functor modes from previous lesson).</p>
+<p>Also, whenever a function asks for a color, it means a vector of four numbers (red, green, blue, alpha), each in the range of 0 to 1. To actually change the color of most meshes, you'll likely have to click on the gear icon next to color (see functor modes from previous lesson).</p>
 <h2>2.3 (Optional) Why meshes?</h2>
 <p>By meshes, we mean a collection of triangles, lines, and dots. Meshes are sometimes thought of as a set of points, with each point having an associated color. In many computer graphics contexts, Bezier curves are used instead of the meshes we just talked about. The decision to use meshes primarily comes as a way to make all screen objects the same type, which is harder to do with Bezier curves. On the other hand, there are instances where meshes are much less smooth than Bezier curves, which is undesirable.</p>
 <p>For instance, the following would require many Bezier curve objects, but can be done in a single mesh.</p>
