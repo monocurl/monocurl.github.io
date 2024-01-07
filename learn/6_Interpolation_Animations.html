@@ -96,7 +96,7 @@ var C = lerp(A, B, 0.25)
 <p>For full semantics, read the documentation of <a href="/docs/%20lerp">lerp</a>.</p>
 <h2>6.1 Lerp</h2>
 <p>Now, what if we can smoothly interpolate between two meshes using functor interpolation? This might sound similar to Transform, but note that Transform works by matching points and thus is slightly different in semantics.</p>
-<p>This brings us to <a href="/docs/Lerp">Lerp</a>. It does exactly what we want, interpolating a screen variable between two functors. In particular, at each time t, Lerp sets its target variable equal to the functor interpolation between the start and end, with the blend factor beingtime dependent.</p>
+<p>This brings us to <a href="/docs/Lerp">Lerp</a>. It does exactly what we want, interpolating a screen variable between two functors. In particular, at each time t, Lerp sets its target variable equal to the functor interpolation between the start and end, with the blend factor being time dependent.</p>
 <p>Heres an example. </p>
 <pre><code class="language-swift">var trans_square = Square:
     center: RIGHT
@@ -315,20 +315,21 @@ play += Keyframe:
     <source src="/video/sine_lerp_example.mp4" type="video/mp4"/>
 </video>
 
-<pre><code class="language-swift">Good to know, but from experience it's generally used occasionally.
-</code></pre>
+<p>Good to know, but from experience it's generally used occasionally.</p>
 <h2>6.4 (Optional) Transform vs Lerp</h2>
 <p>Lastly, I want to talk about when to use Transform vs Lerp. Transform's syntax is nicer (since we dont need to specify start), but it gives less control. We use Transform whenever it looks nice, or when we're transforming from unrelated types, so that there's not really anything that can be lerped. If we need more control about intermediate states, Lerp is the way to go.</p>
 <p>Remark: Finally, notice that there is some inconvenience in the syntax once again. It definitely is really repetitive, but again this is something I'm very confident can be fixed with a language feature (maybe macros, or maybe something like cpp's std::exchange). Nevertheless, this is the majority of what you need to know for animations. </p>
 <h2>6.6 Monocurl Logo Animation</h2>
 <p>Also, we can now create the Monocurl logo animation! Lets break it down.</p>
 <p>In fact, there isn't that much going on. It does involve a camera animation which we haven't explicitly seen, but it's the same general idea.</p>
-<p>Track 1: "Monocurl" needs to be written
-Track 2: The graph and color grid
-Track 3: The camera motion</p>
+<ul>
+<li>Track 1: "Monocurl" needs to be written</li>
+<li>Track 2: The graph and color grid</li>
+<li>Track 3: The camera motion</li>
+</ul>
 <p>Track 1 is pretty easy, we simply just need to use a Write animation.
 Track 3 is also not that bad, we use <a href="/docs/CameraLerp">CameraLerp</a> to move the camera from its default position to some offset target. Note that lerp would work as well, but the rotation is slightly off.</p>
-<p>Track 2 might seem a bit difficult, but really it's just two simple animations. We first have a blank ColorGrid, then we change its color, and then we add elevation to it via <a href="/docs/PointMapped">PointMapped</a>. Both interpolations can be done via Transform.</p>
+<p>Track 2 might seem a bit difficult, but really it's just two simple animations. We first have a blank ColorGrid, then we change its color, and then we add elevation to it via <a href="/docs/PointMapped">PointMapped</a>. Both interpolations can be done via Transform. Note Track 2 and Track 3 should be in parallel.</p>
 <p>Lets see the code!</p>
 <pre><code class="language-swift">/* helpers */
 let step = 0.05
