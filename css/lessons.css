@@ -93,3 +93,9 @@ a {
 	justify-content: space-between;
 	margin-bottom: 400px;
 }
+
+@media screen and (max-width: 1250px) {
+	.sub-sections {
+		display: none;
+	}
+}
