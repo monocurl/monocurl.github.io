@@ -1,5 +1,9 @@
 /* figure */
 main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	margin: 40px 150px;
 }
 
@@ -77,6 +81,14 @@ main {
 
 .os-details {
 	margin-left: 30px;
+}
+
+section h2 {
+	text-align: center;
+}
+
+section p {
+	max-width: 840px;
 }
 
 .read-more {
