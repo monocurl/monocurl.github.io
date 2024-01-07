@@ -67,34 +67,37 @@
 
 		<main>
     <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_Examples_of_Animations" class="">4 Examples of Animations</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="current">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>8. Editor Tips and General Advice</h1>
-<p>I'll now give a few tips to making a good Monocurl slideshow or video.</p>
-<h1>8.1 Using the Editor</h1>
-<h1>8.1 General Tips</h1>
+<p>I'll now give a few tips for making a good Monocurl slideshow or video, as well as things you can do with the editor.</p>
+<h2>8.1 Using the Editor</h2>
+<p>The editor has an editing table to the left, the viewport to the top right, and the timeline on the bottom right. On Windows, you'll have to scroll vertically to move the timeline.</p>
+<p><img alt="Monocurl Editor" src="/img/lessons/monocurl_editor.png" /></p>
+<p>The editor on Windows is much worse than that of macOS, but the one on macOS isn't all that good anyways. In particular, using separate textfields for every single line turned out to be a huge mistake, but we'll have to wait a while for a fix.</p>
+<p>You can use <code class="language-swift">,</code> to rewind to the previous slide, whereas <code class="language-swift">.</code> goes to the next slide. Use <code class="language-swift">SHIFT + ,</code> to rewind to the start of the scene and <code class="language-swift">SHIFT + ." to go to the end of the scene. Finally, use</code>SPACE` to pause or play the current scene.</p>
+<p>On macOS, you can use <code class="language-swift">OPTION + ENTER</code> to insert a textfield above the current line, and on all platforms use <code class="language-swift">ENTER</code> to insert a textfield below the current line.</p>
+<p>To switch modes of a functor, you can click the gear icon next to an argument and select the mode you want to select.</p>
+<p><img alt="Functor Modes" src="/img/lessons/functor_modes.png" /></p>
+<p>Finally, I realized pretty late that adding a slide trigger an entire reset of the execution cache, which means that you'll have to wait a while for the live preview. As a work around, you can just add a lot of slides to your project at the very beginning (hopefully I'll fix this soon in an update).</p>
+<h2>8.2 Slideshows and Exporting</h2>
+<p>To enter slideshow mode (full screen mode), press <code class="language-swift">CONTROL + F</code> on macOS or <code class="language-swift">CTRL + F</code> on Windows. In slideshow mode, when you press play, it only goes at most one slide in the future.</p>
+<p>To export, simply press the export looking icon present on the toolbar (above the timeline, below the viewport), and follow through with the steps.</p>
+<h2>8.3 General Tips</h2>
 <ol>
-<li>Remember everything is short lived. Don't over engineer stuff and be ok with using hardcoded constants. Most of the time, you'll never touch it again. Still maintain some level of professionalism, but only so much that is necessary</li>
-<li>Use resources effectively! Look at examples. I also tried to make the documentation highlight which meshes are very important, and which ones you probably only have to lookup if necessary. </li>
-<li>Follow the iterator-follower paradigm. I know it's verbose, but that's the best way to do Monocurl</li>
-<li>Maintain sane tags, and partition variables appropriately</li>
-<li>Create lots of functions for meshes, and few for animations. There are times where you might need to create functions for animations (we'll talk about a case, specifically when we have to apply a transformation with a discrete transformation together), but these are the exception. More often than not, using a cleverly calculated functor with an interpolation will seal the deal</li>
-<li>Break down complex animations as a parallel and sequential subcompnenents, and think about interpolation</li>
-<li>Break down complex animations as subcompoenntets, and operations on primtiives</li>
+<li>Remember everything is short lived. Don't over engineer stuff and be ok with using hardcoded constants. Most of the time, you'll never touch it again. Still maintain some level of professionalism, but only so much that is necessary.</li>
+<li>Use resources effectively! Look at examples. I also tried to make the documentation highlight which meshes are very important versus ones you probably only have to lookup if necessary. </li>
+<li>Follow the iterator-follower paradigm. I know it's verbose, but that's the best way to do Monocurl and avoid confusing mistakes.</li>
+<li>Maintain sane tags, and partition variables appropriately in complex scenes.</li>
+<li>Create lots of functions for meshes, and few for animations. There are times where you might need to create functions for animations (generally for convenience or when we have to apply a transformation with a discrete transformation together), but these are the exception. More often than not, using a cleverly calculated functor with an interpolation will seal the deal.</li>
+<li>Break down complex animations as a parallel and sequential subcomponents, and think about interpolation each subcomponent. In a similar vain, think about the timeline of each object, and relate that to the timeline of screenvariables</li>
 </ol>
-<h1>8.2 Favorite Meshes and Techniques</h1>
-<p>Let me now talk about some of my favorite meshes, and other things that are good to know. </p>
-<p>Color Grid and Maps
-- Some of My favorite stuff</p>
-<p>Text and Writing
-- Very good usage of Tags
-- Write can be used on anything. </p>
-<p>Bend for length preserving animations</p>
-<h1>8.3 Monocurl Scripting Language Idioms</h1>
-<p>right_key for helping with tags
-No boolean or integer types
-Vectors and plus equals
-Dictionaries are insertion order guaranteed, allowing us to create gradients</p>
-<h1>8.4 Conclusion</h1>
-<p>I'll add more as time goes on, but I genuinely recommend checking out examples, looking at what is closest to what you're trying to do, and adapt the code from there.</p>
-<p>This is the end of the article</p><div id="next-lessons"><a href="/learn/7_Tagging_Mechanics"> Previous Lesson </a><a href="/learn/9_Future_Works"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1></div>
+<h2>8.4 Monocurl Scripting Language Idioms</h2>
+<p>A few idioms in the Monocurl language.</p>
+<p>One useful trick is using <a href="/docs/%20right_key">right_key</a> to help with tags, as was done in lesson 7 with the sorting example.</p>
+<p>Monocurl doesn't have any boolean or integer types, so for booleans you'll typically just 1 and 0, whereas for integers you'll have to use number types and do rounding when necessary.</p>
+<p>Vectors are extremely important in Monocurl, and definitely get comfortable using <code class="language-swift">+=</code> syntax. This can be helpful for meshes and animations, but also stuff like generating latex strings.</p>
+<p>Dictionaries are insertion order guaranteed, allowing us to create gradients, as was done in lesson 6 for the Monocurl logo animation.</p>
+<h2>8.5 Conclusion</h2>
+<p>I'll add more as time goes on, but I genuinely recommend checking out examples, looking at what is closest to what you're trying to do, and adapting the code from there.</p>
+<p>This is the end of the tutorial series!</p><div id="next-lessons"><a href="/learn/7_Tagging_Mechanics"> Previous Lesson </a><a href="/learn/9_Future_Works"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">8.1 Using the Editor</a><a id="label-1" href="#section-1" class="">8.2 Slideshows and Exporting</a><a id="label-2" href="#section-2" class="">8.3 General Tips</a><a id="label-3" href="#section-3" class="">8.4 Monocurl Scripting Language Idioms</a><a id="label-4" href="#section-4" class="">8.5 Conclusion</a></div>
 		</main>
 
 		<footer>
