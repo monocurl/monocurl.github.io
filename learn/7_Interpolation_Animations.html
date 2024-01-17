@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Learn</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        
+
+		<!-- JS -->
+		
+            <script>
+                hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
+            </script>
+        
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Animation_Basics" class="">4 Animation Basics</a><a href="5_Examples_of_Animations" class="">5 Examples of Animations</a><a href="6_Iterator_Follower_Paradigm" class="">6 Iterator Follower Paradigm</a><a href="7_Interpolation_Animations" class="current">7 Interpolation Animations</a><a href="8_Tagging_Mechanics" class="">8 Tagging Mechanics</a><a href="9_Tips_and_Advice" class="">9 Tips and Advice</a><a href="10_Future_Works" class="">10 Future Works</a></aside><div id="content"><h1>7. Interpolation Animations</h1>
+<p><span class="lesson-meta">META</span> Transforms are cool and in the majority of the cases they are great! However, they do not provide a lot of control. We'll talk about how Lerp, and Keyframe give us more precision and let us make really cool animations.</p>
+<h2>7.1 Functor Interpolation</h2>
+<p><span class="lesson-definition">DEFINITION</span> For two functors of the same type, functor interpolation is defined to be the recursive interpolation of its arguments. That is, a new functor is created of the same type where each argument to the functor is just the interpolation from the associated argument of the start functor to that of the end functor.</p>
+<p>Here's an example:</p>
+<pre><code class="language-swift">var A = Circle:
+    center: {0,0,0}
+    radius: 1
+    tag: {}
+    stroke: BLACK
+
+var B = Circle:
+    center: {1,0,0}
+    radius: 3
+    tag: {}
+    stroke: BLACK
+
+var C = lerp(A, B, 0.25)
+</code></pre>
+<p>In this case, this is the same thing as saying:</p>
+<pre><code class="language-swift">C = Circle:
+    center: {0.25, 0, 0}
+    radius: 1.5
+    tag: {}
+    stroke: BLACK
+</code></pre>
+<p>Because the center is interpolated from <code class="language-swift">{0,0,0}</code> to <code class="language-swift">{1,0,0}</code>, and the radius is interpolated from <code class="language-swift">1</code> to <code class="language-swift">3</code>. </p>
+<p>For full semantics, read the documentation of <a href="/docs/%20lerp">lerp</a>.</p>
+<h2>7.2 Lerp</h2>
+<p>Now, what if we can smoothly interpolate between two meshes using functor interpolation? This might sound similar to Transform, but note that Transform works by matching points and thus is slightly different in semantics.</p>
+<p><span class="lesson-important">IMPORTANT</span> This brings us to <a href="/docs/Lerp">Lerp</a>. It does exactly what we want, interpolating a screen variable between two functors. In particular, at each time t, Lerp sets its target variable equal to the functor interpolation between the start and end, with the blend factor being time dependent.</p>
+<p>Heres an example. </p>
+<pre><code class="language-swift">var trans_square = Square:
+    center: RIGHT
+    width: 0.5
+    tag: {}
+    stroke: BLACK
+
+var lerp_square = Square:
+    center: LEFT
+    width: 0.5
+    tag: {}
+    stroke: BLACK
+
+play += Show:
+    mesh&amp;: {trans_square, lerp_square}
+    sticky: 0
+
+let trans_rot = Rotated:
+    mesh: trans_square
+    rotation: 5 * PI / 4
+
+play += Transform:
+    mesh&amp;: trans_square
+    target: trans_rot
+    null_action: fade
+    time: 1
+    sticky: 0
+
+/* make sure arguments to lerp are the same functor! */
+let lerp0 = Rotated:
+    mesh: lerp_square
+    rotation: 0
+
+let lerp1 = Rotated:
+    mesh: lerp_square
+    rotation: 5 * PI / 4
+
+play += Lerp:
+    dst&amp;: lerp_square
+    start: lerp0
+    end: lerp1
+    time: 1
+    sticky: 1
+</code></pre>
+<video controls>
+    Lerp vs Transform
+    <source src="/video/lerp_v_transform.mp4" type="video/mp4"/>
+</video>
+
+<p>Notice how Transform takes the shortest path, whereas Lerp performs an actual rotation since we are interpolating the rotation factor. </p>
+<p><span class="lesson-remark">REMARK</span> The reason we have to specify the starting value (which seems like we can just derive it from the current state) is a bit complex, but essentially whenever we show meshes, we actually do lose information about the function it came from and that needs to be provided again.</p>
+<h2>7.3 User Defined Functors and More Examples</h2>
+<p>The true power of Lerp comes when we use user defined types.</p>
+<p>For instance, here we interpolate several factors of the Weirstrass function. In general, Lerp is good for demonstrating how several parameters influence an object.</p>
+<pre><code class="language-swift">let n = 50
+
+func ws(a,b,x) = identity:
+    var s = 0
+    for i in 0:&lt;n
+        s += a ** i * cos((b ** i) * PI * x)
+    element: s
+
+func Weirstrass(a,b) = ExplicitFunc:
+    start: -4
+    stop: 4
+    samples: 2048
+    f(x): ws(a,b,x)
+    tag: {}
+    stroke: RED
+
+var w = Weirstrass:
+    a: 0.5
+    b: 0.1
+var axis = Axis2d:
+    center: ORIGIN
+    x_unit: 1
+    x_rad: 4
+    x_label: "x"
+    y_unit: 1
+    y_rad: 3
+    y_label: "y"
+    grid: off
+    tag: {}
+    color: BLACK
+
+play += Show:
+    mesh&amp;: {axis, w}
+    sticky: 0
+play += Lerp:
+    var next = w
+    next.b = 4
+    dst&amp;: w
+    start: w
+    end: next
+    time: 3
+    unit_map(u): smooth_out(u)
+    sticky: 0
+</code></pre>
+<p><video controls>
+    Weirstrass Example
+    <source src="/video/weirstrass_lerp_example.mp4" type="video/mp4"/>
+</video></p>
+<p>Lerping between variables that are meant to be integers wont leave the interpolated variable as an integer, but that doesn't matter a good amount of times. Take a look: </p>
+<pre><code class="language-swift">func RootsOfUnity(N) = identity:
+    let n = round(N)
+
+    var dots = {}
+    for i in 0 :&lt; n
+        let theta = TAU * i / n
+        let c = cos(theta)
+        let s = sin(theta)
+        dots += Dot:
+            point: {c,s,0}
+            tag: {}
+            dot: BLACK
+
+    element: dots
+
+var ring = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    stroke: RED
+
+var roots_it = RootsOfUnity:
+    N: 0
+
+var roots_f = roots_it
+play += Show:
+    mesh&amp;: {ring, roots_f}
+    sticky: 0
+
+
+play += Lerp:
+    dst&amp;: roots_f
+    start: roots_it
+    end: RootsOfUnity:
+        N: 64
+
+    time: 3
+    unit_map(u): smooth_in(u)
+    sticky: 0
+</code></pre>
+<video controls>
+    Roots of Unity
+    <source src="/video/roots_of_unity.mp4" type="video/mp4"/>
+</video>
+
+<h2>7.4 Keyframe</h2>
+<p>This brings us to keyframe. In the case that we have many succesive lerps of the same variable, we can use keyframe. A sine example is written here.</p>
+<pre><code class="language-swift">func Sine(A, omega, phi) = ExplicitFunc:
+    start: -PI
+    stop: PI
+    f(x): A * sin(omega * (x - phi))
+    tag: {}
+    stroke: RED
+
+var sine = Sine:
+    A: 1
+    omega: 1
+    phi: 0
+
+play += Show:
+    mesh&amp;: sine
+    sticky: 0
+
+var frames = {0: sine}
+frames[1] = sine
+frames[1].A = 2
+
+frames[2] = frames[1]
+frames[2].omega = 2
+
+frames[4] = Sine:
+    A: 2.1
+    omega: 12
+    phi: PI / 2
+
+frames[7] = frames[4]
+frames[7].A = 1
+frames[7].omega = 1
+
+play += Keyframe:
+    dst&amp;: sine
+    time_to_value: frames
+    unit_map(u): smooth(u)
+    sticky: 0
+</code></pre>
+<video controls>
+    Sine Example
+    <source src="/video/sine_lerp_example.mp4" type="video/mp4"/>
+</video>
+
+<p>Good to know, but from experience it's generally used occasionally.</p>
+<h2>7.5 (Optional) Transform vs Lerp</h2>
+<p>Lastly, I want to talk about when to use Transform vs Lerp. Transform's syntax is nicer (since we dont need to specify start), but it gives less control. We use Transform whenever it looks nice, or when we're transforming from unrelated types, so that there's not really anything that can be lerped. If we need more control about intermediate states, Lerp is the way to go.</p>
+<p><span class="lesson-remark">REMARK</span> Finally, notice that there is some inconvenience in the syntax once again. It definitely is really repetitive, but again this is something I'm very confident can be fixed with a language feature (maybe macros, or maybe something like cpp's std::exchange). Nevertheless, this is the majority of what you need to know for animations. </p>
+<h2>7.6 Monocurl Logo Animation</h2>
+<p>Also, we can now create the Monocurl logo animation! Lets break it down.</p>
+<p>In fact, there isn't that much going on. It does involve a camera animation which we haven't explicitly seen, but it's the same general idea.</p>
+<ul>
+<li>Track 1: "Monocurl" needs to be written</li>
+<li>Track 2: The graph and color grid</li>
+<li>Track 3: The camera motion</li>
+</ul>
+<p>Track 1 is pretty easy, we simply just need to use a Write animation.
+Track 3 is also not that bad, we use <a href="/docs/CameraLerp">CameraLerp</a> to move the camera from its default position to some offset target. Note that lerp would work as well, but the rotation is slightly off.</p>
+<p>Track 2 might seem a bit difficult, but really it's just two simple animations. We first have a blank ColorGrid, then we change its color, and then we add elevation to it via <a href="/docs/PointMapped">PointMapped</a>. Both interpolations can be done via Transform. Note Track 2 and Track 3 should be in parallel.</p>
+<p>Lets see the code!</p>
+<pre><code class="language-swift">/* helpers */
+let step = 0.05
+func q(x,y) = 1.2 * ((x-0.5)**2 + (y-0.5)**2)
+func col(x,y) = identity:
+    let val = q(x,y+1)
+    let colors = {0:BLUE,0.15:YELLOW,0.25:ORANGE,0.5:RED}
+    let color = keyframe_lerp(colors, val)
+    element: color
+
+/* Monocurl */
+var tex = Text:
+    text: "Monocurl"
+    scale: 1.5
+    stroke: BLACK
+    fill: BLACK
+tex = Centered:
+    mesh: tex
+    at: {0,1,0}
+
+/* Black Grid */
+var grid_it = ColorGrid:
+    x_min: 0
+    x_max: 1
+    y_min: -1
+    y_max: 0
+    x_step: 0.05
+    y_step: 0.05
+    tag: {}
+    color_at(pos): BLACK
+    stroke: BLACK
+
+/* Axis */
+var axis = Axis3d:
+    center: {0,0,-0.01}
+    pos_x_axis: {1,0,0}
+    pos_y_axis: {0,-1,0}
+    pos_z_axis: {0,0,1}
+    x_unit: 1
+    x_min: 0
+    x_max: 1
+    x_label: "x"
+    y_unit: 1
+    y_min: 0
+    y_max: 1
+    y_label: "y"
+    z_unit: 1
+    z_min: 0
+    z_max: 1
+    z_label: "z"
+    grid: on
+    tag: {}
+    color: BLACK
+
+/* we can still use IF for camera, thought just one transition */
+var camera_it = camera
+var grid = grid_it
+
+/* initial showing */
+play += Write:
+    mesh&amp;: tex
+    time: 1
+    sticky: 0
+play += FadeIn:
+    mesh&amp;: {grid, axis}
+    time: 1
+    sticky: 1
+
+/* main animation */
+var grid_anim = {}
+grid_anim += Transform:
+    grid_it = ColorGrid:
+        x_min: 0
+        x_max: 1
+        y_min: -1
+        y_max: 0
+        x_step: step
+        y_step: step
+        tag: {}
+        color_at(pos): col(pos[0], pos[1])
+        stroke: BLACK
+
+    mesh&amp;: grid
+    target: grid_it
+    null_action: fade
+    time: 1
+    sticky: 0
+grid_anim += Transform:
+    grid_it = PointMapped:
+        mesh: grid_it
+        point_map(point): {point[0], point[1], q(point[0], point[1] + 1)}
+
+    mesh&amp;: grid
+    target: grid_it
+    null_action: fade
+    time: 2
+    sticky: 0
+play += grid_anim
+
+play += CameraLerp:
+    var next = camera_it
+    next.origin = {2,-2,2.1}
+    next.up = {0,0,1}
+
+    camera&amp;: camera
+    start: camera_it
+    end: next
+    time: 3
+    sticky: 1
+
+play += Wait:
+    time: 1
+    sticky: 0
+
+play += FadeOut:
+    mesh&amp;: {grid,axis,tex}
+    time: 1
+    sticky: 0
+</code></pre>
+<p>And of course, the result:</p>
+<video controls>
+    Monocurl Introductory Video
+    <source src="/video/monocurl_intro.mp4" type="video/mp4"/>
+</video>
+
+<p>Notice that the main animation honestly isn't that complex. Hopefully you now feel like you could have come up with the sequence.</p>
+<h2>7.7 Conclusion</h2>
+<p>Lerp is perhaps the most important animation in all of Monocurl, so make sure you understand the semantics!</p>
+<p><span class="lesson-meta">META</span> We'll now take a look at tag mechanics, the last major piece of Monocurl. After that, we'll give some general tips and tricks to help you </p><div id="next-lessons"><a href="/learn/6_Iterator_Follower_Paradigm"> Previous Lesson </a><a href="/learn/8_Tagging_Mechanics"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">7.1 Functor Interpolation</a><a id="label-1" href="#section-1" class="">7.2 Lerp</a><a id="label-2" href="#section-2" class="">7.3 User Defined Functors and More Examples</a><a id="label-3" href="#section-3" class="">7.4 Keyframe</a><a id="label-4" href="#section-4" class="">7.5 (Optional) Transform vs Lerp</a><a id="label-5" href="#section-5" class="">7.6 Monocurl Logo Animation</a><a id="label-6" href="#section-6" class="">7.7 Conclusion</a></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

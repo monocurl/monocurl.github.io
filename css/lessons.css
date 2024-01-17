@@ -33,7 +33,7 @@ aside a.current {
 	margin-left: 16px;
 	position: sticky;
 	position: -webkit-sticky;
-	padding: 20px 0px 20px 40px;
+	padding: 20px 20px 20px 10px;
 	top: 0px;
 }
 
@@ -86,6 +86,20 @@ h2 {
 a {
 	color: var(--blue);
 	text-decoration: none;
+}
+
+
+.lesson-meta {
+	color: #77f;
+	font-weight: 700;
+}
+.lesson-remark {
+	color: #aaa;
+	font-weight: 700;
+}
+.lesson-definition, .lesson-important {
+	font-weight: 700;
+	color: #f70;
 }
 
 #next-lessons {

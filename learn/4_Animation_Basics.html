@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Learn</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        
+
+		<!-- JS -->
+		
+            <script>
+                hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
+            </script>
+        
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Animation_Basics" class="current">4 Animation Basics</a><a href="5_Examples_of_Animations" class="">5 Examples of Animations</a><a href="6_Iterator_Follower_Paradigm" class="">6 Iterator Follower Paradigm</a><a href="7_Interpolation_Animations" class="">7 Interpolation Animations</a><a href="8_Tagging_Mechanics" class="">8 Tagging Mechanics</a><a href="9_Tips_and_Advice" class="">9 Tips and Advice</a><a href="10_Future_Works" class="">10 Future Works</a></aside><div id="content"><h1>4. The Basics of Animation</h1>
+<p><span class="lesson-meta">META</span> The way animations are done is one of the more unique parts of Monocurl. This section gives an overview as well as motivations behind some choices we made. </p>
+<h2>4.1 (Optional) Traditional Programatic Animation Methods</h2>
+<p>Consider an animation system where animations are run as soon as you create them. We will refer to this as <em>eager execution</em>. For instance, we might have the following pseudocode to do two animations in series:</p>
+<pre><code class="language-swift">run(Show(a))
+run(Hide(b))
+</code></pre>
+<p>If we want to do two things in parallel, the following is an approximate representation:</p>
+<pre><code class="language-swift">run(Show(a), Hide(b))
+</code></pre>
+<p>However, suppose we have three animations, <code class="language-swift">A, B, C</code>. And we want to run <code class="language-swift">A</code> and <code class="language-swift">B</code> in series, and in conjunction with that entire group, we want to run <code class="language-swift">C</code> (see diagram below). </p>
+<p><img alt="Three Animations" src="/img/lessons/three_animations.png" /></p>
+<p>It's not that this is impossible with eager execution, but it does become a bit awkward. We are emitting some details for simplicity in this section, but the idea is that it's hard to perform proper encapsulation and this does not line up well with functional programming. We recommend reading the intricacies section as properly understanding the problem is important.</p>
+<p><span class="lesson-remark">REMARK</span> Before we introduce our method, we should say that our's is not the only solution. In particular, using generators a la <a href="https://docs.unity3d.com/Manual/Coroutines.html">Unity Coroutines</a> or <a href="https://motioncanvas.io/"> Motion Canvas</a> is more standard. However, our method is simpler to implement, and we believe it encourages a more natural method of thinking.</p>
+<h2>4.2 Delayed Execution</h2>
+<p>Finally this leads us into the play list. We saw that the problem with eager execution is that with so many things happening in series and parallel, we might not want to execute an animation just as it's created. This motivates <em>delayed execution</em>. , where there are two periods: initialization and execution time.</p>
+<p><span class="lesson-definition">DEFINITION</span> <strong>delayed execution</strong> is the idea that animations are executed separately from their initialization. That is, there is an initialization period and an execution period.</p>
+<p>In initialization, we write down all the animations that will be needed (specifying which should be in parallel/series with what). In execution, all the specified animations are run together. </p>
+<p>Now the question becomes how do represent all the animations?</p>
+<h2>4.3 The Play List</h2>
+<p><span class="lesson-definition">DEFINITION</span> The <strong>play_list</strong> is an animation-tree (similar to a mesh-tree) which specifies the the set of animations that are to be executed after the initialization period.</p>
+<p>In particular, a Monocurl video or slideshow is divided into a series of slides. In each slide, you write code that corresponds to the initialization phase by writing animations to the special <code class="language-swift">play</code> variable. Then, after the user code has finished, Monocurl runs the entirety of the animations provided in the play variable (execution phase). After they are finished, we move onto the next slide and the process repeats.</p>
+<p><img alt="Delayed exeuction model" src="/img/lessons/delayed_execution.png" /></p>
+<p><span class="lesson-remark">REMARK</span> The reason for an animation tree instead of an animation vector is for the same reason we have mesh-trees instead of mesh-vectors (so that we can ignore details about the structure).</p>
+<h2>4.4 Parallel Animations</h2>
+<p>How do we allow animations in parallel? For this, each animation has a <code class="language-swift">sticky</code> flag that can either be 1 or 0.</p>
+<p><span class="lesson-definition">DEFINITION</span> An animation-tree being <strong>sticky</strong> means that it will run in parallel with the previous animation. If an animation-tree is an animation (leaf), its stickyness is exactly the sticky flag of the animation. Otherwise (if its a vector), its stickyness of the animation-tree is the stickyness of the first animation in the vector.</p>
+<p>Stickyness can be chained an arbitrary amount of times. For instance, suppose we want three animations to run in parallel. Then, we can have the play list be <code class="language-swift">{A, B, C}</code>, where <code class="language-swift">B</code> and <code class="language-swift">C</code> both have their sticky flags on (there's multiple ways to do this; we can write <code class="language-swift">{A, C, B}</code> and the result is the same).</p>
+<p>Another example: in <code class="language-swift">{A, {B, C}, D}</code>, how are we able to specify that the entire <code class="language-swift">{B, C}</code> block should be run in parallel with A? In this case, the stickyness of <code class="language-swift">{B, C}</code> is the stickyness of <code class="language-swift">B</code>. Thus, if we turn on the sticky flag only for <code class="language-swift">B</code>, the animation is composed as the following. With this, you can compose animations in practically any manner.</p>
+<p><img alt="Nested Sticky Diagram" src="/img/lessons/nested_sticky_diagram.png" /></p>
+<pre><code class="language-swift">/* We'll just use Wait since we haven't introduced any animations yet */
+let A = Wait:
+    time: 2
+    sticky: 0
+let B = Wait:
+    time: 1
+    /* mark B as sticky so that the B-C group is run in parallel with A */
+    sticky: 1
+let C = Wait:
+    time: 1
+    sticky: 0
+let D = Wait:
+    time: 1
+    sticky: 0
+
+play =  {A, {B, C}, D}
+</code></pre>
+<p>Finally, more often than not we dont even name animations but instead add them to the play list directly if we can. The above would better be written as the following. </p>
+<pre><code class="language-swift">/* A */
+play += Wait:
+    time: 2
+    sticky: 0
+/* B-C block */
+var sub = {}
+sub += Wait:
+    time: 1
+    /* still sticky! */
+    sticky: 1
+sub += Wait:
+    time: 1
+    sticky: 1
+
+play += sub
+/* D */
+play += Wait:
+    time: 1
+    sticky:
+</code></pre>
+<p><span class="lesson-important">IMPORTANT</span> Do note that nothing "happens" until the very end. In the beginning, all we are doing is initialization, and execution is done only after the entire slide frame has exited. That is, <code class="language-swift">play += Wait...</code> merely adds an instruction to the play list; the animation only takes place at the very end!</p>
+<p><span class="lesson-remark">REMARK</span> We could have used animation operators to achieve parallel animations (and if you really want, <a href="/docs/Parallel">you can</a>), but we think the sticky system is slightly less verbose. We are open to change this in the future.</p>
+<h2>4.5 Conclusion</h2>
+<p>The play list is a simple idea, but there are many details that can trick you up. Make sure you understand the sticky system, and the fact that doing <code class="language-swift">play += ...</code> does not play anything immediately, but merely adds it to a queue that only performs the animation once the slide fully exits.</p>
+<h2>4.6 (Optional) Intricacies</h2>
+<p>For the sake of brevity, the above doesn't give a full explanation on the possible pitfalls of eager execution. In particular we mention that eager execution is awkward in the A-B-C case, but that's not necessarily true. Indeed, if we have references to all three animations, then using an animation operator is not that bad.</p>
+<pre><code class="language-swift">A = ...
+B = ...
+C = ...
+
+run(Series(A, B), C))
+</code></pre>
+<p>Where does this become a problem is if A and B are within their own function. Consider the following pseudocode:</p>
+<pre><code class="language-swift">func do_a_and_b(void)
+    A = ...
+    B = ...
+
+    run(A)
+    run(B)
+
+C = ...
+/* at this point, if call do_a_and_b, we lose the ability to call run(c) in parallel */
+</code></pre>
+<p>Here, it becomes very awkward to perform the <code class="language-swift">do_a_and_b</code> animation in parallel with <code class="language-swift">C</code>. One possible solution is to return an animation operator on A and B, and then we're good again:</p>
+<pre><code class="language-swift">func do_a_and_b(void)
+    A = ...
+    B = ...
+
+    return Series(A, B)
+
+C = ...
+run(do_a_and_b(), C)
+</code></pre>
+<p>But this is just delayed execution! This hopefully gives an explanation of why delayed execution solves a lot of problems, and is a good choice. </p>
+<p>Do note that in this particular case, coroutines serve a similar role. However, we still maintain that delayed execution, once understood, leads to a more natural thinking process (we'll see this more clearly in lesson 5).</p>
+<p>Finally, we note that <em>currently</em> there are some downsides to the play list model. In particular, creating something like a LaggedMap from manim is not truly supported (the one that exists in the standard is kind of fake). However, this is something that can be solved very easily in the future, just has not been done yet. There is nothing about the play list model that stops this.</p><div id="next-lessons"><a href="/learn/3_Meshes"> Previous Lesson </a><a href="/learn/5_Examples_of_Animations"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">4.1 (Optional) Traditional Programatic Animation Methods</a><a id="label-1" href="#section-1" class="">4.2 Delayed Execution</a><a id="label-2" href="#section-2" class="">4.3 The Play List</a><a id="label-3" href="#section-3" class="">4.4 Parallel Animations</a><a id="label-4" href="#section-4" class="">4.5 Conclusion</a><a id="label-5" href="#section-5" class="">4.6 (Optional) Intricacies</a></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

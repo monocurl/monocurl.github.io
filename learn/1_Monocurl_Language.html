@@ -66,9 +66,9 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="current">1 Monocurl Language</a><a href="2_Meshes" class="">2 Meshes</a><a href="3_Animation_Basics" class="">3 Animation Basics</a><a href="4_Examples_of_Animations" class="">4 Examples of Animations</a><a href="5_Iterator_Follower_Paradigm" class="">5 Iterator Follower Paradigm</a><a href="6_Interpolation_Animations" class="">6 Interpolation Animations</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Editor_Tips_and_Advice" class="">8 Editor Tips and Advice</a><a href="9_Future_Works" class="">9 Future Works</a></aside><div id="content"><h1>1. Monocurl Scripting Language</h1>
-<p>We'll now talk about the Monocurl Scripting Language, which is the language used to create the instructions for all Monocurl programs. Prior programming experience is beneficial and this article is written with the assumption of background knowledge. However the language itself is quite simple and hopefully is easy to follow regardless.</p>
-<p>Feel free to skim the basics section and come back to it whenever you have questions, but I definitely recommend you read the portions about functions and functors thoroughly.</p>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="current">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Animation_Basics" class="">4 Animation Basics</a><a href="5_Examples_of_Animations" class="">5 Examples of Animations</a><a href="6_Iterator_Follower_Paradigm" class="">6 Iterator Follower Paradigm</a><a href="7_Interpolation_Animations" class="">7 Interpolation Animations</a><a href="8_Tagging_Mechanics" class="">8 Tagging Mechanics</a><a href="9_Tips_and_Advice" class="">9 Tips and Advice</a><a href="10_Future_Works" class="">10 Future Works</a></aside><div id="content"><h1>1. Monocurl Scripting Language</h1>
+<p><span class="lesson-meta">META</span> We'll now talk about the Monocurl Scripting Language, which is the language used to create the instructions for all Monocurl programs. Prior programming experience is beneficial and this article is written with the assumption of background knowledge. However the language itself is quite simple and hopefully is easy to follow regardless. </p>
+<p><span class="lesson-meta">META</span> Feel free to skim the basics section and come back to it whenever you have questions, but I definitely recommend you read the portions about functions and functors thoroughly.</p>
 <h2>1.1 The Basics</h2>
 <p>Monocurl comes as a pretty simple language. It is run line by line, and interpreted (so not very fast, but most of the heavy lifting is done in C). It is inspired by functional languages, though is still written somewhat imperatively.</p>
 <p>We can declare a variable by saying <code class="language-swift">var x = 0</code> or <code class="language-swift">let x = 0</code> to denote it as either mutable or immutable, respectively. If a variable is mutable, we can later reassign to it using <code class="language-swift">x = 1</code>, but cannot in the case of latter.</p>
@@ -76,6 +76,7 @@
 <ul>
 <li><strong>double</strong> is simply a single scalar or numeric value. Note that there is no integer or boolean types, and you are expected to use doubles in their place. You can assign a double to a variable using a base-10 literal (e.g. <code class="language-swift">var x = 4.5</code>).</li>
 <li><strong>vector</strong> is a list of items (all subitems need not be of the same type). Example: <code class="language-swift">var x = {1,2,{3,4}}</code>. Notice how we can nest vectors (or anything really) within themselves. Use <code class="language-swift">{}</code> for the empty vector.</li>
+<li><strong>character</strong> is just a datatype representing an ascii character (i.e. latin characters). Use <code class="language-swift">'char'</code> to initialize (e.g. <code class="language-swift">'C'</code> or <code class="language-swift">'%'</code>).</li>
 <li><strong>string</strong> is a shorthand for a list of characters, used very rarely. Example: <code class="language-swift">var x = "string_literal_example"</code>. Use <code class="language-swift">%"</code> to insert a quote in the middle of a string. You can also do string interpolation via <code class="language-swift">%{interpolated_expression_value}</code>, but this is also seldom used. </li>
 <li><strong>map</strong> is a mapping of keys to values, sometimes called a dictionary in different languages. Under the hood, maps are implemented as hashmaps. If you traverse a map, it is guaranteed it will be traversed in insertion order. Example: <code class="language-swift">var x = {0: 2, {0}: {0}, {}: 12}</code>. Use <code class="language-swift">{:}</code> for the empty map.</li>
 <li><strong>mesh</strong> is a collection of points and vertices. We'll talk more about meshes in the future.</li>
@@ -137,7 +138,7 @@ else
 </code></pre>
 <h2>1.2 Functions</h2>
 <p>Monocurl takes significant inspiration from functional programming. Functions are useful because they provide a way apply transformations on meshes (among other reasons), leading to powerful results. If you're curious, we emphasize that (nearly) all functions are <a href="https://en.wikipedia.org/wiki/Pure_function">pure</a></p>
-<p>You can call declare and initialize a function in the following manner:</p>
+<p><span class="lesson-important">IMPORTANT</span> You can call declare and initialize a function in the following manner:</p>
 <pre><code class="language-swift">func function_name(arg0, arg1, arg2, ...) = expression
 </code></pre>
 <p>For a concrete example, here's an implementation of a two-dimensional determinant function</p>
@@ -147,7 +148,7 @@ else
 <pre><code class="language-swift">let identity_det = det(1, 0, 0, 1)
 </code></pre>
 <p>There are a good amount of functions provided in the <a href="/docs/%20camera">standard library</a>, but to write a proper Monocurl program, you must not be scared of writing functions yourself. The syntax of function creation is purposefully very simple to facilitate their usage.</p>
-<p>The final important point is about capturing variables. Suppose we create a function that references a local variable, then Monocurl requires that local variable to be immutable. Functions are considered immutable, so you can capture a function inside of a function!</p>
+<p><span class="lesson-important">IMPORTANT</span> The final point is about capturing variables. Suppose we create a function that references a local variable, then Monocurl requires that local variable to be immutable. Functions are considered immutable, so you can capture a function inside of a function!</p>
 <pre><code class="language-swift">let referenced_local = 3.1415926
 let two = 2
 func times_two(x) = two * x
@@ -171,14 +172,16 @@ naively_mutable = 4
 let start = circle_creation_function({0,0,0}, 1)
 let end   = circle_creation_function({1,0,0}, 1)
 </code></pre>
-<p>Well actually, theres lots of different ways that can be done, but this is just a toy example to illustrate the point. Anyways, we can see theres a lot of repetition. This repetition gets worse the more parameters there are. </p>
-<p>We want a way to say that <code class="language-swift">end</code> should be exactly the same as <code class="language-swift">start</code>, but the only difference is that the <code class="language-swift">center</code> input of the function is changed. This is where functors come in. Functors essentially remember the function that created them and the arguments that were passed in. We can then change any of the arguments, and the entire value is recalculated. The syntax is as follows:</p>
+<p><span class="lesson-remark">REMARK</span> Well actually, theres lots of different ways that can be done, but this is just a toy example to illustrate the point. Anyways, we can see theres a lot of repetition. This repetition gets worse the more parameters there are. </p>
+<p>We want a way to say that <code class="language-swift">end</code> should be exactly the same as <code class="language-swift">start</code>, but the only difference is that the <code class="language-swift">center</code> input of the function is changed. This is where functors come in. </p>
+<p><span class="lesson-important">IMPORTANT</span> Functors remember the function that created them and the arguments that were passed in. We can then change any of the arguments, and the entire value is recalculated. The syntax is as follows:</p>
 <pre><code class="language-swift">let start = circle_creation_function:
     center: {0,0,0}
     radius: 1
 
 var end = start
 end.center = {1,0,0}
+/* end is now a new circle */
 </code></pre>
 <p>Notice that functors are much easier to read than function invocations, and how we dont need to specify redundant arguments in the creation of <code class="language-swift">end</code>. Moreover, we emphasize that you can create a functor from anything, even user created functions. For instance, we can do the following with the determinant function from above:</p>
 <pre><code class="language-swift">let org_det = det:
@@ -193,8 +196,8 @@ new_det.a = 2
 new_det.d = 2
 /* new_det now has a value of 4 (2 * 2 - 0) */
 </code></pre>
-<p>You can think of a functor as "wrapping" a value. In many ways, <code class="language-swift">new_det</code> acts like a number, and the only difference is that we have information about how it was created. </p>
-<p>Another important point of functors is that we can have sub expressions in the initialization period. Lets use our hyptothetical <code class="language-swift">circle_creation_function</code> (shortened to circle now) to see what we mean by this:</p>
+<p><span class="lesson-important">IMPORTANT</span> You can think of a functor as "wrapping" a value. In many ways, <code class="language-swift">new_det</code> acts like a number, and the only difference is that we have information about how it was created. </p>
+<p><span class="lesson-important">IMPORTANT</span> Another important point of functors is that we can have sub expressions in the initialization period. Lets use our hyptothetical <code class="language-swift">circle_creation_function</code> (shortened to circle now) to see what we mean by this:</p>
 <pre><code class="language-swift">var scene_variable = 0
 let created_circle = circle:
 
@@ -212,7 +215,8 @@ let created_circle = circle:
 /* scene_variable is now 1, which might not be obvious! */
 </code></pre>
 <p>Again, this is a toy example and it would be easy to inline the values, but hopefully you see the benefit this can bring for more complicated examples.</p>
-<p>And finally, this leads to the final use case of functors. Without functors, we can't create functions that need more than one sub expression of computation because you must write something along the lines of <code class="language-swift">f(x) = sub_expression</code>. However, now consider what happens if we use the <a href="/docs/%20identity">identity</a> functor.</p>
+<p>And finally, this leads to the final use case of functors. </p>
+<p><span class="lesson-important">IMPORTANT</span> Without functors, we can't create functions that need more than one sub expression of computation because you must write something along the lines of <code class="language-swift">f(x) = sub_expression</code>. However, now consider what happens if we use the <a href="/docs/%20identity">identity</a> functor.</p>
 <pre><code class="language-swift">func determinant(a, b, c, d) = identity:
     let diag_1 = a * d
     let diag_2 = b * c
@@ -222,17 +226,17 @@ let created_circle = circle:
 <p>It definitely takes some time to get used to this sort of syntax, and in the future I might add a better way to achieve the same. Currently however, this is the only real way to create functions that need multiple sub expressions.</p>
 <p>We mention some final points about functors in the intricacies section if you are curious.</p>
 <h2>1.4 Functor Modes</h2>
-<p>For some functors, there may be default arguments that are normally hidden to prevent clutter. Simply click the gear to switch modes so that you can view and edit these. Here's how it should look like in the editor.</p>
+<p>For some functors, there may be default arguments that are normally hidden to prevent clutter. You can click the <code class="language-swift">&lt;&gt;</code> to cycle through the different functor modes to reveal these. </p>
 <p><img alt="Functor Modes" src="/img/lessons/functor_modes.png" /></p>
 <p>The most prominent example is for setting the color of meshes, but it occurs in other places too.</p>
 <h2>1.5 Conclusions</h2>
-<p>If you honestly understand this article (especially the part about functors), then you have a good understanding of the Monocurl scripting language. </p>
+<p><span class="lesson-meta">META</span> If you honestly understand this article (especially the part about functors), then you have a good understanding of the Monocurl scripting language. </p>
 <h2>1.6 (Optional) Intricacies</h2>
 <p>I realize that functors is probably not the best name given that functors in the traditional Category-theory sense are different (and even different than functors in CS), but I chose this early on and have just stuck with it.</p>
 <p>You can have functions return (useful, non-identity) functors, but this actually does get a bit confusing and we advise against it. </p>
 <p>I actually think allowing all functions to be functors was a mistake and will probably separate them out some time in the future. The reason why I'm unsure about separating them fully is that it's still nice to call things that should just be functions using functor syntax, but at the same they shouldn't need to remember their arguments. Essentially, functors are too many things at once, which makes separating them difficult.</p>
 <p>In cases where a function takes a function as a parameter, you MUST call it using functor syntax (again mentioning the same design flaw from above).</p>
-<p>Because all functions are basically lambdas, there are certain types of recursion that Monocurl cannot adequeately simulate. You do single function recursion just fine, and in fact you can do two functions calling each other (by declaring the second function in the initialization period of the other), but it can be shown its impossible to have three functions that can pairwise call each other. In practice, this doesn't turn out be that big of an issue, but is something to be aware of if the situation arises.</p><div id="next-lessons"><a href="/learn/0_What_is_Monocurl"> Previous Lesson </a><a href="/learn/2_Meshes"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">1.1 The Basics</a><a id="label-1" href="#section-1" class="">1.2 Functions</a><a id="label-2" href="#section-2" class="">1.3 Functors</a><a id="label-3" href="#section-3" class="">1.4 Functor Modes</a><a id="label-4" href="#section-4" class="">1.5 Conclusions</a><a id="label-5" href="#section-5" class="">1.6 (Optional) Intricacies</a></div>
+<p>Because all functions are basically lambdas, there are certain types of recursion that Monocurl cannot adequeately simulate. You do single function recursion just fine, and in fact you can do two functions calling each other (by declaring the second function in the initialization period of the other), but it can be shown its impossible to have three functions that can pairwise call each other. In practice, this doesn't turn out be that big of an issue, but is something to be aware of if the situation arises.</p><div id="next-lessons"><a href="/learn/0_What_is_Monocurl"> Previous Lesson </a><a href="/learn/2_Using_the_Editor"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">1.1 The Basics</a><a id="label-1" href="#section-1" class="">1.2 Functions</a><a id="label-2" href="#section-2" class="">1.3 Functors</a><a id="label-3" href="#section-3" class="">1.4 Functor Modes</a><a id="label-4" href="#section-4" class="">1.5 Conclusions</a><a id="label-5" href="#section-5" class="">1.6 (Optional) Intricacies</a></div>
 		</main>
 
 		<footer>

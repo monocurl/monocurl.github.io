@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Learn</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        
+
+		<!-- JS -->
+		
+            <script>
+                hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
+            </script>
+        
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Animation_Basics" class="">4 Animation Basics</a><a href="5_Examples_of_Animations" class="">5 Examples of Animations</a><a href="6_Iterator_Follower_Paradigm" class="">6 Iterator Follower Paradigm</a><a href="7_Interpolation_Animations" class="">7 Interpolation Animations</a><a href="8_Tagging_Mechanics" class="">8 Tagging Mechanics</a><a href="9_Tips_and_Advice" class="current">9 Tips and Advice</a><a href="10_Future_Works" class="">10 Future Works</a></aside><div id="content"><h1>9. Tips and General Advice</h1>
+<p>I'll now give a few tips for making a good Monocurl slideshow or video.</p>
+<h2>9.1 General Tips</h2>
+<ol>
+<li>Remember everything is short lived. Don't over engineer stuff and be ok with using hardcoded constants. Most of the time, you'll never touch it again. Still maintain some level of professionalism, but only so much that is necessary.</li>
+<li>Use resources effectively! Look at examples. I also tried to make the documentation highlight which meshes are very important versus ones you probably only have to lookup if necessary. </li>
+<li>Follow the iterator-follower paradigm. I know it's verbose, but that's the best way to do Monocurl and avoid confusing mistakes.</li>
+<li>Maintain sane tags, and partition variables appropriately in complex scenes.</li>
+<li>Create lots of functions for meshes, and few for animations. There are times where you might need to create functions for animations (generally for convenience or when we have to apply a transformation with a discrete transformation together), but these are the exception. More often than not, using a cleverly calculated functor with an interpolation will seal the deal.</li>
+<li>Break down complex animations as a parallel and sequential subcomponents, and think about interpolation for each subcomponent. In a similar vain, think about the timeline of each object, and relate that to the timeline of screenvariables</li>
+<li>Use new scenes when possible. Rather than having everything in a single file, use many (possibly copy/pasting the config when necessary). This improves performance (maybe in the future, this will not be necessary).</li>
+</ol>
+<h2>9.2 Monocurl Scripting Language Idioms</h2>
+<p>A few idioms in the Monocurl language.</p>
+<p>One useful trick is using <a href="/docs/%20right_key">right_key</a> to help with tags, as was done in lesson 8 with the sorting example.</p>
+<p>Monocurl doesn't have any boolean or integer types, so for booleans you'll typically just 1 and 0, whereas for integers you'll have to use number types and do rounding when necessary.</p>
+<p>Vectors are extremely important in Monocurl, and definitely get comfortable using <code class="language-swift">+=</code> syntax. This can be helpful for meshes and animations, but also stuff like generating latex strings.</p>
+<p>Dictionaries are insertion order guaranteed, allowing us to create gradients, as was done in lesson 7 for the Monocurl logo animation.</p>
+<h2>9.3 Conclusion</h2>
+<p>I'll add more as time goes on, but I genuinely recommend checking out examples, looking at what is closest to what you're trying to do, and adapting the code from there.</p>
+<p>This is the end of the tutorial series!</p><div id="next-lessons"><a href="/learn/8_Tagging_Mechanics"> Previous Lesson </a><a href="/learn/10_Future_Works"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">9.1 General Tips</a><a id="label-1" href="#section-1" class="">9.2 Monocurl Scripting Language Idioms</a><a id="label-2" href="#section-2" class="">9.3 Conclusion</a></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

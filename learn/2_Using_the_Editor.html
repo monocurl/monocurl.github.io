@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Learn</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application designed to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl_icon.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        
+
+		<!-- JS -->
+		
+            <script>
+                hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
+            </script>
+        
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="current">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Animation_Basics" class="">4 Animation Basics</a><a href="5_Examples_of_Animations" class="">5 Examples of Animations</a><a href="6_Iterator_Follower_Paradigm" class="">6 Iterator Follower Paradigm</a><a href="7_Interpolation_Animations" class="">7 Interpolation Animations</a><a href="8_Tagging_Mechanics" class="">8 Tagging Mechanics</a><a href="9_Tips_and_Advice" class="">9 Tips and Advice</a><a href="10_Future_Works" class="">10 Future Works</a></aside><div id="content"><h1>2 Using the Editor</h1>
+<p><span class="lesson-meta">META</span> These are a few tips on using the editor. We recommend you learn the timeline controls and the exporting flow as they are important (and then come back to the other sections wheneever you have questions).</p>
+<p>The editor on Windows is much worse than that of macOS, but the one on macOS isn't all that great anyways. For instance, there are lots of inefficiencies which lead to a somewhat slow experience.</p>
+<h2>2.1 Timeline</h2>
+<p><img alt="Timeline" src="/img/lessons/timeline.png" /></p>
+<p>The timeline is located in the bottom right and serves as a method to seek to different points of a video/slideshow (click on different places to seek to different timestamps).</p>
+<p><span class="lesson-important">IMPORTANT</span> You can use <code class="language-swift">,</code> to rewind to the previous slide, whereas <code class="language-swift">.</code> goes to the next slide. Use <code class="language-swift">SHIFT + ,</code> to rewind to the start of the scene and <code class="language-swift">SHIFT + .</code> to go to the end of the scene. Finally, use <code class="language-swift">SPACE</code> to pause or play the current scene.</p>
+<p><span class="lesson-remark">REMARK</span> On Windows you'll have to scroll vertically instead of horizontally for now.</p>
+<h2>2.2 Viewport</h2>
+<p><img alt="Viewport" src="/img/lessons/viewport.png" /></p>
+<p>The viewport depicts the current state of the video/slideshow from the vantage point of the camera. Note that a little excess is shown as well so you can identify when meshes go off screen. The frame also takes different colors based on the state of the application (e.g. playing, loading, runtime error, etc).</p>
+<h2>2.3 Editor</h2>
+<p><img alt="Editing Table" src="/img/lessons/editing_table.png" /></p>
+<p>Monocurl is divided into a sequence of slides. In the config slide, we setup commonly used utilities (i.e. program constants). In every subsequent slide, you specify a list of animations to execute.</p>
+<p><span class="lesson-important">IMPORTANT</span> You can press the "+" icon to create a new slide. You can also delete slides, but this is not undoable.</p>
+<p>Most native text operations are present. On macOS, you can use <code class="language-swift">OPTION + ENTER</code> to insert a textfield above the current line.</p>
+<p><span class="lesson-important">IMPORTANT</span> Tab and shift tab go to the next line instead of usual behavior. To actually tab use <code class="language-swift">COMMAND/CTRL + ]</code> or <code class="language-swift">COMMAND/CTRL + [</code>.</p>
+<p>There is also a media tab. For now, this is only used for images, but more media types may be supported in the future.</p>
+<h2>2.4 Functor Arguments in Editor</h2>
+<p>Functor arguments are generally autocompleted for you, however if there is a syntax error, then they might not be autocompleted. In this case, fix the syntax error first and then the autocompletion will be performed.</p>
+<p><span class="lesson-important">IMPORTANT</span> Functor arguments generally should not be edited by hand. Instead, rely on autocompletion, or use the <code class="language-swift">&lt;&gt;</code> buttons to cycle through diferent modes.</p>
+<p><img alt="Functor Modes" src="/img/lessons/functor_modes.png" /></p>
+<h2>2.5 Exporting and Slideshows</h2>
+<p><span class="lesson-important">IMPORTANT</span> To enter slideshow mode (full screen mode), press <code class="language-swift">CONTROL + F</code> on macOS or <code class="language-swift">CTRL + F</code> on Windows. When you press play in slideshow mode, it only goes at most one slide in the future.</p>
+<p><span class="lesson-important">IMPORTANT</span> To export/render a scene to a video, simply press the export looking icon present on the toolbar (above the timeline, below the viewport), and follow through with the steps.</p><div id="next-lessons"><a href="/learn/1_Monocurl_Language"> Previous Lesson </a><a href="/learn/3_Meshes"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">2.1 Timeline</a><a id="label-1" href="#section-1" class="">2.2 Viewport</a><a id="label-2" href="#section-2" class="">2.3 Editor</a><a id="label-3" href="#section-3" class="">2.4 Functor Arguments in Editor</a><a id="label-4" href="#section-4" class="">2.5 Exporting and Slideshows</a></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    
