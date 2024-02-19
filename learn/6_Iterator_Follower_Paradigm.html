@@ -69,30 +69,32 @@
     <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Animation_Basics" class="">4 Animation Basics</a><a href="5_Examples_of_Animations" class="">5 Examples of Animations</a><a href="6_Iterator_Follower_Paradigm" class="current">6 Iterator Follower Paradigm</a><a href="7_Interpolation_Animations" class="">7 Interpolation Animations</a><a href="8_Tagging_Mechanics" class="">8 Tagging Mechanics</a><a href="9_Tips_and_Advice" class="">9 Tips and Advice</a><a href="10_Future_Works" class="">10 Future Works</a></aside><div id="content"><h1>6. The Iterator-Follower Paradigm</h1>
 <p><span class="lesson-meta">META</span> While delayed execution has its benefits, you can make mistakes very easily. In this section, we'll introduce a way of thinking to eliminate these issues.</p>
 <h2>6.1 The problem</h2>
-<p><span class="lesson-important">IMPORTANT</span> In particular, let's look at why delayed execution can become confusing. Suppose that Monocurl had a Shift animation that shifts the given variable tree upon execution (the standard library does not provide such an animation, we are speaking hypothetically). Then, consider this snippet</p>
-<pre><code class="language-swift">var mesh = Circle:
+<p><span class="lesson-important">IMPORTANT</span> In particular, let's look at why delayed execution can become confusing. The following code is not valid Monocurl, but it emphasizes the rough nature of the problem. Suppose that Monocurl had a Shift animation that shifts the given variable tree upon execution (we are speaking hypothetically). Then, consider this snippet</p>
+<pre><code class="language-swift">tree main
+let mesh = Circle:
     center: ORIGIN
     radius: 1
     tag: {}
     stroke: BLACK
 
 play += Show:
-    mesh&amp;: mesh
+    into&amp;: main
+    value: mesh
     sticky: 0
 
 /* over 1 second, shift the given mesh to {1, 0, 0} */
 play += Shift:
-    mesh&amp;: mesh
+    mesh&amp;: main
     delta: {1, 0, 0}
     time: 1
     sticky: 0
 
 let target = Shifted:
-    mesh: mesh
+    mesh: main
     delta: {0, 1, 0}
 
 play += Transform:
-    mesh&amp;: mesh
+    mesh&amp;: main
     target: target
     null_action: fade
     time: 1
@@ -107,17 +109,17 @@ play += Transform:
 
 <p>While the first transition was expected, the second one went to <code class="language-swift">{0,1,0}</code> instead of <code class="language-swift">{1,1,0}</code>. What's happening? The heart of it is the delayed execution. When we say the following line</p>
 <pre><code class="language-swift">play += Shift:
-    mesh&amp;: mesh
+    mesh&amp;: main
     delta: {1, 0, 0}
     time: 1
     sticky: 0
 </code></pre>
-<p>Remember that all we are doing is merely adding an instruction to play, and nothing happens to <code class="language-swift">mesh</code> until the execution period (after the slide initialization period). Therefore, when we encouter this line:</p>
+<p>Remember that all we are doing is merely adding an instruction to play, and nothing happens to <code class="language-swift">main</code> until the execution period (after the slide initialization period). Therefore, when we encouter this line:</p>
 <pre><code class="language-swift">let target = Shifted:
     mesh: mesh
     delta: {0, 1, 0}
 </code></pre>
-<p><code class="language-swift">mesh</code> still has not been translated, and thus we are referencing the original, untranslated mesh that sits at the origin. Thus, target has its center at <code class="language-swift">{0,1,0} + {0,0,0}</code> which is just <code class="language-swift">{0,1,0}</code>. Finally, the final transform moves the mesh to <code class="language-swift">target</code>, which sits at <code class="language-swift">{0,1,0}</code> as we just saw. Take a minute to make sure you understand what happened.</p>
+<p><code class="language-swift">mesh</code> has not yet been translated. That is we are referencing the original, untranslated mesh that sits at the origin. Thus, target has its center at <code class="language-swift">{0,1,0} + {0,0,0}</code> which is just <code class="language-swift">{0,1,0}</code>. Finally, the final transform moves <code class="language-swift">main</code> to <code class="language-swift">target</code>, which sits at <code class="language-swift">{0,1,0}</code> as we just saw. Take a minute to make sure you understand what happened.</p>
 <p>Therefore, the full animation first moves the mesh from the origin to <code class="language-swift">{1,0,0}</code> in the shift, and then to <code class="language-swift">{0,1,0}</code> in the transform. This is exactly what we saw in the video, and explains the behavior.</p>
 <p><span class="lesson-important">IMPORTANT</span> Make sure you understand the problem!</p>
 <h2>6.2 The solution</h2>
@@ -130,16 +132,16 @@ play += Transform:
 </video>
 
 <p>Here's how we can fix the above code, and hopefully gives a better example of what we mean.</p>
-<pre><code class="language-swift">var iterator = Circle:
+<pre><code class="language-swift">tree follower
+var iterator = Circle:
     center: ORIGIN
     radius: 1
     tag: {}
     stroke: BLACK
 
-var follower = iterator
-
 play += Show:
-    mesh&amp;: follower
+    into&amp;: follower
+    value: iterator
     sticky: 0
 
 iterator = Shifted:
@@ -184,20 +186,19 @@ play += Transform:
     color_at(pos): col(pos[0], pos[1])
     stroke: BLACK
 
-
 var grid_it = CGrid:
     col(x, y): {x + 0.5, y + 0.5, 1, 1}
+tree grid_follow
 
-var grid_follow = grid_it
 let org = grid_it
 play += FadeIn:
-    mesh&amp;: grid_follow
+    into&amp;: grid_follow
+    value: grid_it
     time: 1
     sticky: 0
 
 grid_it = CGrid:
     col(x, y): {y + 0.5, x + 0.5, 0, 1}
-
 play += Transform:
     mesh&amp;: grid_follow
     target: grid_it
@@ -207,7 +208,6 @@ play += Transform:
 
 grid_it = CGrid:
     col(x, y): {0, x + 0.5, y + 0.5, 1}
-
 play += Transform:
     mesh&amp;: grid_follow
     target: grid_it
@@ -218,7 +218,6 @@ play += Transform:
 grid_it = Shifted:
     mesh: grid_it
     delta: RIGHT
-
 play += Transform:
     mesh&amp;: grid_follow
     target: grid_it
@@ -229,7 +228,6 @@ play += Transform:
 grid_it = Shifted:
     mesh: grid_it
     delta: UP
-
 play += Transform:
     mesh&amp;: grid_follow
     target: grid_it
@@ -240,7 +238,6 @@ play += Transform:
 grid_it = Scaled:
     mesh: grid_it
     scale: 2
-
 play += Transform:
     mesh&amp;: grid_follow
     target: grid_it
@@ -279,19 +276,19 @@ func Trans(mesh&amp;, targ) = Transform:
     time: 1
     sticky: 0
 
+tree grid_follow 
 var grid_it = CGrid:
     col(x, y): {x + 0.5, y + 0.5, 1, 1}
-
-var grid_follow = grid_it
 let org = grid_it
+
 play += FadeIn:
-    mesh&amp;: grid_follow
+    into&amp;: grid_follow
+    value: grid_it
     time: 1
     sticky: 0
 
 grid_it = CGrid:
     col(x, y): {y + 0.5, x + 0.5, 0, 1}
-
 play += Trans:
     mesh&amp;: grid_follow
     targ: grid_it
@@ -380,8 +377,12 @@ func Counter(text) = Centered:
         fill: BLACK
     at: {2,0,0}
 
-var static = {}
-static += Axis2d:
+tree static
+tree label
+tree riemann
+
+var static_ = {}
+static_ += Axis2d:
     center: {-1.5,-1.5,0}
     x_unit: 1
     x_min: 0
@@ -394,8 +395,7 @@ static += Axis2d:
     grid: off
     tag: {}
     color: BLACK
-
-static += Embed:
+static_ += Embed:
     mesh: ExplicitFunc:
         start: 0
         stop: 3
@@ -403,37 +403,37 @@ static += Embed:
         tag: {}
         stroke: GREEN
 
-/* static items dont need IF */
 play += Show:
-    mesh&amp;: static
+    into&amp;: static
+    value: static_
     sticky: 0
 
 var label_it = Counter:
     text: 1
-var label_follow = label_it
 play += Show:
-    mesh&amp;: label_follow
+    into&amp;: label
+    value: label_it
     sticky: 0
 
 var riemann_it = EmbedLRAM:
     n: 1
-var riemann_follow = riemann_it
 play += Show:
-    mesh&amp;: riemann_follow
+    into&amp;: riemann
+    value: riemann_it
     sticky: 0
 
 for i in 0 :&lt; 7
     riemann_it.n = riemann_it.n * 2
     label_it.text = riemann_it.n
     play += Transform:
-        mesh&amp;: riemann_follow
+        mesh&amp;: riemann
         target: riemann_it
         null_action: fade
         time: 1
         sticky: 0
 
     play += Transform:
-        mesh&amp;: label_follow
+        mesh&amp;: label
         target: label_it
         null_action: fade
         time: 1
@@ -448,7 +448,6 @@ var final = Embed:
         tag: {}
         pos_fill: WHITE
         neg_fill: WHITE
-
 final = Refilled:
     mesh: final
     start_color: RED
@@ -457,14 +456,16 @@ final = Refilled:
     end_vec: {1.5,0,0}
 
 play += FadeOut:
-    mesh&amp;: riemann_follow
+    from&amp;: riemann
     time: 1
     sticky: 0
     unit_map(u): u
     delta: ZERO_V
 
- play += FadeIn:
-    mesh&amp;: final
+tree riemann_aux
+play += FadeIn:
+    into&amp;: riemann_aux
+    value: final
     time: 1
     sticky: 1
     unit_map(u): u
@@ -472,7 +473,7 @@ play += FadeOut:
 
 label_it.text = "\[\infty\]"
 play += Transform:
-    mesh&amp;: label_follow
+    mesh&amp;: label
     target: label_it
     null_action: fade
     time: 1
@@ -487,7 +488,6 @@ play += Transform:
 <p>Make sure you understand the problem, and why the IF paradigm solves it.</p>
 <p>Separating screen and calculation variables is of extreme importance. It might take a little while to get used to, but afterwards it becomes natural. </p>
 <p><span class="lesson-remark">REMARK</span> IF might seem redundant to have two variables, but I actually think in complex scenes it's helpful and provides a better sense of identity. Moreover, even though it feels verbose (and definitely is), I think this is something that can be fixed with a language feature pretty easily and is not that bad for complex scenes. Feel free to use more than one iterator variable when you need to. Also, do note that for simple scenes you can get away with just using a follower, but be careful when doing so.</p>
-<p><span class="lesson-remark">REMARK</span> Final Remark: I am considering the possibility of enforcing the IF model by making it a runtime error to read from a screen variable in the initialization phase. However, this is not finalized.</p>
 <h2>6.5 (Optional) Pitfalls</h2>
 <p>A bit scrappily written, but anyways:</p>
 <p>While this model is nice, there is one particular case which is a bit hard to deal with. In particular, when we have state transitions and associated animations that are so complex that they essentially need to be done together. A naive appplication of IF would generally lead to recalculating the thing twice. In terms of solutions, I'm thinking to either take in the iterator as reference, or possibly have the transition return both the iterator and the animation. Not sure which approach is best, but something along those lines is generally the usual solution.</p><div id="next-lessons"><a href="/learn/5_Examples_of_Animations"> Previous Lesson </a><a href="/learn/7_Interpolation_Animations"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">6.1 The problem</a><a id="label-1" href="#section-1" class="">6.2 The solution</a><a id="label-2" href="#section-2" class="">6.3 More Examples</a><a id="label-3" href="#section-3" class="">6.4 Remarks and Conclusion</a><a id="label-4" href="#section-4" class="">6.5 (Optional) Pitfalls</a></div>

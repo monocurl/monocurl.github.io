@@ -73,7 +73,6 @@
 <p><img alt="Timeline" src="/img/lessons/timeline.png" /></p>
 <p>The timeline is located in the bottom right and serves as a method to seek to different points of a video/slideshow (click on different places to seek to different timestamps).</p>
 <p><span class="lesson-important">IMPORTANT</span> You can use <code class="language-swift">,</code> to rewind to the previous slide, whereas <code class="language-swift">.</code> goes to the next slide. Use <code class="language-swift">SHIFT + ,</code> to rewind to the start of the scene and <code class="language-swift">SHIFT + .</code> to go to the end of the scene. Finally, use <code class="language-swift">SPACE</code> to pause or play the current scene.</p>
-<p><span class="lesson-remark">REMARK</span> On Windows you'll have to scroll vertically instead of horizontally for now.</p>
 <h2>2.2 Viewport</h2>
 <p><img alt="Viewport" src="/img/lessons/viewport.png" /></p>
 <p>The viewport depicts the current state of the video/slideshow from the vantage point of the camera. Note that a little excess is shown as well so you can identify when meshes go off screen. The frame also takes different colors based on the state of the application (e.g. playing, loading, runtime error, etc).</p>
@@ -81,7 +80,7 @@
 <p><img alt="Editing Table" src="/img/lessons/editing_table.png" /></p>
 <p>Monocurl is divided into a sequence of slides. In the config slide, we setup commonly used utilities (i.e. program constants). In every subsequent slide, you specify a list of animations to execute.</p>
 <p><span class="lesson-important">IMPORTANT</span> You can press the "+" icon to create a new slide. You can also delete slides, but this is not undoable.</p>
-<p>Most native text operations are present. On macOS, you can use <code class="language-swift">OPTION + ENTER</code> to insert a textfield above the current line.</p>
+<p>Most native text operations are present. In addition, you can use <code class="language-swift">OPTION + ENTER</code> on macOS to insert a textfield above the current line. Likewise, 'ALT + ENTER' works on Windows. This is useful in many cases when implementing functors.</p>
 <p><span class="lesson-important">IMPORTANT</span> Tab and shift tab go to the next line instead of usual behavior. To actually tab use <code class="language-swift">COMMAND/CTRL + ]</code> or <code class="language-swift">COMMAND/CTRL + [</code>.</p>
 <p>There is also a media tab. For now, this is only used for images, but more media types may be supported in the future.</p>
 <h2>2.4 Functor Arguments in Editor</h2>
@@ -89,7 +88,7 @@
 <p><span class="lesson-important">IMPORTANT</span> Functor arguments generally should not be edited by hand. Instead, rely on autocompletion, or use the <code class="language-swift">&lt;&gt;</code> buttons to cycle through diferent modes.</p>
 <p><img alt="Functor Modes" src="/img/lessons/functor_modes.png" /></p>
 <h2>2.5 Exporting and Slideshows</h2>
-<p><span class="lesson-important">IMPORTANT</span> To enter slideshow mode (full screen mode), press <code class="language-swift">CONTROL + F</code> on macOS or <code class="language-swift">CTRL + F</code> on Windows. When you press play in slideshow mode, it only goes at most one slide in the future.</p>
+<p><span class="lesson-important">IMPORTANT</span> To enter slideshow mode (full screen mode), press <code class="language-swift">CONTROL + F</code> on macOS or <code class="language-swift">CTRL + F</code> on Windows. When you press play in slideshow mode, it only goes at most one slide in the future. </p>
 <p><span class="lesson-important">IMPORTANT</span> To export/render a scene to a video, simply press the export looking icon present on the toolbar (above the timeline, below the viewport), and follow through with the steps.</p><div id="next-lessons"><a href="/learn/1_Monocurl_Language"> Previous Lesson </a><a href="/learn/3_Meshes"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">2.1 Timeline</a><a id="label-1" href="#section-1" class="">2.2 Viewport</a><a id="label-2" href="#section-2" class="">2.3 Editor</a><a id="label-3" href="#section-3" class="">2.4 Functor Arguments in Editor</a><a id="label-4" href="#section-4" class="">2.5 Exporting and Slideshows</a></div>
 		</main>
 

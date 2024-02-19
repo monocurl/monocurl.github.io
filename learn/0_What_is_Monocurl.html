@@ -77,18 +77,20 @@
 <p><span class="lesson-meta">META</span> The entire article series should take roughly an hour to go through, but definitely feel free to skim certain parts and come back to them when you need to. Also, there are video versions as well on our <a href="https://www.youtube.com/channel/monocurl">YouTube Channel</a>. Finally, please give feedback or ask for help in our <a href="https://discord.com/invite/7g94JR3SAD">Discord Server</a>.</p>
 <h2>0.1 Minimal Working Example</h2>
 <p>The following code is a working example of showing a circle to the screen and having it fade out.</p>
-<pre><code class="language-swift">var circ = Circle:
+<pre><code class="language-swift">tree main
+let circ = Circle:
     center: ORIGIN
     radius: 1
     tag: {}
     color: default
 
 play += Show:
-    mesh&amp;: circ
+    into&amp;: main
+    value: circ
     sticky: 0
 
 play += FadeOut:
-    mesh&amp;: circ
+    from&amp;: circ
     time: 1
     sticky: 0
 </code></pre>

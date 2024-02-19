@@ -87,7 +87,7 @@
         ret += Rect:
             center: ORIGIN
             width: 0.25
-            height: y
+            height: y  / 2
             tag: {}
             stroke: BLACK
 
@@ -98,18 +98,19 @@
     ret = Centered(ret, ORIGIN)
     element: ret
 
-var bars_it = Bars:
+var bars = Bars:
     array: {3,1,0,2,2,1,4,5,1}
 
-var bars_f = bars_it
+tree main
 play += Show:
-    mesh&amp;: bars_f
+    into&amp;: main
+    value: bars
     sticky: 0
 
-bars_it.array = sort(bars_it.array)
+bars.array = sort(bars.array)
 play += Transform:
-    mesh&amp;: bars_f
-    target: bars_it
+    mesh&amp;: main
+    target: bars
     null_action: fade
     time: 1
     sticky: 0
@@ -137,18 +138,19 @@ play += Transform:
     ret = Centered(ret, ORIGIN)
     element: ret
 
-var bars_it = Bars:
+tree main
+var bars = Bars:
     tagged_array: right_key({3,1,0,2,2,1,4,5,1})
 
-var bars_f = bars_it
 play += Show:
-    mesh&amp;: bars_f
+    into&amp;: main
+    value: bars
     sticky: 0
 
-bars_it.tagged_array = sort(bars_it.tagged_array)
+bars.tagged_array = sort(bars.tagged_array)
 play += TagTransform:
-    mesh&amp;: bars_f
-    target: bars_it
+    mesh&amp;: main
+    target: bars
     null_action: fade
     mapping: one_to_one
     time: 1
@@ -179,21 +181,22 @@ play += TagTransform:
     ret = Centered(ret, ORIGIN)
     element: ret
 
-var bars_it = Bars:
+tree main
+var bars = Bars:
     tagged_array: right_key({3,1,0,2,2,1,4,5,1})
-var bars_f = bars_it
 play += Show:
-    mesh&amp;: bars_f
+    into&amp;: main
+    value: bars
     sticky: 0
 
-bars_it = Shifted:
-    root: bars_it
+bars = Shifted:
+    root: bars
     tag_predicate(tag): tag[0] &lt; 4
     delta: UP
 
-play += Transform:
-    mesh&amp;: bars_f
-    target: bars_it
+play += TagTransform:
+    mesh&amp;: main
+    target: bars
     null_action: fade
     time: 1
     sticky: 0
@@ -205,7 +208,29 @@ play += Transform:
 
 <p>Notice the usage of tag_precicate in the Shifted operation, which dictates whether or not the mesh should be shifted. While in our particular case we could have just done this with a for loop, this becomes in practical for complex and large mesh-trees.</p>
 <h2>8.5 Animation on Subset Example</h2>
-<p>The other use case is to apply animations to only a portion of a screen variable. For instance, here is code to only highlight the bars at the odd positions.</p>
+<p>The other use case is to apply animations to only a portion of a screen variable. </p>
+<p><span class="lesson-important">IMPORTANT</span> We can Show/Hide a subset of a tree. In the case of showing, this is copying only a portion of the input into the tree. In the case of hiding, this is removing only a portion of the tree. </p>
+<pre><code class="language-swift">for i in 0:&lt;4
+    play += FadeIn:
+        into&amp;: main
+        value: bars
+        tag_predicate(tag): mod(tag[0], 4) == i
+        time: 1
+        sticky: 0
+
+for i in 0:&lt;4
+    play += FadeOut:
+        from&amp;: main
+        tag_predicate(tag): mod(tag[0], 4) == i
+        time: 1
+        sticky: 0
+</code></pre>
+<video controls>
+    Show/Hide Example
+    <source src="/video/partial_show_example.mp4" type="video/mp4"/>
+</video>
+
+<p>This works for many other types of animations. Here is code to only highlight the bars at the odd positions.</p>
 <pre><code class="language-swift">play += Highlight:
     root&amp;: bars_f
     tag_predicate(tag): mod(tag[0], 2)
@@ -216,26 +241,6 @@ play += Transform:
 <video controls>
     Highlight Example
     <source src="/video/partial_highlight_example.mp4" type="video/mp4"/>
-</video>
-
-<p><span class="lesson-important">IMPORTANT</span> Similarly, we can also Show/Hide only a subset. Therefore, you should think of visibility on Monocurl as each variable has a flag for whether it is shown or not, and each mesh within its mesh-tree has a similar flag as well.</p>
-<pre><code class="language-swift">for i in 0:&lt;4
-    play += FadeIn:
-        root&amp;: bars_f
-        tag_predicate(tag): mod(tag[0], 2 ** (3 - i)) == 0
-        time: 1
-        sticky: 0
-
-for i in 0:&lt;4
-    play += FadeOut:
-        root&amp;: bars_f
-        tag_predicate(tag): mod(tag[0], 2 ** (3 - i)) == 0
-        time: 1
-        sticky: 0
-</code></pre>
-<video controls>
-    Show/Hide Example
-    <source src="/video/partial_show_example.mp4" type="video/mp4"/>
 </video>
 
 <h2>8.6 Remarks and Conclusion</h2>

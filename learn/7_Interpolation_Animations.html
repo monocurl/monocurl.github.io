@@ -98,28 +98,35 @@ var C = lerp(A, B, 0.25)
 <p>Now, what if we can smoothly interpolate between two meshes using functor interpolation? This might sound similar to Transform, but note that Transform works by matching points and thus is slightly different in semantics.</p>
 <p><span class="lesson-important">IMPORTANT</span> This brings us to <a href="/docs/Lerp">Lerp</a>. It does exactly what we want, interpolating a screen variable between two functors. In particular, at each time t, Lerp sets its target variable equal to the functor interpolation between the start and end, with the blend factor being time dependent.</p>
 <p>Heres an example. </p>
-<pre><code class="language-swift">var trans_square = Square:
+<pre><code class="language-swift">tree trans
+tree lerps
+let trans_square = Square:
     center: RIGHT
     width: 0.5
     tag: {}
     stroke: BLACK
 
-var lerp_square = Square:
+let lerp_square = Square:
     center: LEFT
     width: 0.5
     tag: {}
     stroke: BLACK
 
 play += Show:
-    mesh&amp;: {trans_square, lerp_square}
+    into&amp;: trans
+    value: trans_square
     sticky: 0
+play += Show:
+    into&amp;: lerps
+    value: lerp_square
+    sticky: 1
 
 let trans_rot = Rotated:
     mesh: trans_square
     rotation: 5 * PI / 4
 
 play += Transform:
-    mesh&amp;: trans_square
+    mesh&amp;: trans
     target: trans_rot
     null_action: fade
     time: 1
@@ -135,7 +142,7 @@ let lerp1 = Rotated:
     rotation: 5 * PI / 4
 
 play += Lerp:
-    dst&amp;: lerp_square
+    dst&amp;: lerps
     start: lerp0
     end: lerp1
     time: 1
@@ -159,7 +166,7 @@ func ws(a,b,x) = identity:
         s += a ** i * cos((b ** i) * PI * x)
     element: s
 
-func Weirstrass(a,b) = ExplicitFunc:
+func Weierstrass(a,b) = ExplicitFunc:
     start: -4
     stop: 4
     samples: 2048
@@ -167,10 +174,13 @@ func Weirstrass(a,b) = ExplicitFunc:
     tag: {}
     stroke: RED
 
-var w = Weirstrass:
+tree main
+tree static
+
+let w = Weierstrass:
     a: 0.5
     b: 0.1
-var axis = Axis2d:
+let axis = Axis2d:
     center: ORIGIN
     x_unit: 1
     x_rad: 4
@@ -183,12 +193,17 @@ var axis = Axis2d:
     color: BLACK
 
 play += Show:
-    mesh&amp;: {axis, w}
+    into&amp;: main
+    value: w
+    sticky: 0
+play += Show:
+    into&amp;: static
+    value: axis
     sticky: 0
 play += Lerp:
     var next = w
     next.b = 4
-    dst&amp;: w
+    dst&amp;: main
     start: w
     end: next
     time: 3
@@ -215,7 +230,10 @@ play += Lerp:
 
     element: dots
 
-var ring = Circle:
+tree static
+tree main
+
+let ring = Circle:
     center: ORIGIN
     radius: 1
     tag: {}
@@ -224,14 +242,17 @@ var ring = Circle:
 var roots_it = RootsOfUnity:
     N: 0
 
-var roots_f = roots_it
 play += Show:
-    mesh&amp;: {ring, roots_f}
+    into&amp;: static
+    value: ring
+    sticky: 0
+play += Show:
+    into&amp;: main
+    value: roots_it
     sticky: 0
 
-
 play += Lerp:
-    dst&amp;: roots_f
+    dst&amp;: main
     start: roots_it
     end: RootsOfUnity:
         N: 64
@@ -254,13 +275,15 @@ play += Lerp:
     tag: {}
     stroke: RED
 
+tree main
 var sine = Sine:
     A: 1
     omega: 1
     phi: 0
 
 play += Show:
-    mesh&amp;: sine
+    into&amp;: main
+    value: sine
     sticky: 0
 
 var frames = {0: sine}
@@ -280,7 +303,7 @@ frames[7].A = 1
 frames[7].omega = 1
 
 play += Keyframe:
-    dst&amp;: sine
+    dst&amp;: main
     time_to_value: frames
     unit_map(u): smooth(u)
     sticky: 0
@@ -292,8 +315,8 @@ play += Keyframe:
 
 <p>Good to know, but from experience it's generally used occasionally.</p>
 <h2>7.5 (Optional) Transform vs Lerp</h2>
-<p>Lastly, I want to talk about when to use Transform vs Lerp. Transform's syntax is nicer (since we dont need to specify start), but it gives less control. We use Transform whenever it looks nice, or when we're transforming from unrelated types, so that there's not really anything that can be lerped. If we need more control about intermediate states, Lerp is the way to go.</p>
-<p><span class="lesson-remark">REMARK</span> Finally, notice that there is some inconvenience in the syntax once again. It definitely is really repetitive, but again this is something I'm very confident can be fixed with a language feature (maybe macros, or maybe something like cpp's std::exchange). Nevertheless, this is the majority of what you need to know for animations. </p>
+<p>Lastly, I want to talk about when to use Transform vs Lerp. Transform's syntax is nicer (since we dont need to specify start), but it gives less control. We use Transform whenever it looks nice, or when we're transforming from unrelated types, so that there's not anything that can be lerped. If we need more control about intermediate states, Lerp is the way to go.</p>
+<p><span class="lesson-remark">REMARK</span> Finally, notice that there is some inconvenience in the syntax once again. It definitely is really repetitive, but again this is something I'm very confident can be fixed with a language feature (maybe macros, or maybe something like cpp's std::exchange, i have very many ideas actually). Nevertheless, this is the majority of what you need to know for animations. </p>
 <h2>7.6 Monocurl Logo Animation</h2>
 <p>Also, we can now create the Monocurl logo animation! Lets break it down.</p>
 <p>In fact, there isn't that much going on. It does involve a camera animation which we haven't explicitly seen, but it's the same general idea.</p>
@@ -310,10 +333,15 @@ Track 3 is also not that bad, we use <a href="/docs/CameraLerp">CameraLerp</a> t
 let step = 0.05
 func q(x,y) = 1.2 * ((x-0.5)**2 + (y-0.5)**2)
 func col(x,y) = identity:
-    let val = q(x,y+1)
-    let colors = {0:BLUE,0.15:YELLOW,0.25:ORANGE,0.5:RED}
+    let val = q(x,-y)
+    let colors = {0:WHITE,0.2:PURPLE,0.5:BLUE}
     let color = keyframe_lerp(colors, val)
     element: color
+
+
+tree main
+tree static
+tree text
 
 /* Monocurl */
 var tex = Text:
@@ -325,20 +353,20 @@ tex = Centered:
     mesh: tex
     at: {0,1,0}
 
-/* Black Grid */
-var grid_it = ColorGrid:
+/* Main Graph */
+var grid = ColorGrid:
     x_min: 0
     x_max: 1
     y_min: -1
     y_max: 0
-    x_step: 0.05
-    y_step: 0.05
+    x_step: step
+    y_step: step
     tag: {}
     color_at(pos): BLACK
     stroke: BLACK
 
-/* Axis */
-var axis = Axis3d:
+/* Axes */
+let axis = Axis3d:
     center: {0,0,-0.01}
     pos_x_axis: {1,0,0}
     pos_y_axis: {0,-1,0}
@@ -359,24 +387,29 @@ var axis = Axis3d:
     tag: {}
     color: BLACK
 
-/* we can still use IF for camera, thought just one transition */
 var camera_it = camera
-var grid = grid_it
 
-/* initial showing */
+/* intro */
 play += Write:
-    mesh&amp;: tex
+    into&amp;: text
+    value: tex
     time: 1
     sticky: 0
 play += FadeIn:
-    mesh&amp;: {grid, axis}
+    into&amp;: static
+    value: axis
+    time: 1
+    sticky: 1
+play += FadeIn:
+    into&amp;: main
+    value: grid
     time: 1
     sticky: 1
 
 /* main animation */
 var grid_anim = {}
 grid_anim += Transform:
-    grid_it = ColorGrid:
+    grid = ColorGrid:
         x_min: 0
         x_max: 1
         y_min: -1
@@ -386,27 +419,26 @@ grid_anim += Transform:
         tag: {}
         color_at(pos): col(pos[0], pos[1])
         stroke: BLACK
-
-    mesh&amp;: grid
-    target: grid_it
+    mesh&amp;: main
+    target: grid
     null_action: fade
     time: 1
     sticky: 0
 grid_anim += Transform:
-    grid_it = PointMapped:
-        mesh: grid_it
+    grid = PointMapped:
+        mesh: grid
         point_map(point): {point[0], point[1], q(point[0], point[1] + 1)}
-
-    mesh&amp;: grid
-    target: grid_it
+    mesh&amp;: main
+    target: grid
     null_action: fade
     time: 2
     sticky: 0
 play += grid_anim
 
+/* camera movement */
 play += CameraLerp:
     var next = camera_it
-    next.origin = {2,-2,2.1}
+    next.origin = {2,-2,1.4}
     next.up = {0,0,1}
 
     camera&amp;: camera
@@ -415,14 +447,7 @@ play += CameraLerp:
     time: 3
     sticky: 1
 
-play += Wait:
-    time: 1
-    sticky: 0
-
-play += FadeOut:
-    mesh&amp;: {grid,axis,tex}
-    time: 1
-    sticky: 0
+play += Wait(1, 0)
 </code></pre>
 <p>And of course, the result:</p>
 <video controls>

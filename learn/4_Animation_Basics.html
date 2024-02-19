@@ -155,7 +155,7 @@ run(Series(A, B), C))
     run(B)
 
 C = ...
-/* at this point, if call do_a_and_b, we lose the ability to call run(c) in parallel */
+/* at this point, if we call do_a_and_b, we lose the ability to call run(c) in parallel */
 </code></pre>
 <p>Here, it becomes very awkward to perform the <code class="language-swift">do_a_and_b</code> animation in parallel with <code class="language-swift">C</code>. One possible solution is to return an animation operator on A and B, and then we're good again:</p>
 <pre><code class="language-swift">func do_a_and_b(void)
