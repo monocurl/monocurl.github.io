@@ -10,7 +10,7 @@
 		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
 		<meta name="author" content="Manu Bhat">
 
-		<link rel="icon" href="/img/monocurl_icon.png">
+		<link rel="icon" href="/img/monocurl-1024.png">
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="/css/main.css">
@@ -66,7 +66,7 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="current">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Animation_Basics" class="">4 Animation Basics</a><a href="5_Examples_of_Animations" class="">5 Examples of Animations</a><a href="6_Iterator_Follower_Paradigm" class="">6 Iterator Follower Paradigm</a><a href="7_Interpolation_Animations" class="">7 Interpolation Animations</a><a href="8_Tagging_Mechanics" class="">8 Tagging Mechanics</a><a href="9_Tips_and_Advice" class="">9 Tips and Advice</a><a href="10_Future_Works" class="">10 Future Works</a></aside><div id="content"><h1>0. What is Monocurl?</h1>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="current">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Iterator_Follower_Paradigm" class="">4 Iterator Follower Paradigm</a><a href="5_Lerp" class="">5 Lerp</a><a href="6_Progressors" class="">6 Progressors</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Parallel_Animations" class="">8 Parallel Animations</a><a href="9_Tips_and_Conclusion" class="">9 Tips and Conclusion</a><a href="10_Future_Works" class="">10 Future Works</a><a href="11_Advanced" class="">11 Advanced</a></aside><div id="content"><h1>0. What is Monocurl?</h1>
 <video controls autoplay muted>
     Monocurl Introductory Video
     <source src="/video/monocurl_intro.mp4" type="video/mp4"/>
@@ -77,22 +77,19 @@
 <p><span class="lesson-meta">META</span> The entire article series should take roughly an hour to go through, but definitely feel free to skim certain parts and come back to them when you need to. Also, there are video versions as well on our <a href="https://www.youtube.com/channel/monocurl">YouTube Channel</a>. Finally, please give feedback or ask for help in our <a href="https://discord.com/invite/7g94JR3SAD">Discord Server</a>.</p>
 <h2>0.1 Minimal Working Example</h2>
 <p>The following code is a working example of showing a circle to the screen and having it fade out.</p>
-<pre><code class="language-swift">tree main
-let circ = Circle:
+<pre><code class="language-swift">tree circ = Circle:
     center: ORIGIN
     radius: 1
     tag: {}
     color: default
 
-play += Show:
-    into&amp;: main
-    value: circ
-    sticky: 0
+p += Set:
+    vars&amp;: circ
 
-play += FadeOut:
-    from&amp;: circ
+circ = {}
+p += Fade:
+    meshes&amp;: circ
     time: 1
-    sticky: 0
 </code></pre>
 <p>Heres how it should look like in the editor:</p>
 <p><img alt="Minimal Working Example" src="/img/lessons/minimal_working_example.png" /></p>
@@ -120,7 +117,7 @@ play += FadeOut:
 <li>Monocurl has a custom designed scripting language that makes it very easy to <strong>interpolate</strong> between different objects by recursively interpolating their attributes. </li>
 <li>To actually create objects that we can have on screen, we have primitive <strong>meshes</strong> and <strong>mesh operators</strong>. </li>
 <li><strong>Animations</strong> are what actually drive the motion of meshes and control the flow of items on screen. </li>
-<li>Monocurl divides a scene into a series of <strong>slides</strong>. We specify all the animations at once during the initialization phase of a slide. That is, we say what animations should be run, and which ones should be run in parallel and which ones in series. Then, all such animations are executed, and the process repeats for the next slide.</li>
+<li>Monocurl divides a scene into a series of <strong>slides</strong>. In each slide, a collection of animations are run.</li>
 </ul>
 <p><span class="lesson-meta">META</span> If this doesn't make a lot of sense, that's definitely okay! We'll explore the details soon.</p>
 <h2>0.5 Reading the Lessons</h2>

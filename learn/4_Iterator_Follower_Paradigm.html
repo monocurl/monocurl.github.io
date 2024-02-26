@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Learn</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application used to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl-1024.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        
+
+		<!-- JS -->
+		
+            <script>
+                hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
+            </script>
+        
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Iterator_Follower_Paradigm" class="current">4 Iterator Follower Paradigm</a><a href="5_Lerp" class="">5 Lerp</a><a href="6_Progressors" class="">6 Progressors</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Parallel_Animations" class="">8 Parallel Animations</a><a href="9_Tips_and_Conclusion" class="">9 Tips and Conclusion</a><a href="10_Future_Works" class="">10 Future Works</a><a href="11_Advanced" class="">11 Advanced</a></aside><div id="content"><h1>4. The Iterator Follower Paradigm</h1>
+<p><span class="lesson-important">IMPORTANT</span> The iterator-follower paradigm is at the heart of Monocurl. Take time to really understand it!</p>
+<h2>4.1 Basics of IF-Paradigm</h2>
+<p>We discussed how Monocurl is about interpolation between different keystates. Lets see how this works in practice. </p>
+<p><span class="lesson-definition">DEFINITION</span> In addition to <code class="language-swift">let</code> and <code class="language-swift">var</code> variables, we have <code class="language-swift">tree</code> variables which are used for variables that we need to show on screen.</p>
+<p>In particular, when you create a tree variable, there are two variables behind the scenes: the <strong>iterator</strong> and the <strong>follower</strong>. The iterator is more or less a normal variable you can do operations on. The follower, however, is special in that any changes to it are reflected on screen. Initially, the follower is empty.</p>
+<p>The idea is that you make changes to the iterator using normal code. Then, using animations, we can tell the follower about the changes. In particular, it "follows" the iterator from its previous state. The exact manner in how it follows depends on the follower animation we use. Let's take a look at some examples.</p>
+<h2>4.2 Set</h2>
+<p><span class="lesson-important">IMPORTANT</span> The simplest follower animation is <a href="/docs/Set">Set</a>. </p>
+<p>It instantly transforms the follower into the iterator. Example (note that <code class="language-swift">Wait(1)</code> does nothing for the time period). Also, we use <code class="language-swift">p +=</code> to add an animation to the play list. Don't worry about the details too much, it's just saying that we want to play this animation.</p>
+<pre><code class="language-swift">tree circ = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    color: default
+
+/* currently: */
+/* iterator -&gt; Circle */
+/* follower -&gt; {} */
+p += Wait(1)
+
+/* currently: */
+/* iterator -&gt; Circle */
+/* follower -&gt; {} */
+p += Set:
+    vars&amp;: circ
+
+/* currently: */
+/* iterator -&gt; Circle */
+/* follower -&gt; Circle */
+
+p += Wait(1)
+
+circ.radius = 2
+
+/* currently: */
+/* iterator -&gt; Circle {r = 2} */
+/* follower -&gt; Circle {r = 1} */
+p += Set:
+    vars&amp;: circ
+
+/* currently: */
+/* iterator -&gt; Circle {r = 2} */
+/* follower -&gt; Circle {r = 2} */
+</code></pre>
+<p>Also, note that we can use <a href="/docs/Set">Set</a> on scene variables such as <code class="language-swift">background</code> or <code class="language-swift">camera</code>. See if you can try changing the background color using Set!</p>
+<h2>4.3 Write, Fade, Grow</h2>
+<p><span class="lesson-important">IMPORTANT</span> <a href="/docs/Write">Write</a>, <a href="/docs/Fade">Fade</a>, and <a href="/docs/Grow">Grow</a> are useful for showing or hiding in a more continous fashion. Here's an example of write.</p>
+<pre><code class="language-swift">tree tex = Tex:
+    tex: "\int_{-\infty}^{\infty} e^{-x^2}dx = \sqrt{\pi}"
+    scale: 1
+    stroke: CLEAR
+    fill: BLACK
+tex = Centered:
+    mesh: tex
+    at: ORIGIN
+
+p += Write:
+    meshes&amp;: tex
+    time: 3
+</code></pre>
+<video controls>
+    Write Example
+    <source src="/video/gaussian_integral.mp4" type="video/mp4"/>
+</video>
+
+<p>We emphasize you can also "Unwrite/Shrink/FadeOut" using these animations, despite their name. This is done by setting the iterator to a null state, and then having the follower follow to that state. </p>
+<pre><code class="language-swift">tree tex = Tex:
+    tex: "\int_{-\infty}^{\infty} e^{-x^2}dx = \sqrt{\pi}"
+    scale: 1
+    stroke: CLEAR
+    fill: BLACK
+tex = Centered:
+    mesh: tex
+    at: ORIGIN
+
+/* this is important! otherwise, we would be fading out the empty state */
+p += Set:
+    vars&amp;: tex
+
+/* unwrite by setting to null */
+tex = {}
+p += Fade:
+    meshes&amp;: tex
+    time: 1
+</code></pre>
+<video controls>
+    Fade out Example
+    <source src="/video/fade_out_example.mp4" type="video/mp4"/>
+</video>
+
+<h2>4.4 Transform</h2>
+<p><span class="lesson-important">IMPORTANT</span> If we want to transform between two intermediate states, <a href="/docs/Transform">Transform</a> is a typical choice. </p>
+<p>It works by performing a pointwise interpolation algorithm.  Also, notice how we can apply animations to multiple variables at once using <code class="language-swift">{tree_a, tree_b}</code> syntax. Finally, it's important that we have the initial <code class="language-swift">Set</code> call, as otherwise we would be transforming from the empty state.</p>
+<pre><code class="language-swift">tree shape = Square:
+    center: ORIGIN
+    width: 1
+    tag: {}
+    color: default
+tree dots = Dot:
+    point: RIGHT
+    tag: {}
+    color: default
+
+p += Set:
+    vars&amp;: {shape, dots}
+
+/* move dot */
+dots.point = {2, 1, 0}
+p += Transform:
+    meshes&amp;: dots
+    time: 1
+
+dots.point = {2, 0, 0}
+shape = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    color: default
+
+/* transform both followers to current iterator state */
+p += Transform:
+    meshes&amp;: {dots, shape}
+    time: 1
+</code></pre>
+<video controls>
+    TransformExample
+    <source src="/video/transform_example.mp4" type="video/mp4"/>
+</video>
+
+<h2>4.5 Custom Animations</h2>
+<p>We now can create some (simple) custom animations. You don't create custom animations as often as you do custom meshes, but it's still useful for abstracting common behavior. Notice that <code class="language-swift">var&amp;</code> with the ampersand is used to denote a reference variable for taking in an iterator. Also, custom animations should return a vector of their animations.</p>
+<pre><code class="language-swift">/* note that custom animations should return a tree */
+func SlowFade(mesh&amp;) = identity:
+    var ret = {}
+    ret += Wait(1)
+    ret += Fade:
+        meshes&amp;: mesh
+        time: 2
+    element: ret
+
+tree t = Circle:
+    center: ORIGIN
+    radius: 1
+    tag: {}
+    stroke: BLACK
+
+p += SlowFade:
+    mesh&amp;: t
+</code></pre>
+<video controls>
+    Custom Animation Example
+    <source src="/video/custom_animation_example.mp4" type="video/mp4"/>
+</video>
+
+<p>We'll see more complex and useful examples in the future.</p>
+<h2>4.6 (Optional) Delayed Execution</h2>
+<p>This side is probably a bit technicaly for most people, but for those interested Monocurl uses a delayed execution environment. Here's why this is nice.</p>
+<p>Consider an animation system where animations are run as soon as you create them. We will refer to this as <em>eager execution</em>. For instance, we might have the following pseudocode to do two animations in series:</p>
+<pre><code class="language-swift">run(Show(a))
+run(Hide(b))
+</code></pre>
+<p>If we want to do two things in parallel, the following is an approximate representation:</p>
+<pre><code class="language-swift">run(Show(a), Hide(b))
+</code></pre>
+<p>However, suppose we have three animations, <code class="language-swift">A, B, C</code>. And we want to run <code class="language-swift">A</code> and <code class="language-swift">B</code> in series, and in conjunction with that entire group, we want to run <code class="language-swift">C</code> (see diagram below). </p>
+<p><img alt="Three Animations" src="/img/lessons/three_animations.png" /></p>
+<p>It's not that this is impossible with eager execution, but it does become a bit awkward. We are emitting some details for simplicity in this section, but the idea is that it's hard to perform proper encapsulation and this does not line up well with functional programming. We'll see what we mean by this in a second. </p>
+<p><span class="lesson-remark">REMARK</span> Before we introduce our method, we should say that our's is not the only solution. In particular, using generators a la <a href="https://docs.unity3d.com/Manual/Coroutines.html">Unity Coroutines</a> or <a href="https://motioncanvas.io/"> Motion Canvas</a> is more standard. However, our method is simpler to implement, and we believe it encourages a more natural method of thinking.</p>
+<p><span class="lesson-definition">DEFINITION</span> <strong>delayed execution</strong> is the idea that animations are executed separately from their initialization. That is, there is an initialization period and an execution period.</p>
+<p>In initialization, we write down all the animations that will be needed (specifying which should be in parallel/series with what). In execution, all the specified animations are run together. </p>
+<p>We mention that eager execution is awkward in the A-B-C case, but that's not necessarily true. Indeed, if we have references to all three animations, then using an animation operator is not that bad.</p>
+<pre><code class="language-swift">A = ...
+B = ...
+C = ...
+
+run(Series(A, B), C))
+</code></pre>
+<p>Where does this become a problem is if A and B are within their own function. Consider the following pseudocode:</p>
+<pre><code class="language-swift">func do_a_and_b(void)
+    A = ...
+    B = ...
+
+    run(A)
+    run(B)
+
+C = ...
+/* at this point, if we call do_a_and_b, we lose the ability to call run(c) in parallel */
+</code></pre>
+<p>Here, it becomes very awkward to perform the <code class="language-swift">do_a_and_b</code> animation in parallel with <code class="language-swift">C</code>. One possible solution is to return an animation operator on A and B, and then we're good again:</p>
+<pre><code class="language-swift">func do_a_and_b(void)
+    A = ...
+    B = ...
+
+    return Series(A, B)
+
+C = ...
+run(do_a_and_b(), C)
+</code></pre>
+<p>But this is just delayed execution! This hopefully gives an explanation of why delayed execution solves a lot of problems, and is a good choice. </p>
+<p>Do note that in this particular case, coroutines serve a similar role. However, we still maintain that delayed execution, once understood, leads to a more natural thinking process.</p>
+<p>Finally, we note that <em>currently</em> there are some downsides to the play list model. In particular, creating something like a LaggedMap from manim is not truly supported (the one that exists in the standard is kind of fake). However, this is something that can be solved very easily in the future, just has not been done yet. There is nothing about the play list model that stops this.</p><div id="next-lessons"><a href="/learn/3_Meshes"> Previous Lesson </a><a href="/learn/5_Lerp"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">4.1 Basics of IF-Paradigm</a><a id="label-1" href="#section-1" class="">4.2 Set</a><a id="label-2" href="#section-2" class="">4.3 Write, Fade, Grow</a><a id="label-3" href="#section-3" class="">4.4 Transform</a><a id="label-4" href="#section-4" class="">4.5 Custom Animations</a><a id="label-5" href="#section-5" class="">4.6 (Optional) Delayed Execution</a></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

@@ -4,20 +4,24 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 40px 150px;
+	margin: 0px 0px;
 }
 
 #landing-figure {
 	display: flex;
 	flex-direction: row;
+	align-self: stretch;
 	align-content: center;
 	justify-content: center;
+	margin: 0;
 
+	padding-top: 75px;
 	padding-bottom: 75px;
+	background-color: black;
 }
 
 #landing-figure figcaption {
-	color: black;
+	color: #cff;
 	text-align: center;
 	font-size: 40px;
 	max-width: 650px;

@@ -10,7 +10,7 @@
 		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
 		<meta name="author" content="Manu Bhat">
 
-		<link rel="icon" href="/img/monocurl_icon.png">
+		<link rel="icon" href="/img/monocurl-1024.png">
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="/css/main.css">
@@ -66,31 +66,26 @@
 		</nav>
 
 		<main>
-    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="current">3 Meshes</a><a href="4_Animation_Basics" class="">4 Animation Basics</a><a href="5_Examples_of_Animations" class="">5 Examples of Animations</a><a href="6_Iterator_Follower_Paradigm" class="">6 Iterator Follower Paradigm</a><a href="7_Interpolation_Animations" class="">7 Interpolation Animations</a><a href="8_Tagging_Mechanics" class="">8 Tagging Mechanics</a><a href="9_Tips_and_Advice" class="">9 Tips and Advice</a><a href="10_Future_Works" class="">10 Future Works</a></aside><div id="content"><h1>3. Meshes in Monocurl</h1>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="current">3 Meshes</a><a href="4_Iterator_Follower_Paradigm" class="">4 Iterator Follower Paradigm</a><a href="5_Lerp" class="">5 Lerp</a><a href="6_Progressors" class="">6 Progressors</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Parallel_Animations" class="">8 Parallel Animations</a><a href="9_Tips_and_Conclusion" class="">9 Tips and Conclusion</a><a href="10_Future_Works" class="">10 Future Works</a><a href="11_Advanced" class="">11 Advanced</a></aside><div id="content"><h1>3. Meshes in Monocurl</h1>
 <p><span class="lesson-meta">META</span> We'll now talk about meshes, the objects that we see on screen. This section is a bit long, but a lot of it is just examples. The optional sections discuss some of the decisions behind Monocurl, but are not that practical so feel free to skim them.</p>
 <h2>3.1 Following Along</h2>
 <p>In this section, you finally have many opportunities to follow along! </p>
 <p>Simply create a new scene in the Monocurl editor, and in the <code class="language-swift">slide_1</code> section, add the required code for creating the meshes. </p>
 <p>We haven't officially discussed animations yet, but for now you'll have to use the following lines to show the meshes we create. You might also want to change the background to <a href="/docs/WHITE">WHITE</a> for some scenes with black meshes.</p>
-<pre><code class="language-swift">tree main
-play += Show:
-    into&amp;: main
-    value: &lt;mesh_variable_name&gt;
-    sticky: 0
+<pre><code class="language-swift">tree main = ...
+p += Set:
+    vars&amp;: main
 </code></pre>
 <p>A full working example looks something like this (try it out!). Remember that these lines should be present in the slide_1 section.</p>
-<pre><code class="language-swift">let circ = Circle:
+<pre><code class="language-swift">tree circ = Circle:
     center: ORIGIN
     radius: 1
     tag: {}
     color: default
 
-tree main
-play += Show:
-    into&amp;: main
+p += Set:
     /* replace circ with whatever variable contains the meshes */
-    value: circ
-    sticky: 0
+    vars&amp;: circ
 </code></pre>
 <h2>3.2 Background Knowledge</h2>
 <p><span class="lesson-important">IMPORTANT</span> The final prerequisite before we actually get to meshes is understanding the coordinate system. </p>
@@ -135,7 +130,7 @@ play += Show:
 
     element: {head, string}
 
-var balloons = {}
+tree balloons = {}
 balloons += Balloon:    
     position: {-1, 0, 0}
 balloons += Balloon:    
@@ -144,11 +139,8 @@ balloons += Balloon:
 /* at this point balloons has the following structure: */
 /* {{head_1, string_1}, {head_2, string_2}} */
 
-tree main
-play += Show:
-    into&amp;: main
-    value: balloons
-    sticky: 0
+p += Set:
+    vars&amp;: balloons
 </code></pre>
 <p><img alt="Balloons" src="/img/lessons/balloons.png" /></p>
 <p><span class="lesson-important">IMPORTANT</span> Most library functions dealing with meshes allow you to input an entire mesh-tree. Operations on a mesh-tree simply operate on all the meshes contained within the tree.</p>
@@ -190,16 +182,13 @@ let raw_cards = map:
         r: 0.25
 
 /* use operators to position them */
-let cards = Centered:
+tree cards = Centered:
     /* for simple operators it can be okay to use functions */
     mesh: XStack(raw_cards)
     at: ORIGIN
 
-tree main
-play += Show:
-    into&amp;: main
-    value: cards
-    sticky: 0
+p += Set:
+    vars&amp;: cards
 </code></pre>
 <h2>3.7 More Examples!</h2>
 <p>Here's the code for a Koch Curve and the result:</p>
@@ -251,24 +240,21 @@ func KochCurve(level, start, length, rotation) = identity:
     element: ret
 
 let l = 4
-let k = KochCurve:
+tree k = KochCurve:
     level: 5
     start: {-l / 2, 0, 0}
     length: l
     rotation: 0
 
-tree main
-play += Show:
-    into&amp;: main
-    value: k
-    sticky: 0
+p += Set:
+    vars&amp;: k
 </code></pre>
 <p><img alt="Koch Curve example" src="/img/lessons/koch_curve.png" /></p>
 <p>Here's one for the difference between two functions</p>
 <pre><code class="language-swift">func f(x) = sin(x) ** 2
 func g(x) = sin(x) * 4 / 5
 
-var scene = {}
+tree scene = {}
 scene += Axis2d:
     center: ORIGIN
     x_unit: 2
@@ -313,11 +299,8 @@ scene += EmbedInSpace:
     y_unit: 1
     z_unit: 1
 
-tree main
-play += Show:
-    into&amp;: main
-    value: scene
-    sticky: 0
+p += Set:
+    vars&amp;: scene
 </code></pre>
 <p><img alt="Function difference example" src="/img/lessons/function_difference_example.png" /></p>
 <p>Riemann rectangles</p>
@@ -340,7 +323,7 @@ play += Show:
 
 func q(x) = x * x
 
-var scene = {}
+tree scene = {}
 scene += Axis2d:
     center: {-1.5,-1.5,0}
     x_unit: 1
@@ -374,15 +357,12 @@ scene += EmbedInSpace:
     y_unit: 3
     z_unit: 1
 
-tree main
-play += Show:
-    into&amp;: main
-    value: scene
-    sticky: 0
+p += Set:
+    vars&amp;: scene
 </code></pre>
 <p><img alt="LRAM example" src="/img/lessons/lram.png" /></p>
 <p>The color grid from before</p>
-<pre><code class="language-swift">var grid = ColorGrid:
+<pre><code class="language-swift">tree grid = ColorGrid:
     x_min: 0
     x_max: 1
     y_min: 0
@@ -393,15 +373,12 @@ play += Show:
     color_at(pos): {pos[0], pos[1], 1, 1}
     stroke: BLACK
 
-tree main
-play += Show:
-    into&amp;: main
-    value: grid
-    sticky: 0
+p += Set:
+    vars&amp;: grid
 </code></pre>
 <p><img alt="Color Grid" src="/img/lessons/color_grid.png" /></p>
 <p>Some famous LaTeX equations</p>
-<pre><code class="language-swift">var equations = Text:
+<pre><code class="language-swift">tree equations = Text:
     var str = "\begin{align*}"
     str += "\int_{-\infty}^{\infty}e^{-x^2}dx &amp;= \sqrt{\pi} \\"
     str += "e^{\pi i} + 1 &amp;= 0 \\"
@@ -415,11 +392,8 @@ equations = Centered:
     mesh: equations
     at: ORIGIN
 
-tree main
-play += Show:
-    into&amp;: main
-    value: equations
-    sticky: 0
+p += Set:
+    vars&amp;: equations
 </code></pre>
 <p><img alt="Famous math equations" src="/img/lessons/famous_equations.png" /></p>
 <p>Torus (with some camera work)</p>
@@ -442,7 +416,7 @@ let uv_base = ColorGrid:
 
 let r1 = 1
 let r2 = 0.5
-var let = PointMapped:
+tree torus = PointMapped:
     mesh: uv_base
     point_map(point): identity:
         let u = point[0] * TAU
@@ -452,11 +426,8 @@ var let = PointMapped:
         let z = r2 * sin(v)
         element: {x,y,z}
 
-tree main
-play += Show:
-    into&amp;: main
-    value: torus
-    sticky: 0
+p += Set:
+    vars&amp;: torus
 </code></pre>
 <p><img alt="Torus" src="/img/lessons/torus.png" /></p>
 <p>Vector Field</p>
@@ -495,14 +466,11 @@ func VectorField(f(x,y)) = Field:
         stroke: CLEAR
         fill: color
 
-let field = VectorField:
+tree field = VectorField:
     f(x, y):  {-y+x+1,x*y}
 
-tree main
-play += Show:
-    into&amp;: main
-    value: field
-    sticky: 0
+p += Set:
+    vars&amp;: field
 </code></pre>
 <p><img alt="Vector Field" src="/img/lessons/vector_field.png" /></p>
 <p>Tree (Graph Theory)</p>
@@ -559,7 +527,7 @@ func Tree(adj, colors, curr, position) = identity:
 /* adjacency list */
 let adj = {{1,2}, {3, 4}, {5, 8}, {6}, {7}, {}, {}, {}, {}}
 let colors = {RED, ORANGE, YELLOW, RED, GREEN, BLUE, RED, BLUE, ORANGE}
-let graph = Tree:
+tree graph = Tree:
     adj: adj
     colors: colors
 
@@ -567,11 +535,8 @@ let graph = Tree:
     curr: 0
     position: {0,1,0}
 
-tree main
-play += Show:
-    into&amp;: main
-    value: graph
-    sticky: 0
+p += Set:
+    vars&amp;: graph
 </code></pre>
 <p><img alt="Tree" src="/img/lessons/tree.png" /></p>
 <p>Neural Network</p>
@@ -611,14 +576,11 @@ play += Show:
         mesh: {edges, layers}
         at: ORIGIN
 
-let nn = NeuralNetwork:
+tree nn = NeuralNetwork:
     layer_counts: {4, 6, 6, 2, 1}
 
-tree main
-play += Show:
-    into&amp;: main
-    value: nn
-    sticky: 0
+p += Set:
+    vars&amp;: nn
 </code></pre>
 <p><img alt="Neural Network" src="/img/lessons/neural_network.png" /></p>
 <p>Look at more examples over <a href="/examples">here</a></p>
@@ -636,7 +598,7 @@ play += Show:
 <p><span class="lesson-remark">REMARK</span> This sections covered the basics of meshes. The point isn't that you know all meshes by now, but rather you have a good enough idea that it's easy to learn new ones. We definitely recommend going to the docs page and exploring existing options. In particular, look out for the ones with a star, as those are pretty useful.</p>
 <p>Also, hopefully you can see the importance of creating your own functions from the very few examples we gave. As scenes get more complex, functions are of even more importance.</p>
 <h2>3.10 (Optional) Remarks</h2>
-<p><span class="lesson-remark">REMARK</span> I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p><div id="next-lessons"><a href="/learn/2_Using_the_Editor"> Previous Lesson </a><a href="/learn/4_Animation_Basics"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">3.1 Following Along</a><a id="label-1" href="#section-1" class="">3.2 Background Knowledge</a><a id="label-2" href="#section-2" class="">3.3 Meshes</a><a id="label-3" href="#section-3" class="">3.4 Mesh-Tree</a><a id="label-4" href="#section-4" class="">3.5 (Optional) Why meshes?</a><a id="label-5" href="#section-5" class="">3.6 Complex Example</a><a id="label-6" href="#section-6" class="">3.7 More Examples!</a><a id="label-7" href="#section-7" class="">3.8 Practice</a><a id="label-8" href="#section-8" class="">3.9 Conclusion</a><a id="label-9" href="#section-9" class="">3.10 (Optional) Remarks</a></div>
+<p><span class="lesson-remark">REMARK</span> I dont really like positioning (and think it gets pretty redundant), and there are some stuff to be improved. But overall, I think meshes are good enough for the beta release.</p><div id="next-lessons"><a href="/learn/2_Using_the_Editor"> Previous Lesson </a><a href="/learn/4_Iterator_Follower_Paradigm"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">3.1 Following Along</a><a id="label-1" href="#section-1" class="">3.2 Background Knowledge</a><a id="label-2" href="#section-2" class="">3.3 Meshes</a><a id="label-3" href="#section-3" class="">3.4 Mesh-Tree</a><a id="label-4" href="#section-4" class="">3.5 (Optional) Why meshes?</a><a id="label-5" href="#section-5" class="">3.6 Complex Example</a><a id="label-6" href="#section-6" class="">3.7 More Examples!</a><a id="label-7" href="#section-7" class="">3.8 Practice</a><a id="label-8" href="#section-8" class="">3.9 Conclusion</a><a id="label-9" href="#section-9" class="">3.10 (Optional) Remarks</a></div>
 		</main>
 
 		<footer>

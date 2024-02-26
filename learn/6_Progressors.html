@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Learn</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application used to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl-1024.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        
+
+		<!-- JS -->
+		
+            <script>
+                hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
+            </script>
+        
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Iterator_Follower_Paradigm" class="">4 Iterator Follower Paradigm</a><a href="5_Lerp" class="">5 Lerp</a><a href="6_Progressors" class="current">6 Progressors</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Parallel_Animations" class="">8 Parallel Animations</a><a href="9_Tips_and_Conclusion" class="">9 Tips and Conclusion</a><a href="10_Future_Works" class="">10 Future Works</a><a href="11_Advanced" class="">11 Advanced</a></aside><div id="content"><h1>6. Progressors</h1>
+<p>Progressors are another category of animations somewhat similar to followers. </p>
+<h2>6.1 Progressors</h2>
+<p>We just saw the Rotated example using Lerp, but it was a bit clunky. Lets see how progressors can help with that.</p>
+<p><span class="lesson-definition">DEFINITION</span> An animation is said to be a progressor if it takes in input iterators and modifies one or more of them. This is useful for abstracting repeated logic.</p>
+<p>We can use a progressor to handle the boiler plate of Lerp + Rotated for us:</p>
+<pre><code class="language-swift">tree lerps = Square:
+    center: LEFT
+    width: 0.5
+    tag: {}
+    stroke: BLACK
+
+func Rotate(mesh&amp;, rotation, time) = identity:
+    var ret = {}
+
+    /* first add rotated functor wrapper  */
+    mesh = Rotated:
+        mesh: mesh
+        rotation: 0
+    ret += Set:
+        vars&amp;: mesh
+
+    /* linearly interpolate rotation */
+    mesh.rotation = rotation
+    ret += Lerp:
+        vars&amp;: mesh
+        time: 1
+
+    element: ret
+
+p += Rotate:
+    mesh&amp;: lerps
+    rotation: 5 * PI / 4
+    time: 1
+
+/* at this point lerps = Rotated {...}, that is, the iterator was modified */
+/* also, theres the rotation animation */
+</code></pre>
+<p><span class="lesson-important">IMPORTANT</span> By definition, progressors modify their input iterator. Therefore, you should be careful when using them because they may have unintended side effects. For instance, in the above example, it may be unexpected that lerps is no longer of type Square, but instead of type Rotated.</p>
+<p>The standard library does not provide that many progressors (mostly because I felt that would be too opinionated), but we just saw how easy it is to create them if you prefer.</p>
+<p>Exercise: Create Shift and Scale progressors.</p>
+<p>Another common use case is for hiding. For instance, we can create a FadeOut progressor as followers:</p>
+<pre><code class="language-swift">func FadeOut(mesh&amp;, time) = identity:
+    var ret = {}
+    mesh = {}
+    ret += Fade:
+        meshes&amp;: mesh
+        time: time
+
+    element: ret
+</code></pre>
+<h2>6.2 Progressors vs Followers</h2>
+<p>Progressors and Followers aren't all that different, with the one difference being that progressors are expected to modify their input. However, this difference means that followers are generally easier to reason about (since there are no side effects). On the other hand, progressors help remove boilerplate and are generally easier to write. Finally, some animations necessarily need to use progressors and cannot be done using followers (we'll see <a href="/docs/LerpSubset">LerpSubset</a> and <a href="/docs/TransformSubset">TransformSubset</a> as examples in the future), but these aren't that common.</p>
+<p>Use whatever works best for your workflow.</p><div id="next-lessons"><a href="/learn/5_Lerp"> Previous Lesson </a><a href="/learn/7_Tagging_Mechanics"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">6.1 Progressors</a><a id="label-1" href="#section-1" class="">6.2 Progressors vs Followers</a></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    

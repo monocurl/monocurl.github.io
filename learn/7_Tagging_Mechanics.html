@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Monocurl | Learn</title>
+
+		<!-- Meta  -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Monocurl is a desktop application used to create mathematically-defined slideshows and videos.">
+		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
+		<meta name="author" content="Manu Bhat">
+
+		<link rel="icon" href="/img/monocurl-1024.png">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/lessons.css">
+
+		
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        
+
+		<!-- JS -->
+		
+            <script>
+                hljs.highlightAll();
+
+                function rescroll() {
+                    var lastElement = -1
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        const rect = h2.getBoundingClientRect()
+                        document.getElementById(`label-${index}`).className = ""
+                        if (rect.top < 400) {
+                            lastElement = index
+                        }
+                    });
+                    if (lastElement !== -1) {
+                        document.getElementById(`label-${lastElement}`).className = "active"
+                        lastElement.className = "active"
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll("h2").forEach((h2, index) => {
+                        h2.id = `section-${index}`;
+                    });
+                });
+
+                document.onscroll = rescroll
+            </script>
+        
+	</head>
+    
+	<!-- Main -->
+	<body>
+		<nav>
+			<a id='monocurl-title' href="/"> Monocurl </a> 
+			
+			<div class="spacer"> </div>
+
+			<a class="navlink active" href="/learn/0_What_is_Monocurl">           Learn    </a>
+			<a class="navlink " href="/docs/%20camera">     Docs     </a>
+			<a class="navlink " href="/examples">        Examples </a>
+			<a class="navlink " href="/credits">         Credits  </a>
+		</nav>
+
+		<main>
+    <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Iterator_Follower_Paradigm" class="">4 Iterator Follower Paradigm</a><a href="5_Lerp" class="">5 Lerp</a><a href="6_Progressors" class="">6 Progressors</a><a href="7_Tagging_Mechanics" class="current">7 Tagging Mechanics</a><a href="8_Parallel_Animations" class="">8 Parallel Animations</a><a href="9_Tips_and_Conclusion" class="">9 Tips and Conclusion</a><a href="10_Future_Works" class="">10 Future Works</a><a href="11_Advanced" class="">11 Advanced</a></aside><div id="content"><h1>7. Tagging Mechanics</h1>
+<p><span class="lesson-meta">META</span> We discussed the basics of Monocurl animations, but theres still a few things that are awkward. Let me introduce a few problems to illustrate the benefit tags will bring.</p>
+<h2>7.1 Problems</h2>
+<ol>
+<li>What if we're transforming something and it's not matching the way we want?</li>
+<li>What if we want to apply an operation to only some parts of a mesh-tree, and leave the rest unchanged?</li>
+<li>What if we want to apply an animation to a subset of mesh-tree?</li>
+</ol>
+<h2>7.2 Tags</h2>
+<p>It turns out, all of these can be solved via tags. </p>
+<p><span class="lesson-definition">DEFINITION</span> Every mesh in a mesh-tree has an associated <strong>tag</strong>, which is just a vector of numbers. </p>
+<p>The key idea is that this allows us to easily pick subsets because we can look at a given mesh's tag and decide if we want the operation to apply to the mesh or not. This solves problems 2 and 3. </p>
+<p>The other problem about matching might seem a bit unrelated, but in fact it's really an issue of identity. Tags also provide identity. In particular, there is a variant of Transform, <a href="/docs/TagTransform">TagTransform</a>, in which the matching algorithm is to match tags of the source to tags of the second. </p>
+<h2>7.3 Tag Transform Example</h2>
+<p>Here are some examples of TagTransform. Suppose we are trying to animate a sorting operation. A traditional transform does not emphasize the nature of the sorting operation.</p>
+<pre><code class="language-swift">func Bars(array) = identity:
+    var ret = {}
+    for y in array
+        ret += Rect:
+            center: ORIGIN
+            width: 0.25
+            height: y  / 2
+            tag: {}
+            stroke: BLACK
+
+    ret = XStack:
+        mesh_vector: ret
+        align_dir: DOWN
+
+    ret = Centered(ret, ORIGIN)
+    element: ret
+
+tree bars = Bars:
+    array: {3,1,0,2,2,1,4,5,1}
+
+p += Set:
+    vars&amp;: bars
+
+bars.array = sort(bars.array)
+p += Transform:
+    meshes&amp;: bars
+    time: 1
+</code></pre>
+<video controls>
+    Bad sorting example
+    <source src="/video/bad_sort.mp4" type="video/mp4"/>
+</video>
+
+<p>The issue is that we're not matching the rectangles with their sorted parts. However, if we assign tags properly and use TagTransform, the sorting is emphasized.</p>
+<pre><code class="language-swift">func Bars(tagged_array) = identity:
+    var ret = {}
+    for pair in tagged_array
+        ret += Rect:
+            center: ORIGIN
+            width: 0.25
+            height: pair[0] / 2
+            tag: {pair[1]}
+            stroke: BLACK
+
+    ret = XStack:
+        mesh_vector: ret
+        align_dir: DOWN
+
+    ret = Centered(ret, ORIGIN)
+    element: ret
+
+tree bars = Bars:
+    tagged_array: right_key({3,1,0,2,2,1,4,5,1})
+
+p += Set:
+    vars&amp;: bars
+
+bars.tagged_array = sort(bars.tagged_array)
+p += TagTransform:
+    meshes&amp;: bars
+    time: 1
+</code></pre>
+<video controls>
+    Good sorting example
+    <source src="/video/good_sort.mp4" type="video/mp4"/>
+</video>
+
+<p><span class="lesson-important">IMPORTANT</span> Notice how we use <a href="/docs/%20right_key">right_key</a> to help us out with the tagging. Now, in both the initial and sorted meshes, the tags line up correctly (in particular, in the initial mesh-tree the tag is just the index, and in the sorted one, the tag is the index it came from). Since the tags line up correctly, TagTransform looks good.</p>
+<h2>7.4 Operation on Tags Example</h2>
+<p>Here, we decide to only shift a subset of a mesh-tree. In general, the way operators works is that the selected meshes have the operation apply to them, and the unselected meshes are returned as is. Note that unselected are still returned though. This allows them to be chained.</p>
+<pre><code class="language-swift">func Bars(tagged_array) = identity:
+    var ret = {}
+    for pair in tagged_array
+        ret += Rect:
+            center: ORIGIN
+            width: 0.25
+            height: pair[0] / 2
+            tag: {pair[1]}
+            stroke: BLACK
+
+    ret = XStack:
+        mesh_vector: ret
+        align_dir: DOWN
+
+    ret = Centered(ret, ORIGIN)
+    element: ret
+
+tree main
+var bars = Bars:
+    tagged_array: right_key({3,1,0,2,2,1,4,5,1})
+play += Show:
+    into&amp;: main
+    value: bars
+    sticky: 0
+
+/* The shift only applies to a subset */
+bars = Shifted:
+    root: bars
+    tag_predicate(tag): tag[0] &lt; 4
+    delta: UP
+
+play += TagTransform:
+    mesh&amp;: main
+    target: bars
+    null_action: fade
+    time: 1
+    sticky: 0
+</code></pre>
+<video controls>
+    Partial opertations example
+    <source src="/video/partial_operation.mp4" type="video/mp4"/>
+</video>
+
+<p>Notice the usage of tag_predicate in the Shifted operation, which dictates whether or not the mesh should be shifted. While in our particular case we could have just done this with a for loop, this becomes impractical for complex and large mesh-trees.</p>
+<h2>7.5 Remarks and Conclusion</h2>
+<p><span class="lesson-remark">REMARK</span> We also note that multiple meshes in a mesh-tree can have the same tag (which is often the case when we give it the empty tag, and is otherwise useful for treating two meshes as the same).</p>
+<p>Tags are pretty powerful. In general, tags are useful for differentiating different types of meshes, and different instances within classes. For example, if we're making a Graph mesh, this could be used to tag edges and to tag nodes. This is what we mean when we say tagging is identity.</p><div id="next-lessons"><a href="/learn/6_Progressors"> Previous Lesson </a><a href="/learn/8_Parallel_Animations"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">7.1 Problems</a><a id="label-1" href="#section-1" class="">7.2 Tags</a><a id="label-2" href="#section-2" class="">7.3 Tag Transform Example</a><a id="label-3" href="#section-3" class="">7.4 Operation on Tags Example</a><a id="label-4" href="#section-4" class="">7.5 Remarks and Conclusion</a></div>
+		</main>
+
+		<footer>
+			<div id="footer-legal"> 
+				Copyright &copy Monocurl 2023. All rights reserved. 
+			</div>
+
+			<ul id="footer-links">
+				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+			</ul>
+		</footer>
+	</body>
+</html>
+    
