@@ -29,6 +29,13 @@ main {
 	font-weight: 600;
 }
 
+#landing-figure a {
+	font-size: 23px;
+	font-weight: 300;
+	color: var(--blue);
+	margin-left: 10px;
+}
+
 #monocurl-logo {
 	width: 450px;
 }
@@ -94,6 +101,11 @@ section h2 {
 
 section p {
 	max-width: 840px;
+}
+
+.example-video {
+	max-width: 600px;
+	display: block;
 }
 
 .read-more {

@@ -168,13 +168,10 @@ p += TagTransform:
     ret = Centered(ret, ORIGIN)
     element: ret
 
-tree main
-var bars = Bars:
+tree bars = Bars:
     tagged_array: right_key({3,1,0,2,2,1,4,5,1})
-play += Show:
-    into&amp;: main
-    value: bars
-    sticky: 0
+p += Set:
+    vars&amp;: bars
 
 /* The shift only applies to a subset */
 bars = Shifted:
@@ -182,12 +179,9 @@ bars = Shifted:
     tag_predicate(tag): tag[0] &lt; 4
     delta: UP
 
-play += TagTransform:
-    mesh&amp;: main
-    target: bars
-    null_action: fade
+p += TagTransform:
+    meshes&amp;: bars
     time: 1
-    sticky: 0
 </code></pre>
 <video controls>
     Partial opertations example
@@ -206,10 +200,10 @@ play += TagTransform:
 			</div>
 
 			<ul id="footer-links">
-				<li> <a href="https://discord.com/invite/7g94JR3SAD">           Discord       </a> </li>
-				<li> <a href="https://www.youtube.com/channel/monocurl">        YouTube       </a> </li>
-				<li> <a href="https://github.com/monocurl/monocurl">			Source        </a> </li>
-				<li> <a href="https://github.com/monocurl/monocurl.github.io">  Website Build </a> </li>
+				<li> <a href="https://discord.com/invite/7g94JR3SAD" target="_blank" rel="noreferrer">           Discord       </a> </li>
+				<li> <a href="https://www.youtube.com/channel/monocurl" target="_blank" rel="noreferrer">        YouTube       </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl" target="_blank" rel="noreferrer">			Source        </a> </li>
+				<li> <a href="https://github.com/monocurl/monocurl.github.io" target="_blank" rel="noreferrer">  Website Build </a> </li>
 			</ul>
 		</footer>
 	</body>
