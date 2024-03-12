@@ -68,6 +68,7 @@
 		<main>
     <aside><h1> Learn </h1><a href="0_What_is_Monocurl" class="">0 What is Monocurl</a><a href="1_Monocurl_Language" class="">1 Monocurl Language</a><a href="2_Using_the_Editor" class="">2 Using the Editor</a><a href="3_Meshes" class="">3 Meshes</a><a href="4_Iterator_Follower_Paradigm" class="current">4 Iterator Follower Paradigm</a><a href="5_Lerp" class="">5 Lerp</a><a href="6_Progressors" class="">6 Progressors</a><a href="7_Tagging_Mechanics" class="">7 Tagging Mechanics</a><a href="8_Parallel_Animations" class="">8 Parallel Animations</a><a href="9_Tips_and_Conclusion" class="">9 Tips and Conclusion</a><a href="10_Future_Works" class="">10 Future Works</a><a href="11_Advanced" class="">11 Advanced</a></aside><div id="content"><h1>4. The Iterator Follower Paradigm</h1>
 <p><span class="lesson-important">IMPORTANT</span> The iterator-follower paradigm is at the heart of Monocurl. Take time to really understand it!</p>
+<p><a href="https://www.youtube.com/watch?v=FfjZRYR1HtM&amp;list=PLa5dz_kK-S8aH7enpz1UN758DMvLqnxEt&amp;index=5">Accompanying Video</a></p>
 <h2>4.1 Basics of IF-Paradigm</h2>
 <p>We discussed how Monocurl is about interpolation between different keystates. Lets see how this works in practice. </p>
 <p><span class="lesson-definition">DEFINITION</span> In addition to <code class="language-swift">let</code> and <code class="language-swift">var</code> variables, we have <code class="language-swift">tree</code> variables which are used for variables that we need to show on screen.</p>
@@ -233,10 +234,7 @@ run(Hide(b))
 </code></pre>
 <p>However, suppose we have three animations, <code class="language-swift">A, B, C</code>. And we want to run <code class="language-swift">A</code> and <code class="language-swift">B</code> in series, and in conjunction with that entire group, we want to run <code class="language-swift">C</code> (see diagram below). </p>
 <p><img alt="Three Animations" src="/img/lessons/three_animations.png" /></p>
-<p>It's not that this is impossible with eager execution, but it does become a bit awkward. We are emitting some details for simplicity in this section, but the idea is that it's hard to perform proper encapsulation and this does not line up well with functional programming. We'll see what we mean by this in a second. </p>
 <p><span class="lesson-remark">REMARK</span> Before we introduce our method, we should say that our's is not the only solution. In particular, using generators a la <a href="https://docs.unity3d.com/Manual/Coroutines.html">Unity Coroutines</a> or <a href="https://motioncanvas.io/"> Motion Canvas</a> is more standard. However, our method is simpler to implement, and we believe it encourages a more natural method of thinking.</p>
-<p><span class="lesson-definition">DEFINITION</span> <strong>delayed execution</strong> is the idea that animations are executed separately from their initialization. That is, there is an initialization period and an execution period.</p>
-<p>In initialization, we write down all the animations that will be needed (specifying which should be in parallel/series with what). In execution, all the specified animations are run together. </p>
 <p>We mention that eager execution is awkward in the A-B-C case, but that's not necessarily true. Indeed, if we have references to all three animations, then using an animation operator is not that bad.</p>
 <pre><code class="language-swift">A = ...
 B = ...
@@ -266,17 +264,19 @@ C = ...
 run(do_a_and_b(), C)
 </code></pre>
 <p>But this is just delayed execution! This hopefully gives an explanation of why delayed execution solves a lot of problems, and is a good choice. </p>
-<p>Do note that in this particular case, coroutines serve a similar role. However, we still maintain that delayed execution, once understood, leads to a more natural thinking process.</p>
+<p><span class="lesson-definition">DEFINITION</span> <strong>delayed execution</strong> is the idea that animations are executed separately from their initialization. That is, there is an initialization period and an execution period.</p>
+<p>In initialization, we write down all the animations that will be needed (specifying which should be in parallel/series with what). In execution, all the specified animations are run together. 
+Do note that in this particular case, coroutines serve a similar role. However, we still maintain that delayed execution, once understood, leads to a more natural thinking process.</p>
 <p>Finally, we note that <em>currently</em> there are some downsides to the play list model. In particular, creating something like a LaggedMap from manim is not truly supported (the one that exists in the standard is kind of fake). However, this is something that can be solved very easily in the future, just has not been done yet. There is nothing about the play list model that stops this.</p><div id="next-lessons"><a href="/learn/3_Meshes"> Previous Lesson </a><a href="/learn/5_Lerp"> Next Lesson </a></div></div><div class="sub-sections"><h1> Sections </h1><a id="label-0" href="#section-0" class="active">4.1 Basics of IF-Paradigm</a><a id="label-1" href="#section-1" class="">4.2 Set</a><a id="label-2" href="#section-2" class="">4.3 Write, Fade, Grow</a><a id="label-3" href="#section-3" class="">4.4 Transform</a><a id="label-4" href="#section-4" class="">4.5 Custom Animations</a><a id="label-5" href="#section-5" class="">4.6 (Optional) Delayed Execution</a></div>
 		</main>
 
 		<footer>
 			<div id="footer-legal"> 
-				Copyright &copy Monocurl 2023. All rights reserved. 
+				Copyright &copy Monocurl 2024. All rights reserved. 
 			</div>
 
 			<ul id="footer-links">
-				<li> <a href="https://discord.com/invite/7g94JR3SAD" target="_blank" rel="noreferrer">           Discord       </a> </li>
+				<li> <a href="https://discord.gg/7g94JR3SAD" target="_blank" rel="noreferrer">           Discord       </a> </li>
 				<li> <a href="https://www.youtube.com/channel/monocurl" target="_blank" rel="noreferrer">        YouTube       </a> </li>
 				<li> <a href="https://github.com/monocurl/monocurl" target="_blank" rel="noreferrer">			Source        </a> </li>
 				<li> <a href="https://github.com/monocurl/monocurl.github.io" target="_blank" rel="noreferrer">  Website Build </a> </li>
