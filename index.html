@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Monocurl is an open-source language for mathematical animation and live technical presentations.">
   <title>Monocurl</title>
   <link rel="icon" href="/img/monocurl-1024.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,108 +12,109 @@
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-  <div class="site-shell">
-    <header class="topbar">
-      <a class="brand" href="/">
-        <img class="brand-mark" src="/img/monocurl-1024.png" alt="">
-        <span>Monocurl</span>
-      </a>
-      <nav class="nav-links" aria-label="primary">
-        <a class="active" href="/">Home</a>
-        <a class="" href="/learn/">Learn</a>
-        <a class="" href="/docs/">Docs</a>
-        <a class="nav-cta" href="https://github.com/monocurl/monocurl">GitHub</a>
-      </nav>
-    </header>
-    
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" width="22" height="22" alt="">
+      <span>Monocurl</span>
+    </a>
+    <div class="nav-links">
+      <a href="/" data-active>Home</a>
+      <a href="/learn/">Learn</a>
+      <a href="/docs/">Docs</a>
+    </div>
+    <a class="nav-gh" href="https://github.com/monocurl/monocurl">GitHub</a>
+  </div>
+</nav>
+
 <section class="hero">
-  <div class="hero-inner">
+  <div class="hero-text">
     <h1>Mathematical animation,<br>in code.</h1>
-    <p class="hero-copy">Monocurl is an open-source language for animating mathematical diagrams, proofs, and talks. Declare meshes, assign states, play transitions.</p>
-    <div class="hero-actions">
-      <a class="button" href="/learn/">Start learning</a>
-      <a class="button secondary" href="/docs/">Open stdlib</a>
+    <p>Monocurl is an open-source language for creating mathematical animations. Write the states; the runtime handles the transitions.</p>
+    <div class="cta-row">
+      <a class="btn" href="/learn/">Start learning</a>
+      <a class="btn btn-ghost" href="/docs/">Open stdlib</a>
     </div>
   </div>
 </section>
 
-<div class="pillars">
-  <div class="pillar">
+<div class="features">
+  <div class="feature">
     <h3>Declarative</h3>
-    <p>Assign a new value to a mesh leader and call a transition primitive. The runtime determines how to move geometry between mathematical states — no keyframes, no timeline editors.</p>
+    <p>Assign a new value to a mesh and play a transition. The runtime determines how to interpolate geometry between mathematical states — no keyframes, no timeline editors.</p>
   </div>
-  <div class="pillar">
+  <div class="feature">
     <h3>Mathematical</h3>
-    <p>Meshes are first-class values: curves, surfaces, labels, or trees of other meshes. Syntax is close to Rust in structure and close to math notation in how vectors and transformations read.</p>
+    <p>Meshes are first-class values: curves, surfaces, text, or trees of other meshes. Syntax is close to Rust in structure and close to math in how vectors read.</p>
   </div>
-  <div class="pillar">
+  <div class="feature">
     <h3>Live</h3>
-    <p>Scenes render as a continuous video or step through as a slideshow. The editor previews continuously up to the current timestamp as you type.</p>
+    <p>The editor previews the scene up to the current timestamp as you type. A finished scene renders as a continuous video or steps through as a slideshow.</p>
   </div>
 </div>
 
-<section class="workspace-section">
-  <div class="workspace-wrap">
-    <div class="workspace-shell">
-      <div class="workspace-titlebar">
-        <span>project</span>
-        <span>theorem.mcl</span>
-        <span>preview</span>
-      </div>
-      <div class="workspace-grid">
-        <aside class="ws-sidebar">
-          <a class="ws-file active" href="/docs/#file-scene-mcl">scene.mcl</a>
-          <a class="ws-file" href="/docs/#file-mesh-mcl">mesh.mcl</a>
-          <a class="ws-file" href="/docs/#file-anim-mcl">anim.mcl</a>
-          <a class="ws-file" href="/docs/#file-color-mcl">color.mcl</a>
-          <a class="ws-file" href="/learn/">lessons/</a>
-        </aside>
-        <div class="ws-editor">
-          <div class="ws-tabbar"><span>theorem.mcl</span><span>saved</span></div>
-          <pre><code>import std.math
+<div class="showcase">
+  <div class="showcase-bar">
+    <span>scene.mcl</span>
+    <span>theorem.mcl</span>
+    <span>preview</span>
+  </div>
+  <div class="showcase-body">
+    <nav class="sc-files">
+      <a class="sc-file active" href="/docs/#file-scene-mcl">scene.mcl</a>
+      <a class="sc-file" href="/docs/#file-mesh-mcl">mesh.mcl</a>
+      <a class="sc-file" href="/docs/#file-anim-mcl">anim.mcl</a>
+      <a class="sc-file" href="/docs/#file-color-mcl">color.mcl</a>
+      <a class="sc-file" href="/docs/#file-math-mcl">math.mcl</a>
+    </nav>
+    <div class="sc-editor">
+      <pre><code>import std.math
 import std.mesh
 import std.anim
 import std.color
 
-mesh locus = stroke{CYAN} ExplicitFunc(|x| sin(x), [-5, 5, 160])
-mesh marker = fill{YELLOW} Dot([PI / 2, 1, 0])
+background = [0.035, 0.045, 0.06, 1]
+mesh triangle = [
+    fill{alpha{0.20} BLUE} Triangle(
+        LEFT * 2 + DOWN,
+        RIGHT * 2 + DOWN,
+        LEFT * 0.6 + UP * 1.5
+    ),
+    stroke{CYAN} Line(LEFT * 2 + DOWN, RIGHT * 2 + DOWN)
+]
+mesh circle = stroke{alpha{0.52} WHITE} Circle(2.15)
 
-slide "Sine curve"
+slide "Geometry"
 play Set()</code></pre>
-        </div>
-        <div class="ws-preview">
-          <img src="/media/generated/home-proof-workspace-3a08e08c9473aa28.svg" alt="Monocurl-rendered geometric proof scene">
-        </div>
-      </div>
+    </div>
+    <div class="sc-preview">
+      <img src="/media/generated/home-showcase-3a08e08c9473aa28.svg" alt="Rendered Monocurl scene showing a triangle inscribed in a circle">
     </div>
   </div>
-</section>
+</div>
 
-<section class="section">
-  <div class="section-inner two-lists">
-    <div>
-      <p class="section-label">learn</p>
-      <h2>Scene-first lessons.</h2>
-      <div class="list-panel"><a class="list-row" href="/learn/00-quickstart.html"><span>Quickstart</span><small>Monocurl scenes are ordinary text files. You declare values, place meshes into</small></a><a class="list-row" href="/learn/01-language.html"><span>Language Tour</span><small>Monocurl is a small language, but it is designed around values that can be</small></a><a class="list-row" href="/learn/02-animation.html"><span>Animation Model</span><small>Monocurl animations are built from state changes. You mutate a leader to the</small></a><a class="list-row" href="/learn/03-presentations.html"><span>Presentations</span><small>Presentation mode turns a scene into a live slideshow. The same source can still</small></a></div>
-    </div>
-    <div>
-      <p class="section-label">standard library</p>
-      <h2>304 declarations.</h2>
-      <div class="list-panel"><a class="list-row compact" href="/docs/#file-anim-mcl"><span>anim.mcl</span><small>37 declarations</small></a><a class="list-row compact" href="/docs/#file-color-mcl"><span>color.mcl</span><small>23 declarations</small></a><a class="list-row compact" href="/docs/#file-math-mcl"><span>math.mcl</span><small>69 declarations</small></a><a class="list-row compact" href="/docs/#file-mesh-mcl"><span>mesh.mcl</span><small>111 declarations</small></a><a class="list-row compact" href="/docs/#file-scene-mcl"><span>scene.mcl</span><small>8 declarations</small></a><a class="list-row compact" href="/docs/#file-util-mcl"><span>util.mcl</span><small>56 declarations</small></a></div>
-    </div>
+<div class="home-grid wrap">
+  <div>
+    <p class="label">Learn</p>
+    <h2>Scene-first lessons.</h2>
+    <div class="rowlist"><a class="row" href="/learn/00-quickstart.html"><span>Quickstart</span><small>Monocurl scenes are ordinary text files. You declare values, place meshes into</small></a><a class="row" href="/learn/01-language.html"><span>Language Tour</span><small>Monocurl is a small language, but it is designed around values that can be</small></a><a class="row" href="/learn/02-animation.html"><span>Animation Model</span><small>Monocurl animations are built from state changes. You mutate a leader to the</small></a><a class="row" href="/learn/03-presentations.html"><span>Presentations</span><small>Presentation mode turns a scene into a live slideshow. The same source can still</small></a></div>
   </div>
-</section>
+  <div>
+    <p class="label">Standard library</p>
+    <h2>304 declarations.</h2>
+    <div class="rowlist"><a class="row" href="/docs/#file-anim-mcl"><span>anim.mcl</span><small>37 symbols</small></a><a class="row" href="/docs/#file-color-mcl"><span>color.mcl</span><small>23 symbols</small></a><a class="row" href="/docs/#file-math-mcl"><span>math.mcl</span><small>69 symbols</small></a><a class="row" href="/docs/#file-mesh-mcl"><span>mesh.mcl</span><small>111 symbols</small></a><a class="row" href="/docs/#file-scene-mcl"><span>scene.mcl</span><small>8 symbols</small></a><a class="row" href="/docs/#file-util-mcl"><span>util.mcl</span><small>56 symbols</small></a></div>
+  </div>
+</div>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <span>Monocurl.</span>
-        <div class="footer-links">
-          <a href="/learn/">Learn</a>
-          <a href="/docs/">Docs</a>
-          <a href="https://github.com/monocurl/monocurl">Source</a>
-        </div>
-      </div>
-    </footer>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>Monocurl</span>
+    <nav class="footer-links">
+      <a href="/learn/">Learn</a>
+      <a href="/docs/">Docs</a>
+      <a href="https://github.com/monocurl/monocurl">Source</a>
+    </nav>
   </div>
+</footer>
 </body>
 </html>

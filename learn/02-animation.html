@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
-  <title>Monocurl | Animation Model</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Monocurl is an open-source language for mathematical animation and live technical presentations.">
+  <title>Monocurl · Animation Model</title>
   <link rel="icon" href="/img/monocurl-1024.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,28 +12,29 @@
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-  <div class="site-shell">
-    <header class="topbar">
-      <a class="brand" href="/">
-        <img class="brand-mark" src="/img/monocurl-1024.png" alt="">
-        <span>Monocurl</span>
-      </a>
-      <nav class="nav-links" aria-label="primary">
-        <a class="" href="/">Home</a>
-        <a class="active" href="/learn/">Learn</a>
-        <a class="" href="/docs/">Docs</a>
-        <a class="nav-cta" href="https://github.com/monocurl/monocurl">GitHub</a>
-      </nav>
-    </header>
-    
-<div class="page-title">
-  <p class="page-eyebrow">lesson 3</p>
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" width="22" height="22" alt="">
+      <span>Monocurl</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/learn/" data-active>Learn</a>
+      <a href="/docs/">Docs</a>
+    </div>
+    <a class="nav-gh" href="https://github.com/monocurl/monocurl">GitHub</a>
+  </div>
+</nav>
+
+<div class="page-head wrap">
+  <p class="label">Lesson 3</p>
   <h1>Animation Model</h1>
   <p>Monocurl animations are built from state changes. You mutate a leader to the</p>
 </div>
-<div class="content-wrap">
-  <aside class="sidebar"><a class="" href="/learn/00-quickstart.html">Quickstart</a><a class="" href="/learn/01-language.html">Language Tour</a><a class="current" href="/learn/02-animation.html">Animation Model</a><a class="" href="/learn/03-presentations.html">Presentations</a></aside>
-  <article class="content">
+<div class="lesson-layout wrap">
+  <nav class="lesson-nav-sidebar"><a href="/learn/00-quickstart.html">Quickstart</a><a href="/learn/01-language.html">Language Tour</a><a class="current" href="/learn/02-animation.html">Animation Model</a><a href="/learn/03-presentations.html">Presentations</a></nav>
+  <article class="prose">
     <h1 id="animation-model">Animation Model</h1><p>Monocurl animations are built from state changes. You mutate a leader to the state you want, then play an animation that moves the follower there.</p><h2 id="leaders-and-followers">Leaders And Followers</h2><p>A mesh declaration owns a leader value and a follower value. Code writes the leader. The viewport draws the follower.</p>
 <figure class="rendered-media">
   <div class="media-frame"><img src="/media/generated/02-animation-47c8047eeaefbd2c.svg" alt="generated Monocurl image"></div>
@@ -84,20 +85,19 @@ play Trans(1.2)
   </details>
 </figure>
 <aside class="note important"><strong>IMPORTANT</strong>Prefer the semantic animation when one exists. <code>Trans</code> communicates a different intent than a plain <code>Lerp</code>, and that intent gives the runtime room to choose better geometry matching.</aside>
-    <nav class="lesson-nav"><a class="button secondary" href="/learn/01-language.html">Previous</a><a class="button" href="/learn/03-presentations.html">Next</a></nav>
+    <div class="lesson-footer"><a class="btn btn-ghost" href="/learn/01-language.html">← Previous</a><a class="btn" href="/learn/03-presentations.html">Next →</a></div>
   </article>
 </div>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <span>Monocurl.</span>
-        <div class="footer-links">
-          <a href="/learn/">Learn</a>
-          <a href="/docs/">Docs</a>
-          <a href="https://github.com/monocurl/monocurl">Source</a>
-        </div>
-      </div>
-    </footer>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>Monocurl</span>
+    <nav class="footer-links">
+      <a href="/learn/">Learn</a>
+      <a href="/docs/">Docs</a>
+      <a href="https://github.com/monocurl/monocurl">Source</a>
+    </nav>
   </div>
+</footer>
 </body>
 </html>
