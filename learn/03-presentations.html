@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
+  <title>Monocurl | Presentations</title>
+  <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <img class="brand-mark" src="/img/monocurl-1024.png" alt="">
+        <span>Monocurl</span>
+      </a>
+      <nav class="nav-links" aria-label="primary">
+        <a class="" href="/">Home</a>
+        <a class="active" href="/learn/">Learn</a>
+        <a class="" href="/docs/">Docs</a>
+        <a class="nav-cta" href="https://github.com/monocurl/monocurl">GitHub</a>
+      </nav>
+    </header>
+    
+<header class="page-title">
+  <p class="eyebrow">lesson 4</p>
+  <h1>Presentations</h1>
+  <p>Presentation mode turns a scene into a live slideshow. The same source can still</p>
+</header>
+<div class="content-grid">
+  <aside class="sidebar"><a class="" href="/learn/00-quickstart.html">Quickstart</a><a class="" href="/learn/01-language.html">Language Tour</a><a class="" href="/learn/02-animation.html">Animation Model</a><a class="current" href="/learn/03-presentations.html">Presentations</a></aside>
+  <article class="content">
+    <h1 id="presentations">Presentations</h1><p>Presentation mode turns a scene into a live slideshow. The same source can still be exported as a video, but slides become the navigation model.</p><h2 id="parameters">Parameters</h2><p>Parameters expose runtime controls. Use them when a presenter should be able to adjust a mathematical value without editing source code.</p>
+<figure class="rendered-media">
+  <div class="media-frame"><img src="/media/generated/03-presentations-acd3e4ab04b3fe3a.svg" alt="generated Monocurl image"></div>
+  
+  <details>
+    <summary>source</summary>
+    <pre><code>import std.math
+import std.mesh
+import std.anim
+import std.color
+
+background = [0.035, 0.045, 0.060, 1]
+param radius = 1
+mesh circle = fill{alpha{0.14} CYAN} stroke{CYAN} Circle(radius: $radius)
+
+slide &quot;radius&quot;
+play Set()
+</code></pre>
+  </details>
+</figure>
+<p><code>$radius</code> builds a stateful value. When the parameter changes, dependent mesh leaders can be re-evaluated and the viewport updates.</p><h2 id="camera-and-framing">Camera And Framing</h2><p>The scene camera is just another value with a special renderer meaning. During presentation mode, camera motion and parameter changes can be coordinated.</p><pre><code class="language-monocurl">mesh camera = Camera(position: [0, 0, -8], target: ORIGIN)
+
+slide &quot;camera&quot;
+play Set(&amp;camera)
+</code></pre><h2 id="writing-for-slides">Writing For Slides</h2><p>Use a slide whenever the speaker should pause, explain, or expose a new control. Use animation inside that slide to guide attention.</p><aside class="note"><strong>META</strong>A good Monocurl presentation reads like a proof outline: each slide owns one conceptual step, and each animation makes that step visible.</aside>
+    <nav class="lesson-nav"><a class="button secondary" href="/learn/02-animation.html">Previous</a></nav>
+  </article>
+</div>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>Monocurl.</span>
+        <div class="footer-links">
+          <a href="/learn/">Learn</a>
+          <a href="/docs/">Docs</a>
+          <a href="https://github.com/monocurl/monocurl">Source</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

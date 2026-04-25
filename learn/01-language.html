@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
+  <title>Monocurl | Language Tour</title>
+  <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <img class="brand-mark" src="/img/monocurl-1024.png" alt="">
+        <span>Monocurl</span>
+      </a>
+      <nav class="nav-links" aria-label="primary">
+        <a class="" href="/">Home</a>
+        <a class="active" href="/learn/">Learn</a>
+        <a class="" href="/docs/">Docs</a>
+        <a class="nav-cta" href="https://github.com/monocurl/monocurl">GitHub</a>
+      </nav>
+    </header>
+    
+<header class="page-title">
+  <p class="eyebrow">lesson 2</p>
+  <h1>Language Tour</h1>
+  <p>Monocurl is a small language, but it is designed around values that can be</p>
+</header>
+<div class="content-grid">
+  <aside class="sidebar"><a class="" href="/learn/00-quickstart.html">Quickstart</a><a class="current" href="/learn/01-language.html">Language Tour</a><a class="" href="/learn/02-animation.html">Animation Model</a><a class="" href="/learn/03-presentations.html">Presentations</a></aside>
+  <article class="content">
+    <h1 id="language-tour">Language Tour</h1><p>Monocurl is a small language, but it is designed around values that can be animated. The syntax is close to Rust in its block structure and close to math in how vectors and transformations read.</p><h2 id="declarations">Declarations</h2><p>Use <code>let</code> for immutable bindings, <code>var</code> for ordinary mutable values, <code>mesh</code> for animated leaders, and <code>param</code> for values that can be adjusted during presentation.</p><pre><code class="language-monocurl">let radius = 1
+var points = []
+mesh graph = []
+param phase = 0
+</code></pre><h2 id="functions">Functions</h2><p>Functions are declared with pipe-delimited parameters.</p><pre><code class="language-monocurl">let ring = |radius, color| fill{color} Circle(radius)
+mesh outer = ring(2, BLUE)
+</code></pre><p>Arguments can have defaults, and function values can be passed into constructors that sample callbacks.</p>
+<figure class="rendered-media">
+  <div class="media-frame"><img src="/media/generated/01-language-eef9dc873e661f8f.svg" alt="generated Monocurl image"></div>
+  
+  <details>
+    <summary>source</summary>
+    <pre><code>import std.math
+import std.mesh
+import std.anim
+import std.color
+
+background = [0.035, 0.045, 0.060, 1]
+let wave = |x| sin(x * TAU)
+mesh curve = stroke{CYAN} ExplicitFunc(wave)
+
+slide &quot;wave&quot;
+play Set()
+</code></pre>
+  </details>
+</figure>
+<h2 id="blocks-and-slides">Blocks And Slides</h2><p>Blocks introduce scope. Slides divide a scene into presentation-sized moments.</p><pre><code class="language-monocurl">mesh title = Text(&quot;A theorem&quot;)
+
+slide &quot;intro&quot;
+play Write(0.8)
+
+slide &quot;proof&quot;
+title = Text(&quot;Proof&quot;)
+play Trans(0.6)
+</code></pre><aside class="note"><strong>REMARK</strong>A scene can be rendered as one continuous video or stepped through as a slideshow because slides are first-class in the execution model.</aside>
+    <nav class="lesson-nav"><a class="button secondary" href="/learn/00-quickstart.html">Previous</a><a class="button" href="/learn/02-animation.html">Next</a></nav>
+  </article>
+</div>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>Monocurl.</span>
+        <div class="footer-links">
+          <a href="/learn/">Learn</a>
+          <a href="/docs/">Docs</a>
+          <a href="https://github.com/monocurl/monocurl">Source</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

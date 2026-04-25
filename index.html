@@ -1,214 +1,115 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<title>Monocurl</title>
-
-		<!-- Meta  -->
-		<meta charset="UTF-8">
-		<meta name="description" content="Monocurl is a desktop application used to create mathematically-defined slideshows and videos.">
-		<meta name="keywords" content="Monocurl, math, animation, presentations, slideshows">
-		<meta name="author" content="Manu Bhat">
-
-		<link rel="icon" href="/img/monocurl-1024.png">
-
-		<!-- CSS -->
-		<link rel="stylesheet" href="/css/main.css">
-		<link rel="stylesheet" href="/css/index.css">
-
-		
-
-		<!-- JS -->
-		
-        <script>
-			function os_clicked(os) {
-				const all = ['macos', 'windows', 'linux'];
-				for (let match in all) {
-					var content = document.getElementById(all[match] + "-details")
-					if (!content.classList.contains('hidden')) {
-						content.classList.add('hidden');	
-					}
-
-					var button = document.getElementById("os-" + all[match]);
-					if (button.classList.contains('active-os')) {
-						button.classList.remove('active-os');
-					}
-				}
-
-				var content = document.getElementById(os + "-details");
-				content.classList.remove('hidden');
-
-				var button = document.getElementById('os-' + os);
-				button.classList.add('active-os');
-			}
-		</script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
+  <title>Monocurl</title>
+  <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <img class="brand-mark" src="/img/monocurl-1024.png" alt="">
+        <span>Monocurl</span>
+      </a>
+      <nav class="nav-links" aria-label="primary">
+        <a class="active" href="/">Home</a>
+        <a class="" href="/learn/">Learn</a>
+        <a class="" href="/docs/">Docs</a>
+        <a class="nav-cta" href="https://github.com/monocurl/monocurl">GitHub</a>
+      </nav>
+    </header>
     
-	</head>
-    
-	<!-- Main -->
-	<body>
-		<nav>
-			<a id='monocurl-title' href="/"> Monocurl </a> 
-			
-			<div class="spacer"> </div>
+<section class="hero">
+  <img class="hero-media" src="/media/generated/home-sine-workspace-41f476191b867b45.svg" alt="">
+  <div class="hero-inner">
+    <h1>Monocurl</h1>
+    <p class="hero-copy">A language for mathematical animation. Declare meshes, assign states, play transitions — the runtime interpolates geometry between them.</p>
+    <div class="hero-actions">
+      <a class="button" href="/learn/">Start learning</a>
+      <a class="button secondary" href="/docs/">Open stdlib</a>
+    </div>
+  </div>
+</section>
 
-			<a class="navlink " href="/learn/0_What_is_Monocurl">           Learn    </a>
-			<a class="navlink " href="/docs/%20camera">     Docs     </a>
-			<a class="navlink " href="/examples">        Examples </a>
-			<a class="navlink " href="/credits">         Credits  </a>
-		</nav>
+<div class="feature-pillars">
+  <div class="feature-pillar">
+    <h3>Declarative</h3>
+    <p>Assign a new value to a mesh leader and call a transition primitive. The runtime determines how to move geometry between mathematical states — no keyframes, no timeline editors.</p>
+  </div>
+  <div class="feature-pillar">
+    <h3>Mathematical</h3>
+    <p>Meshes are first-class values: curves, surfaces, labels, or trees of other meshes. Syntax is close to Rust in structure and close to math notation in how vectors and transformations read.</p>
+  </div>
+  <div class="feature-pillar">
+    <h3>Live</h3>
+    <p>Scenes render as a continuous video or step through as a slideshow. The editor previews the scene continuously up to the current timestamp as you type.</p>
+  </div>
+</div>
 
-		<main>
-    
-			<figure id="landing-figure"> 
-				<figcaption> 
-				    Make videos and slideshow presentations using math 
+<section class="workspace-section">
+  <div class="workspace-shell">
+    <div class="workspace-topline">
+      <span>project</span>
+      <span>theorem.mcl</span>
+      <span>preview</span>
+    </div>
+    <div class="workspace-grid">
+      <aside class="project-pane">
+        <a class="project-item active" href="/docs/#file-scene-mcl">scene.mcl</a>
+        <a class="project-item" href="/docs/#file-mesh-mcl">mesh.mcl</a>
+        <a class="project-item" href="/docs/#file-anim-mcl">anim.mcl</a>
+        <a class="project-item" href="/docs/#file-color-mcl">color.mcl</a>
+        <a class="project-item" href="/learn/">lessons/</a>
+      </aside>
+      <div class="editor-pane">
+        <div class="tabbar"><span>theorem.mcl</span><span>saved</span></div>
+        <pre><code>import std.math
+import std.mesh
+import std.anim
+import std.color
 
-				    <div>
-                        <a href="https://discord.gg/7g94JR3SAD" target="_blank" rel="noreferrer"> 
-                            Discord
-                        </a>
+mesh locus = stroke{CYAN} ExplicitFunc(|x| sin(x), [-5, 5, 160])
+mesh marker = fill{YELLOW} Dot([PI / 2, 1, 0])
 
-                        <a href="https://github.com/monocurl/monocurl" target="_blank" rel="noreferrer"> 
-                            GitHub
-                        </a>
-				    </div>
-				</figcaption>	
-				<img id="monocurl-logo" alt="Monocurl logo" src="/img/monocurl-1024.png">
-			</figure> 
+slide "Sine curve"
+play Set()</code></pre>
+      </div>
+      <div class="preview-pane">
+        <img src="/media/generated/home-proof-workspace-3a08e08c9473aa28.svg" alt="Monocurl-rendered geometric proof scene">
+      </div>
+    </div>
+  </div>
+</section>
 
-			<section id="landing-download">
-				<h2 class="section-header"> Download Beta </h2>
-			
-				<div id="os-selection">
-					<button id="os-macos" onclick="os_clicked('macos')"   class='button-os active-os'> 
-					    <img alt=""macOS logo"" src="/img/macos.png"/>
-						macOS   
-					</button>
+<section class="section">
+  <div class="section-inner two-lists">
+    <div>
+      <p class="section-kicker">learn</p>
+      <h2>Scene-first lessons.</h2>
+      <div class="list-panel"><a class="list-row" href="/learn/00-quickstart.html"><span>Quickstart</span><small>Monocurl scenes are ordinary text files. You declare values, place meshes into</small></a><a class="list-row" href="/learn/01-language.html"><span>Language Tour</span><small>Monocurl is a small language, but it is designed around values that can be</small></a><a class="list-row" href="/learn/02-animation.html"><span>Animation Model</span><small>Monocurl animations are built from state changes. You mutate a leader to the</small></a><a class="list-row" href="/learn/03-presentations.html"><span>Presentations</span><small>Presentation mode turns a scene into a live slideshow. The same source can still</small></a></div>
+    </div>
+    <div>
+      <p class="section-kicker">standard library</p>
+      <h2>304 declarations.</h2>
+      <div class="list-panel"><a class="list-row compact" href="/docs/#file-anim-mcl"><span>anim.mcl</span><small>37 declarations</small></a><a class="list-row compact" href="/docs/#file-color-mcl"><span>color.mcl</span><small>23 declarations</small></a><a class="list-row compact" href="/docs/#file-math-mcl"><span>math.mcl</span><small>69 declarations</small></a><a class="list-row compact" href="/docs/#file-mesh-mcl"><span>mesh.mcl</span><small>111 declarations</small></a><a class="list-row compact" href="/docs/#file-scene-mcl"><span>scene.mcl</span><small>8 declarations</small></a><a class="list-row compact" href="/docs/#file-util-mcl"><span>util.mcl</span><small>56 declarations</small></a></div>
+    </div>
+  </div>
+</section>
 
-					<button id="os-windows" onclick="os_clicked('windows')" class='button-os'> 
-					    <img alt=""Windows logo"" src="/img/windows.png"/>
-						Windows 
-					</button>
-
-					<button id="os-linux"   onclick="os_clicked('linux')"   class='button-os'> 
-					    <img alt=""Linux logo"" src="/img/linux.png"/>
-						Linux   
-					</button>
-				</div>
-
-				<div id="macos-details" class="os-details">
-					<p> 
-						<a class="download-button" download="Monocurl.zip" href="https://github.com/monocurl/monocurl/releases/download/v0.1.0-beta/macos-monocurl.zip"> 
-							Download
-						</a>
-					macOS 11.0 and above supported (both Intel and ARM, tested on macOS 14.0)
-					</p>
-				</div>
-
-				<div id="windows-details" class="os-details hidden">
-					<p>
-						<a class="download-button" download="monocurl-installer.msi" href="https://github.com/monocurl/monocurl/releases/download/v0.1.0-beta/windows-monocurl-installer.msi"> 
-							Download
-						</a>
-					 Windows 10 and 11 supported. The UI is admitedly not great in the beta release :(
-					 </p>
-				</div>
-
-				<div id="linux-details" class="os-details hidden">
-					<p>
-						Unfortunately, a Linux version of Monocurl is not available at this time. 
-					</p>
-				</div>
-			</section>
-            <section>
-				<h2 class="section-header"> About </h2>
-                <p>
-                    Monocurl is a scripting language and a desktop application used to create STEM videos and slideshow. The core idea of Monocurl is to combine the benefits of programmatic animations with the traditional feel of a video editor.
-                <a href="/learn/0_What_is_Monocurl" class="read-more"> Continue reading </a> for working examples and a more in depth tutorial.
-                </p>
-
-                <img alt="Monocurl Editor" src="/img/lessons/monocurl_editor.png" width="800px"/>
-            </section>
-            <section>
-				<h2 class="section-header"> Examples </h2>
-                <p>
-                    Pythagorean Theorem
-                </p>
-            
-                <video class="example-video" controls>
-                    Pythagorean Theorem
-                    <source src="/video/pythagorean_theorem.mp4" type="video/mp4"/>
-                </video>
-
-                <p>
-                    Monocurl Intro Video
-                </p>
-                <video class="example-video" controls>
-                    Monocurl Intro Video
-                    <source src="/video/monocurl_intro.mp4" type="video/mp4"/>
-                </video>
-
-
-                <p>
-                    Two-Dimensional Riemann Rectangles
-                </p>
-                <iframe width="600" height="337" src="https://www.youtube.com/embed/ZyBIXdhb0hw?si=630hGlgBdJ8I7zYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-                <p>
-                    Sister Nodes on a Tree
-                </p>
-                <iframe width="600" height="337" src="https://www.youtube.com/embed/pqsHR6XMoY4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
-                <p>
-                    Triangular Numbers
-                </p>
-                <video class="example-video" controls>
-                    Triangular Numbers
-                    <source src="/video/triangular_numbers.mp4" type="video/mp4"/>
-                </video>
-
-                <p>
-                    Monocurl Logo Animation
-                </p>
-                <video class="example-video" controls>
-                    Monocurl Logo
-                    <source src="/video/monocurl_logo.mp4" type="video/mp4"/>
-                </video>
-
-
-                <a href="/examples" class="read-more"> See more examples </a>
-            </section>
-            <section>
-				<h2 class="section-header"> Upcoming (v0.2.0) </h2>
-                <p>
-                    - Much better UI
-                    <br/>
-                    - Brace-based syntax instead of line based
-                    <br/>
-                    - Overall optimizations
-                    <br/>
-                    - (maybe) syntax highlighting
-                    <br/>
-                    - (maybe) autocomplete
-                </p>
-            </section>
-    
-		</main>
-
-		<footer>
-			<div id="footer-legal"> 
-				Copyright &copy Monocurl 2024. All rights reserved. 
-			</div>
-
-			<ul id="footer-links">
-				<li> <a href="https://discord.gg/7g94JR3SAD" target="_blank" rel="noreferrer">           Discord       </a> </li>
-				<li> <a href="https://www.youtube.com/channel/monocurl" target="_blank" rel="noreferrer">        YouTube       </a> </li>
-				<li> <a href="https://github.com/monocurl/monocurl" target="_blank" rel="noreferrer">			Source        </a> </li>
-				<li> <a href="https://github.com/monocurl/monocurl.github.io" target="_blank" rel="noreferrer">  Website Build </a> </li>
-			</ul>
-		</footer>
-	</body>
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>Monocurl.</span>
+        <div class="footer-links">
+          <a href="/learn/">Learn</a>
+          <a href="/docs/">Docs</a>
+          <a href="https://github.com/monocurl/monocurl">Source</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
 </html>
-    

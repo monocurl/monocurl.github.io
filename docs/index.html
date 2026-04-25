@@ -1,0 +1,4713 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
+  <title>Monocurl | Documentation</title>
+  <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <img class="brand-mark" src="/img/monocurl-1024.png" alt="">
+        <span>Monocurl</span>
+      </a>
+      <nav class="nav-links" aria-label="primary">
+        <a class="" href="/">Home</a>
+        <a class="" href="/learn/">Learn</a>
+        <a class="active" href="/docs/">Docs</a>
+        <a class="nav-cta" href="https://github.com/monocurl/monocurl">GitHub</a>
+      </nav>
+    </header>
+    
+<header class="page-title">
+  <p class="eyebrow">generated reference</p>
+  <h1>Documentation</h1>
+  <p>Search the standard library by symbol, category, or source file. Results are grouped exactly by the `.mcl` file they came from.</p>
+</header>
+<main class="docs-shell">
+  <div class="docs-toolbar">
+    <input class="docs-search" id="docs-search" type="search" placeholder="Fuzzy search symbols, files, categories" oninput="filterDocs()" autofocus>
+    <a class="button secondary" href="https://github.com/monocurl/monocurl">stdlib source</a>
+  </div>
+  <div class="docs-layout">
+    <nav class="docs-index"><div class="docs-index-group"><a class="docs-file-link" href="#file-anim-mcl">anim.mcl</a><a href="#anim-bend">Bend</a><a href="#cameralerp">CameraLerp</a><a href="#anim-fade">Fade</a><a href="#grow">Grow</a><a href="#anim-lerp">Lerp</a><a href="#primitiveanim">PrimitiveAnim</a><a href="#set">Set</a><a href="#tagbend">TagBend</a><a href="#tagtrans">TagTrans</a><a href="#anim-trans">Trans</a><a href="#wait">Wait</a><a href="#write">Write</a><a href="#bounce">bounce</a><a href="#cosine">cosine</a><a href="#ease-in">ease_in</a><a href="#ease-in-out">ease_in_out</a><a href="#ease-out">ease_out</a><a href="#elastic">elastic</a><a href="#exponential">exponential</a><a href="#linear">linear</a><a href="#smooth">smooth</a><a href="#smooth-in">smooth_in</a><a href="#smooth-out">smooth_out</a><a href="#smoother">smoother</a><a href="#copy">Copy</a><a href="#copysubset">CopySubset</a><a href="#flash">Flash</a><a href="#highlight">Highlight</a><a href="#laggedmap">LaggedMap</a><a href="#transsubsetcopy">TransSubsetCopy</a><a href="#transsubsetto">TransSubsetTo</a><a href="#transfer">Transfer</a><a href="#transfersubset">TransferSubset</a><a href="#delay">delay</a><a href="#fast">fast</a><a href="#rate">rate</a><a href="#slow">slow</a></div><div class="docs-index-group"><a class="docs-file-link" href="#file-color-mcl">color.mcl</a><a href="#black">BLACK</a><a href="#blue">BLUE</a><a href="#brown">BROWN</a><a href="#clear">CLEAR</a><a href="#cyan">CYAN</a><a href="#dark-gray">DARK_GRAY</a><a href="#gray">GRAY</a><a href="#green">GREEN</a><a href="#light-gray">LIGHT_GRAY</a><a href="#magenta">MAGENTA</a><a href="#navy">NAVY</a><a href="#orange">ORANGE</a><a href="#pink">PINK</a><a href="#purple">PURPLE</a><a href="#red">RED</a><a href="#teal">TEAL</a><a href="#white">WHITE</a><a href="#yellow">YELLOW</a><a href="#alpha">alpha</a><a href="#gray-shade">gray_shade</a><a href="#hsv">hsv</a><a href="#mix">mix</a><a href="#rgb">rgb</a></div><div class="docs-index-group"><a class="docs-file-link" href="#file-math-mcl">math.mcl</a><a href="#backward">BACKWARD</a><a href="#down">DOWN</a><a href="#e">E</a><a href="#forward">FORWARD</a><a href="#left">LEFT</a><a href="#one-v">ONE_V</a><a href="#origin">ORIGIN</a><a href="#pi">PI</a><a href="#right">RIGHT</a><a href="#tau">TAU</a><a href="#up">UP</a><a href="#x-hat">X_HAT</a><a href="#y-hat">Y_HAT</a><a href="#zero-v">ZERO_V</a><a href="#z-hat">Z_HAT</a><a href="#abs">abs</a><a href="#angle-between">angle_between</a><a href="#arccos">arccos</a><a href="#arcsin">arcsin</a><a href="#arctan">arctan</a><a href="#arctan2">arctan2</a><a href="#cbrt">cbrt</a><a href="#ceil">ceil</a><a href="#choose">choose</a><a href="#clamp">clamp</a><a href="#cos">cos</a><a href="#cosh">cosh</a><a href="#cot">cot</a><a href="#cross">cross</a><a href="#csc">csc</a><a href="#deg-to-rad">deg_to_rad</a><a href="#math-dot">dot</a><a href="#exp">exp</a><a href="#factorial">factorial</a><a href="#floor">floor</a><a href="#gcd">gcd</a><a href="#is-prime">is_prime</a><a href="#keyframe-lerp">keyframe_lerp</a><a href="#lcm">lcm</a><a href="#math-lerp">lerp</a><a href="#ln">ln</a><a href="#log">log</a><a href="#log10">log10</a><a href="#log2">log2</a><a href="#map-range">map_range</a><a href="#max">max</a><a href="#mean">mean</a><a href="#min">min</a><a href="#mod">mod</a><a href="#norm">norm</a><a href="#normalize">normalize</a><a href="#permute">permute</a><a href="#proj">proj</a><a href="#rad-to-deg">rad_to_deg</a><a href="#randint">randint</a><a href="#random">random</a><a href="#relu">relu</a><a href="#round">round</a><a href="#sec">sec</a><a href="#sigmoid">sigmoid</a><a href="#sign">sign</a><a href="#sin">sin</a><a href="#sinh">sinh</a><a href="#sqrt">sqrt</a><a href="#std-dev">std_dev</a><a href="#tan">tan</a><a href="#tanh">tanh</a><a href="#trunc">trunc</a><a href="#variance">variance</a></div><div class="docs-index-group"><a class="docs-file-link" href="#file-mesh-mcl">mesh.mcl</a><a href="#cone">Cone</a><a href="#cylinder">Cylinder</a><a href="#plane">Plane</a><a href="#rectangularprism">RectangularPrism</a><a href="#sphere">Sphere</a><a href="#torus">Torus</a><a href="#axis1d">Axis1d</a><a href="#axis2d">Axis2d</a><a href="#axis3d">Axis3d</a><a href="#explicitfunc">ExplicitFunc</a><a href="#explicitfunc2d">ExplicitFunc2d</a><a href="#explicitfuncdiff">ExplicitFuncDiff</a><a href="#implicitfunc2d">ImplicitFunc2d</a><a href="#parametricfunc">ParametricFunc</a><a href="#polaraxis">PolarAxis</a><a href="#boundingbox">BoundingBox</a><a href="#grid">Grid</a><a href="#stack">Stack</a><a href="#table">Table</a><a href="#xstack">XStack</a><a href="#ystack">YStack</a><a href="#zstack">ZStack</a><a href="#annulus">Annulus</a><a href="#arc">Arc</a><a href="#arrow">Arrow</a><a href="#capsule">Capsule</a><a href="#circle">Circle</a><a href="#mesh-dot">Dot</a><a href="#line">Line</a><a href="#polygon">Polygon</a><a href="#polyline">Polyline</a><a href="#rect">Rect</a><a href="#regularpolygon">RegularPolygon</a><a href="#square">Square</a><a href="#triangle">Triangle</a><a href="#mesh-backward">mesh_backward</a><a href="#mesh-center">mesh_center</a><a href="#mesh-contains">mesh_contains</a><a href="#mesh-contour-count">mesh_contour_count</a><a href="#mesh-direc">mesh_direc</a><a href="#mesh-dist">mesh_dist</a><a href="#mesh-down">mesh_down</a><a href="#mesh-edge-set">mesh_edge_set</a><a href="#mesh-forward">mesh_forward</a><a href="#mesh-height">mesh_height</a><a href="#mesh-left">mesh_left</a><a href="#mesh-normal">mesh_normal</a><a href="#mesh-rank">mesh_rank</a><a href="#mesh-raycast">mesh_raycast</a><a href="#mesh-right">mesh_right</a><a href="#mesh-sample">mesh_sample</a><a href="#mesh-tags">mesh_tags</a><a href="#mesh-tangent">mesh_tangent</a><a href="#mesh-triangle-set">mesh_triangle_set</a><a href="#mesh-up">mesh_up</a><a href="#mesh-vertex-set">mesh_vertex_set</a><a href="#mesh-width">mesh_width</a><a href="#brace">Brace</a><a href="#label">Label</a><a href="#latex">Latex</a><a href="#measure">Measure</a><a href="#number">Number</a><a href="#tex">Tex</a><a href="#text">Text</a><a href="#text-tag">text_tag</a><a href="#mesh-bend">bend</a><a href="#centered-at">centered_at</a><a href="#color">color</a><a href="#color-map">color_map</a><a href="#contour-separate">contour_separate</a><a href="#dashed">dashed</a><a href="#dotted">dotted</a><a href="#downrank">downrank</a><a href="#extrude">extrude</a><a href="#mesh-fade">fade</a><a href="#fill">fill</a><a href="#fixed-in-frame">fixed_in_frame</a><a href="#gloss">gloss</a><a href="#in-space">in_space</a><a href="#matched-edge">matched_edge</a><a href="#mesh-collapse">mesh_collapse</a><a href="#next-to">next_to</a><a href="#normal-hint">normal_hint</a><a href="#point-map">point_map</a><a href="#projected">projected</a><a href="#revolve">revolve</a><a href="#rotate">rotate</a><a href="#scale">scale</a><a href="#shift">shift</a><a href="#stroke">stroke</a><a href="#subdivide">subdivide</a><a href="#subset-map">subset_map</a><a href="#tag">tag</a><a href="#tag-filter">tag_filter</a><a href="#tag-map">tag_map</a><a href="#tag-split">tag_split</a><a href="#tesselated">tesselated</a><a href="#textured">textured</a><a href="#to-corner">to_corner</a><a href="#to-side">to_side</a><a href="#mesh-trans">trans</a><a href="#uprank">uprank</a><a href="#uv-map">uv_map</a><a href="#wireframe">wireframe</a><a href="#z-index">z_index</a><a href="#bezier">Bezier</a><a href="#colorgrid">ColorGrid</a><a href="#field">Field</a><a href="#halfvector">HalfVector</a><a href="#image">Image</a><a href="#vector">Vector</a></div><div class="docs-index-group"><a class="docs-file-link" href="#file-scene-mcl">scene.mcl</a><a href="#aspect-16-9">ASPECT_16_9</a><a href="#aspect-1-1">ASPECT_1_1</a><a href="#aspect-4-3">ASPECT_4_3</a><a href="#camera">Camera</a><a href="#default-background">DEFAULT_BACKGROUND</a><a href="#default-camera">DEFAULT_CAMERA</a><a href="#frame-x-radius">FRAME_X_RADIUS</a><a href="#frame-y-radius">FRAME_Y_RADIUS</a></div><div class="docs-index-group"><a class="docs-file-link" href="#file-util-mcl">util.mcl</a><a href="#all">all</a><a href="#any">any</a><a href="#count">count</a><a href="#depth">depth</a><a href="#drop">drop</a><a href="#enumerate">enumerate</a><a href="#filter">filter</a><a href="#flatten">flatten</a><a href="#get-attr">get_attr</a><a href="#has-attr">has_attr</a><a href="#identity">identity</a><a href="#is-anim-block">is_anim_block</a><a href="#is-callable">is_callable</a><a href="#is-complex">is_complex</a><a href="#is-float">is_float</a><a href="#is-function">is_function</a><a href="#is-int">is_int</a><a href="#is-list">is_list</a><a href="#is-live-function">is_live_function</a><a href="#is-live-operator">is_live_operator</a><a href="#is-map">is_map</a><a href="#is-mesh">is_mesh</a><a href="#is-nil">is_nil</a><a href="#is-number">is_number</a><a href="#is-operator">is_operator</a><a href="#is-primitive-anim">is_primitive_anim</a><a href="#is-stateful">is_stateful</a><a href="#is-string">is_string</a><a href="#len">len</a><a href="#list-subset">list_subset</a><a href="#map">map</a><a href="#map-items">map_items</a><a href="#map-keys">map_keys</a><a href="#map-values">map_values</a><a href="#max-of">max_of</a><a href="#min-of">min_of</a><a href="#product">product</a><a href="#range">range</a><a href="#reduce">reduce</a><a href="#reverse">reverse</a><a href="#runtime-error">runtime_error</a><a href="#set-attr">set_attr</a><a href="#sort">sort</a><a href="#str-join">str_join</a><a href="#str-len">str_len</a><a href="#str-lower">str_lower</a><a href="#str-replace">str_replace</a><a href="#str-split">str_split</a><a href="#str-upper">str_upper</a><a href="#sum">sum</a><a href="#take">take</a><a href="#to-float">to_float</a><a href="#to-int">to_int</a><a href="#to-string">to_string</a><a href="#type-of">type_of</a><a href="#zip">zip</a></div></nav>
+    <section class="docs-main">
+<section class="doc-file" id="file-anim-mcl">
+  <header class="doc-file-header">
+    <div>
+      <p class="section-kicker">anim</p>
+      <h2>anim.mcl</h2>
+    </div>
+    <span data-visible-count>37 visible</span>
+  </header>
+  <div class="symbol-list">
+<article class="doc-entry" id="anim-bend" data-search="bend anim anim.mcl anim function line-based geometric interpolation that accumulates edge rotations.">
+  <div class="symbol-title">
+    <h3><a href="/docs/anim-bend.html">Bend</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>line-based geometric interpolation that accumulates edge rotations.</p>
+  
+  
+  <pre><code>let Bend = |time = 1, &amp;meshes = [], rate = smooth| {</code></pre>
+</article>
+
+<article class="doc-entry" id="cameralerp" data-search="cameralerp anim anim.mcl anim function camera-aware lerp over the camera leader.">
+  <div class="symbol-title">
+    <h3><a href="/docs/cameralerp.html">CameraLerp</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>camera-aware lerp over the camera leader.</p>
+  
+  
+  <pre><code>let CameraLerp = |&amp;camera, time = 1, rate = smooth| Lerp(time, &amp;camera, rate)</code></pre>
+</article>
+
+<article class="doc-entry" id="anim-fade" data-search="fade anim anim.mcl anim function interpolate opacity from 0 (or along `delta`) to full.">
+  <div class="symbol-title">
+    <h3><a href="/docs/anim-fade.html">Fade</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>interpolate opacity from 0 (or along <code>delta</code>) to full.</p>
+  
+  
+  <pre><code>let Fade = |time = 1, &amp;meshes = [], delta = [0, 0, 0], rate = smooth| {</code></pre>
+</article>
+
+<article class="doc-entry" id="grow" data-search="grow anim anim.mcl anim function points start co-located at the mesh centroid and grow outward.">
+  <div class="symbol-title">
+    <h3><a href="/docs/grow.html">Grow</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>points start co-located at the mesh centroid and grow outward.</p>
+  
+  
+  <pre><code>let Grow = |time = 1, &amp;meshes = [], rate = smooth| {</code></pre>
+</article>
+
+<article class="doc-entry" id="anim-lerp" data-search="lerp anim anim.mcl anim function standard value lerp with only the rate function exposed.">
+  <div class="symbol-title">
+    <h3><a href="/docs/anim-lerp.html">Lerp</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>standard value lerp with only the rate function exposed.</p>
+  
+  
+  <pre><code>let Lerp = |time = 1, &amp;vars = [], rate = smooth| PrimitiveAnim(time, &amp;vars, nil, nil, rate)</code></pre>
+</article>
+
+<article class="doc-entry" id="primitiveanim" data-search="primitiveanim anim anim.mcl anim function general primitive animation constructor. optional `embed` maps `(start, dst) -&gt; [a, b, state]`. optional `lerp` overrides interpolation with `|a, b, state, t| ...`.">
+  <div class="symbol-title">
+    <h3><a href="/docs/primitiveanim.html">PrimitiveAnim</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>general primitive animation constructor. optional <code>embed</code> maps <code>(start, dst) -&gt; [a, b, state]</code>. optional <code>lerp</code> overrides interpolation with <code>|a, b, state, t| ...</code>.</p>
+  
+  
+  <pre><code>let PrimitiveAnim = |time = 1, &amp;vars = [], embed = nil, lerp = nil, rate = smooth| __monocurl__native__ lerp_anim(vars, time, rate, embed, lerp)</code></pre>
+</article>
+
+<article class="doc-entry" id="set" data-search="set anim anim.mcl anim function instantly snap follower(s) to leader. omitting `vars` targets all dirty leaders.">
+  <div class="symbol-title">
+    <h3><a href="/docs/set.html">Set</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>instantly snap follower(s) to leader. Omitting <code>vars</code> targets all dirty leaders.</p>
+  
+  
+  <pre><code>let Set = |vars = []| __monocurl__native__ set(vars)</code></pre>
+</article>
+
+<article class="doc-entry" id="tagbend" data-search="tagbend anim anim.mcl anim function like bend, but pairs sub-meshes by tag first.">
+  <div class="symbol-title">
+    <h3><a href="/docs/tagbend.html">TagBend</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>like Bend, but pairs sub-meshes by tag first.</p>
+  
+  
+  <pre><code>let TagBend = |time = 1, &amp;meshes = [], rate = smooth| {</code></pre>
+</article>
+
+<article class="doc-entry" id="tagtrans" data-search="tagtrans anim anim.mcl anim function like trans, but pairs sub-meshes by their `tag` rather than by order.">
+  <div class="symbol-title">
+    <h3><a href="/docs/tagtrans.html">TagTrans</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>like Trans, but pairs sub-meshes by their <code>tag</code> rather than by order.</p>
+  
+  
+  <pre><code>let TagTrans = |time = 1, &amp;meshes = [], path_arc = 0, rate = smooth| {</code></pre>
+</article>
+
+<article class="doc-entry" id="anim-trans" data-search="trans anim anim.mcl anim function interpolate by matching points between start and end meshes.">
+  <div class="symbol-title">
+    <h3><a href="/docs/anim-trans.html">Trans</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>interpolate by matching points between start and end meshes.</p>
+  
+  
+  <pre><code>let Trans = |time = 1, &amp;meshes = [], path_arc = 0, rate = smooth| {</code></pre>
+</article>
+
+<article class="doc-entry" id="wait" data-search="wait anim anim.mcl anim function do nothing for `time` seconds.">
+  <div class="symbol-title">
+    <h3><a href="/docs/wait.html">Wait</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>do nothing for <code>time</code> seconds.</p>
+  
+  
+  <pre><code>let Wait = |time = 1| __monocurl__native__ wait(time)</code></pre>
+</article>
+
+<article class="doc-entry" id="write" data-search="write anim anim.mcl anim function tracing animation for line / polyline content.">
+  <div class="symbol-title">
+    <h3><a href="/docs/write.html">Write</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>tracing animation for line / polyline content.</p>
+  
+  
+  <pre><code>let Write = |time = 1, &amp;meshes = [], rate = smooth| {</code></pre>
+</article>
+
+<article class="doc-entry" id="bounce" data-search="bounce anim anim.mcl anim function bounce-out — a few decaying overshoots.">
+  <div class="symbol-title">
+    <h3><a href="/docs/bounce.html">bounce</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>bounce-out — a few decaying overshoots.</p>
+  
+  
+  <pre><code>let bounce = |t| __monocurl__native__ rate_bounce(t)</code></pre>
+</article>
+
+<article class="doc-entry" id="cosine" data-search="cosine anim anim.mcl anim function gentle cosine-based ease.">
+  <div class="symbol-title">
+    <h3><a href="/docs/cosine.html">cosine</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>gentle cosine-based ease.</p>
+  
+  
+  <pre><code>let cosine = |t| (1 - __monocurl__native__ cos(3.141592653589793 * t)) / 2</code></pre>
+</article>
+
+<article class="doc-entry" id="ease-in" data-search="ease_in anim anim.mcl anim function ease functions raised to some power; higher = more aggressive.">
+  <div class="symbol-title">
+    <h3><a href="/docs/ease-in.html">ease_in</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>ease functions raised to some power; higher = more aggressive.</p>
+  
+  
+  <pre><code>let ease_in    = |t, p = 3| __monocurl__native__ pow(t, p)</code></pre>
+</article>
+
+<article class="doc-entry" id="ease-in-out" data-search="ease_in_out anim anim.mcl anim function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/ease-in-out.html">ease_in_out</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let ease_in_out = |t, p = 3| {</code></pre>
+</article>
+
+<article class="doc-entry" id="ease-out" data-search="ease_out anim anim.mcl anim function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/ease-out.html">ease_out</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let ease_out   = |t, p = 3| 1 - __monocurl__native__ pow(1 - t, p)</code></pre>
+</article>
+
+<article class="doc-entry" id="elastic" data-search="elastic anim anim.mcl anim function elastic-out — overshoots then rings in.">
+  <div class="symbol-title">
+    <h3><a href="/docs/elastic.html">elastic</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>elastic-out — overshoots then rings in.</p>
+  
+  
+  <pre><code>let elastic = |t| __monocurl__native__ rate_elastic(t)</code></pre>
+</article>
+
+<article class="doc-entry" id="exponential" data-search="exponential anim anim.mcl anim function exponential-style; fast start, slow end.">
+  <div class="symbol-title">
+    <h3><a href="/docs/exponential.html">exponential</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>exponential-style; fast start, slow end.</p>
+  
+  
+  <pre><code>let exponential = |t| 1 - __monocurl__native__ pow(2, -10 * t)</code></pre>
+</article>
+
+<article class="doc-entry" id="linear" data-search="linear anim anim.mcl anim function the pure identity; equivalent to &quot;no easing.&quot;">
+  <div class="symbol-title">
+    <h3><a href="/docs/linear.html">linear</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>the pure identity; equivalent to &quot;no easing.&quot;</p>
+  
+  
+  <pre><code>let linear = |t| t</code></pre>
+</article>
+
+<article class="doc-entry" id="smooth" data-search="smooth anim anim.mcl anim function smooth-step, monotone, symmetric around t=0.5.">
+  <div class="symbol-title">
+    <h3><a href="/docs/smooth.html">smooth</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>smooth-step, monotone, symmetric around t=0.5.</p>
+  
+  
+  <pre><code>let smooth = |t| t * t * (3 - 2 * t)</code></pre>
+</article>
+
+<article class="doc-entry" id="smooth-in" data-search="smooth_in anim anim.mcl anim function quadratic ease-in.">
+  <div class="symbol-title">
+    <h3><a href="/docs/smooth-in.html">smooth_in</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>quadratic ease-in.</p>
+  
+  
+  <pre><code>let smooth_in  = |t| t * t</code></pre>
+</article>
+
+<article class="doc-entry" id="smooth-out" data-search="smooth_out anim anim.mcl anim function quadratic ease-out.">
+  <div class="symbol-title">
+    <h3><a href="/docs/smooth-out.html">smooth_out</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>quadratic ease-out.</p>
+  
+  
+  <pre><code>let smooth_out = |t| 1 - (1 - t) * (1 - t)</code></pre>
+</article>
+
+<article class="doc-entry" id="smoother" data-search="smoother anim anim.mcl anim function slower ease-in-out (5th-order smoothstep).">
+  <div class="symbol-title">
+    <h3><a href="/docs/smoother.html">smoother</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Anim</span>
+  </div>
+  <p>slower ease-in-out (5th-order smoothstep).</p>
+  
+  
+  <pre><code>let smoother = |t| t * t * t * (t * (t * 6 - 15) + 10)</code></pre>
+</article>
+
+<article class="doc-entry" id="copy" data-search="copy anim anim.mcl indication animations function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/copy.html">Copy</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let Copy = |&amp;from, &amp;into| anim {</code></pre>
+</article>
+
+<article class="doc-entry" id="copysubset" data-search="copysubset anim anim.mcl indication animations function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/copysubset.html">CopySubset</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let CopySubset = |&amp;from, &amp;into, filter=nil| anim {</code></pre>
+</article>
+
+<article class="doc-entry" id="flash" data-search="flash anim anim.mcl indication animations function brief moving write-window over stroke of a mesh.">
+  <div class="symbol-title">
+    <h3><a href="/docs/flash.html">Flash</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>brief moving write-window over stroke of a mesh.</p>
+  
+  
+  <pre><code>let Flash = |&amp;value, time = 1, lead = nil, trail = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="highlight" data-search="highlight anim anim.mcl indication animations function highlight a mesh to `color` and back.">
+  <div class="symbol-title">
+    <h3><a href="/docs/highlight.html">Highlight</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>highlight a mesh to <code>color</code> and back.</p>
+  
+  
+  <pre><code>let Highlight = |&amp;value, color, time = 1, rate = smooth| anim {</code></pre>
+</article>
+
+<article class="doc-entry" id="laggedmap" data-search="laggedmap anim anim.mcl indication animations function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/laggedmap.html">LaggedMap</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let LaggedMap = |anims, average_offset = 0.1, unit_map = smooth| __monocurl__native__ lagged_map(anims, average_offset, unit_map)</code></pre>
+</article>
+
+<article class="doc-entry" id="transsubsetcopy" data-search="transsubsetcopy anim anim.mcl indication animations function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/transsubsetcopy.html">TransSubsetCopy</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let TransSubsetCopy = |&amp;from, filter, target, &amp;into, time=1, tagged=0, path_arc = 0, rate = smooth| anim {</code></pre>
+</article>
+
+<article class="doc-entry" id="transsubsetto" data-search="transsubsetto anim anim.mcl indication animations function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/transsubsetto.html">TransSubsetTo</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let TransSubsetTo = |&amp;from, filter, target, &amp;into, time=1, tagged=0, path_arc = 0, rate = smooth| anim {</code></pre>
+</article>
+
+<article class="doc-entry" id="transfer" data-search="transfer anim anim.mcl indication animations function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/transfer.html">Transfer</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let Transfer = |&amp;from, &amp;into| anim {</code></pre>
+</article>
+
+<article class="doc-entry" id="transfersubset" data-search="transfersubset anim anim.mcl indication animations function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/transfersubset.html">TransferSubset</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let TransferSubset = |&amp;from, &amp;into, filter=nil| anim {</code></pre>
+</article>
+
+<article class="doc-entry" id="delay" data-search="delay anim anim.mcl indication animations operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/delay.html">delay</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let delay = operator |target, time = 1| {</code></pre>
+</article>
+
+<article class="doc-entry" id="fast" data-search="fast anim anim.mcl indication animations operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/fast.html">fast</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let fast = operator |target, factor = 2| [target, __monocurl__native__ anim_time_scale(target, 1 / factor)]</code></pre>
+</article>
+
+<article class="doc-entry" id="rate" data-search="rate anim anim.mcl indication animations operator override the rate function on a primitive animation.">
+  <div class="symbol-title">
+    <h3><a href="/docs/rate.html">rate</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>override the rate function on a primitive animation.</p>
+  
+  
+  <pre><code>let rate = operator |target, rate| [target, __monocurl__native__ anim_with_rate(target, rate)]</code></pre>
+</article>
+
+<article class="doc-entry" id="slow" data-search="slow anim anim.mcl indication animations operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/slow.html">slow</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">anim.mcl</span>
+    <span class="pill">Indication Animations</span>
+  </div>
+  <p>Defined in <code>anim.mcl</code>.</p>
+  
+  
+  <pre><code>let slow = operator |target, factor = 2| [target, __monocurl__native__ anim_time_scale(target, factor)]</code></pre>
+</article>
+</div>
+</section>
+
+<section class="doc-file" id="file-color-mcl">
+  <header class="doc-file-header">
+    <div>
+      <p class="section-kicker">color</p>
+      <h2>color.mcl</h2>
+    </div>
+    <span data-visible-count>23 visible</span>
+  </header>
+  <div class="symbol-list">
+<article class="doc-entry" id="black" data-search="black color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/black.html">BLACK</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let BLACK      = [0.0, 0.0, 0.0, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="blue" data-search="blue color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/blue.html">BLUE</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let BLUE       = [0.1, 0.4, 0.6, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="brown" data-search="brown color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/brown.html">BROWN</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let BROWN      = [0.5, 0.3, 0.2, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="clear" data-search="clear color color.mcl color constant fully transparent black — handy as an &quot;invisible&quot; fill.">
+  <div class="symbol-title">
+    <h3><a href="/docs/clear.html">CLEAR</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>fully transparent black — handy as an &quot;invisible&quot; fill.</p>
+  
+  
+  <pre><code>let CLEAR      = [0.0, 0.0, 0.0, 0]</code></pre>
+</article>
+
+<article class="doc-entry" id="cyan" data-search="cyan color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/cyan.html">CYAN</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let CYAN       = [0.1, 0.7, 0.9, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="dark-gray" data-search="dark_gray color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/dark-gray.html">DARK_GRAY</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let DARK_GRAY  = [0.3, 0.3, 0.3, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="gray" data-search="gray color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/gray.html">GRAY</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let GRAY       = [0.5, 0.5, 0.5, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="green" data-search="green color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/green.html">GREEN</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let GREEN      = [0.2, 0.6, 0.3, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="light-gray" data-search="light_gray color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/light-gray.html">LIGHT_GRAY</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let LIGHT_GRAY = [0.7, 0.7, 0.7, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="magenta" data-search="magenta color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/magenta.html">MAGENTA</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let MAGENTA    = [0.9, 0.2, 0.7, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="navy" data-search="navy color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/navy.html">NAVY</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let NAVY       = [0.05, 0.1, 0.4, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="orange" data-search="orange color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/orange.html">ORANGE</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let ORANGE     = [1.0, 0.7, 0.2, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="pink" data-search="pink color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/pink.html">PINK</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let PINK       = [1.0, 0.6, 0.7, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="purple" data-search="purple color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/purple.html">PURPLE</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let PURPLE     = [0.6, 0.4, 0.7, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="red" data-search="red color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/red.html">RED</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let RED        = [0.9, 0.3, 0.2, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="teal" data-search="teal color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/teal.html">TEAL</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let TEAL       = [0.2, 0.7, 0.7, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="white" data-search="white color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/white.html">WHITE</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let WHITE      = [1.0, 1.0, 1.0, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="yellow" data-search="yellow color color.mcl color constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/yellow.html">YELLOW</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Color</span>
+  </div>
+  <p>Defined in <code>color.mcl</code>.</p>
+  
+  
+  <pre><code>let YELLOW     = [1.0, 1.0, 0.0, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="alpha" data-search="alpha color color.mcl constructors operator replace the alpha component of a color.">
+  <div class="symbol-title">
+    <h3><a href="/docs/alpha.html">alpha</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>replace the alpha component of a color.</p>
+  
+  
+  <pre><code>let alpha = operator |target, a| {</code></pre>
+</article>
+
+<article class="doc-entry" id="gray-shade" data-search="gray_shade color color.mcl constructors function grayscale shade at given luminance.">
+  <div class="symbol-title">
+    <h3><a href="/docs/gray-shade.html">gray_shade</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>grayscale shade at given luminance.</p>
+  
+  
+  <pre><code>let gray_shade = |v, a = 1| [v, v, v, a]</code></pre>
+</article>
+
+<article class="doc-entry" id="hsv" data-search="hsv color color.mcl constructors function h in [0, 1], s, v, a in [0, 1].">
+  <div class="symbol-title">
+    <h3><a href="/docs/hsv.html">hsv</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>h in [0, 1], s, v, a in [0, 1].</p>
+  
+  
+  <pre><code>let hsv  = |h, s, v, a = 1| __monocurl__native__ hsv(h, s, v, a)</code></pre>
+</article>
+
+<article class="doc-entry" id="mix" data-search="mix color color.mcl constructors function linear blend between two colors in rgba.">
+  <div class="symbol-title">
+    <h3><a href="/docs/mix.html">mix</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>linear blend between two colors in RGBA.</p>
+  
+  
+  <pre><code>let mix = |a, b, t| a + (b - a) * t</code></pre>
+</article>
+
+<article class="doc-entry" id="rgb" data-search="rgb color color.mcl constructors function r, g, b in [0, 1]; alpha defaults to fully opaque.">
+  <div class="symbol-title">
+    <h3><a href="/docs/rgb.html">rgb</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">color.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>r, g, b in [0, 1]; alpha defaults to fully opaque.</p>
+  
+  
+  <pre><code>let rgb  = |r, g, b, a = 1| [r, g, b, a]</code></pre>
+</article>
+</div>
+</section>
+
+<section class="doc-file" id="file-math-mcl">
+  <header class="doc-file-header">
+    <div>
+      <p class="section-kicker">math</p>
+      <h2>math.mcl</h2>
+    </div>
+    <span data-visible-count>69 visible</span>
+  </header>
+  <div class="symbol-list">
+<article class="doc-entry" id="backward" data-search="backward math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/backward.html">BACKWARD</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let BACKWARD = 1b</code></pre>
+</article>
+
+<article class="doc-entry" id="down" data-search="down math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/down.html">DOWN</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let DOWN     = 1d</code></pre>
+</article>
+
+<article class="doc-entry" id="e" data-search="e math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/e.html">E</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let E   = 2.7182818284590452</code></pre>
+</article>
+
+<article class="doc-entry" id="forward" data-search="forward math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/forward.html">FORWARD</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let FORWARD  = 1f</code></pre>
+</article>
+
+<article class="doc-entry" id="left" data-search="left math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/left.html">LEFT</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let LEFT     = 1l</code></pre>
+</article>
+
+<article class="doc-entry" id="one-v" data-search="one_v math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/one-v.html">ONE_V</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let ONE_V    = [1, 1, 1]</code></pre>
+</article>
+
+<article class="doc-entry" id="origin" data-search="origin math math.mcl math constant canonical lists of length 3. direction-suffix literals (1l, 1r, 1u, 1d, 1f, 1b) produce the same values; in the right-handed viewport, forward is negative z.">
+  <div class="symbol-title">
+    <h3><a href="/docs/origin.html">ORIGIN</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>canonical lists of length 3. Direction-suffix literals (1l, 1r, 1u, 1d, 1f, 1b) produce the same values; in the right-handed viewport, forward is negative z.</p>
+  
+  
+  <pre><code>let ORIGIN   = [0, 0, 0]</code></pre>
+</article>
+
+<article class="doc-entry" id="pi" data-search="pi math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/pi.html">PI</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let PI  = 3.1415926535897932</code></pre>
+</article>
+
+<article class="doc-entry" id="right" data-search="right math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/right.html">RIGHT</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let RIGHT    = 1r</code></pre>
+</article>
+
+<article class="doc-entry" id="tau" data-search="tau math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tau.html">TAU</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let TAU = 6.2831853071795864</code></pre>
+</article>
+
+<article class="doc-entry" id="up" data-search="up math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/up.html">UP</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let UP       = 1u</code></pre>
+</article>
+
+<article class="doc-entry" id="x-hat" data-search="x_hat math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/x-hat.html">X_HAT</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let X_HAT = RIGHT</code></pre>
+</article>
+
+<article class="doc-entry" id="y-hat" data-search="y_hat math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/y-hat.html">Y_HAT</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let Y_HAT = UP</code></pre>
+</article>
+
+<article class="doc-entry" id="zero-v" data-search="zero_v math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/zero-v.html">ZERO_V</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let ZERO_V   = [0, 0, 0]</code></pre>
+</article>
+
+<article class="doc-entry" id="z-hat" data-search="z_hat math math.mcl math constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/z-hat.html">Z_HAT</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let Z_HAT = BACKWARD</code></pre>
+</article>
+
+<article class="doc-entry" id="abs" data-search="abs math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/abs.html">abs</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let abs    = |x| __monocurl__native__ abs(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="angle-between" data-search="angle_between math math.mcl math function angle between two vectors, in radians.">
+  <div class="symbol-title">
+    <h3><a href="/docs/angle-between.html">angle_between</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>angle between two vectors, in radians.</p>
+  
+  
+  <pre><code>let angle_between = |u, v| arccos(dot(u, v) / (norm(u) * norm(v)))</code></pre>
+</article>
+
+<article class="doc-entry" id="arccos" data-search="arccos math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/arccos.html">arccos</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let arccos  = |x| __monocurl__native__ arccos(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="arcsin" data-search="arcsin math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/arcsin.html">arcsin</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let arcsin  = |x| __monocurl__native__ arcsin(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="arctan" data-search="arctan math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/arctan.html">arctan</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let arctan  = |x| __monocurl__native__ arctan(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="arctan2" data-search="arctan2 math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/arctan2.html">arctan2</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let arctan2 = |y, x| __monocurl__native__ arctan2(y, x)</code></pre>
+</article>
+
+<article class="doc-entry" id="cbrt" data-search="cbrt math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/cbrt.html">cbrt</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let cbrt  = |x| __monocurl__native__ cbrt(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="ceil" data-search="ceil math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/ceil.html">ceil</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let ceil   = |x| __monocurl__native__ ceil(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="choose" data-search="choose math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/choose.html">choose</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let choose    = |n, r| __monocurl__native__ choose(n, r)</code></pre>
+</article>
+
+<article class="doc-entry" id="clamp" data-search="clamp math math.mcl math function x pinned to [low, high].">
+  <div class="symbol-title">
+    <h3><a href="/docs/clamp.html">clamp</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>x pinned to [low, high].</p>
+  
+  
+  <pre><code>let clamp = |low, x, high| min(high, max(low, x))</code></pre>
+</article>
+
+<article class="doc-entry" id="cos" data-search="cos math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/cos.html">cos</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let cos = |x| __monocurl__native__ cos(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="cosh" data-search="cosh math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/cosh.html">cosh</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let cosh = |x| __monocurl__native__ cosh(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="cot" data-search="cot math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/cot.html">cot</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let cot = |x| 1 / tan(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="cross" data-search="cross math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/cross.html">cross</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let cross    = |u, v| __monocurl__native__ cross(u, v)</code></pre>
+</article>
+
+<article class="doc-entry" id="csc" data-search="csc math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/csc.html">csc</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let csc = |x| 1 / sin(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="deg-to-rad" data-search="deg_to_rad math math.mcl math function degrees / radians conversions. (the `dg` literal suffix already produces radians from a degree literal; these are for runtime values.)">
+  <div class="symbol-title">
+    <h3><a href="/docs/deg-to-rad.html">deg_to_rad</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>degrees / radians conversions. (The <code>dg</code> literal suffix already produces radians from a degree literal; these are for runtime values.)</p>
+  
+  
+  <pre><code>let deg_to_rad = |x| x * (PI / 180)</code></pre>
+</article>
+
+<article class="doc-entry" id="math-dot" data-search="dot math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/math-dot.html">dot</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let dot      = |u, v| __monocurl__native__ dot(u, v)</code></pre>
+</article>
+
+<article class="doc-entry" id="exp" data-search="exp math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/exp.html">exp</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let exp   = |x| __monocurl__native__ exp(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="factorial" data-search="factorial math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/factorial.html">factorial</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let factorial = |n| __monocurl__native__ factorial(n)</code></pre>
+</article>
+
+<article class="doc-entry" id="floor" data-search="floor math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/floor.html">floor</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let floor  = |x| __monocurl__native__ floor(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="gcd" data-search="gcd math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/gcd.html">gcd</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let gcd       = |n, m| __monocurl__native__ gcd(n, m)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-prime" data-search="is_prime math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-prime.html">is_prime</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let is_prime  = |n| __monocurl__native__ is_prime(n)</code></pre>
+</article>
+
+<article class="doc-entry" id="keyframe-lerp" data-search="keyframe_lerp math math.mcl math function keyframes = [[t0, v0], [t1, v1], ...]; piecewise lerp across t.">
+  <div class="symbol-title">
+    <h3><a href="/docs/keyframe-lerp.html">keyframe_lerp</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>keyframes = [[t0, v0], [t1, v1], ...]; piecewise lerp across t.</p>
+  
+  
+  <pre><code>let keyframe_lerp = |keyframes, t| __monocurl__native__ keyframe_lerp(keyframes, t)</code></pre>
+</article>
+
+<article class="doc-entry" id="lcm" data-search="lcm math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/lcm.html">lcm</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let lcm       = |n, m| __monocurl__native__ lcm(n, m)</code></pre>
+</article>
+
+<article class="doc-entry" id="math-lerp" data-search="lerp math math.mcl math function interpolation full interpolation: follows the rules described in monocurl language.md (numbers, matching function invocations, operator embeds, elementwise lists).">
+  <div class="symbol-title">
+    <h3><a href="/docs/math-lerp.html">lerp</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>interpolation full interpolation: follows the rules described in Monocurl Language.md (numbers, matching function invocations, operator embeds, elementwise lists).</p>
+  
+  
+  <pre><code>let lerp = |a, b, t| __monocurl__native__ lerp(a, b, t)</code></pre>
+</article>
+
+<article class="doc-entry" id="ln" data-search="ln math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/ln.html">ln</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let ln    = |x| __monocurl__native__ ln(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="log" data-search="log math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/log.html">log</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let log   = |x, base = E| ln(x) / ln(base)</code></pre>
+</article>
+
+<article class="doc-entry" id="log10" data-search="log10 math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/log10.html">log10</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let log10 = |x| log(x, 10)</code></pre>
+</article>
+
+<article class="doc-entry" id="log2" data-search="log2 math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/log2.html">log2</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let log2  = |x| log(x, 2)</code></pre>
+</article>
+
+<article class="doc-entry" id="map-range" data-search="map_range math math.mcl math function map x linearly from [in_min, in_max] to [out_min, out_max].">
+  <div class="symbol-title">
+    <h3><a href="/docs/map-range.html">map_range</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>map x linearly from [in_min, in_max] to [out_min, out_max].</p>
+  
+  
+  <pre><code>let map_range = |x, in_min, in_max, out_min, out_max| out_min + (x - in_min) / (in_max - in_min) * (out_max - out_min)</code></pre>
+</article>
+
+<article class="doc-entry" id="max" data-search="max math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/max.html">max</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let max = |a, b| __monocurl__native__ max(a, b)</code></pre>
+</article>
+
+<article class="doc-entry" id="mean" data-search="mean math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mean.html">mean</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let mean = |v| __monocurl__native__ mean(v)</code></pre>
+</article>
+
+<article class="doc-entry" id="min" data-search="min math math.mcl math function pairwise min / max of numbers.">
+  <div class="symbol-title">
+    <h3><a href="/docs/min.html">min</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>pairwise min / max of numbers.</p>
+  
+  
+  <pre><code>let min = |a, b| __monocurl__native__ min(a, b)</code></pre>
+</article>
+
+<article class="doc-entry" id="mod" data-search="mod math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mod.html">mod</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let mod    = |n, m| __monocurl__native__ mod_func(n, m)</code></pre>
+</article>
+
+<article class="doc-entry" id="norm" data-search="norm math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/norm.html">norm</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let norm     = |v| sqrt(dot(v, v))</code></pre>
+</article>
+
+<article class="doc-entry" id="normalize" data-search="normalize math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/normalize.html">normalize</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let normalize = |v| v * (1 / norm(v))</code></pre>
+</article>
+
+<article class="doc-entry" id="permute" data-search="permute math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/permute.html">permute</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let permute   = |n, r| __monocurl__native__ permute(n, r)</code></pre>
+</article>
+
+<article class="doc-entry" id="proj" data-search="proj math math.mcl math function projection of u onto v.">
+  <div class="symbol-title">
+    <h3><a href="/docs/proj.html">proj</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>projection of u onto v.</p>
+  
+  
+  <pre><code>let proj     = |u, v| v * (dot(u, v) / dot(v, v))</code></pre>
+</article>
+
+<article class="doc-entry" id="rad-to-deg" data-search="rad_to_deg math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/rad-to-deg.html">rad_to_deg</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let rad_to_deg = |x| x * (180 / PI)</code></pre>
+</article>
+
+<article class="doc-entry" id="randint" data-search="randint math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/randint.html">randint</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let randint = |low, high|         __monocurl__native__ randint(low, high)</code></pre>
+</article>
+
+<article class="doc-entry" id="random" data-search="random math math.mcl math function deterministic scene randomness backed by executor state. these may only be called from the root frame; using them inside lambda bodies/defaults errors.">
+  <div class="symbol-title">
+    <h3><a href="/docs/random.html">random</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>deterministic scene randomness backed by executor state. these may only be called from the root frame; using them inside lambda bodies/defaults errors.</p>
+  
+  
+  <pre><code>let random  = |low = 0, high = 1| __monocurl__native__ random(low, high)</code></pre>
+</article>
+
+<article class="doc-entry" id="relu" data-search="relu math math.mcl math function common activation / util shapes.">
+  <div class="symbol-title">
+    <h3><a href="/docs/relu.html">relu</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>common activation / util shapes.</p>
+  
+  
+  <pre><code>let relu    = |x| max(0, x)</code></pre>
+</article>
+
+<article class="doc-entry" id="round" data-search="round math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/round.html">round</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let round  = |x| __monocurl__native__ round(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="sec" data-search="sec math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/sec.html">sec</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let sec = |x| 1 / cos(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="sigmoid" data-search="sigmoid math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/sigmoid.html">sigmoid</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let sigmoid = |x| 1 / (1 + exp(-x))</code></pre>
+</article>
+
+<article class="doc-entry" id="sign" data-search="sign math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/sign.html">sign</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let sign   = |x| __monocurl__native__ sign(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="sin" data-search="sin math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/sin.html">sin</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let sin = |x| __monocurl__native__ sin(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="sinh" data-search="sinh math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/sinh.html">sinh</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let sinh = |x| __monocurl__native__ sinh(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="sqrt" data-search="sqrt math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/sqrt.html">sqrt</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let sqrt  = |x| __monocurl__native__ sqrt(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="std-dev" data-search="std_dev math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/std-dev.html">std_dev</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let std_dev  = |v| sqrt(variance(v))</code></pre>
+</article>
+
+<article class="doc-entry" id="tan" data-search="tan math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tan.html">tan</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let tan = |x| __monocurl__native__ tan(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="tanh" data-search="tanh math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tanh.html">tanh</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let tanh = |x| __monocurl__native__ tanh(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="trunc" data-search="trunc math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/trunc.html">trunc</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let trunc  = |x| __monocurl__native__ trunc(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="variance" data-search="variance math math.mcl math function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/variance.html">variance</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">math.mcl</span>
+    <span class="pill">Math</span>
+  </div>
+  <p>Defined in <code>math.mcl</code>.</p>
+  
+  
+  <pre><code>let variance = |v| __monocurl__native__ variance(v)</code></pre>
+</article>
+</div>
+</section>
+
+<section class="doc-file" id="file-mesh-mcl">
+  <header class="doc-file-header">
+    <div>
+      <p class="section-kicker">mesh</p>
+      <h2>mesh.mcl</h2>
+    </div>
+    <span data-visible-count>111 visible</span>
+  </header>
+  <div class="symbol-list">
+<article class="doc-entry" id="cone" data-search="cone mesh mesh.mcl 3-d primitives function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/cone.html">Cone</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">3-d Primitives</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Cone = |apex = [0, 1, 0], base = [0, 0, 0], radius = 1, sample_count = 32|</code></pre>
+</article>
+
+<article class="doc-entry" id="cylinder" data-search="cylinder mesh mesh.mcl 3-d primitives function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/cylinder.html">Cylinder</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">3-d Primitives</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Cylinder = |radius, height, direction = 1u, sample_count = 32|</code></pre>
+</article>
+
+<article class="doc-entry" id="plane" data-search="plane mesh mesh.mcl 3-d primitives function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/plane.html">Plane</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">3-d Primitives</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Plane = |dist = 0, size = [4, 4]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="rectangularprism" data-search="rectangularprism mesh mesh.mcl 3-d primitives function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/rectangularprism.html">RectangularPrism</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">3-d Primitives</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let RectangularPrism = |dimensions|</code></pre>
+</article>
+
+<article class="doc-entry" id="sphere" data-search="sphere mesh mesh.mcl 3-d primitives function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/sphere.html">Sphere</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">3-d Primitives</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Sphere = |radius, sample_depth = 2|</code></pre>
+</article>
+
+<article class="doc-entry" id="torus" data-search="torus mesh mesh.mcl 3-d primitives function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/torus.html">Torus</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">3-d Primitives</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Torus = |radii = [1, 0.3], samples = [48, 24]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="axis1d" data-search="axis1d mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/axis1d.html">Axis1d</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Axis1d = |label = nil, axis = 1r, normal = 1b, range = [-5, 5, 0.25], tick_label_rate = 4|</code></pre>
+</article>
+
+<article class="doc-entry" id="axis2d" data-search="axis2d mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/axis2d.html">Axis2d</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Axis2d = |x_label = nil, y_label = nil, x = [-5, 5, 0.25], y = [-5, 5, 0.25], axes = [1r, 1u], tick_label_rates = [4, 4], grid = 0|</code></pre>
+</article>
+
+<article class="doc-entry" id="axis3d" data-search="axis3d mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/axis3d.html">Axis3d</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Axis3d = |x_label = nil, y_label = nil, z_label = nil, x = [-5, 5, 0.25], y = [-5, 5, 0.25], z = [-5, 5, 0.25], axes = [1r, 1u, 1b], tick_label_rates = [4, 4, 4], grid = 0|</code></pre>
+</article>
+
+<article class="doc-entry" id="explicitfunc" data-search="explicitfunc mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/explicitfunc.html">ExplicitFunc</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let ExplicitFunc = |f, x_min_max_samples = [-5, 5, 128]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="explicitfunc2d" data-search="explicitfunc2d mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/explicitfunc2d.html">ExplicitFunc2d</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let ExplicitFunc2d = |f, x_min_max_samples = [-1, 1, 21], y_min_max_samples = [-1, 1, 21]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="explicitfuncdiff" data-search="explicitfuncdiff mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/explicitfuncdiff.html">ExplicitFuncDiff</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let ExplicitFuncDiff = |f, g, x_min_max_samples = [-5, 5, 128], fills = [[0.3, 0.8, 0.3, 0.5], [0.8, 0.3, 0.3, 0.5]], tags = [[], []]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="implicitfunc2d" data-search="implicitfunc2d mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/implicitfunc2d.html">ImplicitFunc2d</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let ImplicitFunc2d = |f, x_min_max_samples = [-1, 1, 41], y_min_max_samples = [-1, 1, 41]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="parametricfunc" data-search="parametricfunc mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/parametricfunc.html">ParametricFunc</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let ParametricFunc = |f, t_min_max_samples = [0, 1, 64]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="polaraxis" data-search="polaraxis mesh mesh.mcl graphing function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/polaraxis.html">PolarAxis</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Graphing</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let PolarAxis = |center = [0, 0, 0], theta = [-5, 5, 1, 1], radius = [0, 5, 1, 1]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="boundingbox" data-search="boundingbox mesh mesh.mcl layout / grouping function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/boundingbox.html">BoundingBox</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Layout / Grouping</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let BoundingBox = |target, buffer = 0.1|</code></pre>
+</article>
+
+<article class="doc-entry" id="grid" data-search="grid mesh mesh.mcl layout / grouping function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/grid.html">Grid</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Layout / Grouping</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Grid = |mesh_array| __monocurl__native__ mk_grid(mesh_array)</code></pre>
+</article>
+
+<article class="doc-entry" id="stack" data-search="stack mesh mesh.mcl layout / grouping function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/stack.html">Stack</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Layout / Grouping</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Stack = |meshes, dir, align_dir = [0, 0, 0]| __monocurl__native__ mk_stack(meshes, dir, align_dir)</code></pre>
+</article>
+
+<article class="doc-entry" id="table" data-search="table mesh mesh.mcl layout / grouping function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/table.html">Table</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Layout / Grouping</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Table = |mesh_array| __monocurl__native__ mk_table(mesh_array)</code></pre>
+</article>
+
+<article class="doc-entry" id="xstack" data-search="xstack mesh mesh.mcl layout / grouping function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/xstack.html">XStack</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Layout / Grouping</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let XStack = |meshes, align_dir = [0, 0, 0]| Stack(meshes, 1r, align_dir)</code></pre>
+</article>
+
+<article class="doc-entry" id="ystack" data-search="ystack mesh mesh.mcl layout / grouping function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/ystack.html">YStack</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Layout / Grouping</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let YStack = |meshes, align_dir = [0, 0, 0]| Stack(meshes, 1u, align_dir)</code></pre>
+</article>
+
+<article class="doc-entry" id="zstack" data-search="zstack mesh mesh.mcl layout / grouping function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/zstack.html">ZStack</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Layout / Grouping</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let ZStack = |meshes, align_dir = [0, 0, 0]| Stack(meshes, 1b, align_dir)</code></pre>
+</article>
+
+<article class="doc-entry" id="annulus" data-search="annulus mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/annulus.html">Annulus</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Annulus = |inner, outer|</code></pre>
+</article>
+
+<article class="doc-entry" id="arc" data-search="arc mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/arc.html">Arc</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Arc = |radius = 1, theta = [0, 3.14159265358979]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="arrow" data-search="arrow mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/arrow.html">Arrow</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Arrow = |start = [0, 0, 0], end = [1, 0, 0], normal = 1b, path_arc = 0|</code></pre>
+</article>
+
+<article class="doc-entry" id="capsule" data-search="capsule mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/capsule.html">Capsule</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Capsule = |start_center, end_center, radii = 0.4, normal = 1b| {</code></pre>
+</article>
+
+<article class="doc-entry" id="circle" data-search="circle mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/circle.html">Circle</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Circle = |radius, samples = 64|</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-dot" data-search="dot mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-dot.html">Dot</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Dot = |point=[0,0,0]| __monocurl__native__ mk_dot(point)</code></pre>
+</article>
+
+<article class="doc-entry" id="line" data-search="line mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/line.html">Line</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Line = |start = [0, 0, 0], end = [1, 0, 0], normal = 1b|</code></pre>
+</article>
+
+<article class="doc-entry" id="polygon" data-search="polygon mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/polygon.html">Polygon</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Polygon = |vertices, normal_hint = 1b|</code></pre>
+</article>
+
+<article class="doc-entry" id="polyline" data-search="polyline mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/polyline.html">Polyline</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Polyline = |vertices, normal_hint = 1b|</code></pre>
+</article>
+
+<article class="doc-entry" id="rect" data-search="rect mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/rect.html">Rect</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Rect = |size| {</code></pre>
+</article>
+
+<article class="doc-entry" id="regularpolygon" data-search="regularpolygon mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/regularpolygon.html">RegularPolygon</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let RegularPolygon = |n, circumradius|</code></pre>
+</article>
+
+<article class="doc-entry" id="square" data-search="square mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/square.html">Square</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Square = |width|</code></pre>
+</article>
+
+<article class="doc-entry" id="triangle" data-search="triangle mesh mesh.mcl primitive constructors function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/triangle.html">Triangle</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Primitive Constructors</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Triangle = |p, q, r, normal_hint = 1b|</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-backward" data-search="mesh_backward mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-backward.html">mesh_backward</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_backward = |target| __monocurl__native__ mesh_backward(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-center" data-search="mesh_center mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-center.html">mesh_center</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_center = |target| __monocurl__native__ mesh_center(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-contains" data-search="mesh_contains mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-contains.html">mesh_contains</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_contains = |target, point| __monocurl__native__ mesh_contains(target, point)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-contour-count" data-search="mesh_contour_count mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-contour-count.html">mesh_contour_count</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_contour_count = |target| __monocurl__native__ mesh_contour_count(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-direc" data-search="mesh_direc mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-direc.html">mesh_direc</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_direc = |target, direc| __monocurl__native__ mesh_direc(target, direc)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-dist" data-search="mesh_dist mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-dist.html">mesh_dist</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_dist = |target, test_point| __monocurl__native__ mesh_dist(target, test_point)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-down" data-search="mesh_down mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-down.html">mesh_down</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_down = |target| __monocurl__native__ mesh_down(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-edge-set" data-search="mesh_edge_set mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-edge-set.html">mesh_edge_set</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_edge_set = |target| __monocurl__native__ mesh_edge_set(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-forward" data-search="mesh_forward mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-forward.html">mesh_forward</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_forward = |target| __monocurl__native__ mesh_forward(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-height" data-search="mesh_height mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-height.html">mesh_height</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_height = |target| __monocurl__native__ mesh_height(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-left" data-search="mesh_left mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-left.html">mesh_left</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_left = |target| __monocurl__native__ mesh_left(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-normal" data-search="mesh_normal mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-normal.html">mesh_normal</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_normal = |target, t| __monocurl__native__ mesh_normal(target, t)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-rank" data-search="mesh_rank mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-rank.html">mesh_rank</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_rank = |target| __monocurl__native__ mesh_rank(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-raycast" data-search="mesh_raycast mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-raycast.html">mesh_raycast</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_raycast = |target, src, direction| __monocurl__native__ mesh_raycast(target, src, direction)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-right" data-search="mesh_right mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-right.html">mesh_right</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_right = |target| __monocurl__native__ mesh_right(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-sample" data-search="mesh_sample mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-sample.html">mesh_sample</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_sample = |target, t| __monocurl__native__ mesh_sample(target, t)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-tags" data-search="mesh_tags mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-tags.html">mesh_tags</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_tags = |target| __monocurl__native__ mesh_tags(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-tangent" data-search="mesh_tangent mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-tangent.html">mesh_tangent</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_tangent = |target, t| __monocurl__native__ mesh_tangent(target, t)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-triangle-set" data-search="mesh_triangle_set mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-triangle-set.html">mesh_triangle_set</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_triangle_set = |target| __monocurl__native__ mesh_triangle_set(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-up" data-search="mesh_up mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-up.html">mesh_up</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_up = |target| __monocurl__native__ mesh_up(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-vertex-set" data-search="mesh_vertex_set mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-vertex-set.html">mesh_vertex_set</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_vertex_set = |target| __monocurl__native__ mesh_vertex_set(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-width" data-search="mesh_width mesh mesh.mcl queries function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-width.html">mesh_width</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Queries</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_width = |target| __monocurl__native__ mesh_width(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="brace" data-search="brace mesh mesh.mcl text / labels function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/brace.html">Brace</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Text / Labels</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Brace = |target, dir = 1d, buffer = 0.15| __monocurl__native__ mk_brace(target, dir, buffer)</code></pre>
+</article>
+
+<article class="doc-entry" id="label" data-search="label mesh mesh.mcl text / labels function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/label.html">Label</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Text / Labels</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Label = |target, str, scale = 1, dir = 1u, buffer = 0.1|</code></pre>
+</article>
+
+<article class="doc-entry" id="latex" data-search="latex mesh mesh.mcl text / labels function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/latex.html">Latex</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Text / Labels</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Latex = |latex, scale = 1| __monocurl__native__ mk_latex(latex, scale)</code></pre>
+</article>
+
+<article class="doc-entry" id="measure" data-search="measure mesh mesh.mcl text / labels function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/measure.html">Measure</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Text / Labels</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Measure = |target, dir = 1d, buffer = 0.15| __monocurl__native__ mk_measure(target, dir, buffer)</code></pre>
+</article>
+
+<article class="doc-entry" id="number" data-search="number mesh mesh.mcl text / labels function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/number.html">Number</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Text / Labels</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Number = |value, precision = 2, scale = 1|</code></pre>
+</article>
+
+<article class="doc-entry" id="tex" data-search="tex mesh mesh.mcl text / labels function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tex.html">Tex</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Text / Labels</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Tex = |tex, scale = 1| __monocurl__native__ mk_tex(tex, scale)</code></pre>
+</article>
+
+<article class="doc-entry" id="text" data-search="text mesh mesh.mcl text / labels function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/text.html">Text</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Text / Labels</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Text = |text, scale = 1| __monocurl__native__ mk_text(text, scale)</code></pre>
+</article>
+
+<article class="doc-entry" id="text-tag" data-search="text_tag mesh mesh.mcl text / labels operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/text-tag.html">text_tag</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Text / Labels</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let text_tag = operator |target, tag| [target, __monocurl__native__ text_tag_encode(target, tag)]</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-bend" data-search="bend mesh mesh.mcl transform operators function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-bend.html">bend</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let bend = |start, end, t| {</code></pre>
+</article>
+
+<article class="doc-entry" id="centered-at" data-search="centered_at mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/centered-at.html">centered_at</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let centered_at = operator |target, at, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="color" data-search="color mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/color.html">color</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let color = operator |target, color, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="color-map" data-search="color_map mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/color-map.html">color_map</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let color_map = operator |target, f, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="contour-separate" data-search="contour_separate mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/contour-separate.html">contour_separate</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let contour_separate = operator |target| [target, __monocurl__native__ mesh_contour_separate(target)]</code></pre>
+</article>
+
+<article class="doc-entry" id="dashed" data-search="dashed mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/dashed.html">dashed</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let dashed = operator |target, lengths = [0.2, 0.1], offset = 0, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="dotted" data-search="dotted mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/dotted.html">dotted</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let dotted = operator |target, color, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="downrank" data-search="downrank mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/downrank.html">downrank</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let downrank = operator |target, filter = nil| [target, __monocurl__native__ op_downrank(target, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="extrude" data-search="extrude mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/extrude.html">extrude</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let extrude = operator |target, delta, filter = nil| [__monocurl__native__ op_extrude(target, [0, 0, 0], filter), __monocurl__native__ op_extrude(target, delta, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-fade" data-search="fade mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-fade.html">fade</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let fade = operator |target, opacity, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="fill" data-search="fill mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/fill.html">fill</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let fill = operator |target, color, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="fixed-in-frame" data-search="fixed_in_frame mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/fixed-in-frame.html">fixed_in_frame</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let fixed_in_frame = operator |target, original_camera, live_camera, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="gloss" data-search="gloss mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/gloss.html">gloss</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let gloss = operator |target, amount = 0.5, filter = nil| [target, __monocurl__native__ op_gloss(target, amount, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="in-space" data-search="in_space mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/in-space.html">in_space</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let in_space = operator |target, axis_center = [0, 0, 0], x_unit = 1r, y_unit = 1u, z_unit = 1b, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="matched-edge" data-search="matched_edge mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/matched-edge.html">matched_edge</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let matched_edge = operator |target, ref, dir, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-collapse" data-search="mesh_collapse mesh mesh.mcl transform operators function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-collapse.html">mesh_collapse</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let mesh_collapse = |target| __monocurl__native__ mesh_collapse(target)</code></pre>
+</article>
+
+<article class="doc-entry" id="next-to" data-search="next_to mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/next-to.html">next_to</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let next_to = operator |target, ref, dir = 1r, buffer = 0.1, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="normal-hint" data-search="normal_hint mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/normal-hint.html">normal_hint</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let normal_hint = operator |target, normal, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="point-map" data-search="point_map mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/point-map.html">point_map</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let point_map = operator |target, f, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="projected" data-search="projected mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/projected.html">projected</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let projected = operator |target, screen, ray = 1b, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="revolve" data-search="revolve mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/revolve.html">revolve</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let revolve = operator |target, rotation, filter = nil| [__monocurl__native__ op_revolve(target, [0, 0, 0], filter), __monocurl__native__ op_revolve(target, rotation, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="rotate" data-search="rotate mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/rotate.html">rotate</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let rotate = operator |target, radians, axis = 1b, pivot = nil, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="scale" data-search="scale mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/scale.html">scale</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let scale = operator |target, factor = 1, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="shift" data-search="shift mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/shift.html">shift</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let shift = operator |target, delta, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="stroke" data-search="stroke mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/stroke.html">stroke</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let stroke = operator |target, color, stroke_width = 1.0, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="subdivide" data-search="subdivide mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/subdivide.html">subdivide</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let subdivide = operator |target, factor = 2, filter = nil| [__monocurl__native__ op_subdivide(target, 1, filter), __monocurl__native__ op_subdivide(target, factor, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="subset-map" data-search="subset_map mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/subset-map.html">subset_map</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let subset_map = operator |target, filter, f| [target, __monocurl__native__ op_subset_map(target, filter, f)]</code></pre>
+</article>
+
+<article class="doc-entry" id="tag" data-search="tag mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tag.html">tag</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let tag = operator |target, tag, filter = nil| [target, __monocurl__native__ op_retagged(target, |old| tag, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="tag-filter" data-search="tag_filter mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tag-filter.html">tag_filter</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let tag_filter = operator |target, filter| [target, __monocurl__native__ tag_filter(target, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="tag-map" data-search="tag_map mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tag-map.html">tag_map</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let tag_map = operator |target, f| [target, __monocurl__native__ op_tag_map(target, f)]</code></pre>
+</article>
+
+<article class="doc-entry" id="tag-split" data-search="tag_split mesh mesh.mcl transform operators function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tag-split.html">tag_split</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let tag_split = |target, filter = nil| __monocurl__native__ tag_split(target, filter)</code></pre>
+</article>
+
+<article class="doc-entry" id="tesselated" data-search="tesselated mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/tesselated.html">tesselated</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let tesselated = operator |target, depth = 1, filter = nil| [__monocurl__native__ op_tesselated(target, 0, filter), __monocurl__native__ op_tesselated(target, depth, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="textured" data-search="textured mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/textured.html">textured</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let textured = operator |target, image, filter = nil| [target, __monocurl__native__ op_retextured(target, image, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="to-corner" data-search="to_corner mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/to-corner.html">to_corner</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let to_corner = operator |target, camera = nil, dir = [1, 1, 0], buffer = 0, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="to-side" data-search="to_side mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/to-side.html">to_side</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let to_side = operator |target, camera = nil, dir = [0, 0, 0], buffer = 0, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="mesh-trans" data-search="trans mesh mesh.mcl transform operators function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/mesh-trans.html">trans</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let trans = |start, end, t, path_arc = 0| {</code></pre>
+</article>
+
+<article class="doc-entry" id="uprank" data-search="uprank mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/uprank.html">uprank</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let uprank = operator |target, filter = nil| [target, __monocurl__native__ op_uprank(target, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="uv-map" data-search="uv_map mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/uv-map.html">uv_map</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let uv_map = operator |target, f, filter = nil| {</code></pre>
+</article>
+
+<article class="doc-entry" id="wireframe" data-search="wireframe mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/wireframe.html">wireframe</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let wireframe = operator |target, filter = nil| [target, __monocurl__native__ op_wireframe(target, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="z-index" data-search="z_index mesh mesh.mcl transform operators operator ">
+  <div class="symbol-title">
+    <h3><a href="/docs/z-index.html">z_index</a></h3>
+    <span class="symbol-kind">operator</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Transform Operators</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let z_index = operator |target, z_index, filter = nil| [target, __monocurl__native__ op_with_zindex(target, z_index, filter)]</code></pre>
+</article>
+
+<article class="doc-entry" id="bezier" data-search="bezier mesh mesh.mcl visual / graphical function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/bezier.html">Bezier</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Visual / Graphical</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Bezier = |control_points|</code></pre>
+</article>
+
+<article class="doc-entry" id="colorgrid" data-search="colorgrid mesh mesh.mcl visual / graphical function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/colorgrid.html">ColorGrid</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Visual / Graphical</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let ColorGrid = |color_at, x_min_max_samples = [-1, 1, 21], y_min_max_samples = [-1, 1, 21], mask = |pos| 1| {</code></pre>
+</article>
+
+<article class="doc-entry" id="field" data-search="field mesh mesh.mcl visual / graphical function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/field.html">Field</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Visual / Graphical</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Field = |mesh_at, x_min_max_samples = [-1, 1, 21], y_min_max_samples = [-1, 1, 21], mask = |pos| 1| {</code></pre>
+</article>
+
+<article class="doc-entry" id="halfvector" data-search="halfvector mesh mesh.mcl visual / graphical function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/halfvector.html">HalfVector</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Visual / Graphical</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let HalfVector = |tail = [0, 0, 0], delta = 1r, normal = 1b|</code></pre>
+</article>
+
+<article class="doc-entry" id="image" data-search="image mesh mesh.mcl visual / graphical function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/image.html">Image</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Visual / Graphical</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Image = |name, center = [0, 0, 0], size = [1, 1]| {</code></pre>
+</article>
+
+<article class="doc-entry" id="vector" data-search="vector mesh mesh.mcl visual / graphical function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/vector.html">Vector</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">mesh.mcl</span>
+    <span class="pill">Visual / Graphical</span>
+  </div>
+  <p>Defined in <code>mesh.mcl</code>.</p>
+  
+  
+  <pre><code>let Vector = |delta = 1r, tail = [0, 0, 0], normal = 1b|</code></pre>
+</article>
+</div>
+</section>
+
+<section class="doc-file" id="file-scene-mcl">
+  <header class="doc-file-header">
+    <div>
+      <p class="section-kicker">scene</p>
+      <h2>scene.mcl</h2>
+    </div>
+    <span data-visible-count>8 visible</span>
+  </header>
+  <div class="symbol-list">
+<article class="doc-entry" id="aspect-16-9" data-search="aspect_16_9 scene scene.mcl constructors constant viewport hints canonical aspect ratios — useful when setting up orthographic bounds.">
+  <div class="symbol-title">
+    <h3><a href="/docs/aspect-16-9.html">ASPECT_16_9</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">scene.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>viewport hints canonical aspect ratios — useful when setting up orthographic bounds.</p>
+  
+  
+  <pre><code>let ASPECT_16_9 = 16 / 9</code></pre>
+</article>
+
+<article class="doc-entry" id="aspect-1-1" data-search="aspect_1_1 scene scene.mcl constructors constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/aspect-1-1.html">ASPECT_1_1</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">scene.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>Defined in <code>scene.mcl</code>.</p>
+  
+  
+  <pre><code>let ASPECT_1_1  = 1</code></pre>
+</article>
+
+<article class="doc-entry" id="aspect-4-3" data-search="aspect_4_3 scene scene.mcl constructors constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/aspect-4-3.html">ASPECT_4_3</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">scene.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>Defined in <code>scene.mcl</code>.</p>
+  
+  
+  <pre><code>let ASPECT_4_3  = 4 / 3</code></pre>
+</article>
+
+<article class="doc-entry" id="camera" data-search="camera scene scene.mcl constructors function build a camera from a position, a target point, and an up vector.">
+  <div class="symbol-title">
+    <h3><a href="/docs/camera.html">Camera</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">scene.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>build a camera from a position, a target point, and an up vector.</p>
+  
+  
+  <pre><code>let Camera = |position = 4b, target = [0,0,0], up = 1u, near = 0.1, far = 100| __monocurl__native__ mk_camera(position, target, up, near, far)</code></pre>
+</article>
+
+<article class="doc-entry" id="default-background" data-search="default_background scene scene.mcl constructors constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/default-background.html">DEFAULT_BACKGROUND</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">scene.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>Defined in <code>scene.mcl</code>.</p>
+  
+  
+  <pre><code>let DEFAULT_BACKGROUND = __monocurl__native__ initial_background()</code></pre>
+</article>
+
+<article class="doc-entry" id="default-camera" data-search="default_camera scene scene.mcl constructors constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/default-camera.html">DEFAULT_CAMERA</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">scene.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>Defined in <code>scene.mcl</code>.</p>
+  
+  
+  <pre><code>let DEFAULT_CAMERA     = __monocurl__native__ initial_camera()</code></pre>
+</article>
+
+<article class="doc-entry" id="frame-x-radius" data-search="frame_x_radius scene scene.mcl constructors constant half-extents of the default 16:9 viewport at unit camera distance.">
+  <div class="symbol-title">
+    <h3><a href="/docs/frame-x-radius.html">FRAME_X_RADIUS</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">scene.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>half-extents of the default 16:9 viewport at unit camera distance.</p>
+  
+  
+  <pre><code>let FRAME_X_RADIUS = 7.11111111111</code></pre>
+</article>
+
+<article class="doc-entry" id="frame-y-radius" data-search="frame_y_radius scene scene.mcl constructors constant ">
+  <div class="symbol-title">
+    <h3><a href="/docs/frame-y-radius.html">FRAME_Y_RADIUS</a></h3>
+    <span class="symbol-kind">constant</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">scene.mcl</span>
+    <span class="pill">Constructors</span>
+  </div>
+  <p>Defined in <code>scene.mcl</code>.</p>
+  
+  
+  <pre><code>let FRAME_Y_RADIUS = 4</code></pre>
+</article>
+</div>
+</section>
+
+<section class="doc-file" id="file-util-mcl">
+  <header class="doc-file-header">
+    <div>
+      <p class="section-kicker">util</p>
+      <h2>util.mcl</h2>
+    </div>
+    <span data-visible-count>56 visible</span>
+  </header>
+  <div class="symbol-list">
+<article class="doc-entry" id="all" data-search="all util util.mcl util function true when every element is truthy.">
+  <div class="symbol-title">
+    <h3><a href="/docs/all.html">all</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>true when every element is truthy.</p>
+  
+  
+  <pre><code>let all = |v| {</code></pre>
+</article>
+
+<article class="doc-entry" id="any" data-search="any util util.mcl util function true when any element is truthy.">
+  <div class="symbol-title">
+    <h3><a href="/docs/any.html">any</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>true when any element is truthy.</p>
+  
+  
+  <pre><code>let any = |v| {</code></pre>
+</article>
+
+<article class="doc-entry" id="count" data-search="count util util.mcl util function number of elements satisfying predicate.">
+  <div class="symbol-title">
+    <h3><a href="/docs/count.html">count</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>number of elements satisfying predicate.</p>
+  
+  
+  <pre><code>let count = |v, predicate| {</code></pre>
+</article>
+
+<article class="doc-entry" id="depth" data-search="depth util util.mcl util function maximum nesting depth of a list (0 for atoms).">
+  <div class="symbol-title">
+    <h3><a href="/docs/depth.html">depth</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>maximum nesting depth of a list (0 for atoms).</p>
+  
+  
+  <pre><code>let depth = |v| __monocurl__native__ depth(v)</code></pre>
+</article>
+
+<article class="doc-entry" id="drop" data-search="drop util util.mcl util function list with the first n elements removed.">
+  <div class="symbol-title">
+    <h3><a href="/docs/drop.html">drop</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>list with the first n elements removed.</p>
+  
+  
+  <pre><code>let drop = |v, n| __monocurl__native__ drop(v, n)</code></pre>
+</article>
+
+<article class="doc-entry" id="enumerate" data-search="enumerate util util.mcl util function [[0, v[0]], [1, v[1]], ...]">
+  <div class="symbol-title">
+    <h3><a href="/docs/enumerate.html">enumerate</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>[[0, v[0]], [1, v[1]], ...]</p>
+  
+  
+  <pre><code>let enumerate = |v| __monocurl__native__ enumerate(v)</code></pre>
+</article>
+
+<article class="doc-entry" id="filter" data-search="filter util util.mcl util function keep only elements satisfying predicate.">
+  <div class="symbol-title">
+    <h3><a href="/docs/filter.html">filter</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>keep only elements satisfying predicate.</p>
+  
+  
+  <pre><code>let filter = |v, predicate| {</code></pre>
+</article>
+
+<article class="doc-entry" id="flatten" data-search="flatten util util.mcl util function concatenate one level of nesting.">
+  <div class="symbol-title">
+    <h3><a href="/docs/flatten.html">flatten</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>concatenate one level of nesting.</p>
+  
+  
+  <pre><code>let flatten = |v| {</code></pre>
+</article>
+
+<article class="doc-entry" id="get-attr" data-search="get_attr util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/get-attr.html">get_attr</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let get_attr         = |x, name| __monocurl__native__ get_attr(x, name)</code></pre>
+</article>
+
+<article class="doc-entry" id="has-attr" data-search="has_attr util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/has-attr.html">has_attr</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let has_attr         = |x, name| __monocurl__native__ has_attr(x, name)</code></pre>
+</article>
+
+<article class="doc-entry" id="identity" data-search="identity util util.mcl util function identity function; useful as a default key / mapper.">
+  <div class="symbol-title">
+    <h3><a href="/docs/identity.html">identity</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>identity function; useful as a default key / mapper.</p>
+  
+  
+  <pre><code>let identity = |x| x</code></pre>
+</article>
+
+<article class="doc-entry" id="is-anim-block" data-search="is_anim_block util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-anim-block.html">is_anim_block</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_anim_block     = |x| __monocurl__native__ is_anim_block(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-callable" data-search="is_callable util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-callable.html">is_callable</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_callable       = |x| __monocurl__native__ is_callable(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-complex" data-search="is_complex util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-complex.html">is_complex</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_complex        = |x| __monocurl__native__ is_complex(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-float" data-search="is_float util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-float.html">is_float</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_float          = |x| __monocurl__native__ is_float(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-function" data-search="is_function util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-function.html">is_function</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_function       = |x| __monocurl__native__ is_function(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-int" data-search="is_int util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-int.html">is_int</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_int            = |x| __monocurl__native__ is_int(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-list" data-search="is_list util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-list.html">is_list</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_list           = |x| __monocurl__native__ is_list(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-live-function" data-search="is_live_function util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-live-function.html">is_live_function</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_live_function  = |x| __monocurl__native__ is_live_function(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-live-operator" data-search="is_live_operator util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-live-operator.html">is_live_operator</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_live_operator  = |x| __monocurl__native__ is_live_operator(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-map" data-search="is_map util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-map.html">is_map</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_map            = |x| __monocurl__native__ is_map(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-mesh" data-search="is_mesh util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-mesh.html">is_mesh</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_mesh           = |x| __monocurl__native__ is_mesh(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-nil" data-search="is_nil util util.mcl util function type predicates after lvalue / leader elision">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-nil.html">is_nil</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>type predicates after lvalue / leader elision</p>
+  
+  
+  <pre><code>let is_nil            = |x| __monocurl__native__ is_nil(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-number" data-search="is_number util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-number.html">is_number</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_number         = |x| __monocurl__native__ is_number(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-operator" data-search="is_operator util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-operator.html">is_operator</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_operator       = |x| __monocurl__native__ is_operator(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-primitive-anim" data-search="is_primitive_anim util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-primitive-anim.html">is_primitive_anim</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_primitive_anim = |x| __monocurl__native__ is_primitive_anim(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-stateful" data-search="is_stateful util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-stateful.html">is_stateful</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_stateful       = |x| __monocurl__native__ is_stateful(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="is-string" data-search="is_string util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/is-string.html">is_string</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let is_string         = |x| __monocurl__native__ is_string(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="len" data-search="len util util.mcl util function element count of a list, map, or string.">
+  <div class="symbol-title">
+    <h3><a href="/docs/len.html">len</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>element count of a list, map, or string.</p>
+  
+  
+  <pre><code>let len = |container| __monocurl__native__ len(container)</code></pre>
+</article>
+
+<article class="doc-entry" id="list-subset" data-search="list_subset util util.mcl util function subset by index list: ret[i] = src[indexes[i]]">
+  <div class="symbol-title">
+    <h3><a href="/docs/list-subset.html">list_subset</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>subset by index list: ret[i] = src[indexes[i]]</p>
+  
+  
+  <pre><code>let list_subset = |src, indexes| __monocurl__native__ list_subset(src, indexes)</code></pre>
+</article>
+
+<article class="doc-entry" id="map" data-search="map util util.mcl util function apply f to every element, returning a new list.">
+  <div class="symbol-title">
+    <h3><a href="/docs/map.html">map</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>apply f to every element, returning a new list.</p>
+  
+  
+  <pre><code>let map = |v, f| {</code></pre>
+</article>
+
+<article class="doc-entry" id="map-items" data-search="map_items util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/map-items.html">map_items</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let map_items  = |m| __monocurl__native__ map_items(m)</code></pre>
+</article>
+
+<article class="doc-entry" id="map-keys" data-search="map_keys util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/map-keys.html">map_keys</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let map_keys   = |m| __monocurl__native__ map_keys(m)</code></pre>
+</article>
+
+<article class="doc-entry" id="map-values" data-search="map_values util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/map-values.html">map_values</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let map_values = |m| __monocurl__native__ map_values(m)</code></pre>
+</article>
+
+<article class="doc-entry" id="max-of" data-search="max_of util util.mcl util function max / min of a non-empty list. for pairwise use math.max / math.min.">
+  <div class="symbol-title">
+    <h3><a href="/docs/max-of.html">max_of</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>max / min of a non-empty list. For pairwise use math.max / math.min.</p>
+  
+  
+  <pre><code>let max_of = |v, key = identity| __monocurl__native__ max_of(v, key)</code></pre>
+</article>
+
+<article class="doc-entry" id="min-of" data-search="min_of util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/min-of.html">min_of</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let min_of = |v, key = identity| __monocurl__native__ min_of(v, key)</code></pre>
+</article>
+
+<article class="doc-entry" id="product" data-search="product util util.mcl util function product of elements.">
+  <div class="symbol-title">
+    <h3><a href="/docs/product.html">product</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>product of elements.</p>
+  
+  
+  <pre><code>let product = |v| {</code></pre>
+</article>
+
+<article class="doc-entry" id="range" data-search="range util util.mcl util function build [start, start + step, ..., last &lt; stop]; step defaults to 1.">
+  <div class="symbol-title">
+    <h3><a href="/docs/range.html">range</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>build [start, start + step, ..., last &lt; stop]; step defaults to 1.</p>
+  
+  
+  <pre><code>let range = |start, stop, step = 1| __monocurl__native__ range(start, stop, step)</code></pre>
+</article>
+
+<article class="doc-entry" id="reduce" data-search="reduce util util.mcl util function left fold with seed: reduce([a, b, c], seed, f) = f(f(f(seed, a), b), c).">
+  <div class="symbol-title">
+    <h3><a href="/docs/reduce.html">reduce</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>left fold with seed: reduce([a, b, c], seed, f) = f(f(f(seed, a), b), c).</p>
+  
+  
+  <pre><code>let reduce = |v, seed, binary| {</code></pre>
+</article>
+
+<article class="doc-entry" id="reverse" data-search="reverse util util.mcl util function reverse a list, map iteration order, or string.">
+  <div class="symbol-title">
+    <h3><a href="/docs/reverse.html">reverse</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>reverse a list, map iteration order, or string.</p>
+  
+  
+  <pre><code>let reverse = |v| __monocurl__native__ reverse(v)</code></pre>
+</article>
+
+<article class="doc-entry" id="runtime-error" data-search="runtime_error util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/runtime-error.html">runtime_error</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let runtime_error    = |message| __monocurl__native__ runtime_error(message)</code></pre>
+</article>
+
+<article class="doc-entry" id="set-attr" data-search="set_attr util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/set-attr.html">set_attr</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let set_attr         = |x, name, value| __monocurl__native__ set_attr(x, name, value)</code></pre>
+</article>
+
+<article class="doc-entry" id="sort" data-search="sort util util.mcl util function stable sort; a key lambda may be supplied for custom orderings.">
+  <div class="symbol-title">
+    <h3><a href="/docs/sort.html">sort</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>stable sort; a key lambda may be supplied for custom orderings.</p>
+  
+  
+  <pre><code>let sort = |v, key = identity| __monocurl__native__ sort(v, key)</code></pre>
+</article>
+
+<article class="doc-entry" id="str-join" data-search="str_join util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/str-join.html">str_join</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let str_join    = |parts, sep = &quot;&quot;| __monocurl__native__ str_join(parts, sep)</code></pre>
+</article>
+
+<article class="doc-entry" id="str-len" data-search="str_len util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/str-len.html">str_len</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let str_len     = |s| __monocurl__native__ str_len(s)</code></pre>
+</article>
+
+<article class="doc-entry" id="str-lower" data-search="str_lower util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/str-lower.html">str_lower</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let str_lower   = |s| __monocurl__native__ str_lower(s)</code></pre>
+</article>
+
+<article class="doc-entry" id="str-replace" data-search="str_replace util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/str-replace.html">str_replace</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let str_replace = |s, needle, with| __monocurl__native__ str_replace(s, needle, with)</code></pre>
+</article>
+
+<article class="doc-entry" id="str-split" data-search="str_split util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/str-split.html">str_split</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let str_split   = |s, sep| __monocurl__native__ str_split(s, sep)</code></pre>
+</article>
+
+<article class="doc-entry" id="str-upper" data-search="str_upper util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/str-upper.html">str_upper</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let str_upper   = |s| __monocurl__native__ str_upper(s)</code></pre>
+</article>
+
+<article class="doc-entry" id="sum" data-search="sum util util.mcl util function sum of elements — works for numbers and (element-wise) for lists.">
+  <div class="symbol-title">
+    <h3><a href="/docs/sum.html">sum</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>sum of elements — works for numbers and (element-wise) for lists.</p>
+  
+  
+  <pre><code>let sum = |v| {</code></pre>
+</article>
+
+<article class="doc-entry" id="take" data-search="take util util.mcl util function first n elements of a list.">
+  <div class="symbol-title">
+    <h3><a href="/docs/take.html">take</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>first n elements of a list.</p>
+  
+  
+  <pre><code>let take = |v, n| __monocurl__native__ take(v, n)</code></pre>
+</article>
+
+<article class="doc-entry" id="to-float" data-search="to_float util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/to-float.html">to_float</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let to_float  = |x| __monocurl__native__ to_float(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="to-int" data-search="to_int util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/to-int.html">to_int</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let to_int    = |x| __monocurl__native__ to_int(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="to-string" data-search="to_string util util.mcl util function ">
+  <div class="symbol-title">
+    <h3><a href="/docs/to-string.html">to_string</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>Defined in <code>util.mcl</code>.</p>
+  
+  
+  <pre><code>let to_string = |x| __monocurl__native__ to_string(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="type-of" data-search="type_of util util.mcl util function runtime reflection and dynamic live-attribute access. `set_attr` returns the updated value so callers can write `x = set_attr(x, &quot;label&quot;, v)`.">
+  <div class="symbol-title">
+    <h3><a href="/docs/type-of.html">type_of</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>runtime reflection and dynamic live-attribute access. <code>set_attr</code> returns the updated value so callers can write <code>x = set_attr(x, &quot;label&quot;, v)</code>.</p>
+  
+  
+  <pre><code>let type_of          = |x| __monocurl__native__ type_of(x)</code></pre>
+</article>
+
+<article class="doc-entry" id="zip" data-search="zip util util.mcl util function pair up corresponding elements; truncates to the shorter sequence.">
+  <div class="symbol-title">
+    <h3><a href="/docs/zip.html">zip</a></h3>
+    <span class="symbol-kind">function</span>
+  </div>
+  <div class="doc-meta">
+    <span class="pill">util.mcl</span>
+    <span class="pill">Util</span>
+  </div>
+  <p>pair up corresponding elements; truncates to the shorter sequence.</p>
+  
+  
+  <pre><code>let zip = |u, v| __monocurl__native__ zip(u, v)</code></pre>
+</article>
+</div>
+</section>
+</section>
+  </div>
+</main>
+<script>
+function fuzzyScore(text, query) {
+  if (!query) return 1;
+  text = text.toLowerCase();
+  query = query.toLowerCase().trim();
+  let score = 0;
+  let last = -1;
+  let streak = 0;
+  for (const ch of query) {
+    const idx = text.indexOf(ch, last + 1);
+    if (idx === -1) return 0;
+    streak = idx === last + 1 ? streak + 1 : 1;
+    score += 1 + streak * 2 - Math.min(idx - last, 18) * 0.02;
+    last = idx;
+  }
+  return score;
+}
+
+function filterDocs() {
+  const query = document.getElementById('docs-search').value;
+  document.querySelectorAll('.doc-entry').forEach((entry) => {
+    const score = fuzzyScore(entry.dataset.search, query);
+    entry.hidden = score === 0;
+    entry.style.order = String(100000 - Math.round(score * 100));
+  });
+  document.querySelectorAll('.doc-file').forEach((group) => {
+    const visible = group.querySelectorAll('.doc-entry:not([hidden])').length;
+    group.hidden = visible === 0;
+    const count = group.querySelector('[data-visible-count]');
+    if (count) count.textContent = `${visible} visible`;
+  });
+}
+</script>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>Monocurl.</span>
+        <div class="footer-links">
+          <a href="/learn/">Learn</a>
+          <a href="/docs/">Docs</a>
+          <a href="https://github.com/monocurl/monocurl">Source</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

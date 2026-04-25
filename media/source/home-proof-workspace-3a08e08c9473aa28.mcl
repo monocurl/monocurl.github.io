@@ -1,0 +1,17 @@
+import std.math
+import std.mesh
+import std.anim
+import std.color
+
+background = [0.035, 0.045, 0.060, 1]
+mesh triangle = [
+    fill{alpha{0.20} BLUE} Triangle(LEFT * 2 + DOWN, RIGHT * 2 + DOWN, LEFT * 0.6 + UP * 1.5),
+    stroke{CYAN} Line(LEFT * 2 + DOWN, RIGHT * 2 + DOWN),
+    stroke{GREEN} Line(LEFT * 2 + DOWN, LEFT * 0.6 + UP * 1.5),
+    stroke{ORANGE} Line(LEFT * 0.6 + UP * 1.5, RIGHT * 2 + DOWN)
+]
+mesh circle = fill{CLEAR} stroke{alpha{0.52} WHITE} Circle(2.15)
+mesh centroid = fill{YELLOW} Dot([0.2, -0.15, 0])
+
+slide "Geometry"
+play Set()
