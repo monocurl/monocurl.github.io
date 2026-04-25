@@ -6,6 +6,9 @@
   <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
   <title>Monocurl</title>
   <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
@@ -24,10 +27,9 @@
     </header>
     
 <section class="hero">
-  <img class="hero-media" src="/media/generated/home-sine-workspace-41f476191b867b45.svg" alt="">
   <div class="hero-inner">
-    <h1>Monocurl</h1>
-    <p class="hero-copy">A language for mathematical animation. Declare meshes, assign states, play transitions — the runtime interpolates geometry between them.</p>
+    <h1>Mathematical animation,<br>in code.</h1>
+    <p class="hero-copy">Monocurl is an open-source language for animating mathematical diagrams, proofs, and talks. Declare meshes, assign states, play transitions.</p>
     <div class="hero-actions">
       <a class="button" href="/learn/">Start learning</a>
       <a class="button secondary" href="/docs/">Open stdlib</a>
@@ -35,39 +37,40 @@
   </div>
 </section>
 
-<div class="feature-pillars">
-  <div class="feature-pillar">
+<div class="pillars">
+  <div class="pillar">
     <h3>Declarative</h3>
     <p>Assign a new value to a mesh leader and call a transition primitive. The runtime determines how to move geometry between mathematical states — no keyframes, no timeline editors.</p>
   </div>
-  <div class="feature-pillar">
+  <div class="pillar">
     <h3>Mathematical</h3>
     <p>Meshes are first-class values: curves, surfaces, labels, or trees of other meshes. Syntax is close to Rust in structure and close to math notation in how vectors and transformations read.</p>
   </div>
-  <div class="feature-pillar">
+  <div class="pillar">
     <h3>Live</h3>
-    <p>Scenes render as a continuous video or step through as a slideshow. The editor previews the scene continuously up to the current timestamp as you type.</p>
+    <p>Scenes render as a continuous video or step through as a slideshow. The editor previews continuously up to the current timestamp as you type.</p>
   </div>
 </div>
 
 <section class="workspace-section">
-  <div class="workspace-shell">
-    <div class="workspace-topline">
-      <span>project</span>
-      <span>theorem.mcl</span>
-      <span>preview</span>
-    </div>
-    <div class="workspace-grid">
-      <aside class="project-pane">
-        <a class="project-item active" href="/docs/#file-scene-mcl">scene.mcl</a>
-        <a class="project-item" href="/docs/#file-mesh-mcl">mesh.mcl</a>
-        <a class="project-item" href="/docs/#file-anim-mcl">anim.mcl</a>
-        <a class="project-item" href="/docs/#file-color-mcl">color.mcl</a>
-        <a class="project-item" href="/learn/">lessons/</a>
-      </aside>
-      <div class="editor-pane">
-        <div class="tabbar"><span>theorem.mcl</span><span>saved</span></div>
-        <pre><code>import std.math
+  <div class="workspace-wrap">
+    <div class="workspace-shell">
+      <div class="workspace-titlebar">
+        <span>project</span>
+        <span>theorem.mcl</span>
+        <span>preview</span>
+      </div>
+      <div class="workspace-grid">
+        <aside class="ws-sidebar">
+          <a class="ws-file active" href="/docs/#file-scene-mcl">scene.mcl</a>
+          <a class="ws-file" href="/docs/#file-mesh-mcl">mesh.mcl</a>
+          <a class="ws-file" href="/docs/#file-anim-mcl">anim.mcl</a>
+          <a class="ws-file" href="/docs/#file-color-mcl">color.mcl</a>
+          <a class="ws-file" href="/learn/">lessons/</a>
+        </aside>
+        <div class="ws-editor">
+          <div class="ws-tabbar"><span>theorem.mcl</span><span>saved</span></div>
+          <pre><code>import std.math
 import std.mesh
 import std.anim
 import std.color
@@ -77,9 +80,10 @@ mesh marker = fill{YELLOW} Dot([PI / 2, 1, 0])
 
 slide "Sine curve"
 play Set()</code></pre>
-      </div>
-      <div class="preview-pane">
-        <img src="/media/generated/home-proof-workspace-3a08e08c9473aa28.svg" alt="Monocurl-rendered geometric proof scene">
+        </div>
+        <div class="ws-preview">
+          <img src="/media/generated/home-proof-workspace-3a08e08c9473aa28.svg" alt="Monocurl-rendered geometric proof scene">
+        </div>
       </div>
     </div>
   </div>
@@ -88,12 +92,12 @@ play Set()</code></pre>
 <section class="section">
   <div class="section-inner two-lists">
     <div>
-      <p class="section-kicker">learn</p>
+      <p class="section-label">learn</p>
       <h2>Scene-first lessons.</h2>
       <div class="list-panel"><a class="list-row" href="/learn/00-quickstart.html"><span>Quickstart</span><small>Monocurl scenes are ordinary text files. You declare values, place meshes into</small></a><a class="list-row" href="/learn/01-language.html"><span>Language Tour</span><small>Monocurl is a small language, but it is designed around values that can be</small></a><a class="list-row" href="/learn/02-animation.html"><span>Animation Model</span><small>Monocurl animations are built from state changes. You mutate a leader to the</small></a><a class="list-row" href="/learn/03-presentations.html"><span>Presentations</span><small>Presentation mode turns a scene into a live slideshow. The same source can still</small></a></div>
     </div>
     <div>
-      <p class="section-kicker">standard library</p>
+      <p class="section-label">standard library</p>
       <h2>304 declarations.</h2>
       <div class="list-panel"><a class="list-row compact" href="/docs/#file-anim-mcl"><span>anim.mcl</span><small>37 declarations</small></a><a class="list-row compact" href="/docs/#file-color-mcl"><span>color.mcl</span><small>23 declarations</small></a><a class="list-row compact" href="/docs/#file-math-mcl"><span>math.mcl</span><small>69 declarations</small></a><a class="list-row compact" href="/docs/#file-mesh-mcl"><span>mesh.mcl</span><small>111 declarations</small></a><a class="list-row compact" href="/docs/#file-scene-mcl"><span>scene.mcl</span><small>8 declarations</small></a><a class="list-row compact" href="/docs/#file-util-mcl"><span>util.mcl</span><small>56 declarations</small></a></div>
     </div>

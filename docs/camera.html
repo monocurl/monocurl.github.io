@@ -6,6 +6,9 @@
   <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
   <title>Monocurl | Camera</title>
   <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
@@ -23,14 +26,14 @@
       </nav>
     </header>
     
-<header class="page-title">
-  <p class="eyebrow">scene.mcl</p>
+<div class="page-title">
+  <p class="page-eyebrow">scene.mcl</p>
   <h1>Camera</h1>
   <p>build a camera from a position, a target point, and an up vector.</p>
-</header>
-<main class="docs-shell">
-  <div class="button-row">
-    <a class="button secondary" href="/docs/#file-scene-mcl">Back to scene.mcl</a>
+</div>
+<div class="docs-wrap">
+  <div class="button-row" style="margin-bottom:24px">
+    <a class="button secondary" href="/docs/#file-scene-mcl">← Back to scene.mcl</a>
   </div>
   
 <article class="doc-entry" id="camera" data-search="camera scene scene.mcl constructors function build a camera from a position, a target point, and an up vector.">
@@ -48,7 +51,7 @@
   <pre><code>let Camera = |position = 4b, target = [0,0,0], up = 1u, near = 0.1, far = 100| __monocurl__native__ mk_camera(position, target, up, near, far)</code></pre>
 </article>
 
-</main>
+</div>
 
     <footer class="footer">
       <div class="footer-inner">

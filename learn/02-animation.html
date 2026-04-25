@@ -6,6 +6,9 @@
   <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
   <title>Monocurl | Animation Model</title>
   <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
@@ -23,12 +26,12 @@
       </nav>
     </header>
     
-<header class="page-title">
-  <p class="eyebrow">lesson 3</p>
+<div class="page-title">
+  <p class="page-eyebrow">lesson 3</p>
   <h1>Animation Model</h1>
   <p>Monocurl animations are built from state changes. You mutate a leader to the</p>
-</header>
-<div class="content-grid">
+</div>
+<div class="content-wrap">
   <aside class="sidebar"><a class="" href="/learn/00-quickstart.html">Quickstart</a><a class="" href="/learn/01-language.html">Language Tour</a><a class="current" href="/learn/02-animation.html">Animation Model</a><a class="" href="/learn/03-presentations.html">Presentations</a></aside>
   <article class="content">
     <h1 id="animation-model">Animation Model</h1><p>Monocurl animations are built from state changes. You mutate a leader to the state you want, then play an animation that moves the follower there.</p><h2 id="leaders-and-followers">Leaders And Followers</h2><p>A mesh declaration owns a leader value and a follower value. Code writes the leader. The viewport draws the follower.</p>

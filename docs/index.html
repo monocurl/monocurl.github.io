@@ -6,6 +6,9 @@
   <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
   <title>Monocurl | Documentation</title>
   <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
@@ -23,14 +26,14 @@
       </nav>
     </header>
     
-<header class="page-title">
-  <p class="eyebrow">generated reference</p>
+<div class="page-title">
+  <p class="page-eyebrow">standard library</p>
   <h1>Documentation</h1>
-  <p>Search the standard library by symbol, category, or source file. Results are grouped exactly by the `.mcl` file they came from.</p>
-</header>
-<main class="docs-shell">
+  <p>Search by symbol, category, or source file. Grouped by the <code>.mcl</code> file they come from.</p>
+</div>
+<div class="docs-wrap">
   <div class="docs-toolbar">
-    <input class="docs-search" id="docs-search" type="search" placeholder="Fuzzy search symbols, files, categories" oninput="filterDocs()" autofocus>
+    <input class="docs-search" id="docs-search" type="search" placeholder="Search symbols, files, categories…" oninput="filterDocs()" autofocus>
     <a class="button secondary" href="https://github.com/monocurl/monocurl">stdlib source</a>
   </div>
   <div class="docs-layout">
@@ -4663,7 +4666,7 @@
 </section>
 </section>
   </div>
-</main>
+</div>
 <script>
 function fuzzyScore(text, query) {
   if (!query) return 1;

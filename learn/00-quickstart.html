@@ -6,6 +6,9 @@
   <meta name="description" content="Monocurl is a desktop application and programming language for mathematical animation and live technical presentations.">
   <title>Monocurl | Quickstart</title>
   <link rel="icon" href="/img/monocurl-1024.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
@@ -23,12 +26,12 @@
       </nav>
     </header>
     
-<header class="page-title">
-  <p class="eyebrow">lesson 1</p>
+<div class="page-title">
+  <p class="page-eyebrow">lesson 1</p>
   <h1>Quickstart</h1>
   <p>Monocurl scenes are ordinary text files. You declare values, place meshes into</p>
-</header>
-<div class="content-grid">
+</div>
+<div class="content-wrap">
   <aside class="sidebar"><a class="current" href="/learn/00-quickstart.html">Quickstart</a><a class="" href="/learn/01-language.html">Language Tour</a><a class="" href="/learn/02-animation.html">Animation Model</a><a class="" href="/learn/03-presentations.html">Presentations</a></aside>
   <article class="content">
     <h1 id="quickstart">Quickstart</h1><p>Monocurl scenes are ordinary text files. You declare values, place meshes into the scene, then tell the runtime how those values should move.</p><aside class="note"><strong>DEFINITION</strong>A mesh is the visual value that eventually reaches the viewport. Meshes can be points, curves, surfaces, text, images, or trees containing other meshes.</aside><h2 id="a-minimal-scene">A Minimal Scene</h2><p>The smallest useful scene imports the standard mesh and animation libraries, creates a mesh leader, and plays an animation.</p>
