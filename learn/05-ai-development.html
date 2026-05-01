@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl documentation — mathematical animation for people who think in proofs.">
+  <title>Monocurl Lesson - AI Development</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" alt="">
+      <span>Monocurl</span>
+    </a>
+    <nav class="top-links" aria-label="primary">
+      <a  href="/">Home</a>
+      <a  href="/gallery/">Gallery</a>
+      <a class="active" href="/learn/00-overview.html">Learn</a>
+      <a  href="/docs/">Docs</a>
+    </nav>
+    <div class="top-actions">
+      <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
+      <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
+      <a class="download-button" href="/download/">Download</a>
+    </div>
+  </header>
+  <div class="app-frame">
+  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p>Learn</p><a  href="/learn/00-overview.html">Overview</a><a  href="/learn/01-language.html">Language Basics</a><a  href="/learn/02-meshes.html">Meshes And Operators</a><a  href="/learn/03-animation.html">Animation Basics</a><a  href="/learn/04-parallel.html">Parallel Animations</a><a class="active" href="/learn/05-ai-development.html">AI Development</a><a  href="/learn/06-advanced.html">Advanced Topics</a></nav></aside>
+  <div class="page"><main class="content"><article class="prose lesson">
+  <p class="eyebrow">lesson 06</p>
+  <h1 id="ai-development"><a class="header" href="#ai-development">AI Development</a></h1><aside class="callout"><span>REMARK</span><p>This lesson is a work in progress. The tooling described here is under active development.</p></aside><p>Monocurl scenes are plain text files and LLMs can be quite helpful in avoiding boilerplate / tedious layout tasks.</p><h2 id="current-status"><a class="header" href="#current-status">Current Status</a></h2><p>An MCP (Model Context Protocol) server for Monocurl is being built. When complete, it will let AI assistants directly read Monocurl's documentation, stdlib reference, and example scenes as structured resources, making them much better at writing correct code.</p><p>In the meantime, the most effective approach is to point the assistant at the right context manually.</p><h2 id="giving-an-ai-assistant-context"><a class="header" href="#giving-an-ai-assistant-context">Giving An AI Assistant Context</a></h2><p>For now, some useful things to share:</p><p><strong>The GitHub repository.</strong> Point the assistant at <code>https://github.com/monocurl/monocurl</code> or possible <code>https://github.com/monocurl/monocurl/tree/rust/crates/mcp/docs</code>. The stdlib files in <code>assets/std/std/</code> are the ground truth for constructors, operators, and animations.</p><p><strong>Website</strong> <code>https://monocurl.com/docs</code> and <code>https://monocurl.com/learn</code> can also be helpful for the AI.</p><p><strong>An example scene</strong> Copy one of the built-in example scenes (<code>.mcs</code> files) that's most relevant to what you want to build.</p><h2 id="headless-mode"><a class="header" href="#headless-mode">Headless Mode</a></h2><p>Monocurl will watch for file changes and dynamically update the timeline and viewport in response to any external edits, including those from AI agents. Consequently, you can use your preferred text editor or an AI agent to write the scene source file, then switch back to the Monocurl editor to see the results and scrub through the timeline. If you would prefer to use the left hand space for a terminal instead of the default editor, enable headless menu under the File menu.</p>
+  <nav class="footer-buttons"><a class="footer-button" href="/learn/04-parallel.html">← Parallel Animations</a><a class="footer-button" href="/learn/06-advanced.html">Advanced Topics →</a></nav>
+</article></main></div>
+  <aside class="toc-panel"><p class="toc-title">On this page</p><a class="toc-h2 active" href="#current-status">Current Status</a><a class="toc-h2" href="#giving-an-ai-assistant-context">Giving An AI Assistant Context</a><a class="toc-h2" href="#headless-mode">Headless Mode</a></aside>
+</div>
+  <script>
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('[data-copy-code]');
+  if (!button) return;
+
+  const block = button.closest('.code-shell');
+  const code = block && block.querySelector('code');
+  if (!code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent);
+    button.textContent = 'Copied';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+  } catch (_) {
+    button.textContent = 'Failed';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+  }
+});
+
+const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
+const tocTargets = tocLinks
+  .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
+  .filter((pair) => pair[1]);
+
+function setActiveToc(id) {
+  for (const link of tocLinks) {
+    const active = decodeURIComponent(link.hash.slice(1)) === id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+if (tocTargets.length > 0) {
+  setActiveToc(tocTargets[0][1].id);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (visible) setActiveToc(visible.target.id);
+  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+
+  for (const [, target] of tocTargets) observer.observe(target);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl documentation — mathematical animation for people who think in proofs.">
+  <title>Monocurl std.scene</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" alt="">
+      <span>Monocurl</span>
+    </a>
+    <nav class="top-links" aria-label="primary">
+      <a  href="/">Home</a>
+      <a  href="/gallery/">Gallery</a>
+      <a  href="/learn/00-overview.html">Learn</a>
+      <a class="active" href="/docs/">Docs</a>
+    </nav>
+    <div class="top-actions">
+      <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
+      <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
+      <a class="download-button" href="/download/">Download</a>
+    </div>
+  </header>
+  <div class="app-frame">
+  <aside class="sidebar"><nav class="side-nav" aria-label="docs navigation"><p>Reference</p><a  href="/docs/">Standard library</a><a  href="/docs/anim.html">std.anim</a><a  href="/docs/color.html">std.color</a><a  href="/docs/math.html">std.math</a><a  href="/docs/mesh.html">std.mesh</a><a class="active" href="/docs/scene.html">std.scene</a><a  href="/docs/util.html">std.util</a></nav></aside>
+  <div class="page"><main class="content"><section class="page-head">
+  <p class="eyebrow">std.scene</p>
+  <h1>scene.mcl</h1>
+  <p>Reference for the symbols exported by <code>scene.mcl</code>.</p>
+</section>
+<section class="module-index">
+  <h2 id="index"><a class="header" href="#index">Index</a></h2>
+  <section class="module-index-group">
+  <h3>Constructors</h3>
+  <div class="symbol-list"><a class="symbol-row module-symbol-row" href="#camera">
+  <span class="symbol-kind kind-constructor">constructor</span>
+  <strong>Camera</strong>
+  <small>Build a perspective camera from a position, target, up vector, and clipping range.</small>
+</a></div>
+</section><section class="module-index-group">
+  <h3>Defaults</h3>
+  <div class="symbol-list"><a class="symbol-row module-symbol-row" href="#default-camera">
+  <span class="symbol-kind kind-constant">constant</span>
+  <strong>DEFAULT_CAMERA</strong>
+  <small>Initial camera used by new scenes.</small>
+</a><a class="symbol-row module-symbol-row" href="#default-background">
+  <span class="symbol-kind kind-constant">constant</span>
+  <strong>DEFAULT_BACKGROUND</strong>
+  <small>Initial background color used by new scenes.</small>
+</a></div>
+</section>
+</section><section class="doc-group" id="constructors">
+  <h2><a class="header" href="#constructors">Constructors</a></h2>
+  <div class="doc-entry-list"><article class="doc-entry" id="camera">
+  <header>
+    <div><h3><a class="header" href="#camera">Camera</a></h3></div>
+    <div class="doc-badges"><span class="doc-kind kind-constructor">constructor</span></div>
+  </header><p>Build a perspective camera from a position, target, up vector, and clipping range.</p><p class="doc-description">The value is a tagged map consumed specially by the renderer. Animate the camera leader with <code>CameraLerp</code> rather than plain <code>Lerp</code> for smoother up-vector motion.</p><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-let">let</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">Camera</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-pipe">|</span><span class="mc-token mc-identifier mc-token-identifier">position</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">4b</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">target</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-punctuation mc-token-l-bracket">[</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">0</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">0</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">0</span><span class="mc-token mc-punctuation mc-token-r-bracket">]</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">up</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">1u</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">near</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.1</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">far</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">100</span><span class="mc-token mc-operator mc-token-pipe">|</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-append">..</span><span class="mc-token mc-operator mc-token-dot">.</span></code></pre></div><table class="param-table"><tbody><tr><td><code>up</code></td><td>preferred screen-up direction; it should not be parallel to the view direction</td></tr><tr><td><code>near</code></td><td>near clipping plane distance</td></tr><tr><td><code>far</code></td><td>far clipping plane distance</td></tr></tbody></table><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-identifier mc-token-identifier">camera</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Camera</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-argument-label mc-token-argument-label">position:</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-punctuation mc-token-l-bracket">[</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">2</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">1</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">5</span><span class="mc-token mc-punctuation mc-token-r-bracket">]</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-argument-label mc-token-argument-label">target:</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">ORIGIN</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">CameraLerp</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-operator mc-token-reference">&amp;</span><span class="mc-token mc-identifier mc-token-identifier">camera</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">1</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div></article></div></section><section class="doc-group" id="defaults">
+  <h2><a class="header" href="#defaults">Defaults</a></h2>
+  <div class="doc-entry-list"><article class="doc-entry" id="default-camera">
+  <header>
+    <div><h3><a class="header" href="#default-camera">DEFAULT_CAMERA</a></h3></div>
+    <div class="doc-badges"><span class="doc-kind kind-constant">constant</span></div>
+  </header><p>Initial camera used by new scenes.</p><p class="doc-description">Equivalent to a camera at <code>[0, 0, 4]</code>, looking at the origin with <code>UP</code> as the up vector.</p><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-let">let</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">DEFAULT_CAMERA</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-non-control-flow-keyword mc-token-native">__monocurl__native__</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">initial_camera</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-identifier mc-token-identifier">camera</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">DEFAULT_CAMERA</span></code></pre></div></article><article class="doc-entry" id="default-background">
+  <header>
+    <div><h3><a class="header" href="#default-background">DEFAULT_BACKGROUND</a></h3></div>
+    <div class="doc-badges"><span class="doc-kind kind-constant">constant</span></div>
+  </header><p>Initial background color used by new scenes.</p><p class="doc-description">A solid white background value. Assign <code>background = BLACK</code> or another RGBA color/map to change it.</p><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-let">let</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">DEFAULT_BACKGROUND</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-non-control-flow-keyword mc-token-native">__monocurl__native__</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">initial_background</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-identifier mc-token-identifier">background</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">DEFAULT_BACKGROUND</span></code></pre></div></article></div></section></main></div>
+  <aside class="toc-panel"><p class="toc-title">On this page</p><a class="toc-h2 active" href="#index">Index</a><a class="toc-h2" href="#constructors">Constructors</a><a class="toc-h2" href="#defaults">Defaults</a></aside>
+</div>
+  <script>
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('[data-copy-code]');
+  if (!button) return;
+
+  const block = button.closest('.code-shell');
+  const code = block && block.querySelector('code');
+  if (!code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent);
+    button.textContent = 'Copied';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+  } catch (_) {
+    button.textContent = 'Failed';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+  }
+});
+
+const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
+const tocTargets = tocLinks
+  .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
+  .filter((pair) => pair[1]);
+
+function setActiveToc(id) {
+  for (const link of tocLinks) {
+    const active = decodeURIComponent(link.hash.slice(1)) === id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+if (tocTargets.length > 0) {
+  setActiveToc(tocTargets[0][1].id);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (visible) setActiveToc(visible.target.id);
+  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+
+  for (const [, target] of tocTargets) observer.observe(target);
+}
+</script>
+</body>
+</html>

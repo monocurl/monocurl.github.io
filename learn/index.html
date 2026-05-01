@@ -2,49 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Monocurl is an open-source language for mathematical animation and live technical presentations.">
-  <title>Monocurl · Learn</title>
-  <link rel="icon" href="/img/monocurl-1024.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl documentation — mathematical animation for people who think in proofs.">
+  <title>Monocurl Learn</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-<nav class="topnav">
-  <div class="topnav-inner">
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
     <a class="brand" href="/">
-      <img src="/img/monocurl-1024.png" width="22" height="22" alt="">
+      <img src="/img/monocurl-1024.png" alt="">
       <span>Monocurl</span>
     </a>
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/learn/" data-active>Learn</a>
-      <a href="/docs/">Docs</a>
-    </div>
-    <a class="nav-gh" href="https://github.com/monocurl/monocurl">GitHub</a>
-  </div>
-</nav>
-
-<div class="page-head wrap">
-  <p class="label">Monocurl</p>
-  <h1>Lessons</h1>
-  <p>Short, scene-driven lessons covering the language, the animation model, and the presentation runtime.</p>
-</div>
-<div class="wrap" style="padding-bottom:80px">
-  <div class="rowlist"><a class="row" href="/learn/00-quickstart.html"><span>Quickstart</span><small>Monocurl scenes are ordinary text files. You declare values, place meshes into</small></a><a class="row" href="/learn/01-language.html"><span>Language Tour</span><small>Monocurl is a small language, but it is designed around values that can be</small></a><a class="row" href="/learn/02-animation.html"><span>Animation Model</span><small>Monocurl animations are built from state changes. You mutate a leader to the</small></a><a class="row" href="/learn/03-presentations.html"><span>Presentations</span><small>Presentation mode turns a scene into a live slideshow. The same source can still</small></a></div>
-</div>
-
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <span>Monocurl</span>
-    <nav class="footer-links">
-      <a href="/learn/">Learn</a>
-      <a href="/docs/">Docs</a>
-      <a href="https://github.com/monocurl/monocurl">Source</a>
+    <nav class="top-links" aria-label="primary">
+      <a  href="/">Home</a>
+      <a  href="/gallery/">Gallery</a>
+      <a class="active" href="/learn/00-overview.html">Learn</a>
+      <a  href="/docs/">Docs</a>
     </nav>
-  </div>
-</footer>
+    <div class="top-actions">
+      <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
+      <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
+      <a class="download-button" href="/download/">Download</a>
+    </div>
+  </header>
+  <div class="app-frame">
+  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p>Learn</p><a  href="/learn/00-overview.html">Overview</a><a  href="/learn/01-language.html">Language Basics</a><a  href="/learn/02-meshes.html">Meshes And Operators</a><a  href="/learn/03-animation.html">Animation Basics</a><a  href="/learn/04-parallel.html">Parallel Animations</a><a  href="/learn/05-ai-development.html">AI Development</a><a  href="/learn/06-advanced.html">Advanced Topics</a></nav></aside>
+  <div class="page"><main class="content"><section class="page-head">
+  <p class="eyebrow">learning sequence</p>
+  <h1>Learn Monocurl from the basics</h1>
+</section>
+<section class="index-list"><a class="index-row" href="/learn/00-overview.html">
+  <span class="row-kicker">lesson 01</span>
+  <strong>Overview</strong>
+  <span>This lesson walks through the editor, the structure of a scene, and how to go from writing code to exporting or presenting your work.</span>
+</a><a class="index-row" href="/learn/01-language.html">
+  <span class="row-kicker">lesson 02</span>
+  <strong>Language Basics</strong>
+  <span>This lesson is a reference. Look at the important sections, but you do not need to memorize everything here before building something. Come back when you encounter a feature you have not seen before.</span>
+</a><a class="index-row" href="/learn/02-meshes.html">
+  <span class="row-kicker">lesson 03</span>
+  <strong>Meshes And Operators</strong>
+  <span>A mesh is any visible value in a scene — a circle, a line of text, a formula, or a list of any of those. Most diagrams are built by constructing primitive shapes and applying operators to style and position them.</span>
+</a><a class="index-row" href="/learn/03-animation.html">
+  <span class="row-kicker">lesson 04</span>
+  <strong>Animation Basics</strong>
+  <span>Monocurl animations are built from state changes. You mutate leaders; `play` statements synchronize followers to those leaders with a chosen strategy.</span>
+</a><a class="index-row" href="/learn/04-parallel.html">
+  <span class="row-kicker">lesson 05</span>
+  <strong>Parallel Animations</strong>
+  <span>So far, each `play` statement runs one animation to completion before the next one starts. This lesson covers how to run animations concurrently, how to build reusable animation helpers, and when to pass explicit references.</span>
+</a><a class="index-row" href="/learn/05-ai-development.html">
+  <span class="row-kicker">lesson 06</span>
+  <strong>AI Development</strong>
+  <span>Monocurl scenes are plain text files and LLMs can be quite helpful in avoiding boilerplate / tedious layout tasks.</span>
+</a><a class="index-row" href="/learn/06-advanced.html">
+  <span class="row-kicker">lesson 07</span>
+  <strong>Advanced Topics</strong>
+  <span>This lesson covers topics that are not necessary for day-to-day scene authoring but are useful when you want to customize Monocurl's behavior or understand what is happening under the hood.</span>
+</a></section></main></div>
+  <aside class="toc-panel"><p class="toc-title">On this page</p><a class="toc-h2 active" href="#learning-sequence">learning sequence</a><a class="toc-h2" href="#lessons">lessons</a></aside>
+</div>
+  <script>
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('[data-copy-code]');
+  if (!button) return;
+
+  const block = button.closest('.code-shell');
+  const code = block && block.querySelector('code');
+  if (!code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent);
+    button.textContent = 'Copied';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+  } catch (_) {
+    button.textContent = 'Failed';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+  }
+});
+
+const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
+const tocTargets = tocLinks
+  .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
+  .filter((pair) => pair[1]);
+
+function setActiveToc(id) {
+  for (const link of tocLinks) {
+    const active = decodeURIComponent(link.hash.slice(1)) === id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+if (tocTargets.length > 0) {
+  setActiveToc(tocTargets[0][1].id);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (visible) setActiveToc(visible.target.id);
+  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+
+  for (const [, target] of tocTargets) observer.observe(target);
+}
+</script>
 </body>
 </html>

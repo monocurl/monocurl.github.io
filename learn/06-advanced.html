@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl documentation — mathematical animation for people who think in proofs.">
+  <title>Monocurl Lesson - Advanced Topics</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" alt="">
+      <span>Monocurl</span>
+    </a>
+    <nav class="top-links" aria-label="primary">
+      <a  href="/">Home</a>
+      <a  href="/gallery/">Gallery</a>
+      <a class="active" href="/learn/00-overview.html">Learn</a>
+      <a  href="/docs/">Docs</a>
+    </nav>
+    <div class="top-actions">
+      <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
+      <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
+      <a class="download-button" href="/download/">Download</a>
+    </div>
+  </header>
+  <div class="app-frame">
+  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p>Learn</p><a  href="/learn/00-overview.html">Overview</a><a  href="/learn/01-language.html">Language Basics</a><a  href="/learn/02-meshes.html">Meshes And Operators</a><a  href="/learn/03-animation.html">Animation Basics</a><a  href="/learn/04-parallel.html">Parallel Animations</a><a  href="/learn/05-ai-development.html">AI Development</a><a class="active" href="/learn/06-advanced.html">Advanced Topics</a></nav></aside>
+  <div class="page"><main class="content"><article class="prose lesson">
+  <p class="eyebrow">lesson 07</p>
+  <h1 id="advanced-topics"><a class="header" href="#advanced-topics">Advanced Topics</a></h1><p>This lesson covers topics that are not necessary for day-to-day scene authoring but are useful when you want to customize Monocurl's behavior or understand what is happening under the hood.</p><h2 id="custom-latex-backend"><a class="header" href="#custom-latex-backend">Custom LaTeX Backend</a></h2><p>By default, Monocurl uses a bundled LaTeX distribution to render <code>Tex(...)</code> meshes. If you have a local LaTeX installation you prefer to use — for custom packages, fonts, or a specific engine — you can configure it in the application preferences.</p><p>The relevant setting is the LaTeX command path. Set it to a binary that accepts a <code>.tex</code> file as its first argument and writes a <code>.pdf</code> to a specified output path. Monocurl then converts the resulting PDF to the internal mesh format.</p><p>If a <code>Tex(...)</code> call fails to render, the transcript will show the LaTeX compiler output. The most common causes are missing packages and invalid LaTeX syntax in the string argument.</p><h2 id="params-and-stateful"><a class="header" href="#params-and-stateful">Params and Stateful</a></h2><aside class="callout"><span>REMARK</span><p>to be done</p></aside><h2 id="custom-operators-and-how-they-work-under-the-hood"><a class="header" href="#custom-operators-and-how-they-work-under-the-hood">Custom Operators and How They Work Under The Hood</a></h2><aside class="callout"><span>REMARK</span><p>to be done</p></aside><h2 id="primitive-animations"><a class="header" href="#primitive-animations">Primitive Animations</a></h2><aside class="callout"><span>REMARK</span><p>to be done</p></aside>
+  <nav class="footer-buttons"><a class="footer-button" href="/learn/05-ai-development.html">← AI Development</a></nav>
+</article></main></div>
+  <aside class="toc-panel"><p class="toc-title">On this page</p><a class="toc-h2 active" href="#custom-latex-backend">Custom LaTeX Backend</a><a class="toc-h2" href="#params-and-stateful">Params and Stateful</a><a class="toc-h2" href="#custom-operators-and-how-they-work-under-the-hood">Custom Operators and How They Work Under The Hood</a><a class="toc-h2" href="#primitive-animations">Primitive Animations</a></aside>
+</div>
+  <script>
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('[data-copy-code]');
+  if (!button) return;
+
+  const block = button.closest('.code-shell');
+  const code = block && block.querySelector('code');
+  if (!code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent);
+    button.textContent = 'Copied';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+  } catch (_) {
+    button.textContent = 'Failed';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+  }
+});
+
+const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
+const tocTargets = tocLinks
+  .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
+  .filter((pair) => pair[1]);
+
+function setActiveToc(id) {
+  for (const link of tocLinks) {
+    const active = decodeURIComponent(link.hash.slice(1)) === id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+if (tocTargets.length > 0) {
+  setActiveToc(tocTargets[0][1].id);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (visible) setActiveToc(visible.target.id);
+  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+
+  for (const [, target] of tocTargets) observer.observe(target);
+}
+</script>
+</body>
+</html>
