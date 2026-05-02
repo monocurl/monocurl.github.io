@@ -1,6 +1,5 @@
 .DS_Store
 CNAME
-Monocurl Privacy Policy.pdf
 apple-touch-icon.png
 css/site.css
 docs/anim.html
@@ -19,6 +18,7 @@ gallery/index.html
 img/.DS_Store
 img/home/monocurl-editor.png
 img/home/monocurl-interactive-thumbnail.png
+img/lessons/ai-mcp-workflow.png
 img/monocurl-1024.png
 index.html
 learn/00-overview.html
@@ -59,10 +59,10 @@ media/generated/04-parallel-6ebe65297e30f4ad.mp4
 media/generated/doc-anim-bend-1-3c2294345d7286c7.mp4
 media/generated/doc-anim-fade-1-2fee6821c5b2abab.mp4
 media/generated/doc-anim-grow-1-7ec723a8e085bccb.mp4
-media/generated/doc-anim-lerp-1-7f2342d9a49f7361.mp4
-media/generated/doc-anim-lerp-2-a4f22f5c1a873005.mp4
-media/generated/doc-anim-lerp-3-dc8a381a2813c2e6.mp4
-media/generated/doc-anim-set-1-fdc5de7423aa89cf.mp4
+media/generated/doc-anim-lerp-1-8ef27673c8dbcc08.mp4
+media/generated/doc-anim-lerp-2-ea5f6400eef9118f.mp4
+media/generated/doc-anim-lerp-3-3dab6786825c073d.mp4
+media/generated/doc-anim-set-1-74b95bff068f3863.mp4
 media/generated/doc-anim-tagtrans-1-46ef6036a60ad20f.mp4
 media/generated/doc-anim-trans-1-d45c644bda334e88.mp4
 media/generated/doc-anim-write-1-d446467970af4028.mp4
