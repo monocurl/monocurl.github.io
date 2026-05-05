@@ -1319,15 +1319,15 @@ img, video { max-width: 100%; display: block; }
 
 .doc-entry pre { margin-bottom: 0; }
 
-/* ── Param table ───────────────────────────────────────────────────────────── */
-.param-table {
+/* ── Argument table ───────────────────────────────────────────────────────────── */
+.arg-table {
   width: 100%;
   border-collapse: collapse;
   margin: 0.75rem 0 0.5rem;
   font-size: 0.85rem;
 }
 
-.param-table td {
+.arg-table td {
   padding: 0.4rem 0.6rem;
   border-top: 1px solid var(--border);
   vertical-align: top;
@@ -1335,7 +1335,7 @@ img, video { max-width: 100%; display: block; }
   color: var(--muted);
 }
 
-.param-table td:first-child {
+.arg-table td:first-child {
   width: 18%;
   min-width: 72px;
   color: var(--fg);
