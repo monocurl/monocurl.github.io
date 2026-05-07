@@ -573,10 +573,13 @@ img, video { max-width: 100%; display: block; }
 }
 
 .gallery-page-media img,
-.gallery-page-media video {
+.gallery-page-media video,
+.gallery-page-media iframe {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  border: 0;
 }
 
 .gallery-page-media .gallery-placeholder {
