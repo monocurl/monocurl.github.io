@@ -38,14 +38,30 @@
   <section class="download-options" aria-label="downloads">
     <a class="os-download-button" href="https://github.com/monocurl/monocurl/releases/latest/download/Monocurl-macos-aarch64.dmg">
       <span class="os-mark">macOS</span>
-      <strong>Download for macOS</strong>
-      <small>Apple silicon Mac (aarch64), macOS 11.0 and higher.</small>
+      <strong>Download for macOS Apple silicon</strong>
+      <small>Architecture: aarch64. Requires macOS 11.0 or later.</small>
+    </a>
+    <a class="os-download-button" href="https://github.com/monocurl/monocurl/releases/latest/download/Monocurl-macos-x86_64.dmg">
+      <span class="os-mark">macOS</span>
+      <strong>Download for macOS Intel</strong>
+      <small>Architecture: x86_64. Requires macOS 11.0 or later.</small>
     </a>
     <a class="os-download-button" href="https://github.com/monocurl/monocurl/releases/latest/download/Monocurl-windows-x86_64-installer.exe">
       <span class="os-mark">Windows</span>
       <strong>Download for Windows</strong>
-      <small>64-bit Windows (x86_64) installer from the latest release.</small>
+      <small>Architecture: x86_64.</small>
     </a>
+  </section>
+  <section class="linux-install" aria-labelledby="linux-install-title">
+    <div class="linux-install-copy">
+      <span class="os-mark">Linux</span>
+      <h2 id="linux-install-title">Install on Linux</h2>
+      <p>Supports Linux x86_64.</p>
+    </div>
+    <div class="code-shell linux-install-command" data-language="sh">
+      <button class="code-copy" type="button" data-copy-code>Copy</button>
+      <pre class="code-block"><code data-linux-install-command>curl -f https://www.monocurl.com/download/install.sh | sh</code></pre>
+    </div>
   </section>
   <p class="download-note">Looking for older builds? Open <a href="https://github.com/monocurl/monocurl/releases">all releases</a>.</p>
 </div></main>
@@ -68,6 +84,15 @@ document.addEventListener('click', async (event) => {
     window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
   }
 });
+
+const linuxInstallCommand = document.querySelector('[data-linux-install-command]');
+if (linuxInstallCommand) {
+  const servingOrigin =
+    window.location.protocol === 'http:' || window.location.protocol === 'https:'
+      ? window.location.origin
+      : 'https://www.monocurl.com';
+  linuxInstallCommand.textContent = `curl -f ${servingOrigin}/download/install.sh | sh`;
+}
 
 const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
 const tocTargets = tocLinks

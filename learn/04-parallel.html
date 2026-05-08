@@ -243,6 +243,15 @@ document.addEventListener('click', async (event) => {
   }
 });
 
+const linuxInstallCommand = document.querySelector('[data-linux-install-command]');
+if (linuxInstallCommand) {
+  const servingOrigin =
+    window.location.protocol === 'http:' || window.location.protocol === 'https:'
+      ? window.location.origin
+      : 'https://www.monocurl.com';
+  linuxInstallCommand.textContent = `curl -f ${servingOrigin}/download/install.sh | sh`;
+}
+
 const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
 const tocTargets = tocLinks
   .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])

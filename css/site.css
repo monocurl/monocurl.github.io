@@ -291,7 +291,7 @@ img, video { max-width: 100%; display: block; }
 .download-page {
   display: grid;
   gap: 1.25rem;
-  width: min(100%, 860px);
+  width: min(100%, 1080px);
   margin: 0 auto;
   padding: 4.5rem 0 5rem;
 }
@@ -315,9 +315,43 @@ img, video { max-width: 100%; display: block; }
   line-height: 1.65;
 }
 
+.linux-install {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.55fr);
+  gap: 1rem;
+  align-items: stretch;
+  padding: 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--download-blue), var(--border) 68%);
+  background: linear-gradient(180deg, rgba(70, 151, 217, 0.12), rgba(255, 255, 255, 0.025) 72%);
+}
+
+.linux-install-copy {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.linux-install-copy h2 {
+  color: var(--fg);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.linux-install-copy p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.linux-install-command {
+  align-self: center;
+  min-width: 0;
+}
+
 .download-options {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -1370,7 +1404,7 @@ img, video { max-width: 100%; display: block; }
   .home { padding: 0 1rem 4rem; }
   .hero-field { min-height: 380px; border-inline: none; }
 
-  .three-up, .home-lists, .workbench-body, .scene-block-grid, .index-list.compact, .metric-strip, .download-options {
+  .three-up, .home-lists, .workbench-body, .scene-block-grid, .index-list.compact, .metric-strip, .linux-install, .download-options {
     grid-template-columns: 1fr;
   }
   .three-up article, .home-lists > div, .metric-strip div, .os-download-button {
