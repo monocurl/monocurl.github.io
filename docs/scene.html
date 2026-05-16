@@ -3,8 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Monocurl is an interactive desktop app and programming language specifically designed for creating STEM animations.">
-  <title>Monocurl std.scene</title>
+  <meta name="description" content="Reference documentation for Monocurl&#39;s std.scene standard library module.">
+  <meta name="robots" content="index,follow">
+  <title>Monocurl std.scene | Monocurl</title>
+  <link rel="canonical" href="https://www.monocurl.com/docs/scene.html">
+  <meta property="og:site_name" content="Monocurl">
+  <meta property="og:title" content="Monocurl std.scene | Monocurl">
+  <meta property="og:description" content="Reference documentation for Monocurl&#39;s std.scene standard library module.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.monocurl.com/docs/scene.html">
+  <meta property="og:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Monocurl std.scene | Monocurl">
+  <meta name="twitter:description" content="Reference documentation for Monocurl&#39;s std.scene standard library module.">
+  <meta name="twitter:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -57,6 +69,13 @@
   <strong>DEFAULT_BACKGROUND</strong>
   <small>Initial background color used by new scenes.</small>
 </a></div>
+</section><section class="module-index-group">
+  <h3>Render Context</h3>
+  <div class="symbol-list"><a class="symbol-row module-symbol-row" href="#aspect-ratio">
+  <span class="symbol-kind kind-function">function</span>
+  <strong>aspect_ratio</strong>
+  <small>Current viewport aspect ratio.</small>
+</a></div>
 </section>
 </section><section class="doc-group" id="constructors">
   <h2><a class="header" href="#constructors">Constructors</a></h2>
@@ -75,8 +94,14 @@
   <header>
     <div><h3><a class="header" href="#default-background">DEFAULT_BACKGROUND</a></h3></div>
     <div class="doc-badges"><span class="doc-kind kind-constant">constant</span></div>
-  </header><p>Initial background color used by new scenes.</p><p class="doc-description">A solid white background value. Assign <code>background = BLACK</code> or another RGBA color/map to change it.</p><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-let">let</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">DEFAULT_BACKGROUND</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-non-control-flow-keyword mc-token-native">__monocurl__native__</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">initial_background</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-identifier mc-token-identifier">background</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">DEFAULT_BACKGROUND</span></code></pre></div></article></div></section></main></div>
-  <aside class="toc-panel"><p class="toc-title">On this page</p><a class="toc-h2 active" href="#index">Index</a><a class="toc-h2" href="#constructors">Constructors</a><a class="toc-h2" href="#defaults">Defaults</a></aside>
+  </header><p>Initial background color used by new scenes.</p><p class="doc-description">A solid white background value. Assign <code>background = BLACK</code> or another RGBA color/map to change it.</p><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-let">let</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">DEFAULT_BACKGROUND</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-non-control-flow-keyword mc-token-native">__monocurl__native__</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">initial_background</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-identifier mc-token-identifier">background</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">DEFAULT_BACKGROUND</span></code></pre></div></article></div></section><section class="doc-group" id="render-context">
+  <h2><a class="header" href="#render-context">Render Context</a></h2>
+  <div class="doc-entry-list"><article class="doc-entry" id="aspect-ratio">
+  <header>
+    <div><h3><a class="header" href="#aspect-ratio">aspect_ratio</a></h3></div>
+    <div class="doc-badges"><span class="doc-kind kind-function">function</span></div>
+  </header><p>Current viewport aspect ratio.</p><p class="doc-description">Returns the active execution aspect ratio as <code>width / height</code>. Preview presets, presentation, and export settings update this value before the scene is evaluated.</p><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-let">let</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">aspect_ratio</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-pipe">|</span><span class="mc-token mc-operator mc-token-pipe">|</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-append">..</span><span class="mc-token mc-operator mc-token-dot">.</span></code></pre></div><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-let">let</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">frame_w</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">4</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-multiply">*</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">aspect_ratio</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div></article></div></section></main></div>
+  <aside class="toc-panel"><p class="toc-title">On this page</p><a class="toc-h2 active" href="#index">Index</a><a class="toc-h2" href="#constructors">Constructors</a><a class="toc-h2" href="#defaults">Defaults</a><a class="toc-h2" href="#render-context">Render Context</a></aside>
 </div>
   <script>
 document.addEventListener('click', async (event) => {
