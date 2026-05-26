@@ -1134,6 +1134,26 @@ img, video { max-width: 100%; display: block; }
   display: block;
 }
 
+.scene-transcript {
+  min-height: 160px;
+  background: #101820;
+  border-bottom: 1px solid var(--border);
+}
+
+.scene-transcript pre {
+  min-height: inherit;
+  color: #9aa8ba;
+  background: transparent;
+}
+
+.scene-transcript pre code {
+  padding: 1rem;
+}
+
+.scene-transcript-empty {
+  color: var(--dim);
+}
+
 /* ── Standalone media embed ────────────────────────────────────────────────── */
 .media-embed {
   margin: 1.25rem 0;
