@@ -21,6 +21,15 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/site.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-325110115');
+</script>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -88,15 +97,16 @@
       <span>preview</span>
     </div>
     <div class="workbench-body">
-      <div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-slide">slide</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;Minimal Working Example&quot;</span><span class="mc-token mc-whitespace mc-token-newline">
-</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-non-control-flow-keyword mc-token-mesh">mesh</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">word</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">center</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">0u</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-newline">
-</span><span class="mc-token mc-whitespace mc-token-whitespace">        </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Text</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;Monocurl&quot;</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">3.0</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
-</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Write</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">3</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
-</span><span class="mc-token mc-whitespace mc-token-newline">
-</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Wait</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">1</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
-</span><span class="mc-token mc-whitespace mc-token-newline">
-</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-identifier mc-token-identifier">word</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-punctuation mc-token-l-bracket">[</span><span class="mc-token mc-punctuation mc-token-r-bracket">]</span><span class="mc-token mc-whitespace mc-token-newline">
-</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Fade</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.8</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div>
+      <div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code>
+slide &quot;Minimal Working Example&quot;
+    mesh word = center{0u}
+        Text(&quot;Monocurl&quot;, 3.0)
+    play Write(3)
+
+    play Wait(1)
+
+    word = []
+    play Fade(0.8)</code></pre></div>
       <div class="workbench-media"><video autoplay loop muted playsinline controls src="/media/generated/home-monocurl-title-69e3be7260301ad6.mp4"></video></div>
     </div>
   </section>
