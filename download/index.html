@@ -21,6 +21,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/i18n.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
 </script>
 <script>
@@ -39,53 +40,54 @@
       <span>Monocurl</span>
     </a>
     <nav class="top-links" aria-label="primary">
-      <a  href="/">Home</a>
-      <a  href="/gallery/">Gallery</a>
-      <a  href="/learn/00-overview.html">Learn</a>
-      <a  href="/docs/">Docs</a>
-      <a href="https://www.monocurl.com/monocurl-essays/">Essays</a>
+      <a  href="/" data-i18n="nav.home">Home</a>
+      <a  href="/gallery/" data-i18n="nav.gallery">Gallery</a>
+      <a  href="/learn/00-overview.html" data-i18n="nav.learn">Learn</a>
+      <a  href="/docs/" data-i18n="nav.docs">Docs</a>
+      <a href="https://www.monocurl.com/monocurl-essays/" data-i18n="nav.essays">Essays</a>
     </nav>
     <div class="top-actions">
       <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
       <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
-      <a class="download-button active" href="/download/">Download</a>
+      <span data-language-picker></span>
+      <a class="download-button active" href="/download/" data-i18n="nav.download">Download</a>
     </div>
   </header>
   <div class="standalone-frame">
   <main class="content download-content"><div class="download-page">
   <section class="download-hero">
-    <p class="eyebrow">download</p>
-    <h1>Download Monocurl</h1>
+    <p class="eyebrow" data-i18n="download.eyebrow">download</p>
+    <h1 data-i18n="download.title">Download Monocurl</h1>
   </section>
-  <section class="download-options" aria-label="downloads">
+  <section class="download-options" aria-label="downloads" data-i18n-aria-label="download.options_label">
     <a class="os-download-button" href="https://github.com/monocurl/monocurl/releases/latest/download/Monocurl-macos-aarch64.dmg">
       <span class="os-mark">macOS</span>
-      <strong>Download for macOS Apple silicon</strong>
-      <small>Architecture: aarch64. Requires macOS 11.0 or later.</small>
+      <strong data-i18n="download.mac_apple">Download for macOS Apple silicon</strong>
+      <small data-i18n="download.mac_apple_details">Architecture: aarch64. Requires macOS 11.0 or later.</small>
     </a>
     <a class="os-download-button" href="https://github.com/monocurl/monocurl/releases/latest/download/Monocurl-macos-x86_64.dmg">
       <span class="os-mark">macOS</span>
-      <strong>Download for macOS Intel</strong>
-      <small>Architecture: x86_64. Requires macOS 11.0 or later.</small>
+      <strong data-i18n="download.mac_intel">Download for macOS Intel</strong>
+      <small data-i18n="download.mac_intel_details">Architecture: x86_64. Requires macOS 11.0 or later.</small>
     </a>
     <a class="os-download-button" href="https://github.com/monocurl/monocurl/releases/latest/download/Monocurl-windows-x86_64-installer.exe">
       <span class="os-mark">Windows</span>
-      <strong>Download for Windows</strong>
-      <small>Architecture: x86_64.</small>
+      <strong data-i18n="download.windows">Download for Windows</strong>
+      <small data-i18n="download.windows_details">Architecture: x86_64.</small>
     </a>
   </section>
   <section class="linux-install" aria-labelledby="linux-install-title">
     <div class="linux-install-copy">
       <span class="os-mark">Linux</span>
-      <h2 id="linux-install-title">Install on Linux</h2>
-      <p>Supports Linux x86_64.</p>
+      <h2 id="linux-install-title" data-i18n="download.linux_title">Install on Linux</h2>
+      <p data-i18n="download.linux_support">Supports Linux x86_64.</p>
     </div>
     <div class="code-shell linux-install-command" data-language="sh">
-      <button class="code-copy" type="button" data-copy-code>Copy</button>
+      <button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button>
       <pre class="code-block"><code data-linux-install-command>curl -f https://www.monocurl.com/download/install.sh | sh</code></pre>
     </div>
   </section>
-  <p class="download-note">Looking for older builds? Open <a href="https://github.com/monocurl/monocurl/releases">all releases</a>.</p>
+  <p class="download-note"><span data-i18n="download.older">Looking for older builds? Open</span> <a href="https://github.com/monocurl/monocurl/releases" data-i18n="download.all_releases">all releases</a>.</p>
 </div></main>
 </div>
   <script>
@@ -99,11 +101,11 @@ document.addEventListener('click', async (event) => {
 
   try {
     await navigator.clipboard.writeText(code.textContent);
-    button.textContent = 'Copied';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+    button.textContent = window.MonocurlI18n?.text('copy.copied') || 'Copied';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
   } catch (_) {
-    button.textContent = 'Failed';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+    button.textContent = window.MonocurlI18n?.text('copy.failed') || 'Failed';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
   }
 });
 

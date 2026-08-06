@@ -6,12 +6,12 @@
   <meta name="description" content="Step-by-step Monocurl lessons for creating mathematical animations and interactive scenes.">
   <meta name="robots" content="index,follow">
   <title>Monocurl Learn | Monocurl</title>
-  <link rel="canonical" href="https://www.monocurl.com/learn/">
+  <link rel="canonical" href="https://www.monocurl.com/learn/index.html">
   <meta property="og:site_name" content="Monocurl">
   <meta property="og:title" content="Monocurl Learn | Monocurl">
   <meta property="og:description" content="Step-by-step Monocurl lessons for creating mathematical animations and interactive scenes.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.monocurl.com/learn/">
+  <meta property="og:url" content="https://www.monocurl.com/learn/index.html">
   <meta property="og:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Monocurl Learn | Monocurl">
@@ -21,6 +21,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/i18n.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
 </script>
 <script>
@@ -39,54 +40,55 @@
       <span>Monocurl</span>
     </a>
     <nav class="top-links" aria-label="primary">
-      <a  href="/">Home</a>
-      <a  href="/gallery/">Gallery</a>
-      <a class="active" href="/learn/00-overview.html">Learn</a>
-      <a  href="/docs/">Docs</a>
-      <a href="https://www.monocurl.com/monocurl-essays/">Essays</a>
+      <a  href="/" data-i18n="nav.home">Home</a>
+      <a  href="/gallery/" data-i18n="nav.gallery">Gallery</a>
+      <a class="active" href="/learn/00-overview.html" data-i18n="nav.learn">Learn</a>
+      <a  href="/docs/" data-i18n="nav.docs">Docs</a>
+      <a href="https://www.monocurl.com/monocurl-essays/" data-i18n="nav.essays">Essays</a>
     </nav>
     <div class="top-actions">
       <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
       <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
-      <a class="download-button" href="/download/">Download</a>
+      <span data-language-picker></span>
+      <a class="download-button" href="/download/" data-i18n="nav.download">Download</a>
     </div>
   </header>
   <div class="app-frame">
-  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p>Learn</p><a  href="/learn/00-overview.html">Overview</a><a  href="/learn/01-language.html">Language Basics</a><a  href="/learn/02-meshes.html">Meshes And Operators</a><a  href="/learn/03-animation.html">Animation Basics</a><a  href="/learn/04-parallel.html">Parallel Animations</a><a  href="/learn/05-ai-development.html">AI Development</a><a  href="/learn/06-advanced.html">Advanced Topics</a></nav></aside>
+  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p data-i18n="sidebar.learn">Learn</p><a  href="/learn/00-overview.html">Overview</a><a  href="/learn/01-language.html">Language Basics</a><a  href="/learn/02-meshes.html">Meshes And Operators</a><a  href="/learn/03-animation.html">Animation Basics</a><a  href="/learn/04-parallel.html">Parallel Animations</a><a  href="/learn/05-ai-development.html">AI Development</a><a  href="/learn/06-advanced.html">Advanced Topics</a></nav></aside>
   <div class="page"><main class="content"><section class="page-head">
-  <p class="eyebrow">learning sequence</p>
-  <h1>Learn Monocurl from the basics</h1>
+  <p class="eyebrow" data-i18n="learn.eyebrow">learning sequence</p>
+  <h1 data-i18n="learn.title">Learn Monocurl from the basics</h1>
 </section>
 <section class="index-list"><a class="index-row" href="/learn/00-overview.html">
-  <span class="row-kicker">lesson 01</span>
+  <span class="row-kicker"><span data-i18n="learn.lesson">lesson</span> 01</span>
   <strong>Overview</strong>
   <span>This lesson walks through the editor, the structure of a scene, and how to go from writing code to exporting or presenting your work.</span>
 </a><a class="index-row" href="/learn/01-language.html">
-  <span class="row-kicker">lesson 02</span>
+  <span class="row-kicker"><span data-i18n="learn.lesson">lesson</span> 02</span>
   <strong>Language Basics</strong>
   <span>This lesson is a reference. Look at the important sections, but you do not need to memorize everything here before building something. Come back when you encounter a feature you have not seen before.</span>
 </a><a class="index-row" href="/learn/02-meshes.html">
-  <span class="row-kicker">lesson 03</span>
+  <span class="row-kicker"><span data-i18n="learn.lesson">lesson</span> 03</span>
   <strong>Meshes And Operators</strong>
   <span>A mesh is any visible value in a scene — a circle, a line of text, a formula, or a list of any of those. Most diagrams are built by constructing primitive shapes and applying operators to style and position them.</span>
 </a><a class="index-row" href="/learn/03-animation.html">
-  <span class="row-kicker">lesson 04</span>
+  <span class="row-kicker"><span data-i18n="learn.lesson">lesson</span> 04</span>
   <strong>Animation Basics</strong>
   <span>Monocurl animations are built from state changes. You mutate leaders; `play` statements synchronize followers to those leaders with a chosen strategy.</span>
 </a><a class="index-row" href="/learn/04-parallel.html">
-  <span class="row-kicker">lesson 05</span>
+  <span class="row-kicker"><span data-i18n="learn.lesson">lesson</span> 05</span>
   <strong>Parallel Animations</strong>
   <span>So far, each `play` statement runs one animation to completion before the next one starts. This lesson covers how to run animations concurrently, how to build reusable animation helpers, and when to pass explicit references.</span>
 </a><a class="index-row" href="/learn/05-ai-development.html">
-  <span class="row-kicker">lesson 06</span>
+  <span class="row-kicker"><span data-i18n="learn.lesson">lesson</span> 06</span>
   <strong>AI Development</strong>
   <span>Monocurl scenes are plain text files and LLMs can be quite helpful in avoiding boilerplate / tedious layout tasks.</span>
 </a><a class="index-row" href="/learn/06-advanced.html">
-  <span class="row-kicker">lesson 07</span>
+  <span class="row-kicker"><span data-i18n="learn.lesson">lesson</span> 07</span>
   <strong>Advanced Topics</strong>
   <span>This lesson covers topics that are not necessary for day-to-day scene authoring but are useful when you want to customize Monocurl's behavior or understand what is happening under the hood.</span>
 </a></section></main></div>
-  <aside class="toc-panel"><p class="toc-title">On this page</p><a class="toc-h2 active" href="#learning-sequence">learning sequence</a><a class="toc-h2" href="#lessons">lessons</a></aside>
+  <aside class="toc-panel"><p class="toc-title" data-i18n="toc.on_this_page">On this page</p><a class="toc-h2 active" href="#learning-sequence">learning sequence</a><a class="toc-h2" href="#lessons">lessons</a></aside>
 </div>
   <script>
 document.addEventListener('click', async (event) => {
@@ -99,11 +101,11 @@ document.addEventListener('click', async (event) => {
 
   try {
     await navigator.clipboard.writeText(code.textContent);
-    button.textContent = 'Copied';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+    button.textContent = window.MonocurlI18n?.text('copy.copied') || 'Copied';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
   } catch (_) {
-    button.textContent = 'Failed';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+    button.textContent = window.MonocurlI18n?.text('copy.failed') || 'Failed';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
   }
 });
 

@@ -21,6 +21,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/i18n.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
 </script>
 <script>
@@ -39,65 +40,66 @@
       <span>Monocurl</span>
     </a>
     <nav class="top-links" aria-label="primary">
-      <a class="active" href="/">Home</a>
-      <a  href="/gallery/">Gallery</a>
-      <a  href="/learn/00-overview.html">Learn</a>
-      <a  href="/docs/">Docs</a>
-      <a href="https://www.monocurl.com/monocurl-essays/">Essays</a>
+      <a class="active" href="/" data-i18n="nav.home">Home</a>
+      <a  href="/gallery/" data-i18n="nav.gallery">Gallery</a>
+      <a  href="/learn/00-overview.html" data-i18n="nav.learn">Learn</a>
+      <a  href="/docs/" data-i18n="nav.docs">Docs</a>
+      <a href="https://www.monocurl.com/monocurl-essays/" data-i18n="nav.essays">Essays</a>
     </nav>
     <div class="top-actions">
       <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
       <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
-      <a class="download-button" href="/download/">Download</a>
+      <span data-language-picker></span>
+      <a class="download-button" href="/download/" data-i18n="nav.download">Download</a>
     </div>
   </header>
   <main class="home">
   <section class="hero-field">
-    <p class="announcement">Make images, videos, and slideshows using math</p>
+    <p class="announcement" data-i18n="home.announcement">Make images, videos, and slideshows using math</p>
     <h1>Monocurl</h1>
       <p class="hero-copy">
       Monocurl is an interactive desktop app and programming language specifically designed for animating STEM figures, videos, and slideshows.
       </p>
     <div class="hero-actions">
-      <a class="primary-action download-action" href="/download/">Download</a>
-      <a class="ghost-action" href="/learn/00-overview.html">Tutorials</a>
+      <a class="primary-action download-action" href="/download/" data-i18n="home.download">Download</a>
+      <a class="ghost-action" href="/learn/00-overview.html" data-i18n="home.tutorials">Tutorials</a>
     </div>
     <figure class="hero-product">
       <img src="/img/home/monocurl-editor.png" alt="Monocurl editor example">
     </figure>
   </section>
   <section class="gallery-section">
-  <p class="eyebrow">gallery</p>
-  <div class="gallery-grid"><a class="gallery-item" href="/gallery/#04-pythagorean-theorem"><video loop muted autoplay playsinline src="/media/generated/gallery-04-pythagorean-theorem-dab586aa0aef5a11.mp4"></video><span class="gallery-caption">Pythagorean Theorem</span></a><a class="gallery-item" href="/gallery/#05-circular-pattern"><img src="/media/generated/gallery-05-circular-pattern-75f4e9890ba90ba6.png" alt="Circular Pattern"><span class="gallery-caption">Circular Pattern</span></a><a class="gallery-item" href="/gallery/#06-flow-field"><video loop muted autoplay playsinline src="/media/generated/gallery-06-flow-field-1d4435ddd1e10174.mp4"></video><span class="gallery-caption">Flow Field</span></a><a class="gallery-item" href="/gallery/#01-riemann-rectangles-full"><video loop muted autoplay playsinline src="/media/generated/gallery-07-riemann-rectangles-f92e08fd0c6d29ac.mp4"></video><span class="gallery-caption">Riemann Rectangles</span></a><a class="gallery-item" href="/gallery/#08-breather-surface"><img src="/media/generated/gallery-08-breather-surface-13377f5494f0ee5b.png" alt="Breather Surface"><span class="gallery-caption">Breather Surface</span></a><a class="gallery-item" href="/gallery/#09-tree-fractal"><img src="/media/generated/gallery-09-tree-fractal-55f1d8c4ba2b9515.png" alt="Tree Fractal"><span class="gallery-caption">Tree Fractal</span></a></div>
-  <p class="gallery-note">For written mathematical essays with live Monocurl scenes, visit <a href="https://www.monocurl.com/monocurl-essays/">Monocurl Essays</a>.</p>
+  <p class="eyebrow" data-i18n="gallery.eyebrow">gallery</p>
+  <div class="gallery-grid"><a class="gallery-item" href="/gallery/#04-pythagorean-theorem"><video loop muted autoplay playsinline src="/media/generated/gallery-04-pythagorean-theorem-dab586aa0aef5a11.mp4"></video><span class="gallery-caption">Pythagorean Theorem</span></a><a class="gallery-item" href="/gallery/#05-circular-pattern"><img src="/media/generated/gallery-05-circular-pattern-75f4e9890ba90ba6.png" alt="Circular Pattern"><span class="gallery-caption">Circular Pattern</span></a><a class="gallery-item" href="/gallery/#06-flow-field"><video loop muted autoplay playsinline src="/media/generated/gallery-06-flow-field-9eeaa999c0275a9e.mp4"></video><span class="gallery-caption">Flow Field</span></a><a class="gallery-item" href="/gallery/#01-riemann-rectangles-full"><video loop muted autoplay playsinline src="/media/generated/gallery-07-riemann-rectangles-f92e08fd0c6d29ac.mp4"></video><span class="gallery-caption">Riemann Rectangles</span></a><a class="gallery-item" href="/gallery/#08-breather-surface"><img src="/media/generated/gallery-08-breather-surface-13377f5494f0ee5b.png" alt="Breather Surface"><span class="gallery-caption">Breather Surface</span></a><a class="gallery-item" href="/gallery/#09-tree-fractal"><img src="/media/generated/gallery-09-tree-fractal-55f1d8c4ba2b9515.png" alt="Tree Fractal"><span class="gallery-caption">Tree Fractal</span></a></div>
+  <p class="gallery-note"><span data-i18n="gallery.note">For written mathematical essays with live Monocurl scenes, visit</span> <a href="https://www.monocurl.com/monocurl-essays/">Monocurl Essays</a>.</p>
 </section>
   <section class="three-up">
     <article>
-      <p class="eyebrow">outputs</p>
-      <h2>Produce slideshows, videos, and images</h2>
-      <p>One source file can become a live presentation, a rendered video, or a still image for written material.</p>
+      <p class="eyebrow" data-i18n="home.outputs.eyebrow">outputs</p>
+      <h2 data-i18n="home.outputs.title">Produce slideshows, videos, and images</h2>
+      <p data-i18n="home.outputs.text">One source file can become a live presentation, a rendered video, or a still image for written material.</p>
     </article>
     <article>
-      <p class="eyebrow">interactive</p>
-      <h2>Interactive development and rendering</h2>
-      <p>Develop with live parameters, slide playback, and rendered output in the same workspace.</p>
-      <figure class="feature-demo" aria-label="interactive Monocurl development demo">
+      <p class="eyebrow" data-i18n="home.interactive.eyebrow">interactive</p>
+      <h2 data-i18n="home.interactive.title">Interactive development and rendering</h2>
+      <p data-i18n="home.interactive.text">Develop with live parameters, slide playback, and rendered output in the same workspace.</p>
+      <figure class="feature-demo" aria-label="interactive Monocurl development demo" data-i18n-aria-label="home.interactive.demo_label">
         <video controls muted playsinline preload="metadata" poster="/img/home/monocurl-interactive-thumbnail.png" src="/video/interactive-development.mp4"></video>
       </figure>
     </article>
     <article>
-      <p class="eyebrow">Novel Design</p>
-      <h2>Designed from the ground up</h2>
-      <p>The language and editor are designed to be a complete and elegant solution for making programmatic animations.</p>
+      <p class="eyebrow" data-i18n="home.design.eyebrow">Novel Design</p>
+      <h2 data-i18n="home.design.title">Designed from the ground up</h2>
+      <p data-i18n="home.design.text">The language and editor are designed to be a complete and elegant solution for making programmatic animations.</p>
     </article>
   </section>
   <section class="workbench">
     <div class="workbench-top">
       <span>scene.mcl</span>
-      <span>preview</span>
+      <span data-i18n="home.preview">preview</span>
     </div>
     <div class="workbench-body">
-      <div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code>Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-slide">slide</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;Minimal Working Example&quot;</span><span class="mc-token mc-whitespace mc-token-newline">
+      <div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-slide">slide</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;Minimal Working Example&quot;</span><span class="mc-token mc-whitespace mc-token-newline">
 </span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-non-control-flow-keyword mc-token-mesh">mesh</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">word</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">center</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">0u</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-newline">
 </span><span class="mc-token mc-whitespace mc-token-whitespace">        </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Text</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;Monocurl&quot;</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">3.0</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
 </span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Write</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-integer-literal">3</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
@@ -111,11 +113,11 @@
   </section>
   <section class="home-lists">
     <div>
-      <p class="eyebrow">lessons</p>
+      <p class="eyebrow" data-i18n="home.lessons">lessons</p>
       <nav class="link-stack"><a href="/learn/00-overview.html"><span>01</span>Overview</a><a href="/learn/01-language.html"><span>02</span>Language Basics</a><a href="/learn/02-meshes.html"><span>03</span>Meshes And Operators</a><a href="/learn/03-animation.html"><span>04</span>Animation Basics</a><a href="/learn/04-parallel.html"><span>05</span>Parallel Animations</a><a href="/learn/05-ai-development.html"><span>06</span>AI Development</a><a href="/learn/06-advanced.html"><span>07</span>Advanced Topics</a></nav>
     </div>
     <div>
-      <p class="eyebrow">docs</p>
+      <p class="eyebrow" data-i18n="home.docs">docs</p>
       <nav class="link-stack"><a href="/docs/anim.html"><span>std</span>anim</a><a href="/docs/color.html"><span>std</span>color</a><a href="/docs/math.html"><span>std</span>math</a><a href="/docs/mesh.html"><span>std</span>mesh</a><a href="/docs/scene.html"><span>std</span>scene</a><a href="/docs/util.html"><span>std</span>util</a></nav>
     </div>
   </section>
@@ -131,11 +133,11 @@ document.addEventListener('click', async (event) => {
 
   try {
     await navigator.clipboard.writeText(code.textContent);
-    button.textContent = 'Copied';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+    button.textContent = window.MonocurlI18n?.text('copy.copied') || 'Copied';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
   } catch (_) {
-    button.textContent = 'Failed';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+    button.textContent = window.MonocurlI18n?.text('copy.failed') || 'Failed';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
   }
 });
 

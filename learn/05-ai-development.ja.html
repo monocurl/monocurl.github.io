@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="モノカール シーンはプレーン テキスト ファイルであり、LLM は定型的なタスクや退屈なレイアウト タスクを回避するのに非常に役立ちます。">
+  <meta name="robots" content="index,follow">
+  <title>Monocurl Lesson - AI開発 | Monocurl</title>
+  <link rel="canonical" href="https://www.monocurl.com/learn/05-ai-development.ja.html">
+  <meta property="og:site_name" content="Monocurl">
+  <meta property="og:title" content="Monocurl Lesson - AI開発 | Monocurl">
+  <meta property="og:description" content="モノカール シーンはプレーン テキスト ファイルであり、LLM は定型的なタスクや退屈なレイアウト タスクを回避するのに非常に役立ちます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.monocurl.com/learn/05-ai-development.ja.html">
+  <meta property="og:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Monocurl Lesson - AI開発 | Monocurl">
+  <meta name="twitter:description" content="モノカール シーンはプレーン テキスト ファイルであり、LLM は定型的なタスクや退屈なレイアウト タスクを回避するのに非常に役立ちます。">
+  <meta name="twitter:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/i18n.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-325110115');
+</script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" alt="">
+      <span>Monocurl</span>
+    </a>
+    <nav class="top-links" aria-label="primary">
+      <a  href="/" data-i18n="nav.home">Home</a>
+      <a  href="/gallery/" data-i18n="nav.gallery">Gallery</a>
+      <a class="active" href="/learn/00-overview.html" data-i18n="nav.learn">Learn</a>
+      <a  href="/docs/" data-i18n="nav.docs">Docs</a>
+      <a href="https://www.monocurl.com/monocurl-essays/" data-i18n="nav.essays">Essays</a>
+    </nav>
+    <div class="top-actions">
+      <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
+      <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
+      <span data-language-picker></span>
+      <a class="download-button" href="/download/" data-i18n="nav.download">Download</a>
+    </div>
+  </header>
+  <div class="app-frame">
+  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p data-i18n="sidebar.learn">Learn</p><a  href="/learn/00-overview.html">概要</a><a  href="/learn/01-language.html">言語の基礎</a><a  href="/learn/02-meshes.html">メッシュとオペレーター</a><a  href="/learn/03-animation.html">アニメーションの基礎</a><a  href="/learn/04-parallel.html">並列アニメーション</a><a class="active" href="/learn/05-ai-development.html">AI開発</a><a  href="/learn/06-advanced.html">高度なトピック</a></nav></aside>
+  <div class="page"><main class="content"><article class="prose lesson">
+  <p class="eyebrow"><span data-i18n="learn.lesson">lesson</span> 06</p>
+  <h1 id="ai"><a class="header" href="#ai">AI開発</a></h1><p>モノカール シーンはプレーン テキスト ファイルであり、LLM は定型的なタスクや退屈なレイアウト タスクを回避するのに非常に役立ちます。</p><figure class="media-embed"><img src="/img/lessons/ai-mcp-workflow.png" alt="An AI agent editing a Monocurl scene while the desktop app previews the result"><figcaption>An AI agent editing a Monocurl scene while the desktop app previews the result</figcaption></figure><h2 id=""><a class="header" href="#">現在の状況</a></h2><p>Monocurl には MCP (Model Context Protocol) サーバーがあり、互換性のある AI アシスタントが Monocurl のドキュメント、stdlib リファレンス、CLI ノート、サンプル シーンを構造化リソースとして直接読み取ることができます。これは、AI アシスタント Monocurl コンテキストを与えるための推奨される方法です。</p><p>サーバーは npm で <code>@enigmurl/monocurl-mcp</code> として公開されます。これはドキュメント サーバーのみです。シーンの編集、Monocurl の実行、イメージのレンダリング、コードの検証は行いません。</p><p>標準入出力サーバー構成を受け入れる MCP クライアントの場合は、以下を追加します。</p><div class="code-shell" data-language="json"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>{
+  &quot;mcpServers&quot;: {
+    &quot;monocurl&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]
+    }
+  }
+}</code></pre></div><p>クロード コードの場合、同等のコマンドは次のとおりです。</p><div class="code-shell" data-language="sh"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>claude mcp add --transport stdio monocurl -- npx -y @enigmurl/monocurl-mcp</code></pre></div><p>Codex の場合、これを <code>~/.codex/config.toml</code> に追加します。</p><div class="code-shell" data-language="toml"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>[mcp_servers.monocurl]
+command = &quot;npx&quot;
+args = [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]</code></pre></div><p>インストール後、シーンを作成する前にアシスタントに Monocurl MCP リソースを読み取るように依頼します。</p><h2 id=""><a class="header" href="#">プロンプトの例</a></h2><p>次のようなものを AI コーディング アシスタントに貼り付けることができます。</p><div class="code-shell" data-language="text"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>You are helping me write a Monocurl scene. Monocurl is a programming language and desktop app for creating mathematical animations with live preview, video export, and slideshow-style presentation.
+
+Install and use the Monocurl MCP context server before writing code. If your MCP client supports stdio servers, add a server named monocurl with:
+
+command: npx
+args: [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]
+
+Then read the Monocurl MCP resources, especially the language overview, stdlib docs, CLI guide, and example scenes.
+
+When writing and testing Monocurl code, keep these points in mind:
+
+1. If the `monocurl` binary is not on PATH, look for the application binary manually. On macOS, check `/Applications`, `~/Applications`, or the app bundle contents. On Windows, check `Program Files` for `Monocurl.exe`. The binary can run scenes and inspect print output.
+2. Be mindful when sizing text. Text sizes smaller than `0.5` are typically illegible. Prefer larger text that is easy to read during presentations.
+3. In most cases, do not explicitly specify the variables to animate. The default behavior animates all dirty leaders, so the variables list can usually be left as `[]`.
+4. Your sandbox may not have access to a GPU device, so CLI image or video rendering may fail. Use print statements and the transcript command heavily to check positioning, values, and the general structure of the scene.</code></pre></div><h2 id=""><a class="header" href="#">ヘッドレスモード</a></h2><p>Monocurl はファイルの変更を監視し、AI エージェントからの編集を含む外部編集に応じてタイムラインとビューポートを動的に更新します。したがって、好みのテキスト エディタまたは AI エージェントを使用してシーン ソース ファイルを作成し、その後 Monocurl エディタに戻って結果を確認し、タイムラインをスクラブすることができます。デフォルトのエディタではなく、左側のスペースをターミナルに使用したい場合は、「ファイル」メニューで「ヘッドレス」メニューを有効にします。</p>
+  <nav class="footer-buttons"><a class="footer-button" href="/learn/04-parallel.ja.html">← 並列アニメーション</a><a class="footer-button" href="/learn/06-advanced.ja.html">高度なトピック →</a></nav>
+</article></main></div>
+  <aside class="toc-panel"><p class="toc-title" data-i18n="toc.on_this_page">On this page</p><a class="toc-h2 active" href="#">現在の状況</a><a class="toc-h2" href="#">プロンプトの例</a><a class="toc-h2" href="#">ヘッドレスモード</a></aside>
+</div>
+  <script>
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('[data-copy-code]');
+  if (!button) return;
+
+  const block = button.closest('.code-shell');
+  const code = block && block.querySelector('code');
+  if (!code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent);
+    button.textContent = window.MonocurlI18n?.text('copy.copied') || 'Copied';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
+  } catch (_) {
+    button.textContent = window.MonocurlI18n?.text('copy.failed') || 'Failed';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
+  }
+});
+
+const linuxInstallCommand = document.querySelector('[data-linux-install-command]');
+if (linuxInstallCommand) {
+  const servingOrigin =
+    window.location.protocol === 'http:' || window.location.protocol === 'https:'
+      ? window.location.origin
+      : 'https://www.monocurl.com';
+  linuxInstallCommand.textContent = `curl -f ${servingOrigin}/download/install.sh | sh`;
+}
+
+const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
+const tocTargets = tocLinks
+  .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
+  .filter((pair) => pair[1]);
+
+function setActiveToc(id) {
+  for (const link of tocLinks) {
+    const active = decodeURIComponent(link.hash.slice(1)) === id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+if (tocTargets.length > 0) {
+  setActiveToc(tocTargets[0][1].id);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (visible) setActiveToc(visible.target.id);
+  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+
+  for (const [, target] of tocTargets) observer.observe(target);
+}
+</script>
+</body>
+</html>

@@ -241,6 +241,24 @@ img, video { max-width: 100%; display: block; }
   gap: 0.35rem;
 }
 
+.language-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.language-picker select {
+  max-width: 9rem;
+  padding: 0.32rem 0.4rem;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  font: inherit;
+}
+
 .social-link {
   padding: 0.36rem 0.6rem;
   color: var(--muted);

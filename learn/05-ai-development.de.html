@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl-Szenen sind reine Textdateien und LLMs können sehr hilfreich sein, um Standard-/mühsame Layout-Aufgaben zu vermeiden.">
+  <meta name="robots" content="index,follow">
+  <title>Monocurl Lesson - KI-Entwicklung | Monocurl</title>
+  <link rel="canonical" href="https://www.monocurl.com/learn/05-ai-development.de.html">
+  <meta property="og:site_name" content="Monocurl">
+  <meta property="og:title" content="Monocurl Lesson - KI-Entwicklung | Monocurl">
+  <meta property="og:description" content="Monocurl-Szenen sind reine Textdateien und LLMs können sehr hilfreich sein, um Standard-/mühsame Layout-Aufgaben zu vermeiden.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.monocurl.com/learn/05-ai-development.de.html">
+  <meta property="og:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Monocurl Lesson - KI-Entwicklung | Monocurl">
+  <meta name="twitter:description" content="Monocurl-Szenen sind reine Textdateien und LLMs können sehr hilfreich sein, um Standard-/mühsame Layout-Aufgaben zu vermeiden.">
+  <meta name="twitter:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/i18n.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-325110115');
+</script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" alt="">
+      <span>Monocurl</span>
+    </a>
+    <nav class="top-links" aria-label="primary">
+      <a  href="/" data-i18n="nav.home">Home</a>
+      <a  href="/gallery/" data-i18n="nav.gallery">Gallery</a>
+      <a class="active" href="/learn/00-overview.html" data-i18n="nav.learn">Learn</a>
+      <a  href="/docs/" data-i18n="nav.docs">Docs</a>
+      <a href="https://www.monocurl.com/monocurl-essays/" data-i18n="nav.essays">Essays</a>
+    </nav>
+    <div class="top-actions">
+      <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
+      <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
+      <span data-language-picker></span>
+      <a class="download-button" href="/download/" data-i18n="nav.download">Download</a>
+    </div>
+  </header>
+  <div class="app-frame">
+  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p data-i18n="sidebar.learn">Learn</p><a  href="/learn/00-overview.html">Überblick</a><a  href="/learn/01-language.html">Sprachgrundlagen</a><a  href="/learn/02-meshes.html">Netze und Operatoren</a><a  href="/learn/03-animation.html">Animationsgrundlagen</a><a  href="/learn/04-parallel.html">Parallele Animationen</a><a class="active" href="/learn/05-ai-development.html">KI-Entwicklung</a><a  href="/learn/06-advanced.html">Fortgeschrittene Themen</a></nav></aside>
+  <div class="page"><main class="content"><article class="prose lesson">
+  <p class="eyebrow"><span data-i18n="learn.lesson">lesson</span> 06</p>
+  <h1 id="ki-entwicklung"><a class="header" href="#ki-entwicklung">KI-Entwicklung</a></h1><p>Monocurl-Szenen sind reine Textdateien und LLMs können sehr hilfreich sein, um Standard-/mühsame Layout-Aufgaben zu vermeiden.</p><figure class="media-embed"><img src="/img/lessons/ai-mcp-workflow.png" alt="An AI agent editing a Monocurl scene while the desktop app previews the result"><figcaption>An AI agent editing a Monocurl scene while the desktop app previews the result</figcaption></figure><h2 id="aktueller-status"><a class="header" href="#aktueller-status">Aktueller Status</a></h2><p>Monocurl verfügt über einen MCP-Server (Model Context Protocol), der es kompatiblen KI-Assistenten ermöglicht, die Dokumentation, die Stdlib-Referenz, CLI-Notizen und Beispielszenen von Monocurl direkt als strukturierte Ressourcen zu lesen. Dies ist die empfohlene Methode, um einem KI-Assistenten Monocurl-Kontext zu geben.</p><p>Der Server wird auf npm als <code>@enigmurl/monocurl-mcp</code> veröffentlicht. Es handelt sich lediglich um einen Dokumentationsserver. Es bearbeitet keine Szenen, führt kein Monocurl aus, rendert keine Bilder und validiert keinen Code.</p><p>Für einen MCP-Client, der die stdio-Serverkonfiguration akzeptiert, fügen Sie Folgendes hinzu:</p><div class="code-shell" data-language="json"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>{
+  &quot;mcpServers&quot;: {
+    &quot;monocurl&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]
+    }
+  }
+}</code></pre></div><p>Für Claude Code lautet der entsprechende Befehl:</p><div class="code-shell" data-language="sh"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>claude mcp add --transport stdio monocurl -- npx -y @enigmurl/monocurl-mcp</code></pre></div><p>Fügen Sie für Codex Folgendes zu <code>~/.codex/config.toml</code> hinzu:</p><div class="code-shell" data-language="toml"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>[mcp_servers.monocurl]
+command = &quot;npx&quot;
+args = [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]</code></pre></div><p>Bitten Sie den Assistenten nach der Installation, die Monocurl MCP-Ressourcen zu lesen, bevor Sie eine Szene schreiben.</p><h2 id="beispiel-eingabeaufforderung"><a class="header" href="#beispiel-eingabeaufforderung">Beispiel-Eingabeaufforderung</a></h2><p>Sie können so etwas in einen KI-Codierungsassistenten einfügen:</p><div class="code-shell" data-language="text"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>You are helping me write a Monocurl scene. Monocurl is a programming language and desktop app for creating mathematical animations with live preview, video export, and slideshow-style presentation.
+
+Install and use the Monocurl MCP context server before writing code. If your MCP client supports stdio servers, add a server named monocurl with:
+
+command: npx
+args: [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]
+
+Then read the Monocurl MCP resources, especially the language overview, stdlib docs, CLI guide, and example scenes.
+
+When writing and testing Monocurl code, keep these points in mind:
+
+1. If the `monocurl` binary is not on PATH, look for the application binary manually. On macOS, check `/Applications`, `~/Applications`, or the app bundle contents. On Windows, check `Program Files` for `Monocurl.exe`. The binary can run scenes and inspect print output.
+2. Be mindful when sizing text. Text sizes smaller than `0.5` are typically illegible. Prefer larger text that is easy to read during presentations.
+3. In most cases, do not explicitly specify the variables to animate. The default behavior animates all dirty leaders, so the variables list can usually be left as `[]`.
+4. Your sandbox may not have access to a GPU device, so CLI image or video rendering may fail. Use print statements and the transcript command heavily to check positioning, values, and the general structure of the scene.</code></pre></div><h2 id="headless-modus"><a class="header" href="#headless-modus">Headless-Modus</a></h2><p>Monocurl überwacht Dateiänderungen und aktualisiert die Zeitleiste und das Ansichtsfenster dynamisch als Reaktion auf alle externen Bearbeitungen, einschließlich solcher von KI-Agenten. Folglich können Sie Ihren bevorzugten Texteditor oder einen KI-Agenten verwenden, um die Szenenquelldatei zu schreiben, dann zurück zum Monocurl-Editor wechseln, um die Ergebnisse anzuzeigen und durch die Zeitleiste zu scrollen. Wenn Sie anstelle des Standardeditors lieber den linken Bereich für ein Terminal verwenden möchten, aktivieren Sie das Headless-Menü im Menü „Datei“.</p>
+  <nav class="footer-buttons"><a class="footer-button" href="/learn/04-parallel.de.html">← Parallele Animationen</a><a class="footer-button" href="/learn/06-advanced.de.html">Fortgeschrittene Themen →</a></nav>
+</article></main></div>
+  <aside class="toc-panel"><p class="toc-title" data-i18n="toc.on_this_page">On this page</p><a class="toc-h2 active" href="#aktueller-status">Aktueller Status</a><a class="toc-h2" href="#beispiel-eingabeaufforderung">Beispiel-Eingabeaufforderung</a><a class="toc-h2" href="#headless-modus">Headless-Modus</a></aside>
+</div>
+  <script>
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('[data-copy-code]');
+  if (!button) return;
+
+  const block = button.closest('.code-shell');
+  const code = block && block.querySelector('code');
+  if (!code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent);
+    button.textContent = window.MonocurlI18n?.text('copy.copied') || 'Copied';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
+  } catch (_) {
+    button.textContent = window.MonocurlI18n?.text('copy.failed') || 'Failed';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
+  }
+});
+
+const linuxInstallCommand = document.querySelector('[data-linux-install-command]');
+if (linuxInstallCommand) {
+  const servingOrigin =
+    window.location.protocol === 'http:' || window.location.protocol === 'https:'
+      ? window.location.origin
+      : 'https://www.monocurl.com';
+  linuxInstallCommand.textContent = `curl -f ${servingOrigin}/download/install.sh | sh`;
+}
+
+const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
+const tocTargets = tocLinks
+  .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
+  .filter((pair) => pair[1]);
+
+function setActiveToc(id) {
+  for (const link of tocLinks) {
+    const active = decodeURIComponent(link.hash.slice(1)) === id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+if (tocTargets.length > 0) {
+  setActiveToc(tocTargets[0][1].id);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (visible) setActiveToc(visible.target.id);
+  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+
+  for (const [, target] of tocTargets) observer.observe(target);
+}
+</script>
+</body>
+</html>

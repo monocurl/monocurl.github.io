@@ -21,6 +21,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/i18n.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
 </script>
 <script>
@@ -39,26 +40,27 @@
       <span>Monocurl</span>
     </a>
     <nav class="top-links" aria-label="primary">
-      <a  href="/">Home</a>
-      <a  href="/gallery/">Gallery</a>
-      <a  href="/learn/00-overview.html">Learn</a>
-      <a class="active" href="/docs/">Docs</a>
-      <a href="https://www.monocurl.com/monocurl-essays/">Essays</a>
+      <a  href="/" data-i18n="nav.home">Home</a>
+      <a  href="/gallery/" data-i18n="nav.gallery">Gallery</a>
+      <a  href="/learn/00-overview.html" data-i18n="nav.learn">Learn</a>
+      <a class="active" href="/docs/" data-i18n="nav.docs">Docs</a>
+      <a href="https://www.monocurl.com/monocurl-essays/" data-i18n="nav.essays">Essays</a>
     </nav>
     <div class="top-actions">
       <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
       <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
-      <a class="download-button" href="/download/">Download</a>
+      <span data-language-picker></span>
+      <a class="download-button" href="/download/" data-i18n="nav.download">Download</a>
     </div>
   </header>
   <div class="app-frame">
-  <aside class="sidebar"><nav class="side-nav" aria-label="docs navigation"><p>Reference</p><a class="active" href="/docs/">Standard library</a><a  href="/docs/anim.html">std.anim</a><a  href="/docs/color.html">std.color</a><a  href="/docs/math.html">std.math</a><a  href="/docs/mesh.html">std.mesh</a><a  href="/docs/scene.html">std.scene</a><a  href="/docs/util.html">std.util</a></nav></aside>
+  <aside class="sidebar"><nav class="side-nav" aria-label="docs navigation"><p data-i18n="sidebar.reference">Reference</p><a class="active" href="/docs/" data-i18n="sidebar.standard_library">Standard library</a><a  href="/docs/anim.html">std.anim</a><a  href="/docs/color.html">std.color</a><a  href="/docs/math.html">std.math</a><a  href="/docs/mesh.html">std.mesh</a><a  href="/docs/scene.html">std.scene</a><a  href="/docs/util.html">std.util</a></nav></aside>
   <div class="page"><main class="content"><section class="page-head">
-  <p class="eyebrow">standard library</p>
-  <p>Documentation for the standard library.</p>
+  <p class="eyebrow" data-i18n="docs.eyebrow">standard library</p>
+  <p data-i18n="docs.description">Documentation for the standard library.</p>
 </section>
 <section>
-  <h2 id="modules"><a class="header" href="#modules">Modules</a></h2>
+  <h2 id="modules"><a class="header" href="#modules" data-i18n="docs.modules">Modules</a></h2>
   <div class="index-list compact"><a class="index-row" href="/docs/anim.html">
   <span class="row-kicker">std.anim</span>
   <strong>anim.mcl</strong>
@@ -81,8 +83,8 @@
 </section>
 <section class="symbol-index">
   <div class="docs-search-row">
-    <h2 id="symbols"><a class="header" href="#symbols">Symbol Index</a></h2>
-    <input data-doc-search class="search-input" type="search" placeholder="filter by symbol, module, or category">
+    <h2 id="symbols"><a class="header" href="#symbols" data-i18n="docs.symbol_index">Symbol Index</a></h2>
+    <input data-doc-search class="search-input" type="search" placeholder="filter by symbol, module, or category" data-i18n-placeholder="docs.search_placeholder">
   </div>
   <div class="symbol-list"><a class="symbol-row" data-symbol-row data-search="anim linear function rate functions identity rate function: animation progress equals time progress." href="/docs/anim.html#linear">
   <span class="symbol-kind kind-function">function</span>
@@ -364,6 +366,11 @@
   <strong>rgb</strong>
   <span>color</span>
   <small>Build an RGBA color from red, green, blue, and optional alpha components.</small>
+</a><a class="symbol-row" data-symbol-row data-search="color hex function declarations build an rgba color from a hexadecimal html/css color literal." href="/docs/color.html#hex">
+  <span class="symbol-kind kind-function">function</span>
+  <strong>hex</strong>
+  <span>color</span>
+  <small>Build an RGBA color from a hexadecimal HTML/CSS color literal.</small>
 </a><a class="symbol-row" data-symbol-row data-search="color hsv function declarations build an rgba color from hsv components." href="/docs/color.html#hsv">
   <span class="symbol-kind kind-function">function</span>
   <strong>hsv<em class="important-marker">important</em></strong>
@@ -379,6 +386,11 @@
   <strong>alpha<em class="important-marker">important</em></strong>
   <span>color</span>
   <small>Return a color with the same RGB channels and a new alpha component.</small>
+</a><a class="symbol-row" data-symbol-row data-search="color soft operator declarations return a softened color by blending white toward the target color." href="/docs/color.html#soft">
+  <span class="symbol-kind kind-operator">operator</span>
+  <strong>soft<em class="important-marker">important</em></strong>
+  <span>color</span>
+  <small>Return a softened color by blending white toward the target color.</small>
 </a><a class="symbol-row" data-symbol-row data-search="math e constant constants euler&#39;s number." href="/docs/math.html#e">
   <span class="symbol-kind kind-constant">constant</span>
   <strong>E</strong>
@@ -879,11 +891,6 @@
   <strong>text_tag</strong>
   <span>mesh</span>
   <small>Attach tags to text fragments before they become mesh contours.</small>
-</a><a class="symbol-row" data-symbol-row data-search="mesh brace constructor text / labels brace drawn next to a target mesh." href="/docs/mesh.html#brace">
-  <span class="symbol-kind kind-constructor">constructor</span>
-  <strong>Brace</strong>
-  <span>mesh</span>
-  <small>Brace drawn next to a target mesh.</small>
 </a><a class="symbol-row" data-symbol-row data-search="mesh measure constructor text / labels measurement marker drawn next to a target mesh." href="/docs/mesh.html#measure">
   <span class="symbol-kind kind-constructor">constructor</span>
   <strong>Measure<em class="important-marker">important</em></strong>
@@ -1652,7 +1659,7 @@ if (docSearch) {
   });
 }
 </script></main></div>
-  <aside class="toc-panel"><p class="toc-title">On this page</p><a class="toc-h2 active" href="#modules">Modules</a><a class="toc-h2" href="#symbols">Symbol Index</a></aside>
+  <aside class="toc-panel"><p class="toc-title" data-i18n="toc.on_this_page">On this page</p><a class="toc-h2 active" href="#modules">Modules</a><a class="toc-h2" href="#symbols">Symbol Index</a></aside>
 </div>
   <script>
 document.addEventListener('click', async (event) => {
@@ -1665,11 +1672,11 @@ document.addEventListener('click', async (event) => {
 
   try {
     await navigator.clipboard.writeText(code.textContent);
-    button.textContent = 'Copied';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+    button.textContent = window.MonocurlI18n?.text('copy.copied') || 'Copied';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
   } catch (_) {
-    button.textContent = 'Failed';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1200);
+    button.textContent = window.MonocurlI18n?.text('copy.failed') || 'Failed';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
   }
 });
 

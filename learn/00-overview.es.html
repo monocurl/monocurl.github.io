@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Esta lección explica el editor, la estructura de una escena y cómo pasar de escribir código a exportar o presentar su trabajo.">
+  <meta name="robots" content="index,follow">
+  <title>Monocurl Lesson - Descripción general | Monocurl</title>
+  <link rel="canonical" href="https://www.monocurl.com/learn/00-overview.es.html">
+  <meta property="og:site_name" content="Monocurl">
+  <meta property="og:title" content="Monocurl Lesson - Descripción general | Monocurl">
+  <meta property="og:description" content="Esta lección explica el editor, la estructura de una escena y cómo pasar de escribir código a exportar o presentar su trabajo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.monocurl.com/learn/00-overview.es.html">
+  <meta property="og:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Monocurl Lesson - Descripción general | Monocurl">
+  <meta name="twitter:description" content="Esta lección explica el editor, la estructura de una escena y cómo pasar de escribir código a exportar o presentar su trabajo.">
+  <meta name="twitter:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/i18n.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-325110115');
+</script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" alt="">
+      <span>Monocurl</span>
+    </a>
+    <nav class="top-links" aria-label="primary">
+      <a  href="/" data-i18n="nav.home">Home</a>
+      <a  href="/gallery/" data-i18n="nav.gallery">Gallery</a>
+      <a class="active" href="/learn/00-overview.html" data-i18n="nav.learn">Learn</a>
+      <a  href="/docs/" data-i18n="nav.docs">Docs</a>
+      <a href="https://www.monocurl.com/monocurl-essays/" data-i18n="nav.essays">Essays</a>
+    </nav>
+    <div class="top-actions">
+      <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
+      <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
+      <span data-language-picker></span>
+      <a class="download-button" href="/download/" data-i18n="nav.download">Download</a>
+    </div>
+  </header>
+  <div class="app-frame">
+  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p data-i18n="sidebar.learn">Learn</p><a class="active" href="/learn/00-overview.html">Descripción general</a><a  href="/learn/01-language.html">Conceptos básicos del idioma</a><a  href="/learn/02-meshes.html">Mallas y Operadores</a><a  href="/learn/03-animation.html">Conceptos básicos de animación</a><a  href="/learn/04-parallel.html">Animaciones paralelas</a><a  href="/learn/05-ai-development.html">Desarrollo de IA</a><a  href="/learn/06-advanced.html">Temas avanzados</a></nav></aside>
+  <div class="page"><main class="content"><article class="prose lesson">
+  <p class="eyebrow"><span data-i18n="learn.lesson">lesson</span> 01</p>
+  <h1 id="descripci-n-general"><a class="header" href="#descripci-n-general">Descripción general</a></h1><p>Esta lección explica el editor, la estructura de una escena y cómo pasar de escribir código a exportar o presentar su trabajo.</p><h2 id="el-editor"><a class="header" href="#el-editor">El editor</a></h2><figure class="media-embed"><img src="/img/home/monocurl-editor.png" alt="The Monocurl editor"><figcaption>The Monocurl editor</figcaption></figure><p>El editor tiene tres superficies de trabajo:</p><ul><li><strong>Editor de código fuente</strong> (izquierda): donde escribe archivos de escena <code>.mcs</code></li><li><strong>Ventana</strong> (arriba a la derecha): muestra el fotograma renderizado en la posición actual de la línea de tiempo.</li><li><strong>Línea de tiempo</strong> (abajo a la derecha): recorre las diapositivas y los <code>play</code> pasos individuales dentro de cada diapositiva.</li></ul><p>Cuando edita código, Monocurl vuelve a evaluar y la vista previa de la ventana gráfica se actualiza según la posición actual en la línea de tiempo.</p><h2 id="estructura-de-escena"><a class="header" href="#estructura-de-escena">Estructura de escena</a></h2><p>Cada escena tiene tres partes: importaciones, una sección de inicio y diapositivas. Omitimos las importaciones en la mayoría de los ejemplos por motivos de brevedad.</p><div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code><span class="mc-token mc-comment mc-token-comment"># --- init section ---</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-comment mc-token-comment"># runs first; sets up helpers and the initial visible state</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-non-control-flow-keyword mc-token-mesh">mesh</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">dot</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">center</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-identifier mc-token-identifier">ORIGIN</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">fill</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">soft</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">CYAN</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">stroke</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-identifier mc-token-identifier">CYAN</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">2</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Circle</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.4</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-non-control-flow-keyword mc-token-slide">slide</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;intro&quot;</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-comment mc-token-comment"># slide containing some animations</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-non-control-flow-keyword mc-token-mesh">mesh</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">title</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">center</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.8u</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Text</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;Hello&quot;</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.7</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Write</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.9</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-non-control-flow-keyword mc-token-slide">slide</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-identifier mc-token-identifier">dot</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">center</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-numeric-literal mc-token-float-literal">1.2r</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">fill</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">soft</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">ORANGE</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">stroke</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-identifier mc-token-identifier">ORANGE</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-integer-literal">2</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Circle</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.5</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Lerp</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">1.2</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div><p>El código antes del primer <code>slide</code> es <strong>init</strong>. Aquí es donde viven las importaciones, junto con las constantes, las funciones auxiliares y el estado visible inicial. Después de la primera palabra clave <code>slide</code>, el código pertenece a esa diapositiva y puede contener animaciones <code>play</code>.</p><h2 id="una-primera-escena"><a class="header" href="#una-primera-escena">Una primera escena</a></h2><p>Aquí hay una pequeña escena completa. El patrón es: configurar ciertos ayudantes en init, luego en cada diapositiva mutar el estado de la escena de manera continua a través de animaciones de reproducción.</p><figure class="scene-block">
+  <figcaption><span>video</span><b>00-overview.mcl</b></figcaption>
+  <div class="scene-block-grid">
+    <div class="scene-media"><video controls muted src="/media/generated/00-overview-2897ce6a6fdcdc07.mp4"></video></div>
+    <div class="code-shell" data-language="mcl"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code><span class="mc-token mc-non-control-flow-keyword mc-token-slide">slide</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;intro&quot;</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-non-control-flow-keyword mc-token-mesh">mesh</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">circle</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">      </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">center</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-argument-label mc-token-argument-label">pos:</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">1.4l</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">      </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">color</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-argument-label mc-token-argument-label">col:</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">BLUE</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">      </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Circle</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.4</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-non-control-flow-keyword mc-token-mesh">mesh</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">label</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">      </span><span class="mc-token mc-identifier mc-token-identifier mc-operator-invocation">center</span><span class="mc-token mc-punctuation mc-token-l-flower">{</span><span class="mc-token mc-argument-label mc-token-argument-label">pos:</span><span class="mc-token mc-numeric-literal mc-token-float-literal">1.4l</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-plus">+</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.75d</span><span class="mc-token mc-punctuation mc-token-r-flower">}</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">      </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Text</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-argument-label mc-token-argument-label">text:</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;hello&quot;</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.65</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-comment mc-token-comment"># introduce the newly created meshes in an animated fashion</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-punctuation mc-token-l-bracket">[</span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Write</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.9</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-punctuation mc-token-l-bracket">[</span><span class="mc-token mc-operator mc-token-reference">&amp;</span><span class="mc-token mc-identifier mc-token-identifier">label</span><span class="mc-token mc-punctuation mc-token-r-bracket">]</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Fade</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.9</span><span class="mc-token mc-operator mc-token-comma">,</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-punctuation mc-token-l-bracket">[</span><span class="mc-token mc-operator mc-token-reference">&amp;</span><span class="mc-token mc-identifier mc-token-identifier">circle</span><span class="mc-token mc-punctuation mc-token-r-bracket">]</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span><span class="mc-token mc-punctuation mc-token-r-bracket">]</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-non-control-flow-keyword mc-token-slide">slide</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;transform&quot;</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-identifier mc-token-identifier">circle</span><span class="mc-token mc-operator mc-token-dot">.</span><span class="mc-token mc-identifier mc-token-identifier">pos</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">1.4r</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-identifier mc-token-identifier">circle</span><span class="mc-token mc-operator mc-token-dot">.</span><span class="mc-token mc-identifier mc-token-identifier">col</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier">ORANGE</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-identifier mc-token-identifier">label</span><span class="mc-token mc-operator mc-token-dot">.</span><span class="mc-token mc-identifier mc-token-identifier">pos</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">1.4r</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-plus">+</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-numeric-literal mc-token-float-literal">0.75d</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-identifier mc-token-identifier">label</span><span class="mc-token mc-operator mc-token-dot">.</span><span class="mc-token mc-identifier mc-token-identifier">text</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-operator mc-token-assign">=</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-text-literal mc-token-string-literal">&quot;world&quot;</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-comment mc-token-comment"># transform both meshes into new state</span><span class="mc-token mc-whitespace mc-token-newline">
+</span><span class="mc-token mc-whitespace mc-token-whitespace">    </span><span class="mc-token mc-control-flow mc-token-play">play</span><span class="mc-token mc-whitespace mc-token-whitespace"> </span><span class="mc-token mc-identifier mc-token-identifier mc-function-invocation">Trans</span><span class="mc-token mc-punctuation mc-token-l-paren">(</span><span class="mc-token mc-numeric-literal mc-token-float-literal">1.2</span><span class="mc-token mc-punctuation mc-token-r-paren">)</span></code></pre></div>
+  </div>
+</figure><h2 id="navegaci-n-en-la-l-nea-de-tiempo"><a class="header" href="#navegaci-n-en-la-l-nea-de-tiempo">Navegación en la línea de tiempo</a></h2><p>Para un control detallado, puede hacer clic para buscar. Pero, en general, usa el teclado para moverte por tu escena:</p><ul><li><code>,</code> / <code>.</code> — diapositiva anterior/siguiente</li><li><code>&lt;</code> / <code>&gt;</code> — saltar al inicio/final de la escena</li><li><code>;</code> / <code>'</code> — pequeño paso hacia atrás / hacia adelante</li></ul><p>Un hábito útil durante la creación es borrar la línea de tiempo después de agregar una nueva diapositiva para verificar que cada paso <code>play</code> haga lo que pretendía.</p><h2 id="presentar-y-exportar"><a class="header" href="#presentar-y-exportar">Presentar y exportar</a></h2><p>El mismo archivo fuente <code>.mcs</code> se puede utilizar de tres maneras:</p><ul><li><strong>Exportación de vídeo</strong> — Menú Archivo → Exportar vídeo. Representa la escena completa como <code>.mp4</code>.</li><li><strong>Exportación de imagen</strong> — Menú Archivo → Exportar imagen. Representa un solo cuadro como <code>.png</code>.</li><li><strong>Modo de presentación</strong> — <code>Cmd/Ctrl-P</code>. Convierte las diapositivas en puntos de control de navegación, deteniéndose en cada límite <code>slide</code>.</li></ul><h2 id="flujo-de-trabajo-interactivo"><a class="header" href="#flujo-de-trabajo-interactivo">Flujo de trabajo interactivo</a></h2><figure class="media-embed"><video controls muted src="/video/interactive-development.mp4"></video></figure><p>En el modo de presentación, <code>Cmd/Ctrl-T</code> abre el <strong>panel de parámetros</strong> donde puedes editar parte del estado de la escena con controles deslizantes. Esto es más avanzado/nicho pero puede ser poderoso.</p><p>En el modo de vista previa y presentación, puede arrastrar el cursor para mover la cámara. Si presiona Mayús y arrastra el cursor, puede desplazar la cámara. Son especialmente útiles para crear escenas en 3D.</p><h2 id="monorizo-en-la-web"><a class="header" href="#monorizo-en-la-web">Monorizo ​​en la web</a></h2><p><a href="https://www.monocurl.com/monocurl-essays/">Ensayos de Monocurl</a> demuestra cómo las escenas Monocurl pueden ejecutarse directamente en la web. El tiempo de ejecución subyacente también está disponible como <a href="https://www.npmjs.com/package/monocurl">paquete NPM</a>.</p>
+  <nav class="footer-buttons"><span></span><a class="footer-button" href="/learn/01-language.es.html">Conceptos básicos del idioma →</a></nav>
+</article></main></div>
+  <aside class="toc-panel"><p class="toc-title" data-i18n="toc.on_this_page">On this page</p><a class="toc-h2 active" href="#el-editor">El editor</a><a class="toc-h2" href="#estructura-de-escena">Estructura de escena</a><a class="toc-h2" href="#una-primera-escena">Una primera escena</a><a class="toc-h2" href="#navegaci-n-en-la-l-nea-de-tiempo">Navegación en la línea de tiempo</a><a class="toc-h2" href="#presentar-y-exportar">Presentar y exportar</a><a class="toc-h2" href="#flujo-de-trabajo-interactivo">Flujo de trabajo interactivo</a><a class="toc-h2" href="#monorizo-en-la-web">Monorizo ​​en la web</a></aside>
+</div>
+  <script>
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('[data-copy-code]');
+  if (!button) return;
+
+  const block = button.closest('.code-shell');
+  const code = block && block.querySelector('code');
+  if (!code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent);
+    button.textContent = window.MonocurlI18n?.text('copy.copied') || 'Copied';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
+  } catch (_) {
+    button.textContent = window.MonocurlI18n?.text('copy.failed') || 'Failed';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
+  }
+});
+
+const linuxInstallCommand = document.querySelector('[data-linux-install-command]');
+if (linuxInstallCommand) {
+  const servingOrigin =
+    window.location.protocol === 'http:' || window.location.protocol === 'https:'
+      ? window.location.origin
+      : 'https://www.monocurl.com';
+  linuxInstallCommand.textContent = `curl -f ${servingOrigin}/download/install.sh | sh`;
+}
+
+const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
+const tocTargets = tocLinks
+  .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
+  .filter((pair) => pair[1]);
+
+function setActiveToc(id) {
+  for (const link of tocLinks) {
+    const active = decodeURIComponent(link.hash.slice(1)) === id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+if (tocTargets.length > 0) {
+  setActiveToc(tocTargets[0][1].id);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (visible) setActiveToc(visible.target.id);
+  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+
+  for (const [, target] of tocTargets) observer.observe(target);
+}
+</script>
+</body>
+</html>

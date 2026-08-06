@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monocurl 场景是纯文本文件，LLM 对于避免样板/繁琐的布局任务非常有帮助。">
+  <meta name="robots" content="index,follow">
+  <title>Monocurl Lesson - 人工智能开发 | Monocurl</title>
+  <link rel="canonical" href="https://www.monocurl.com/learn/05-ai-development.zh.html">
+  <meta property="og:site_name" content="Monocurl">
+  <meta property="og:title" content="Monocurl Lesson - 人工智能开发 | Monocurl">
+  <meta property="og:description" content="Monocurl 场景是纯文本文件，LLM 对于避免样板/繁琐的布局任务非常有帮助。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.monocurl.com/learn/05-ai-development.zh.html">
+  <meta property="og:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Monocurl Lesson - 人工智能开发 | Monocurl">
+  <meta name="twitter:description" content="Monocurl 场景是纯文本文件，LLM 对于避免样板/繁琐的布局任务非常有帮助。">
+  <meta name="twitter:image" content="https://www.monocurl.com/img/home/monocurl-editor.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/i18n.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-325110115">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-325110115');
+</script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/img/monocurl-1024.png" alt="">
+      <span>Monocurl</span>
+    </a>
+    <nav class="top-links" aria-label="primary">
+      <a  href="/" data-i18n="nav.home">Home</a>
+      <a  href="/gallery/" data-i18n="nav.gallery">Gallery</a>
+      <a class="active" href="/learn/00-overview.html" data-i18n="nav.learn">Learn</a>
+      <a  href="/docs/" data-i18n="nav.docs">Docs</a>
+      <a href="https://www.monocurl.com/monocurl-essays/" data-i18n="nav.essays">Essays</a>
+    </nav>
+    <div class="top-actions">
+      <a class="social-link" href="https://discord.gg/7g94JR3SAD">Discord</a>
+      <a class="social-link" href="https://github.com/monocurl/monocurl">GitHub</a>
+      <span data-language-picker></span>
+      <a class="download-button" href="/download/" data-i18n="nav.download">Download</a>
+    </div>
+  </header>
+  <div class="app-frame">
+  <aside class="sidebar"><nav class="side-nav" aria-label="learn navigation"><p data-i18n="sidebar.learn">Learn</p><a  href="/learn/00-overview.html">概述</a><a  href="/learn/01-language.html">语言基础知识</a><a  href="/learn/02-meshes.html">网格和运算符</a><a  href="/learn/03-animation.html">动画基础知识</a><a  href="/learn/04-parallel.html">并行动画</a><a class="active" href="/learn/05-ai-development.html">人工智能开发</a><a  href="/learn/06-advanced.html">高级主题</a></nav></aside>
+  <div class="page"><main class="content"><article class="prose lesson">
+  <p class="eyebrow"><span data-i18n="learn.lesson">lesson</span> 06</p>
+  <h1 id=""><a class="header" href="#">人工智能开发</a></h1><p>Monocurl 场景是纯文本文件，LLM 对于避免样板/繁琐的布局任务非常有帮助。</p><figure class="media-embed"><img src="/img/lessons/ai-mcp-workflow.png" alt="An AI agent editing a Monocurl scene while the desktop app previews the result"><figcaption>An AI agent editing a Monocurl scene while the desktop app previews the result</figcaption></figure><h2 id=""><a class="header" href="#">目前状况</a></h2><p>Monocurl 有一个 MCP（模型上下文协议）服务器，可以让兼容的 AI 助手直接读取 Monocurl 的文档、stdlib 参考、CLI 注释和示例场景作为结构化资源。这是为 AI 助手提供 Monocurl 上下文的推荐方法。</p><p>服务器在 npm 上发布为 <code>@enigmurl/monocurl-mcp</code>。它只是一个文档服务器。它不编辑场景、运行 Monocurl、渲染图像或验证代码。</p><p>对于接受 stdio 服务器配置的 MCP 客户端，添加：</p><div class="code-shell" data-language="json"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>{
+  &quot;mcpServers&quot;: {
+    &quot;monocurl&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]
+    }
+  }
+}</code></pre></div><p>对于 Claude Code，等效命令是：</p><div class="code-shell" data-language="sh"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>claude mcp add --transport stdio monocurl -- npx -y @enigmurl/monocurl-mcp</code></pre></div><p>对于 Codex，请将其添加到 <code>~/.codex/config.toml</code>：</p><div class="code-shell" data-language="toml"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>[mcp_servers.monocurl]
+command = &quot;npx&quot;
+args = [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]</code></pre></div><p>安装完成后，请助手在编写场景之前先阅读Monocurl MCP资源。</p><h2 id=""><a class="header" href="#">提示示例</a></h2><p>您可以将这样的内容粘贴到 AI 编码助手中：</p><div class="code-shell" data-language="text"><button class="code-copy" type="button" data-copy-code data-i18n="copy.copy">Copy</button><pre class="code-block"><code>You are helping me write a Monocurl scene. Monocurl is a programming language and desktop app for creating mathematical animations with live preview, video export, and slideshow-style presentation.
+
+Install and use the Monocurl MCP context server before writing code. If your MCP client supports stdio servers, add a server named monocurl with:
+
+command: npx
+args: [&quot;-y&quot;, &quot;@enigmurl/monocurl-mcp&quot;]
+
+Then read the Monocurl MCP resources, especially the language overview, stdlib docs, CLI guide, and example scenes.
+
+When writing and testing Monocurl code, keep these points in mind:
+
+1. If the `monocurl` binary is not on PATH, look for the application binary manually. On macOS, check `/Applications`, `~/Applications`, or the app bundle contents. On Windows, check `Program Files` for `Monocurl.exe`. The binary can run scenes and inspect print output.
+2. Be mindful when sizing text. Text sizes smaller than `0.5` are typically illegible. Prefer larger text that is easy to read during presentations.
+3. In most cases, do not explicitly specify the variables to animate. The default behavior animates all dirty leaders, so the variables list can usually be left as `[]`.
+4. Your sandbox may not have access to a GPU device, so CLI image or video rendering may fail. Use print statements and the transcript command heavily to check positioning, values, and the general structure of the scene.</code></pre></div><h2 id=""><a class="header" href="#">无头模式</a></h2><p>Monocurl 将监视文件更改并动态更新时间线和视口，以响应任何外部编辑，包括来自 AI 代理的编辑。因此，您可以使用您喜欢的文本编辑器或 AI 代理编写场景源文件，然后切换回 Monocurl 编辑器以查看结果并清理时间线。如果您希望使用终端左侧空间而不是默认编辑器，请在“文件”菜单下启用无头菜单。</p>
+  <nav class="footer-buttons"><a class="footer-button" href="/learn/04-parallel.zh.html">← 并行动画</a><a class="footer-button" href="/learn/06-advanced.zh.html">高级主题 →</a></nav>
+</article></main></div>
+  <aside class="toc-panel"><p class="toc-title" data-i18n="toc.on_this_page">On this page</p><a class="toc-h2 active" href="#">目前状况</a><a class="toc-h2" href="#">提示示例</a><a class="toc-h2" href="#">无头模式</a></aside>
+</div>
+  <script>
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('[data-copy-code]');
+  if (!button) return;
+
+  const block = button.closest('.code-shell');
+  const code = block && block.querySelector('code');
+  if (!code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent);
+    button.textContent = window.MonocurlI18n?.text('copy.copied') || 'Copied';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
+  } catch (_) {
+    button.textContent = window.MonocurlI18n?.text('copy.failed') || 'Failed';
+    window.setTimeout(() => { button.textContent = window.MonocurlI18n?.text('copy.copy') || 'Copy'; }, 1200);
+  }
+});
+
+const linuxInstallCommand = document.querySelector('[data-linux-install-command]');
+if (linuxInstallCommand) {
+  const servingOrigin =
+    window.location.protocol === 'http:' || window.location.protocol === 'https:'
+      ? window.location.origin
+      : 'https://www.monocurl.com';
+  linuxInstallCommand.textContent = `curl -f ${servingOrigin}/download/install.sh | sh`;
+}
+
+const tocLinks = Array.from(document.querySelectorAll('.toc-panel a[href^="#"]'));
+const tocTargets = tocLinks
+  .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
+  .filter((pair) => pair[1]);
+
+function setActiveToc(id) {
+  for (const link of tocLinks) {
+    const active = decodeURIComponent(link.hash.slice(1)) === id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+if (tocTargets.length > 0) {
+  setActiveToc(tocTargets[0][1].id);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (visible) setActiveToc(visible.target.id);
+  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+
+  for (const [, target] of tocTargets) observer.observe(target);
+}
+</script>
+</body>
+</html>
