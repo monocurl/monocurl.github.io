@@ -48,9 +48,9 @@
 
     const label = document.createElement("label");
     label.className = "language-picker";
-    label.setAttribute("data-i18n", "picker.label");
     const labelText = document.createElement("span");
     labelText.className = "language-picker-label";
+    labelText.setAttribute("data-i18n", "picker.label");
     labelText.textContent = "Language";
     label.append(labelText);
     const select = document.createElement("select");
