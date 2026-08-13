@@ -46,27 +46,19 @@
     const host = document.querySelector("[data-language-picker]");
     if (!host || locales.length < 2) return;
 
-    const label = document.createElement("label");
-    label.className = "language-picker";
-    const labelText = document.createElement("span");
-    labelText.className = "language-picker-label";
-    labelText.setAttribute("data-i18n", "picker.label");
-    labelText.textContent = "Language";
-    label.append(labelText);
     const select = document.createElement("select");
     select.className = "language-picker-select";
     select.setAttribute("data-i18n-aria-label", "picker.label");
     select.setAttribute("aria-label", "Language");
     for (const locale of locales) {
-      const option = new Option(locale.name, locale.code, false, locale.code === selected);
+      const option = new Option(locale.display, locale.code, false, locale.code === selected);
       select.add(option);
     }
     select.addEventListener("change", () => {
       localStorage.setItem(preferenceKey, select.value);
       reload(select.value);
     });
-    label.append(select);
-    host.replaceChildren(label);
+    host.replaceChildren(select);
     apply(currentCatalog);
   };
 
