@@ -259,16 +259,26 @@ img, video { max-width: 100%; display: block; }
   color: var(--muted);
   font-size: 0.78rem;
   white-space: nowrap;
+  cursor: pointer;
 }
 
-.language-picker select {
-  max-width: 9rem;
-  padding: 0.32rem 0.4rem;
+.language-picker-select {
+  display: inline-block;
+  width: 8.5rem;
+  min-width: 8.5rem;
+  padding: 0.32rem 1.65rem 0.32rem 0.55rem;
   color: var(--fg);
   background: var(--surface);
   border: 1px solid var(--border2);
   border-radius: 4px;
   font: inherit;
+  cursor: pointer;
+}
+
+.language-picker-select:hover,
+.language-picker-select:focus-visible {
+  border-color: var(--accent);
+  outline: none;
 }
 
 .social-link {

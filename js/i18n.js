@@ -49,8 +49,12 @@
     const label = document.createElement("label");
     label.className = "language-picker";
     label.setAttribute("data-i18n", "picker.label");
-    label.textContent = "Language";
+    const labelText = document.createElement("span");
+    labelText.className = "language-picker-label";
+    labelText.textContent = "Language";
+    label.append(labelText);
     const select = document.createElement("select");
+    select.className = "language-picker-select";
     select.setAttribute("data-i18n-aria-label", "picker.label");
     select.setAttribute("aria-label", "Language");
     for (const locale of locales) {
