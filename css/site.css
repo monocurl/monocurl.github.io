@@ -1400,6 +1400,14 @@ img, video { max-width: 100%; display: block; }
 .doc-entry h3 { margin: 0 0 0.3rem; border: none; }
 .doc-entry > p { margin: 0 0 0.65rem; color: var(--muted); font-size: 0.88rem; line-height: 1.55; }
 .doc-entry > .doc-description { color: var(--fg); }
+.doc-entry > .doc-list {
+  margin: 0 0 0.65rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.doc-entry > .doc-list li { margin: 0.15rem 0; }
 
 .doc-badges {
   display: flex;
