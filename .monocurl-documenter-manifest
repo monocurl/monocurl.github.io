@@ -1,3 +1,4 @@
+.DS_Store
 CNAME
 apple-touch-icon.png
 css/site.css
@@ -23,6 +24,7 @@ i18n/fr.json
 i18n/ja.json
 i18n/locales.json
 i18n/zh.json
+img/.DS_Store
 img/home/monocurl-editor.png
 img/home/monocurl-interactive-thumbnail.png
 img/lessons/ai-mcp-workflow.png
@@ -77,6 +79,7 @@ learn/index.fr.html
 learn/index.html
 learn/index.ja.html
 learn/index.zh.html
+llms.txt
 media/generated/00-overview-2897ce6a6fdcdc07.mp4
 media/generated/01-language-752310f01b78a32f.png
 media/generated/01-language-ecf00380dd6dd997.mp4
@@ -172,7 +175,6 @@ media/generated/doc-mesh-typst-3-aa3a2f00749dbc17.png
 media/generated/doc-mesh-uprank-1-76cbe9cf4affe714.png
 media/generated/doc-mesh-vector-1-c142f6680a4755f5.png
 media/generated/doc-mesh-vectorfield-1-8e4c0ccf3871aa53.png
-media/generated/gallery-00-cycle-double-cover-845dca4c0918f92d.png
 media/generated/gallery-04-pythagorean-theorem-dab586aa0aef5a11.mp4
 media/generated/gallery-07-riemann-rectangles-881f88e32032605b.mp4
 media/generated/gallery-08-breather-surface-13377f5494f0ee5b.png
@@ -184,4 +186,5 @@ media/generated/gallery-14-surface-b98329a11488985e.mp4
 media/generated/gallery-16-lorenz-attractor-80148904ed3ce483.mp4
 media/generated/gallery-17-circular-pattern-75f4e9890ba90ba6.png
 media/generated/home-monocurl-title-69e3be7260301ad6.mp4
+robots.txt
 video/interactive-development.mp4

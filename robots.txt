@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.monocurl.com/monocurl-essays/sitemap.xml

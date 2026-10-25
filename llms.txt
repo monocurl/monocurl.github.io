@@ -1,0 +1,7 @@
+# Monocurl
+
+> Monocurl is a free desktop app and programming language for mathematical animation: write a scene as code, preview it live, export video or present it as slides.
+
+- [Monocurl home](https://www.monocurl.com/): overview, gallery and downloads
+- [Language lessons](https://www.monocurl.com/learn/): how to write Monocurl scenes
+- [Monocurl Essays](https://www.monocurl.com/monocurl-essays/llms.txt): free visual math lessons (algebra through calculus, probability, physics, machine learning), each available as plain markdown
